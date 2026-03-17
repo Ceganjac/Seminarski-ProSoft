@@ -35,7 +35,7 @@ public class PrijavaPanel extends javax.swing.JPanel {
         txtKorisnickoIme = new javax.swing.JTextField();
         pwdLozinka = new javax.swing.JPasswordField();
         btnPrijava = new javax.swing.JButton();
-        btnPrijava1 = new javax.swing.JButton();
+        btnOdustani = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -49,8 +49,9 @@ public class PrijavaPanel extends javax.swing.JPanel {
         lblLozinka.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblLozinka.setText("Лозинка:");
 
-        btnPrijava.setBackground(new java.awt.Color(204, 255, 204));
+        btnPrijava.setBackground(new java.awt.Color(0, 153, 153));
         btnPrijava.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnPrijava.setForeground(new java.awt.Color(255, 255, 255));
         btnPrijava.setText("Пријави се");
         btnPrijava.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,12 +59,12 @@ public class PrijavaPanel extends javax.swing.JPanel {
             }
         });
 
-        btnPrijava1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnPrijava1.setForeground(new java.awt.Color(255, 0, 0));
-        btnPrijava1.setText("Одустани");
-        btnPrijava1.addActionListener(new java.awt.event.ActionListener() {
+        btnOdustani.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnOdustani.setText("Одустани");
+        btnOdustani.setContentAreaFilled(false);
+        btnOdustani.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrijava1ActionPerformed(evt);
+                btnOdustaniActionPerformed(evt);
             }
         });
 
@@ -88,13 +89,13 @@ public class PrijavaPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtKorisnickoIme, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                                 .addComponent(pwdLozinka)))
-                        .addComponent(btnPrijava1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -107,14 +108,10 @@ public class PrijavaPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPrijava1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(btnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnPrijava1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijava1ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnPrijava1ActionPerformed
 
     private void btnPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijavaActionPerformed
         // TODO add your handling code here:
@@ -127,10 +124,15 @@ public class PrijavaPanel extends javax.swing.JPanel {
         glavni.setVisible(true);
     }//GEN-LAST:event_btnPrijavaActionPerformed
 
+    private void btnOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdustaniActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnOdustaniActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOdustani;
     private javax.swing.JButton btnPrijava;
-    private javax.swing.JButton btnPrijava1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblKorisnickoIme;
     private javax.swing.JLabel lblLozinka;

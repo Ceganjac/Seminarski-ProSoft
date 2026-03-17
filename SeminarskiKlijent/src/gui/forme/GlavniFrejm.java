@@ -4,6 +4,8 @@
  */
 package gui.forme;
 
+import domen.Pregled;
+
 /**
  *
  * @author Aleksandar Čeganjac
@@ -28,7 +30,9 @@ public class GlavniFrejm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblNazivSistema = new javax.swing.JLabel();
+        lblPrijavljenVr = new javax.swing.JLabel();
+        lblPrijavljen = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuPregled = new javax.swing.JMenu();
         itemKreirajPregled = new javax.swing.JMenuItem();
@@ -43,16 +47,31 @@ public class GlavniFrejm extends javax.swing.JFrame {
         itemUbaciSpecijalizaciju = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(153, 255, 153));
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Софтверски систем за обављање преглед у здравственој установи");
+        lblNazivSistema.setBackground(new java.awt.Color(0, 153, 153));
+        lblNazivSistema.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        lblNazivSistema.setForeground(new java.awt.Color(255, 255, 255));
+        lblNazivSistema.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNazivSistema.setText("Софтверски систем за обављање прегледа у здравственој установи");
+        lblNazivSistema.setOpaque(true);
 
+        lblPrijavljenVr.setBackground(new java.awt.Color(255, 255, 255));
+        lblPrijavljenVr.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        lblPrijavljenVr.setLabelFor(lblPrijavljen);
+        lblPrijavljenVr.setText("Пера Перић");
+
+        lblPrijavljen.setBackground(new java.awt.Color(255, 255, 255));
+        lblPrijavljen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPrijavljen.setText("Пријављени лекар: ");
+
+        menuBar.setBackground(new java.awt.Color(0, 153, 153));
         menuBar.setPreferredSize(new java.awt.Dimension(438, 35));
 
+        menuPregled.setForeground(new java.awt.Color(255, 255, 255));
         menuPregled.setText("Преглед");
 
+        itemKreirajPregled.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemKreirajPregled.setText("Креирај преглед");
         itemKreirajPregled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +80,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
         });
         menuPregled.add(itemKreirajPregled);
 
+        itemPretraziPregled.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemPretraziPregled.setText("Претражи преглед");
         itemPretraziPregled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +89,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
         });
         menuPregled.add(itemPretraziPregled);
 
+        itemPromeniPregled.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemPromeniPregled.setText("Измени преглед");
         itemPromeniPregled.setToolTipText("");
         itemPromeniPregled.addActionListener(new java.awt.event.ActionListener() {
@@ -80,14 +101,18 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
         menuBar.add(menuPregled);
 
+        menuPacijent.setForeground(new java.awt.Color(255, 255, 255));
         menuPacijent.setText("Пацијент");
 
+        itemKreirajPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemKreirajPacijenta.setText("Креирај пацијента");
         menuPacijent.add(itemKreirajPacijenta);
 
+        itemPretraziPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemPretraziPacijenta.setText("Претражи пацијента");
         menuPacijent.add(itemPretraziPacijenta);
 
+        itemIzmeniPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemIzmeniPacijenta.setText("Измени пацијента");
         itemIzmeniPacijenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,13 +121,16 @@ public class GlavniFrejm extends javax.swing.JFrame {
         });
         menuPacijent.add(itemIzmeniPacijenta);
 
+        itemObrisiPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemObrisiPacijenta.setText("Обриши пацијента");
         menuPacijent.add(itemObrisiPacijenta);
 
         menuBar.add(menuPacijent);
 
+        menuSpecijalizacija.setForeground(new java.awt.Color(255, 255, 255));
         menuSpecijalizacija.setText("Специјализација");
 
+        itemUbaciSpecijalizaciju.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemUbaciSpecijalizaciju.setText("Убаци специјализацију");
         itemUbaciSpecijalizaciju.setToolTipText("");
         menuSpecijalizacija.add(itemUbaciSpecijalizaciju);
@@ -116,23 +144,33 @@ public class GlavniFrejm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(246, Short.MAX_VALUE)
+                .addComponent(lblPrijavljen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(lblPrijavljenVr, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(246, Short.MAX_VALUE))
+            .addComponent(lblNazivSistema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addContainerGap(416, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(lblNazivSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPrijavljenVr, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPrijavljen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(388, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemKreirajPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemKreirajPregledActionPerformed
-        // TODO add your handling code here:
+        Pregled pregled = new Pregled();
+        KreirajPregledDialog dialog = new KreirajPregledDialog(this,true, pregled);
+        dialog.setSize(500, 700);
+        dialog.setVisible(true);
     }//GEN-LAST:event_itemKreirajPregledActionPerformed
 
     private void itemPretraziPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPretraziPregledActionPerformed
@@ -160,7 +198,9 @@ public class GlavniFrejm extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemPretraziPregled;
     private javax.swing.JMenuItem itemPromeniPregled;
     private javax.swing.JMenuItem itemUbaciSpecijalizaciju;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblNazivSistema;
+    private javax.swing.JLabel lblPrijavljen;
+    private javax.swing.JLabel lblPrijavljenVr;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuPacijent;
     private javax.swing.JMenu menuPregled;
