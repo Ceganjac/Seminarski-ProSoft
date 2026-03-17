@@ -4,6 +4,8 @@
  */
 package gui.forme;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Aleksandar Čeganjac
@@ -118,6 +120,8 @@ public class PrijavaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         GlavniFrejm glavni = new GlavniFrejm();
         glavni.setLocationRelativeTo(this);
+        glavni.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
         this.getTopLevelAncestor().setVisible(false);
         
         glavni.setVisible(true);
