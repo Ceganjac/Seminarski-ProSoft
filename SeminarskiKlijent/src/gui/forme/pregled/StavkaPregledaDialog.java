@@ -5,6 +5,9 @@
 package gui.forme.pregled;
 
 import domen.Pregled;
+import domen.StavkaPregleda;
+import gui.komponente.ModForme;
+import java.awt.Color;
 
 /**
  *
@@ -17,12 +20,16 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
     /**
      * Creates new form KreirajPregledDialog
      */
-    private Pregled pregled;
+    private StavkaPregleda stavkaPregleda;
+    ModForme modForme;
 
-    public StavkaPregledaDialog(java.awt.Frame parent, boolean modal) {
+    public StavkaPregledaDialog(java.awt.Frame parent, boolean modal, StavkaPregleda stavka, ModForme mod) {
         super(parent, modal);
         initComponents();
-        this.pregled = pregled;
+        getContentPane().setBackground(Color.white);
+        this.stavkaPregleda = stavkaPregleda;
+        this.modForme = mod;
+        obradaModa();
 
     }
 
@@ -35,29 +42,32 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator1 = new javax.swing.JSeparator();
         lblNaslov = new javax.swing.JLabel();
         lblIdStavke = new javax.swing.JLabel();
         txtIdStavke = new javax.swing.JTextField();
         lblDijagnoza = new javax.swing.JLabel();
-        lblLekarskiNalaz = new javax.swing.JLabel();
-        lblNazivStavke = new javax.swing.JLabel();
-        lblVremeTrajanja = new javax.swing.JLabel();
         cmbDijagnoze = new javax.swing.JComboBox<>();
-        txtNazivStavke = new javax.swing.JTextField();
-        txtLekarskiNalaz = new javax.swing.JTextField();
-        txtVremeTrajanja = new javax.swing.JTextField();
         btnSacuvajStavku = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaLekarskiNalaz = new javax.swing.JTextArea();
+        lblNaziv = new javax.swing.JLabel();
+        txtNaziv = new javax.swing.JTextField();
+        lblVremeTrajanja = new javax.swing.JLabel();
+        txtVremeTrajanja = new javax.swing.JTextField();
+        lblLekarskiNalaz = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         lblNaslov.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNaslov.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNaslov.setText("ДОДАВАЊЕ СТАВКЕ ПРЕГЛЕДА");
 
         lblIdStavke.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblIdStavke.setText("Ид ставке");
+        lblIdStavke.setText("Ид ставке :");
+        lblIdStavke.setPreferredSize(new java.awt.Dimension(80, 20));
 
-        txtIdStavke.setEnabled(false);
         txtIdStavke.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdStavkeActionPerformed(evt);
@@ -67,18 +77,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         lblDijagnoza.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblDijagnoza.setText("Дијагноза :");
 
-        lblLekarskiNalaz.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblLekarskiNalaz.setText("Лекарски налаз :");
-
-        lblNazivStavke.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblNazivStavke.setText("Назив ставке :");
-
-        lblVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblVremeTrajanja.setText("Време трајања");
-
-        cmbDijagnoze.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prehlada", "Stomačna infekcija", "Glavobolja" }));
-
-        txtVremeTrajanja.setEnabled(false);
+        cmbDijagnoze.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Прехлада", "Стомачни вирус", "Главобоља" }));
 
         btnSacuvajStavku.setBackground(new java.awt.Color(0, 153, 153));
         btnSacuvajStavku.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -90,33 +89,58 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
             }
         });
 
+        txaLekarskiNalaz.setColumns(20);
+        txaLekarskiNalaz.setRows(5);
+        txaLekarskiNalaz.setPreferredSize(new java.awt.Dimension(212, 80));
+        jScrollPane1.setViewportView(txaLekarskiNalaz);
+
+        lblNaziv.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblNaziv.setText("Назив :");
+        lblNaziv.setPreferredSize(new java.awt.Dimension(80, 20));
+
+        txtNaziv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNazivActionPerformed(evt);
+            }
+        });
+
+        lblVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblVremeTrajanja.setText("Време трајања :");
+        lblVremeTrajanja.setPreferredSize(new java.awt.Dimension(80, 20));
+
+        txtVremeTrajanja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVremeTrajanjaActionPerformed(evt);
+            }
+        });
+
+        lblLekarskiNalaz.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblLekarskiNalaz.setText("Лекарски налаз :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblNaslov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cmbDijagnoze, 0, 202, Short.MAX_VALUE))
                     .addComponent(btnSacuvajStavku, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblLekarskiNalaz, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDijagnoza, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIdStavke, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblNazivStavke, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                                .addComponent(lblLekarskiNalaz, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                                .addComponent(lblIdStavke, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(lblVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtVremeTrajanja, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtLekarskiNalaz, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtNazivStavke, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtIdStavke, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
-                .addGap(50, 50, 50))
+                            .addComponent(txtNaziv, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                            .addComponent(txtIdStavke)
+                            .addComponent(txtVremeTrajanja, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                            .addComponent(cmbDijagnoze, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,42 +148,70 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                 .addGap(50, 50, 50)
                 .addComponent(lblNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtIdStavke, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lblIdStavke, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lblNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lblVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtIdStavke, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblIdStavke, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNazivStavke, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNazivStavke, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblLekarskiNalaz, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtLekarskiNalaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbDijagnoze, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblLekarskiNalaz, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSacuvajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSacuvajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajStavkuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSacuvajStavkuActionPerformed
+
     private void txtIdStavkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdStavkeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdStavkeActionPerformed
 
-    private void btnSacuvajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajStavkuActionPerformed
+    private void txtNazivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNazivActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSacuvajStavkuActionPerformed
+    }//GEN-LAST:event_txtNazivActionPerformed
+
+    private void txtVremeTrajanjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVremeTrajanjaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVremeTrajanjaActionPerformed
+
+    // obrada moda forme
+    private void obradaModa() {
+
+        if (modForme == modForme.MOD_DODAVANJE) {
+            lblIdStavke.setVisible(false);
+            txtIdStavke.setVisible(false);
+        } else if (modForme == modForme.MOD_IZMENA) {
+            lblNaslov.setText("ИЗМЕНА СТАВКЕ ПРЕГЛЕДА");
+            txtIdStavke.setEditable(false);
+            btnSacuvajStavku.setText("Сачувај измене");
+        } else if (modForme == modForme.MOD_PRIKAZ) {
+            lblNaslov.setText("ПРИКАЗ СТАВКЕ ПРЕГЛЕДА");
+            btnSacuvajStavku.setVisible(false);
+            txtIdStavke.setEditable(false);
+            txtNaziv.setEditable(false);
+            txtVremeTrajanja.setEditable(false);
+            cmbDijagnoze.setEditable(false);
+            txaLekarskiNalaz.setEditable(false);
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -168,15 +220,17 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSacuvajStavku;
     private javax.swing.JComboBox<String> cmbDijagnoze;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblDijagnoza;
     private javax.swing.JLabel lblIdStavke;
     private javax.swing.JLabel lblLekarskiNalaz;
     private javax.swing.JLabel lblNaslov;
-    private javax.swing.JLabel lblNazivStavke;
+    private javax.swing.JLabel lblNaziv;
     private javax.swing.JLabel lblVremeTrajanja;
+    private javax.swing.JTextArea txaLekarskiNalaz;
     private javax.swing.JTextField txtIdStavke;
-    private javax.swing.JTextField txtLekarskiNalaz;
-    private javax.swing.JTextField txtNazivStavke;
+    private javax.swing.JTextField txtNaziv;
     private javax.swing.JTextField txtVremeTrajanja;
     // End of variables declaration//GEN-END:variables
 }

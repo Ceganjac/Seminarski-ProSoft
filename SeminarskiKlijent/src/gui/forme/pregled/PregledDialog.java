@@ -5,27 +5,33 @@
 package gui.forme.pregled;
 
 import domen.Pregled;
+import domen.StavkaPregleda;
+import gui.komponente.ModForme;
+import java.awt.Color;
 
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class KreirajPregledDialog extends javax.swing.JDialog {
+public class PregledDialog extends javax.swing.JDialog {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(KreirajPregledDialog.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PregledDialog.class.getName());
 
     /**
-     * Creates new form KreirajPregledDialog
+     * Creates new form PregledDialog
      */
     private Pregled pregled;
-    java.awt.Frame parent;
+    private ModForme modForme;
+    private java.awt.Frame parent;
 
-    public KreirajPregledDialog(java.awt.Frame parent, boolean modal, Pregled pregled) {
+    public PregledDialog(java.awt.Frame parent, boolean modal, Pregled pregled, ModForme modForme) {
         super(parent, modal);
         initComponents();
+        getContentPane().setBackground(Color.white);
         this.pregled = pregled;
+        this.modForme = modForme;
         this.parent = parent;
-
+        obradaModa();
     }
 
     /**
@@ -65,7 +71,7 @@ public class KreirajPregledDialog extends javax.swing.JDialog {
         lblNaslov.setText("КРЕИРАЊЕ ПРЕГЛЕДА");
 
         lblIdPregleda.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblIdPregleda.setText("Ид прегледа");
+        lblIdPregleda.setText("Ид прегледа :");
 
         lblLekar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblLekar.setText("Лекар :");
@@ -80,7 +86,6 @@ public class KreirajPregledDialog extends javax.swing.JDialog {
             }
         });
 
-        txtIdPregleda.setEnabled(false);
         txtIdPregleda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdPregledaActionPerformed(evt);
@@ -88,7 +93,7 @@ public class KreirajPregledDialog extends javax.swing.JDialog {
         });
 
         lblPacijent.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblPacijent.setText("Пацијент:");
+        lblPacijent.setText("Пацијент :");
 
         lblDatumVremeKontrole.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblDatumVremeKontrole.setText("Датум и време контроле :");
@@ -97,20 +102,31 @@ public class KreirajPregledDialog extends javax.swing.JDialog {
         lblDatumVremeZavrsetka.setText("Датум и време завршетка :");
 
         lblUkupnoVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblUkupnoVremeTrajanja.setText("Укупно време трајања:");
+        lblUkupnoVremeTrajanja.setText("Укупно време трајања :");
 
         lblTerapija.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblTerapija.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTerapija.setText("Терапија :");
 
-        cmbLekari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pera Perić", "Mile Milić", "Žika Žikić" }));
+        cmbLekari.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cmbLekari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Пера Перић", "Миле Милић", "Живорад Жикић" }));
 
-        cmbPacijenti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nebojša Ivanović", "Petar Čojbašić", "Milinko Ivanković" }));
+        cmbPacijenti.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cmbPacijenti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Небојша Ивановић", "Милош Илић", "Петар Станковић" }));
 
+        txtDatumVremeZavrsetka.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        txtDatumVremeKontrole.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        txtDatumVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtDatumVremeTrajanja.setEnabled(false);
 
+        txtTerapija.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        tblStavkePregleda.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tblStavkePregleda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -120,6 +136,8 @@ public class KreirajPregledDialog extends javax.swing.JDialog {
                 "Ид ставке прегледа", "Назив", "Лекарски налаз", "Време трајања", "Дијагноза"
             }
         ));
+        tblStavkePregleda.setPreferredSize(new java.awt.Dimension(375, 80));
+        tblStavkePregleda.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(tblStavkePregleda);
 
         btnDodajStavku.setBackground(new java.awt.Color(0, 153, 153));
@@ -204,34 +222,34 @@ public class KreirajPregledDialog extends javax.swing.JDialog {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbLekari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbLekari, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbPacijenti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbPacijenti, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDatumVremeZavrsetka, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDatumVremeZavrsetka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDatumVremeZavrsetka, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDatumVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDatumVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDatumVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUkupnoVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDatumVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDatumVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTerapija, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTerapija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtTerapija, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnDodajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSacuvajPregled, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -246,16 +264,38 @@ public class KreirajPregledDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtIdPregledaActionPerformed
 
     private void btnDodajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajStavkuActionPerformed
-        // TODO add your handling code here:
-        StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent,true);
+        StavkaPregleda stavka = new StavkaPregleda();
+        StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        
+
     }//GEN-LAST:event_btnDodajStavkuActionPerformed
 
     private void btnSacuvajPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajPregledActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSacuvajPregledActionPerformed
+
+    private void obradaModa() {
+
+        if (modForme == modForme.MOD_DODAVANJE) {
+            txtIdPregleda.setEditable(false);
+        } else if (modForme == modForme.MOD_IZMENA) {
+            lblNaslov.setText("ИЗМЕНА ПРЕГЛЕДА");
+            btnKreirajPregled.setVisible(false);
+            lblIdPregleda.setVisible(false);
+            txtIdPregleda.setVisible(false);
+            btnDodajStavku.setText("Измени селектовану ставку");
+            btnSacuvajPregled.setText("САЧУВАЈ ИЗМЕНЕ");
+
+        } else if (modForme == modForme.MOD_PRIKAZ) {
+            lblNaslov.setText("ПРИКАЗ ПРЕГЛЕДА");
+            btnKreirajPregled.setVisible(false);
+            btnDodajStavku.setVisible(false);
+            btnSacuvajPregled.setVisible(false);
+
+        }
+
+    }
 
     /**
      * @param args the command line arguments

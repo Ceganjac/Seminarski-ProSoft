@@ -4,9 +4,11 @@
  */
 package gui.forme;
 
-import gui.forme.pregled.KreirajPregledDialog;
+import gui.forme.pregled.PregledDialog;
 import domen.Pregled;
 import gui.forme.pregled.PretragaPregledaDialog;
+import gui.komponente.ModForme;
+import java.awt.Color;
 
 /**
  *
@@ -21,6 +23,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
      */
     public GlavniFrejm() {
         initComponents();
+        getContentPane().setBackground(Color.white);
     }
 
     /**
@@ -65,7 +68,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
         lblPrijavljen.setBackground(new java.awt.Color(255, 255, 255));
         lblPrijavljen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblPrijavljen.setText("Пријављени лекар: ");
+        lblPrijavljen.setText("Пријављени лекар :  ");
 
         menuBar.setBackground(new java.awt.Color(0, 153, 153));
         menuBar.setPreferredSize(new java.awt.Dimension(438, 35));
@@ -170,18 +173,23 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
     private void itemKreirajPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemKreirajPregledActionPerformed
         Pregled pregled = new Pregled();
-        KreirajPregledDialog dialog = new KreirajPregledDialog(this, true, pregled);
+        PregledDialog dialog = new PregledDialog(this, true, pregled, ModForme.MOD_DODAVANJE);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_itemKreirajPregledActionPerformed
 
     private void itemPretraziPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPretraziPregledActionPerformed
-        PretragaPregledaDialog dialog = new PretragaPregledaDialog(this, true);
+        PretragaPregledaDialog dialog = new PretragaPregledaDialog(this, true, ModForme.MOD_PRETRAZI_PRIKAZI);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);    }//GEN-LAST:event_itemPretraziPregledActionPerformed
 
     private void itemPromeniPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPromeniPregledActionPerformed
-        // TODO add your handling code here:
+
+        PretragaPregledaDialog dialog = new PretragaPregledaDialog(this, true, ModForme.MOD_PRETRAZI_IZMENI);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+
+
     }//GEN-LAST:event_itemPromeniPregledActionPerformed
 
     private void itemIzmeniPacijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemIzmeniPacijentaActionPerformed

@@ -5,6 +5,8 @@
 package gui.forme.pregled;
 
 import domen.Pregled;
+import gui.komponente.ModForme;
+import java.awt.Color;
 
 /**
  *
@@ -18,12 +20,16 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
      * Creates new form KreirajPregledDialog
      */
     private Pregled pregled;
-    java.awt.Frame parent;
+    private java.awt.Frame parent;
+    private ModForme modForme;
 
-    public PretragaPregledaDialog(java.awt.Frame parent, boolean modal) {
+    public PretragaPregledaDialog(java.awt.Frame parent, boolean modal, ModForme modForme) {
         super(parent, modal);
         initComponents();
+        getContentPane().setBackground(Color.white);
         this.parent = parent;
+        this.modForme = modForme;
+        obradaModa();
 
     }
 
@@ -37,13 +43,14 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         lblNaslov = new javax.swing.JLabel();
-        lblLekar = new javax.swing.JLabel();
-        btnKreirajPregled = new javax.swing.JButton();
-        lblDatumVremeKontrole = new javax.swing.JLabel();
-        cmbLekari = new javax.swing.JComboBox<>();
-        txtDatumVremeKontrole = new javax.swing.JTextField();
+        lblKriterijumPretrage = new javax.swing.JLabel();
+        btnPretrazi = new javax.swing.JButton();
+        lblVrednost = new javax.swing.JLabel();
+        cmbKriterijum = new javax.swing.JComboBox<>();
+        txtVrednost = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblStavkePregleda = new javax.swing.JTable();
+        tblPregledi = new javax.swing.JTable();
+        btnIzmeniPrikazi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,33 +58,33 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         lblNaslov.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNaslov.setText("ПРЕТРАГА ПРЕГЛЕДА");
 
-        lblLekar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblLekar.setText("Критеријум претраге");
-        lblLekar.setPreferredSize(new java.awt.Dimension(170, 14));
+        lblKriterijumPretrage.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblKriterijumPretrage.setText("Критеријум претраге :");
+        lblKriterijumPretrage.setPreferredSize(new java.awt.Dimension(170, 14));
 
-        btnKreirajPregled.setBackground(new java.awt.Color(0, 153, 153));
-        btnKreirajPregled.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnKreirajPregled.setForeground(new java.awt.Color(255, 255, 255));
-        btnKreirajPregled.setText("Претражи");
-        btnKreirajPregled.addActionListener(new java.awt.event.ActionListener() {
+        btnPretrazi.setBackground(new java.awt.Color(0, 153, 153));
+        btnPretrazi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnPretrazi.setForeground(new java.awt.Color(255, 255, 255));
+        btnPretrazi.setText("Претражи");
+        btnPretrazi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKreirajPregledActionPerformed(evt);
+                btnPretraziActionPerformed(evt);
             }
         });
 
-        lblDatumVremeKontrole.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblDatumVremeKontrole.setText("Вредност");
+        lblVrednost.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblVrednost.setText("Вредност :");
 
-        cmbLekari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Преглед", "Лекар", "Пацијент", "Дијагноза" }));
-        cmbLekari.setPreferredSize(new java.awt.Dimension(300, 20));
+        cmbKriterijum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Преглед", "Лекар", "Пацијент", "Дијагноза" }));
+        cmbKriterijum.setPreferredSize(new java.awt.Dimension(300, 20));
 
-        txtDatumVremeKontrole.addActionListener(new java.awt.event.ActionListener() {
+        txtVrednost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDatumVremeKontroleActionPerformed(evt);
+                txtVrednostActionPerformed(evt);
             }
         });
 
-        tblStavkePregleda.setModel(new javax.swing.table.DefaultTableModel(
+        tblPregledi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -88,7 +95,17 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
                 "Ид ставке прегледа", "Лекар", "Пацијент", "Датум и време завршетка", "Датум и време контроле", "Укупно време трајња", "Терапија"
             }
         ));
-        jScrollPane2.setViewportView(tblStavkePregleda);
+        jScrollPane2.setViewportView(tblPregledi);
+
+        btnIzmeniPrikazi.setBackground(new java.awt.Color(0, 153, 153));
+        btnIzmeniPrikazi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnIzmeniPrikazi.setForeground(new java.awt.Color(255, 255, 255));
+        btnIzmeniPrikazi.setText("Измени селектовани преглед");
+        btnIzmeniPrikazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzmeniPrikaziActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,23 +113,24 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblNaslov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnIzmeniPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cmbLekari, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(lblDatumVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtDatumVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnKreirajPregled, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 309, Short.MAX_VALUE)))
-                .addGap(50, 50, 50))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cmbKriterijum, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblKriterijumPretrage, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnPretrazi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 530, Short.MAX_VALUE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,41 +139,59 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
                 .addComponent(lblNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbLekari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblKriterijumPretrage, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbKriterijum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDatumVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDatumVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnKreirajPregled, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                    .addComponent(lblVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPretrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnIzmeniPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnKreirajPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajPregledActionPerformed
+    private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed
 
-    }//GEN-LAST:event_btnKreirajPregledActionPerformed
+    }//GEN-LAST:event_btnPretraziActionPerformed
 
-    private void txtDatumVremeKontroleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatumVremeKontroleActionPerformed
+    private void txtVrednostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVrednostActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDatumVremeKontroleActionPerformed
+    }//GEN-LAST:event_txtVrednostActionPerformed
+
+    private void btnIzmeniPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniPrikaziActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIzmeniPrikaziActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    private void obradaModa() {
+
+        if (modForme == ModForme.MOD_PRETRAZI_IZMENI) {
+            lblNaslov.setText("ПРЕТРАГА И ИЗМЕНА ПРЕГЛЕДА");
+        } else if (modForme == ModForme.MOD_PRETRAZI_PRIKAZI) {
+            lblNaslov.setText("ПРЕТРАГА И ПРИКАЗ ПРЕГЛЕДА");
+            btnIzmeniPrikazi.setText("Прикажи детљно преглед");
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnKreirajPregled;
-    private javax.swing.JComboBox<String> cmbLekari;
+    private javax.swing.JButton btnIzmeniPrikazi;
+    private javax.swing.JButton btnPretrazi;
+    private javax.swing.JComboBox<String> cmbKriterijum;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblDatumVremeKontrole;
-    private javax.swing.JLabel lblLekar;
+    private javax.swing.JLabel lblKriterijumPretrage;
     private javax.swing.JLabel lblNaslov;
-    private javax.swing.JTable tblStavkePregleda;
-    private javax.swing.JTextField txtDatumVremeKontrole;
+    private javax.swing.JLabel lblVrednost;
+    private javax.swing.JTable tblPregledi;
+    private javax.swing.JTextField txtVrednost;
     // End of variables declaration//GEN-END:variables
 }

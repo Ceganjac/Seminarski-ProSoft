@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -25,33 +32,28 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="lblNaslov" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblDijagnoza" min="-2" pref="170" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbDijagnoze" pref="202" max="32767" attributes="0"/>
-                  </Group>
                   <Component id="btnSacuvajStavku" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblNazivStavke" alignment="0" pref="170" max="32767" attributes="0"/>
-                              <Component id="lblLekarskiNalaz" alignment="0" pref="170" max="32767" attributes="0"/>
-                              <Component id="lblIdStavke" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="lblVremeTrajanja" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblLekarskiNalaz" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="lblDijagnoza" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="lblVremeTrajanja" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="lblIdStavke" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="lblNaziv" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtVremeTrajanja" pref="200" max="32767" attributes="0"/>
-                          <Component id="txtLekarskiNalaz" pref="200" max="32767" attributes="0"/>
-                          <Component id="txtNazivStavke" pref="200" max="32767" attributes="0"/>
-                          <Component id="txtIdStavke" pref="200" max="32767" attributes="0"/>
+                          <Component id="txtNaziv" pref="307" max="32767" attributes="0"/>
+                          <Component id="txtIdStavke" max="32767" attributes="0"/>
+                          <Component id="txtVremeTrajanja" pref="307" max="32767" attributes="0"/>
+                          <Component id="cmbDijagnoze" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,36 +63,32 @@
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="lblNaslov" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtIdStavke" pref="0" max="32767" attributes="0"/>
+                  <Component id="lblIdStavke" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtNaziv" alignment="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="lblNaziv" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtVremeTrajanja" alignment="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="lblVremeTrajanja" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="txtIdStavke" min="-2" pref="20" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="lblIdStavke" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="lblDijagnoza" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="cmbDijagnoze" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblNazivStavke" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtNazivStavke" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblLekarskiNalaz" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtLekarskiNalaz" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblVremeTrajanja" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtVremeTrajanja" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDijagnoza" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="cmbDijagnoze" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="lblLekarskiNalaz" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="103" max="32767" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="btnSacuvajStavku" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -110,13 +108,13 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x418;&#x434; &#x441;&#x442;&#x430;&#x432;&#x43a;&#x435;"/>
+        <Property name="text" type="java.lang.String" value="&#x418;&#x434; &#x441;&#x442;&#x430;&#x432;&#x43a;&#x435; :"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[80, 20]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtIdStavke">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdStavkeActionPerformed"/>
       </Events>
@@ -129,52 +127,19 @@
         <Property name="text" type="java.lang.String" value="&#x414;&#x438;&#x458;&#x430;&#x433;&#x43d;&#x43e;&#x437;&#x430; :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblLekarskiNalaz">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x41b;&#x435;&#x43a;&#x430;&#x440;&#x441;&#x43a;&#x438; &#x43d;&#x430;&#x43b;&#x430;&#x437; :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblNazivStavke">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x41d;&#x430;&#x437;&#x438;&#x432; &#x441;&#x442;&#x430;&#x432;&#x43a;&#x435; :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblVremeTrajanja">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x412;&#x440;&#x435;&#x43c;&#x435; &#x442;&#x440;&#x430;&#x458;&#x430;&#x45a;&#x430;"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JComboBox" name="cmbDijagnoze">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
-            <StringItem index="0" value="Prehlada"/>
-            <StringItem index="1" value="Stoma&#x10d;na infekcija"/>
-            <StringItem index="2" value="Glavobolja"/>
+            <StringItem index="0" value="&#x41f;&#x440;&#x435;&#x445;&#x43b;&#x430;&#x434;&#x430;"/>
+            <StringItem index="1" value="&#x421;&#x442;&#x43e;&#x43c;&#x430;&#x447;&#x43d;&#x438; &#x432;&#x438;&#x440;&#x443;&#x441;"/>
+            <StringItem index="2" value="&#x413;&#x43b;&#x430;&#x432;&#x43e;&#x431;&#x43e;&#x459;&#x430;"/>
           </StringArray>
         </Property>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNazivStavke">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtLekarskiNalaz">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtVremeTrajanja">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSacuvajStavku">
       <Properties>
@@ -192,6 +157,64 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSacuvajStavkuActionPerformed"/>
       </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="txaLekarskiNalaz">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[212, 80]"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="lblNaziv">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x41d;&#x430;&#x437;&#x438;&#x432; :"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[80, 20]"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNaziv">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNazivActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblVremeTrajanja">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x412;&#x440;&#x435;&#x43c;&#x435; &#x442;&#x440;&#x430;&#x458;&#x430;&#x45a;&#x430; :"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[80, 20]"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtVremeTrajanja">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtVremeTrajanjaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLekarskiNalaz">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x41b;&#x435;&#x43a;&#x430;&#x440;&#x441;&#x43a;&#x438; &#x43d;&#x430;&#x43b;&#x430;&#x437; :"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

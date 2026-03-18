@@ -45,10 +45,10 @@ public class PrijavaPanel extends javax.swing.JPanel {
         jLabel1.setText("ПРИЈАВА");
 
         lblKorisnickoIme.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblKorisnickoIme.setText("Корисничко име:");
+        lblKorisnickoIme.setText("Корисничко име :");
 
         lblLozinka.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblLozinka.setText("Лозинка:");
+        lblLozinka.setText("Лозинка :");
 
         btnPrijava.setBackground(new java.awt.Color(0, 153, 153));
         btnPrijava.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
