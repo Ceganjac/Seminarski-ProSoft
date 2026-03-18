@@ -4,7 +4,7 @@
  */
 package main;
 
-import gui.forme.PrijavaPanel;
+import gui.forme.pregled.PrijavaPanel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;

@@ -4,7 +4,9 @@
  */
 package gui.forme;
 
+import gui.forme.pregled.KreirajPregledDialog;
 import domen.Pregled;
+import gui.forme.pregled.PretragaPregledaDialog;
 
 /**
  *
@@ -168,21 +170,23 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
     private void itemKreirajPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemKreirajPregledActionPerformed
         Pregled pregled = new Pregled();
-        KreirajPregledDialog dialog = new KreirajPregledDialog(this,true, pregled);
-        dialog.setSize(500, 700);
+        KreirajPregledDialog dialog = new KreirajPregledDialog(this, true, pregled);
+        dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_itemKreirajPregledActionPerformed
 
     private void itemPretraziPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPretraziPregledActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_itemPretraziPregledActionPerformed
+        PretragaPregledaDialog dialog = new PretragaPregledaDialog(this, true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);    }//GEN-LAST:event_itemPretraziPregledActionPerformed
 
     private void itemPromeniPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPromeniPregledActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemPromeniPregledActionPerformed
 
     private void itemIzmeniPacijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemIzmeniPacijentaActionPerformed
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_itemIzmeniPacijentaActionPerformed
 
     /**
