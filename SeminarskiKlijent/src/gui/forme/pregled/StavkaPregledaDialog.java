@@ -207,7 +207,8 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
             txtIdStavke.setEditable(false);
             txtNaziv.setEditable(false);
             txtVremeTrajanja.setEditable(false);
-            cmbDijagnoze.setEditable(false);
+            txaLekarskiNalaz.setEditable(false);
+            cmbDijagnoze.setEnabled(false);
             txaLekarskiNalaz.setEditable(false);
         }
 

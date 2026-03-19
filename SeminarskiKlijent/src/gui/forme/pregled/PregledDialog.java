@@ -8,6 +8,7 @@ import domen.Pregled;
 import domen.StavkaPregleda;
 import gui.komponente.ModForme;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,6 +64,9 @@ public class PregledDialog extends javax.swing.JDialog {
         tblStavkePregleda = new javax.swing.JTable();
         btnDodajStavku = new javax.swing.JButton();
         btnSacuvajPregled = new javax.swing.JButton();
+        btnIzmeniPregled = new javax.swing.JButton();
+        btnIzmeniStavku = new javax.swing.JButton();
+        btnPrikaziStavku = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -86,6 +90,7 @@ public class PregledDialog extends javax.swing.JDialog {
             }
         });
 
+        txtIdPregleda.setEditable(false);
         txtIdPregleda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdPregledaActionPerformed(evt);
@@ -114,12 +119,13 @@ public class PregledDialog extends javax.swing.JDialog {
         cmbPacijenti.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cmbPacijenti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Небојша Ивановић", "Милош Илић", "Петар Станковић" }));
 
+        txtDatumVremeZavrsetka.setEditable(false);
         txtDatumVremeZavrsetka.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         txtDatumVremeKontrole.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
+        txtDatumVremeTrajanja.setEditable(false);
         txtDatumVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txtDatumVremeTrajanja.setEnabled(false);
 
         txtTerapija.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -160,15 +166,46 @@ public class PregledDialog extends javax.swing.JDialog {
             }
         });
 
+        btnIzmeniPregled.setBackground(new java.awt.Color(0, 153, 153));
+        btnIzmeniPregled.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnIzmeniPregled.setForeground(new java.awt.Color(255, 255, 255));
+        btnIzmeniPregled.setText("ИЗМЕНИ ПРЕГЛЕД");
+        btnIzmeniPregled.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzmeniPregledActionPerformed(evt);
+            }
+        });
+
+        btnIzmeniStavku.setBackground(new java.awt.Color(0, 153, 153));
+        btnIzmeniStavku.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnIzmeniStavku.setForeground(new java.awt.Color(255, 255, 255));
+        btnIzmeniStavku.setText("Измени селектовану ставку");
+        btnIzmeniStavku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzmeniStavkuActionPerformed(evt);
+            }
+        });
+
+        btnPrikaziStavku.setBackground(new java.awt.Color(0, 153, 153));
+        btnPrikaziStavku.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnPrikaziStavku.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrikaziStavku.setText("Прикажи селектовану ставку");
+        btnPrikaziStavku.setToolTipText("");
+        btnPrikaziStavku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrikaziStavkuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblNaslov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblTerapija, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -203,7 +240,10 @@ public class PregledDialog extends javax.swing.JDialog {
                                 .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnKreirajPregled, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtIdPregleda))))))
+                                    .addComponent(txtIdPregleda)))))
+                    .addComponent(btnIzmeniPregled, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnIzmeniStavku, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPrikaziStavku, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -245,11 +285,17 @@ public class PregledDialog extends javax.swing.JDialog {
                     .addComponent(txtTerapija, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDodajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSacuvajPregled, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnIzmeniStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnIzmeniPregled, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPrikaziStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
 
         pack();
@@ -275,23 +321,79 @@ public class PregledDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSacuvajPregledActionPerformed
 
+    private void btnIzmeniPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniPregledActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIzmeniPregledActionPerformed
+
+    private void btnIzmeniStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniStavkuActionPerformed
+        int selektovaniRed = tblStavkePregleda.getSelectedRow();
+
+        if (selektovaniRed != -1) {
+            StavkaPregleda stavka = new StavkaPregleda();
+            StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme);
+            dialog.setLocationRelativeTo(this);
+            dialog.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Нисте селектовали ставку прегледа !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnIzmeniStavkuActionPerformed
+
+    private void btnPrikaziStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziStavkuActionPerformed
+        int selektovaniRed = tblStavkePregleda.getSelectedRow();
+
+        if (selektovaniRed != -1) {
+            StavkaPregleda stavka = new StavkaPregleda();
+            StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme);
+            dialog.setLocationRelativeTo(this);
+            dialog.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Нисте селектовали ставку прегледа !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnPrikaziStavkuActionPerformed
+
     private void obradaModa() {
 
-        if (modForme == modForme.MOD_DODAVANJE) {
-            txtIdPregleda.setEditable(false);
-        } else if (modForme == modForme.MOD_IZMENA) {
+        if (modForme == ModForme.MOD_DODAVANJE) {
+            lblDatumVremeZavrsetka.setVisible(false);
+            txtDatumVremeZavrsetka.setVisible(false);
+
+            // sakrivanje dugmeta
+            btnIzmeniPregled.setVisible(false);
+            btnIzmeniStavku.setVisible(false);
+            btnPrikaziStavku.setVisible(false);
+
+        } else if (modForme == ModForme.MOD_IZMENA) {
             lblNaslov.setText("ИЗМЕНА ПРЕГЛЕДА");
-            btnKreirajPregled.setVisible(false);
+            lblDatumVremeZavrsetka.setVisible(false);
+            txtDatumVremeZavrsetka.setVisible(false);
             lblIdPregleda.setVisible(false);
             txtIdPregleda.setVisible(false);
-            btnDodajStavku.setText("Измени селектовану ставку");
-            btnSacuvajPregled.setText("САЧУВАЈ ИЗМЕНЕ");
 
-        } else if (modForme == modForme.MOD_PRIKAZ) {
-            lblNaslov.setText("ПРИКАЗ ПРЕГЛЕДА");
+            // sakrivanje dugmeta
             btnKreirajPregled.setVisible(false);
-            btnDodajStavku.setVisible(false);
             btnSacuvajPregled.setVisible(false);
+            btnDodajStavku.setVisible(false);
+            btnPrikaziStavku.setVisible(false);
+
+        } else if (modForme == ModForme.MOD_PRIKAZ) {
+            lblNaslov.setText("ПРИКАЗ ПРЕГЛЕДА");
+
+            // sakrivanje dugmadi
+            btnKreirajPregled.setVisible(false);
+            btnSacuvajPregled.setVisible(false);
+            btnIzmeniPregled.setVisible(false);
+            btnDodajStavku.setVisible(false);
+            btnIzmeniStavku.setVisible(false);
+            
+            // sakrivanje combo box-a
+            cmbPacijenti.setEnabled(false);
+            cmbLekari.setEnabled(false);
+
+            // onemogućavanje izmena txtField
+            txtIdPregleda.setEditable(false);
+            txtDatumVremeKontrole.setEditable(false);
+            txtTerapija.setEditable(false);
 
         }
 
@@ -303,7 +405,10 @@ public class PregledDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodajStavku;
+    private javax.swing.JButton btnIzmeniPregled;
+    private javax.swing.JButton btnIzmeniStavku;
     private javax.swing.JButton btnKreirajPregled;
+    private javax.swing.JButton btnPrikaziStavku;
     private javax.swing.JButton btnSacuvajPregled;
     private javax.swing.JComboBox<String> cmbLekari;
     private javax.swing.JComboBox<String> cmbPacijenti;

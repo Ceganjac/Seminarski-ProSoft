@@ -7,6 +7,7 @@ package gui.forme.pregled;
 import domen.Pregled;
 import gui.komponente.ModForme;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +27,9 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     public PretragaPregledaDialog(java.awt.Frame parent, boolean modal, ModForme modForme) {
         super(parent, modal);
         initComponents();
+        // postavljanje boje
         getContentPane().setBackground(Color.white);
+
         this.parent = parent;
         this.modForme = modForme;
         obradaModa();
@@ -50,7 +53,8 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         txtVrednost = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPregledi = new javax.swing.JTable();
-        btnIzmeniPrikazi = new javax.swing.JButton();
+        btnIzmeni = new javax.swing.JButton();
+        btnPrikazi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -76,6 +80,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         lblVrednost.setText("Вредност :");
 
         cmbKriterijum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Преглед", "Лекар", "Пацијент", "Дијагноза" }));
+        cmbKriterijum.setOpaque(true);
         cmbKriterijum.setPreferredSize(new java.awt.Dimension(300, 20));
 
         txtVrednost.addActionListener(new java.awt.event.ActionListener() {
@@ -97,13 +102,23 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(tblPregledi);
 
-        btnIzmeniPrikazi.setBackground(new java.awt.Color(0, 153, 153));
-        btnIzmeniPrikazi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnIzmeniPrikazi.setForeground(new java.awt.Color(255, 255, 255));
-        btnIzmeniPrikazi.setText("Измени селектовани преглед");
-        btnIzmeniPrikazi.addActionListener(new java.awt.event.ActionListener() {
+        btnIzmeni.setBackground(new java.awt.Color(0, 153, 153));
+        btnIzmeni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnIzmeni.setForeground(new java.awt.Color(255, 255, 255));
+        btnIzmeni.setText("Измени селектовани преглед");
+        btnIzmeni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIzmeniPrikaziActionPerformed(evt);
+                btnIzmeniActionPerformed(evt);
+            }
+        });
+
+        btnPrikazi.setBackground(new java.awt.Color(0, 153, 153));
+        btnPrikazi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnPrikazi.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrikazi.setText("Прикажи селектовани преглед");
+        btnPrikazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrikaziActionPerformed(evt);
             }
         });
 
@@ -113,23 +128,28 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblNaslov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnIzmeniPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cmbKriterijum, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblKriterijumPretrage, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(btnPretrazi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 530, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(50, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cmbKriterijum, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lblKriterijumPretrage, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(btnPretrazi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 530, Short.MAX_VALUE)))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -140,7 +160,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblKriterijumPretrage, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbKriterijum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbKriterijum, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,9 +170,13 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnIzmeniPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
+
+        cmbKriterijum.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -165,9 +189,28 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtVrednostActionPerformed
 
-    private void btnIzmeniPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniPrikaziActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIzmeniPrikaziActionPerformed
+    private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
+
+        int selektovanRed = tblPregledi.getSelectedRow();
+        if (selektovanRed != -1) {
+            PregledDialog dialog = new PregledDialog(parent, true, pregled, ModForme.MOD_IZMENA);
+            dialog.setLocationRelativeTo(this);
+            dialog.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Нисте селектовали преглед !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnIzmeniActionPerformed
+
+    private void btnPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziActionPerformed
+        int selektovaniRed = tblPregledi.getSelectedRow();
+        if (selektovaniRed != -1) {
+            PregledDialog dialog = new PregledDialog(parent, true, pregled, ModForme.MOD_PRIKAZ);
+            dialog.setLocationRelativeTo(this);
+            dialog.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Нисте селектовали преглед !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnPrikaziActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,16 +219,19 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
 
         if (modForme == ModForme.MOD_PRETRAZI_IZMENI) {
             lblNaslov.setText("ПРЕТРАГА И ИЗМЕНА ПРЕГЛЕДА");
+            btnPrikazi.setVisible(false);
         } else if (modForme == ModForme.MOD_PRETRAZI_PRIKAZI) {
             lblNaslov.setText("ПРЕТРАГА И ПРИКАЗ ПРЕГЛЕДА");
-            btnIzmeniPrikazi.setText("Прикажи детљно преглед");
+            btnIzmeni.setVisible(false);
+
         }
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIzmeniPrikazi;
+    private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnPretrazi;
+    private javax.swing.JButton btnPrikazi;
     private javax.swing.JComboBox<String> cmbKriterijum;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblKriterijumPretrage;

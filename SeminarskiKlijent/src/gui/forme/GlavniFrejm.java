@@ -9,6 +9,8 @@ import domen.Pregled;
 import gui.forme.pregled.PretragaPregledaDialog;
 import gui.komponente.ModForme;
 import java.awt.Color;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 /**
  *
@@ -23,6 +25,11 @@ public class GlavniFrejm extends javax.swing.JFrame {
      */
     public GlavniFrejm() {
         initComponents();
+
+        //izmene boja
+        UIManager.put("MenuItem.selectionBackground", new Color(0, 204, 102));
+        UIManager.put("Menu.selectionBackground", new Color(0, 204, 102));
+        SwingUtilities.updateComponentTreeUI(this);
         getContentPane().setBackground(Color.white);
     }
 
