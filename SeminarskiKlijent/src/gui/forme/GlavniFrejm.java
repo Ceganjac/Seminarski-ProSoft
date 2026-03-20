@@ -4,8 +4,10 @@
  */
 package gui.forme;
 
+import domen.Pacijent;
 import gui.forme.pregled.PregledDialog;
 import domen.Pregled;
+import gui.forme.pacijent.PacijentDialog;
 import gui.forme.pregled.PretragaPregledaDialog;
 import gui.komponente.ModForme;
 import java.awt.Color;
@@ -42,9 +44,10 @@ public class GlavniFrejm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblNazivSistema = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lblPrijavljenVr = new javax.swing.JLabel();
         lblPrijavljen = new javax.swing.JLabel();
+        lblNazivSistema = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuPregled = new javax.swing.JMenu();
         itemKreirajPregled = new javax.swing.JMenuItem();
@@ -61,12 +64,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        lblNazivSistema.setBackground(new java.awt.Color(0, 153, 153));
-        lblNazivSistema.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        lblNazivSistema.setForeground(new java.awt.Color(255, 255, 255));
-        lblNazivSistema.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNazivSistema.setText("Софтверски систем за обављање прегледа у здравственој установи");
-        lblNazivSistema.setOpaque(true);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblPrijavljenVr.setBackground(new java.awt.Color(255, 255, 255));
         lblPrijavljenVr.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
@@ -76,6 +74,35 @@ public class GlavniFrejm extends javax.swing.JFrame {
         lblPrijavljen.setBackground(new java.awt.Color(255, 255, 255));
         lblPrijavljen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPrijavljen.setText("Пријављени лекар :  ");
+
+        lblNazivSistema.setBackground(new java.awt.Color(255, 255, 255));
+        lblNazivSistema.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        lblNazivSistema.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNazivSistema.setText("СОФТВЕРСКИ СИСТЕМ ЗА ОБАВЉАЊЕ ПРЕГЛЕДА У ЗДРАВСТВЕНОЈ УСТАНОВИ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblPrijavljen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblPrijavljenVr, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lblNazivSistema, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(lblNazivSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPrijavljenVr, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPrijavljen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(366, Short.MAX_VALUE))
+        );
 
         menuBar.setBackground(new java.awt.Color(0, 153, 153));
         menuBar.setPreferredSize(new java.awt.Dimension(438, 35));
@@ -118,6 +145,11 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
         itemKreirajPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemKreirajPacijenta.setText("Креирај пацијента");
+        itemKreirajPacijenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemKreirajPacijentaActionPerformed(evt);
+            }
+        });
         menuPacijent.add(itemKreirajPacijenta);
 
         itemPretraziPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -155,24 +187,11 @@ public class GlavniFrejm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(246, Short.MAX_VALUE)
-                .addComponent(lblPrijavljen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(lblPrijavljenVr, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(246, Short.MAX_VALUE))
-            .addComponent(lblNazivSistema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(lblNazivSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPrijavljenVr, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPrijavljen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(388, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -204,6 +223,13 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_itemIzmeniPacijentaActionPerformed
 
+    private void itemKreirajPacijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemKreirajPacijentaActionPerformed
+        Pacijent pacijent = new Pacijent();
+        PacijentDialog dialog = new PacijentDialog(this,true,pacijent,ModForme.MOD_DODAVANJE);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_itemKreirajPacijentaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -217,6 +243,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemPretraziPregled;
     private javax.swing.JMenuItem itemPromeniPregled;
     private javax.swing.JMenuItem itemUbaciSpecijalizaciju;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblNazivSistema;
     private javax.swing.JLabel lblPrijavljen;
     private javax.swing.JLabel lblPrijavljenVr;
