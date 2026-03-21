@@ -8,8 +8,10 @@ import domen.Pacijent;
 import gui.forme.pregled.PregledDialog;
 import domen.Pregled;
 import gui.forme.pacijent.PacijentDialog;
+import gui.forme.pacijent.PretragaPacijentaDialog;
 import gui.forme.pregled.PretragaPregledaDialog;
 import gui.komponente.ModForme;
+import gui.komponente.ModFormePretrazi;
 import java.awt.Color;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -52,7 +54,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
         menuPregled = new javax.swing.JMenu();
         itemKreirajPregled = new javax.swing.JMenuItem();
         itemPretraziPregled = new javax.swing.JMenuItem();
-        itemPromeniPregled = new javax.swing.JMenuItem();
+        itemIzmeniPregled = new javax.swing.JMenuItem();
         menuPacijent = new javax.swing.JMenu();
         itemKreirajPacijenta = new javax.swing.JMenuItem();
         itemPretraziPacijenta = new javax.swing.JMenuItem();
@@ -128,15 +130,15 @@ public class GlavniFrejm extends javax.swing.JFrame {
         });
         menuPregled.add(itemPretraziPregled);
 
-        itemPromeniPregled.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        itemPromeniPregled.setText("Измени преглед");
-        itemPromeniPregled.setToolTipText("");
-        itemPromeniPregled.addActionListener(new java.awt.event.ActionListener() {
+        itemIzmeniPregled.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        itemIzmeniPregled.setText("Измени преглед");
+        itemIzmeniPregled.setToolTipText("");
+        itemIzmeniPregled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemPromeniPregledActionPerformed(evt);
+                itemIzmeniPregledActionPerformed(evt);
             }
         });
-        menuPregled.add(itemPromeniPregled);
+        menuPregled.add(itemIzmeniPregled);
 
         menuBar.add(menuPregled);
 
@@ -154,6 +156,11 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
         itemPretraziPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemPretraziPacijenta.setText("Претражи пацијента");
+        itemPretraziPacijenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemPretraziPacijentaActionPerformed(evt);
+            }
+        });
         menuPacijent.add(itemPretraziPacijenta);
 
         itemIzmeniPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -167,6 +174,11 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
         itemObrisiPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemObrisiPacijenta.setText("Обриши пацијента");
+        itemObrisiPacijenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemObrisiPacijentaActionPerformed(evt);
+            }
+        });
         menuPacijent.add(itemObrisiPacijenta);
 
         menuBar.add(menuPacijent);
@@ -199,36 +211,51 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
     private void itemKreirajPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemKreirajPregledActionPerformed
         Pregled pregled = new Pregled();
-        PregledDialog dialog = new PregledDialog(this, true, pregled, ModForme.MOD_DODAVANJE);
+        PregledDialog dialog = new PregledDialog(this, true, pregled, ModForme.MOD_KREIRANJE);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_itemKreirajPregledActionPerformed
 
     private void itemPretraziPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPretraziPregledActionPerformed
-        PretragaPregledaDialog dialog = new PretragaPregledaDialog(this, true, ModForme.MOD_PRETRAZI_PRIKAZI);
+        PretragaPregledaDialog dialog = new PretragaPregledaDialog(this, true, ModFormePretrazi.MOD_PRETRAZI_PRIKAZI);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);    }//GEN-LAST:event_itemPretraziPregledActionPerformed
 
-    private void itemPromeniPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPromeniPregledActionPerformed
+    private void itemIzmeniPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemIzmeniPregledActionPerformed
 
-        PretragaPregledaDialog dialog = new PretragaPregledaDialog(this, true, ModForme.MOD_PRETRAZI_IZMENI);
+        PretragaPregledaDialog dialog = new PretragaPregledaDialog(this, true, ModFormePretrazi.MOD_PRETRAZI_IZMENI);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
 
 
-    }//GEN-LAST:event_itemPromeniPregledActionPerformed
+    }//GEN-LAST:event_itemIzmeniPregledActionPerformed
 
     private void itemIzmeniPacijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemIzmeniPacijentaActionPerformed
 
+        PretragaPacijentaDialog dialog = new PretragaPacijentaDialog(this, true, ModFormePretrazi.MOD_PRETRAZI_IZMENI);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
 
     }//GEN-LAST:event_itemIzmeniPacijentaActionPerformed
 
     private void itemKreirajPacijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemKreirajPacijentaActionPerformed
         Pacijent pacijent = new Pacijent();
-        PacijentDialog dialog = new PacijentDialog(this,true,pacijent,ModForme.MOD_DODAVANJE);
+        PacijentDialog dialog = new PacijentDialog(this, true, pacijent, ModForme.MOD_KREIRANJE);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_itemKreirajPacijentaActionPerformed
+
+    private void itemPretraziPacijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPretraziPacijentaActionPerformed
+        PretragaPacijentaDialog dialog = new PretragaPacijentaDialog(this, true, ModFormePretrazi.MOD_PRETRAZI_PRIKAZI);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+
+    }//GEN-LAST:event_itemPretraziPacijentaActionPerformed
+
+    private void itemObrisiPacijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemObrisiPacijentaActionPerformed
+        PretragaPacijentaDialog dialog = new PretragaPacijentaDialog(this, true, ModFormePretrazi.MOD_PRETRAZI_OBRISI);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);    }//GEN-LAST:event_itemObrisiPacijentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,12 +263,12 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemIzmeniPacijenta;
+    private javax.swing.JMenuItem itemIzmeniPregled;
     private javax.swing.JMenuItem itemKreirajPacijenta;
     private javax.swing.JMenuItem itemKreirajPregled;
     private javax.swing.JMenuItem itemObrisiPacijenta;
     private javax.swing.JMenuItem itemPretraziPacijenta;
     private javax.swing.JMenuItem itemPretraziPregled;
-    private javax.swing.JMenuItem itemPromeniPregled;
     private javax.swing.JMenuItem itemUbaciSpecijalizaciju;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblNazivSistema;

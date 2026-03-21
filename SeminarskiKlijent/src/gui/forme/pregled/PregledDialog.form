@@ -29,27 +29,27 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jScrollPane2" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblTerapija" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblTerapija" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTerapija" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblUkupnoVremeTrajanja" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblUkupnoVremeTrajanja" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="txtDatumVremeTrajanja" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblDatumVremeKontrole" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblDatumVremeKontrole" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="txtDatumVremeKontrole" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblDatumVremeZavrsetka" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblDatumVremeZavrsetka" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="txtDatumVremeZavrsetka" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblPacijent" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblPacijent" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="cmbPacijenti" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -57,16 +57,16 @@
                   <Component id="btnSacuvajPregled" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="lblIdPregleda" max="32767" attributes="0"/>
-                          <Component id="lblLekar" pref="170" max="32767" attributes="0"/>
+                          <Component id="lblIdPregleda" pref="150" max="32767" attributes="0"/>
+                          <Component id="lblLekar" pref="150" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="cmbLekari" pref="400" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnKreirajPregled" alignment="1" max="32767" attributes="0"/>
                                   <Component id="txtIdPregleda" max="32767" attributes="0"/>
@@ -129,7 +129,7 @@
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="btnDodajStavku" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnSacuvajPregled" min="-2" pref="20" max="-2" attributes="0"/>
@@ -151,7 +151,7 @@
           <Font name="Arial" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="&#x41a;&#x420;&#x415;&#x418;&#x420;&#x410;&#x40a;&#x415; &#x41f;&#x420;&#x415;&#x413;&#x41b;&#x415;&#x414;&#x410;"/>
+        <Property name="text" type="java.lang.String" value="&#x41f;&#x420;&#x415;&#x413;&#x41b;&#x415;&#x414;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblIdPregleda">

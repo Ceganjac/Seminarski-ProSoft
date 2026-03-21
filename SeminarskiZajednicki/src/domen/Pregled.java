@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  *
  * @author Aleksandar Čeganjac
  */
-public class Pregled {
+public class Pregled implements OpstiDomenskiObjekat {
 
     private int idPregled;
     private LocalDateTime datumVremeZavrsetka;
@@ -88,7 +88,21 @@ public class Pregled {
     public void setPacijent(Pacijent pacijent) {
         this.pacijent = pacijent;
     }
-    
-    
+
+    @Override
+    public String vratiVrednostiAtributa() {
+        return idPregled + ", '"
+                + datumVremeZavrsetka + "', '"
+                + datumVremeKontrole + "', "
+                + ukupnoVremeTrajanja + ", '"
+                + terapija + "', "
+                + lekar.getIdLekar() + ", "
+                + pacijent.getIdPacijent();
+    }
+
+    @Override
+    public String vratimImeTabele() {
+        return "pregled";
+    }
 
 }

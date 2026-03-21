@@ -8,10 +8,9 @@ package gui.komponente;
  *
  * @author Aleksandar Čeganjac
  */
-public enum ModForme {
-
-    MOD_KREIRANJE,
-    MOD_IZMENA,
-    MOD_PRIKAZ,
+public enum ModFormePretrazi {
+    MOD_PRETRAZI_IZMENI,
+    MOD_PRETRAZI_PRIKAZI,
+    MOD_PRETRAZI_OBRISI
 
 }

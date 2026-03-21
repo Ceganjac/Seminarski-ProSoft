@@ -6,6 +6,7 @@ package gui.forme.pregled;
 
 import domen.Pregled;
 import gui.komponente.ModForme;
+import gui.komponente.ModFormePretrazi;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -22,9 +23,9 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
      */
     private Pregled pregled;
     private java.awt.Frame parent;
-    private ModForme modForme;
+    private ModFormePretrazi modForme;
 
-    public PretragaPregledaDialog(java.awt.Frame parent, boolean modal, ModForme modForme) {
+    public PretragaPregledaDialog(java.awt.Frame parent, boolean modal, ModFormePretrazi modForme) {
         super(parent, modal);
         initComponents();
         // postavljanje boje
@@ -217,10 +218,10 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
      */
     private void obradaModa() {
 
-        if (modForme == ModForme.MOD_PRETRAZI_IZMENI) {
+        if (modForme == ModFormePretrazi.MOD_PRETRAZI_IZMENI) {
             lblNaslov.setText("ПРЕТРАГА И ИЗМЕНА ПРЕГЛЕДА");
             btnPrikazi.setVisible(false);
-        } else if (modForme == ModForme.MOD_PRETRAZI_PRIKAZI) {
+        } else if (modForme == ModFormePretrazi.MOD_PRETRAZI_PRIKAZI) {
             lblNaslov.setText("ПРЕТРАГА И ПРИКАЗ ПРЕГЛЕДА");
             btnIzmeni.setVisible(false);
 

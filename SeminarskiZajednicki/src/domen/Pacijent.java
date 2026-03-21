@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package domen;
 
 import domen.enumi.Pol;
@@ -12,8 +11,8 @@ import java.time.LocalDate;
  *
  * @author Aleksandar Čeganjac
  */
-public class Pacijent {
-    
+public class Pacijent implements OpstiDomenskiObjekat {
+
     private int idPacijent;
     private String ime;
     private String prezime;
@@ -100,11 +99,22 @@ public class Pacijent {
     public void setKrvnaGrupa(KrvnaGrupa krvnaGrupa) {
         this.krvnaGrupa = krvnaGrupa;
     }
-    
-    
-    
-    
-    
-    
+
+    @Override
+    public String vratiVrednostiAtributa() {
+        return idPacijent + ", '"
+                + ime + "', '"
+                + prezime + "', '"
+                + pol + "', '"
+                + datumRodjenja + "', '"
+                + mestoRodjenja + "', '"
+                + mejl + "', "
+                + krvnaGrupa.getIdKrvnaGrupa();
+    }
+
+    @Override
+    public String vratimImeTabele() {
+        return "pacijent";
+    }
 
 }

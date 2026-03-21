@@ -2,15 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package domen;
 
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class Dijagnoza {
-    
+public class Dijagnoza implements OpstiDomenskiObjekat {
+
     private int idDijagnoza;
     private String sifra;
     private String latinskiNaziv;
@@ -57,7 +56,18 @@ public class Dijagnoza {
     public void setSrpskiNaziv(String srpskiNaziv) {
         this.srpskiNaziv = srpskiNaziv;
     }
-    
-    
+
+    @Override
+    public String vratiVrednostiAtributa() {
+        return idDijagnoza + ", '"
+                + sifra + "', '"
+                + latinskiNaziv + "', '"
+                + srpskiNaziv + "'";
+    }
+
+    @Override
+    public String vratimImeTabele() {
+        return "dijagnoza";
+    }
 
 }

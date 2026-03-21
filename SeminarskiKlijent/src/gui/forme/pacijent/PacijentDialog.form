@@ -25,59 +25,59 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="lblNaslov" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="btnIzmeniPacijenta" max="32767" attributes="0"/>
-                  <Component id="btnSacuvajPacijenta" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnIzmeni" max="32767" attributes="0"/>
+                  <Component id="btnSacuvaj" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="lblDijagnoza" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblDijagnoza" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cmbDijagnoza" max="32767" attributes="0"/>
+                      <Component id="cmbDijagnoza" pref="400" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblMejl" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblMejl" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtMejl" max="32767" attributes="0"/>
+                      <Component id="txtMejl" pref="400" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblMestoRodjenja" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblMestoRodjenja" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtMestoRodjenja" max="32767" attributes="0"/>
+                      <Component id="txtMestoRodjenja" pref="400" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblDatumRodjenja" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblDatumRodjenja" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtDatumRodjenja" max="32767" attributes="0"/>
+                      <Component id="txtDatumRodjenja" pref="400" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblPol" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblPol" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cmbPol" max="32767" attributes="0"/>
+                      <Component id="cmbPol" pref="400" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblPrezime" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblPrezime" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtPrezime" max="32767" attributes="0"/>
+                      <Component id="txtPrezime" pref="400" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblIme" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblIme" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtIme" max="32767" attributes="0"/>
+                      <Component id="txtIme" pref="400" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblIdPacijenta" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="lblIdPacijenta" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtIdPacijenta" min="-2" pref="400" max="-2" attributes="0"/>
+                      <Component id="txtIdPacijenta" pref="400" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="69" max="32767" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="lblNaslov" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -119,11 +119,11 @@
                   <Component id="lblDijagnoza" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="cmbDijagnoza" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnSacuvajPacijenta" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="btnSacuvaj" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnIzmeniPacijenta" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <Component id="btnIzmeni" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -228,7 +228,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSacuvajPacijenta">
+    <Component class="javax.swing.JButton" name="btnSacuvaj">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -242,10 +242,10 @@
         <Property name="text" type="java.lang.String" value="&#x421;&#x410;&#x427;&#x423;&#x412;&#x410;&#x408; &#x41f;&#x410;&#x426;&#x418;&#x408;&#x415;&#x41d;&#x422;&#x410;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSacuvajPacijentaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSacuvajActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnIzmeniPacijenta">
+    <Component class="javax.swing.JButton" name="btnIzmeni">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -259,7 +259,7 @@
         <Property name="text" type="java.lang.String" value="&#x418;&#x417;&#x41c;&#x415;&#x41d;&#x418; &#x41f;&#x410;&#x426;&#x418;&#x408;&#x415;&#x41d;&#x422;&#x410;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIzmeniPacijentaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIzmeniActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtIme">

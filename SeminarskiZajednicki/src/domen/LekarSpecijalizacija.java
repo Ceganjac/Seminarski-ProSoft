@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package domen;
 
 import java.time.LocalDate;
@@ -12,8 +11,8 @@ import java.time.Period;
  *
  * @author Aleksandar Čeganjac
  */
-public class LekarSpecijalizacija {
-    
+public class LekarSpecijalizacija implements OpstiDomenskiObjekat {
+
     private Lekar lekar;
     private Specijalizacija specijalizacija;
     private LocalDate datumSticanja;
@@ -70,9 +69,19 @@ public class LekarSpecijalizacija {
     public void setTrajanje(Period trajanje) {
         this.trajanje = trajanje;
     }
-    
-    
-    
-    
+
+    @Override
+    public String vratiVrednostiAtributa() {
+        return lekar.getIdLekar() + ", "
+                + specijalizacija.getIdSpecijalizacija() + ", '"
+                + datumSticanja + "', '"
+                + institucijaSticanja + "', "
+                + trajanje.getYears(); // ili months, zavisi kako čuvaš
+    }
+
+    @Override
+    public String vratimImeTabele() {
+        return "lekar_specijalizacija";
+    }
 
 }

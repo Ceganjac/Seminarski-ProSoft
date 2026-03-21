@@ -13,7 +13,7 @@ import java.awt.Color;
  * @author Aleksandar Čeganjac
  */
 public class PacijentDialog extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PacijentDialog.class.getName());
 
     /**
@@ -22,7 +22,7 @@ public class PacijentDialog extends javax.swing.JDialog {
     private Pacijent pacijent;
     private ModForme modForme;
     private java.awt.Frame parent;
-    
+
     public PacijentDialog(java.awt.Frame parent, boolean modal, Pacijent pacijent, ModForme modForme) {
         super(parent, modal);
         initComponents();
@@ -55,8 +55,8 @@ public class PacijentDialog extends javax.swing.JDialog {
         txtDatumRodjenja = new javax.swing.JTextField();
         txtMestoRodjenja = new javax.swing.JTextField();
         txtMejl = new javax.swing.JTextField();
-        btnSacuvajPacijenta = new javax.swing.JButton();
-        btnIzmeniPacijenta = new javax.swing.JButton();
+        btnSacuvaj = new javax.swing.JButton();
+        btnIzmeni = new javax.swing.JButton();
         txtIme = new javax.swing.JTextField();
         cmbPol = new javax.swing.JComboBox<>();
         lblDijagnoza = new javax.swing.JLabel();
@@ -104,23 +104,23 @@ public class PacijentDialog extends javax.swing.JDialog {
 
         txtMejl.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        btnSacuvajPacijenta.setBackground(new java.awt.Color(0, 204, 102));
-        btnSacuvajPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnSacuvajPacijenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnSacuvajPacijenta.setText("САЧУВАЈ ПАЦИЈЕНТА");
-        btnSacuvajPacijenta.addActionListener(new java.awt.event.ActionListener() {
+        btnSacuvaj.setBackground(new java.awt.Color(0, 204, 102));
+        btnSacuvaj.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnSacuvaj.setForeground(new java.awt.Color(255, 255, 255));
+        btnSacuvaj.setText("САЧУВАЈ ПАЦИЈЕНТА");
+        btnSacuvaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSacuvajPacijentaActionPerformed(evt);
+                btnSacuvajActionPerformed(evt);
             }
         });
 
-        btnIzmeniPacijenta.setBackground(new java.awt.Color(0, 204, 102));
-        btnIzmeniPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnIzmeniPacijenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnIzmeniPacijenta.setText("ИЗМЕНИ ПАЦИЈЕНТА");
-        btnIzmeniPacijenta.addActionListener(new java.awt.event.ActionListener() {
+        btnIzmeni.setBackground(new java.awt.Color(0, 204, 102));
+        btnIzmeni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnIzmeni.setForeground(new java.awt.Color(255, 255, 255));
+        btnIzmeni.setText("ИЗМЕНИ ПАЦИЈЕНТА");
+        btnIzmeni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIzmeniPacijentaActionPerformed(evt);
+                btnIzmeniActionPerformed(evt);
             }
         });
 
@@ -138,48 +138,48 @@ public class PacijentDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblNaslov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnIzmeniPacijenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSacuvajPacijenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSacuvaj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cmbDijagnoza, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cmbDijagnoza, 0, 400, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblMejl, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblMejl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtMejl))
+                        .addComponent(txtMejl, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblMestoRodjenja, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblMestoRodjenja, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtMestoRodjenja))
+                        .addComponent(txtMestoRodjenja, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblDatumRodjenja, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDatumRodjenja, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtDatumRodjenja))
+                        .addComponent(txtDatumRodjenja, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblPol, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPol, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cmbPol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cmbPol, 0, 400, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtPrezime))
+                        .addComponent(txtPrezime, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblIme, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblIme, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtIme))
+                        .addComponent(txtIme, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblIdPacijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblIdPacijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtIdPacijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                        .addComponent(txtIdPacijenta, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addComponent(lblNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -213,11 +213,11 @@ public class PacijentDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSacuvajPacijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIzmeniPacijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
 
         pack();
@@ -227,26 +227,45 @@ public class PacijentDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdPacijentaActionPerformed
 
-    private void btnSacuvajPacijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajPacijentaActionPerformed
+    private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSacuvajPacijentaActionPerformed
+    }//GEN-LAST:event_btnSacuvajActionPerformed
 
-    private void btnIzmeniPacijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniPacijentaActionPerformed
+    private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnIzmeniPacijentaActionPerformed
-    
+    }//GEN-LAST:event_btnIzmeniActionPerformed
+
     private void obradaModa() {
-        
-        if (modForme == ModForme.MOD_DODAVANJE) {
-            lblNaslov.setText("ДОДАВАЊЕ ПАЦИЈЕНТА");
-            btnIzmeniPacijenta.setVisible(false);
-            
+
+        if (modForme == ModForme.MOD_KREIRANJE) {
+            lblNaslov.setText("КРЕИРАЊЕ ПАЦИЈЕНТА");
+            btnIzmeni.setVisible(false);
+            lblIdPacijenta.setVisible(false);
+            txtIdPacijenta.setVisible(false);
+
         } else if (modForme == ModForme.MOD_IZMENA) {
-            
+            lblNaslov.setText("ИЗМЕНА ПАЦИЈЕНТА");
+            btnSacuvaj.setVisible(false);
+            lblIdPacijenta.setVisible(false);
+            txtIdPacijenta.setVisible(false);
+
         } else if (modForme == ModForme.MOD_PRIKAZ) {
-            
+            lblNaslov.setText("ПРИКАЗ ПАЦИЈЕНТА");
+            btnSacuvaj.setVisible(false);
+            btnIzmeni.setVisible(false);
+
+            // onemogucavanje polja
+            txtIdPacijenta.setEditable(false);
+            txtIme.setEditable(false);
+            txtPrezime.setEditable(false);
+            cmbPol.setEnabled(false);
+            txtDatumRodjenja.setVisible(false);
+            txtMestoRodjenja.setEditable(false);
+            txtMejl.setEditable(false);
+            cmbDijagnoza.setEnabled(false);
+
         }
-        
+
     }
 
     /**
@@ -254,8 +273,8 @@ public class PacijentDialog extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIzmeniPacijenta;
-    private javax.swing.JButton btnSacuvajPacijenta;
+    private javax.swing.JButton btnIzmeni;
+    private javax.swing.JButton btnSacuvaj;
     private javax.swing.JComboBox<String> cmbDijagnoza;
     private javax.swing.JComboBox<String> cmbPol;
     private javax.swing.JLabel lblDatumRodjenja;

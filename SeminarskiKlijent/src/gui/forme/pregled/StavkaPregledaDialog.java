@@ -166,8 +166,8 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblLekarskiNalaz, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addComponent(btnSacuvajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -194,7 +194,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
     // obrada moda forme
     private void obradaModa() {
 
-        if (modForme == modForme.MOD_DODAVANJE) {
+        if (modForme == modForme.MOD_KREIRANJE) {
             lblIdStavke.setVisible(false);
             txtIdStavke.setVisible(false);
         } else if (modForme == modForme.MOD_IZMENA) {
