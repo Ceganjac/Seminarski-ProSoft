@@ -5,8 +5,8 @@
 package gui.forme.pregled;
 
 import domen.Pregled;
-import gui.komponente.ModForme;
-import gui.komponente.ModFormePretrazi;
+import gui.enumi.ModForme;
+import gui.enumi.ModFormePretrazi;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 

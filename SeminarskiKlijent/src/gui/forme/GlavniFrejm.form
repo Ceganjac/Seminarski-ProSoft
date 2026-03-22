@@ -126,6 +126,9 @@
                 <Property name="text" type="java.lang.String" value="&#x423;&#x431;&#x430;&#x446;&#x438; &#x441;&#x43f;&#x435;&#x446;&#x438;&#x458;&#x430;&#x43b;&#x438;&#x437;&#x430;&#x446;&#x438;&#x458;&#x443;"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemUbaciSpecijalizacijuActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

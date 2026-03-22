@@ -4,14 +4,16 @@
  */
 package gui.forme;
 
+import gui.forme.specijalizacija.SpecijalizacijaDialog;
 import domen.Pacijent;
 import gui.forme.pregled.PregledDialog;
 import domen.Pregled;
+import domen.Specijalizacija;
 import gui.forme.pacijent.PacijentDialog;
 import gui.forme.pacijent.PretragaPacijentaDialog;
 import gui.forme.pregled.PretragaPregledaDialog;
-import gui.komponente.ModForme;
-import gui.komponente.ModFormePretrazi;
+import gui.enumi.ModForme;
+import gui.enumi.ModFormePretrazi;
 import java.awt.Color;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -189,6 +191,11 @@ public class GlavniFrejm extends javax.swing.JFrame {
         itemUbaciSpecijalizaciju.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemUbaciSpecijalizaciju.setText("Убаци специјализацију");
         itemUbaciSpecijalizaciju.setToolTipText("");
+        itemUbaciSpecijalizaciju.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemUbaciSpecijalizacijuActionPerformed(evt);
+            }
+        });
         menuSpecijalizacija.add(itemUbaciSpecijalizaciju);
 
         menuBar.add(menuSpecijalizacija);
@@ -256,6 +263,13 @@ public class GlavniFrejm extends javax.swing.JFrame {
         PretragaPacijentaDialog dialog = new PretragaPacijentaDialog(this, true, ModFormePretrazi.MOD_PRETRAZI_OBRISI);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);    }//GEN-LAST:event_itemObrisiPacijentaActionPerformed
+
+    private void itemUbaciSpecijalizacijuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemUbaciSpecijalizacijuActionPerformed
+        Specijalizacija specijalizacija = new Specijalizacija();
+        SpecijalizacijaDialog dialog = new SpecijalizacijaDialog(this, true,specijalizacija);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_itemUbaciSpecijalizacijuActionPerformed
 
     /**
      * @param args the command line arguments

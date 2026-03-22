@@ -4,10 +4,15 @@
  */
 package gui.forme.pacijent;
 
+import domen.KrvnaGrupa;
 import domen.Pacijent;
-import gui.komponente.ModForme;
-import gui.komponente.ModFormePretrazi;
+import domen.enumi.Pol;
+import gui.enumi.ModForme;
+import gui.enumi.ModFormePretrazi;
+import gui.komponente.TblModelPacijent;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,6 +39,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         this.parent = parent;
         this.modForme = modForme;
         obradaModa();
+        obradaTabele();
     }
 
     /**
@@ -146,21 +152,22 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(lblImePrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblImePrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(txtVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(cmbKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnPretrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnPrikazi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                        .addComponent(btnIzmeni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -248,6 +255,39 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             btnIzmeni.setVisible(false);
         }
 
+    }
+
+    private void obradaTabele() {
+
+        // Kreiranje krvnih grupa
+        KrvnaGrupa kg1 = new KrvnaGrupa(1, "A", "+");
+        KrvnaGrupa kg2 = new KrvnaGrupa(2, "O", "-");
+        KrvnaGrupa kg3 = new KrvnaGrupa(3, "B", "+");
+        KrvnaGrupa kg4 = new KrvnaGrupa(4, "AB", "+");
+
+        // Kreiranje pacijenata
+        Pacijent p1 = new Pacijent(1, "Aleksandar", "Čeganjac", Pol.MUSKI,
+                java.time.LocalDate.of(2005, 3, 22), "Beograd", "aleksandar@example.com", kg1);
+
+        Pacijent p2 = new Pacijent(2, "Ana", "Jovanović", Pol.ZENSKI,
+                java.time.LocalDate.of(2006, 7, 10), "Novi Sad", "ana@example.com", kg2);
+
+        Pacijent p3 = new Pacijent(3, "Marko", "Petrović", Pol.MUSKI,
+                java.time.LocalDate.of(2004, 11, 5), "Niš", "marko@example.com", kg3);
+
+        Pacijent p4 = new Pacijent(4, "Jovana", "Kostić", Pol.ZENSKI,
+                java.time.LocalDate.of(2005, 1, 18), "Kragujevac", "jovana@example.com", kg4);
+
+        List<Pacijent> pacijenti = new ArrayList();
+        pacijenti.add(p1);
+        pacijenti.add(p2);
+        pacijenti.add(p3);
+        pacijenti.add(p4);
+
+        // Dodavanje u model
+        TblModelPacijent model = new TblModelPacijent(pacijenti);
+
+        tblPacijenti.setModel(model);
     }
 
     /**

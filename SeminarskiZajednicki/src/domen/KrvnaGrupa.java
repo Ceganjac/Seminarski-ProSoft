@@ -47,6 +47,11 @@ public class KrvnaGrupa implements OpstiDomenskiObjekat {
         this.rhFaktor = rhFaktor;
     }
 
+    // vrati krvnu grupu
+    public String vratiKrvnuGrupu() {
+        return aboTip + " " + rhFaktor;
+    }
+
     @Override
     public String vratiVrednostiAtributa() {
         return idKrvnaGrupa + ", '"

@@ -6,7 +6,7 @@ package gui.forme.pregled;
 
 import domen.Pregled;
 import domen.StavkaPregleda;
-import gui.komponente.ModForme;
+import gui.enumi.ModForme;
 import java.awt.Color;
 
 /**
