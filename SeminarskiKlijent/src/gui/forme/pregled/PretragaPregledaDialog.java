@@ -80,9 +80,14 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         lblVrednost.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblVrednost.setText("Вредност :");
 
-        cmbKriterijum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Преглед", "Лекар", "Пацијент", "Дијагноза" }));
+        cmbKriterijum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Лекар", "Пацијент", "Дијагноза" }));
         cmbKriterijum.setOpaque(true);
         cmbKriterijum.setPreferredSize(new java.awt.Dimension(300, 20));
+        cmbKriterijum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKriterijumActionPerformed(evt);
+            }
+        });
 
         txtVrednost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,6 +217,10 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Нисте селектовали преглед !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnPrikaziActionPerformed
+
+    private void cmbKriterijumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKriterijumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbKriterijumActionPerformed
 
     /**
      * @param args the command line arguments

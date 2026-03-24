@@ -117,4 +117,9 @@ public class Pacijent implements OpstiDomenskiObjekat {
         return "pacijent";
     }
 
+    // vrati ime i prezime
+    public String vratiImePrezime() {
+        return ime + " " + prezime;
+    }
+
 }

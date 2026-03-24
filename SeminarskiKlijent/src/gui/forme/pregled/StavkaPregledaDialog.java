@@ -91,7 +91,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
         txaLekarskiNalaz.setColumns(20);
         txaLekarskiNalaz.setRows(5);
-        txaLekarskiNalaz.setPreferredSize(new java.awt.Dimension(212, 80));
+        txaLekarskiNalaz.setPreferredSize(new java.awt.Dimension(240, 80));
         jScrollPane1.setViewportView(txaLekarskiNalaz);
 
         lblNaziv.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -166,8 +166,8 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblLekarskiNalaz, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(btnSacuvajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );

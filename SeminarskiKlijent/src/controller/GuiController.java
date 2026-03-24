@@ -4,10 +4,14 @@
  */
 package controller;
 
+import domen.Lekar;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import komunikacija.Odgovor;
+import komunikacija.Operacija;
+import komunikacija.Zahtev;
 
 /**
  *
@@ -17,14 +21,14 @@ public class GuiController {
 
     private GuiController instanca;
     private Socket soket;
-    private ObjectOutputStream izlazni;
-    private ObjectInputStream ulazni;
+    private ObjectOutputStream izlazniTok;
+    private ObjectInputStream ulazniTok;
 
     // konstruktor
     public GuiController() throws IOException {
         soket = new Socket("localhost", 9000);
-        izlazni = new ObjectOutputStream(soket.getOutputStream());
-        ulazni = new ObjectInputStream(soket.getInputStream());
+        izlazniTok = new ObjectOutputStream(soket.getOutputStream());
+        ulazniTok = new ObjectInputStream(soket.getInputStream());
     }
 
     // obezbeđuje singleton
@@ -33,6 +37,20 @@ public class GuiController {
             instanca = new GuiController();
         }
         return instanca;
+    }
+
+    public Lekar prijava(Lekar lekar) throws Exception {
+        Zahtev zahtev = new Zahtev(lekar, Operacija.PRIJAVA);
+        izlazniTok.writeObject(zahtev);
+
+        // uzimam odgovor od servera
+        Odgovor odgovor = (Odgovor) ulazniTok.readObject();
+        if (odgovor.getIzuzetak() == null) {
+            return (Lekar) odgovor.getRezultat();
+        } else {
+            throw odgovor.getIzuzetak();
+        }
+
     }
 
 }
