@@ -4,9 +4,14 @@
  */
 package gui.forme.pacijent;
 
+import domen.KrvnaGrupa;
 import domen.Pacijent;
+import domen.enumi.Pol;
 import gui.enumi.ModForme;
+import gui.pomocni.Pomocni;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -19,9 +24,8 @@ public class PacijentDialog extends javax.swing.JDialog {
     /**
      * Creates new form PregledDialog
      */
-    private Pacijent pacijent;
-    private ModForme modForme;
-    private java.awt.Frame parent;
+    private final Pacijent pacijent;
+    private final ModForme modForme;
 
     public PacijentDialog(java.awt.Frame parent, boolean modal, Pacijent pacijent, ModForme modForme) {
         super(parent, modal);
@@ -29,9 +33,9 @@ public class PacijentDialog extends javax.swing.JDialog {
         getContentPane().setBackground(Color.white);
         this.pacijent = pacijent;
         this.modForme = modForme;
-        this.parent = parent;
         obradaModa();
         prikazPacijenta();
+        obradaCmbModela();
     }
 
     /**
@@ -74,12 +78,6 @@ public class PacijentDialog extends javax.swing.JDialog {
 
         lblIme.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblIme.setText("Име :");
-
-        txtIdPacijenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdPacijentaActionPerformed(evt);
-            }
-        });
 
         lblPrezime.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblPrezime.setText("Презиме :");
@@ -222,10 +220,6 @@ public class PacijentDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIdPacijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPacijentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdPacijentaActionPerformed
-
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSacuvajActionPerformed
@@ -266,9 +260,12 @@ public class PacijentDialog extends javax.swing.JDialog {
         }
 
     }
-    
-    private void obradaCmbModela(){
-        
+
+    private void obradaCmbModela() {
+        cmbPol.setModel(new DefaultComboBoxModel<>(Pol.values()));
+
+        List<KrvnaGrupa> sveKrvneGrupe = Pomocni.vratiKrvneGrupe();
+        cmbKrvnaGrupa.setModel(new DefaultComboBoxModel<>(sveKrvneGrupe.toArray(new KrvnaGrupa[0])));
     }
 
     private void prikazPacijenta() {
@@ -277,13 +274,11 @@ public class PacijentDialog extends javax.swing.JDialog {
         txtIme.setText(pacijent.getIme());
         txtPrezime.setText(pacijent.getPrezime());
         cmbPol.setSelectedItem(pacijent.getPol());
-        txtDatumRodjenja.setText("" +pacijent.getDatumRodjenja());
+        txtDatumRodjenja.setText("" + pacijent.getDatumRodjenja());
         txtMestoRodjenja.setText(pacijent.getMestoRodjenja());
         txtMejl.setText(pacijent.getMejl());
-        cmbKrvnaGrupa.setSelectedItem(pacijent.getKrvnaGrupa().vratiKrvnuGrupu());
+        cmbKrvnaGrupa.setSelectedItem(pacijent.getKrvnaGrupa());
     }
-    
-    
 
     /**
      * @param args the command line arguments
@@ -292,8 +287,8 @@ public class PacijentDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnSacuvaj;
-    private javax.swing.JComboBox<String> cmbKrvnaGrupa;
-    private javax.swing.JComboBox<String> cmbPol;
+    private javax.swing.JComboBox<KrvnaGrupa> cmbKrvnaGrupa;
+    private javax.swing.JComboBox<Pol> cmbPol;
     private javax.swing.JLabel lblDatumRodjenja;
     private javax.swing.JLabel lblIdPacijenta;
     private javax.swing.JLabel lblIme;

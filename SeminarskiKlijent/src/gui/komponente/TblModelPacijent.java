@@ -52,7 +52,7 @@ public class TblModelPacijent extends AbstractTableModel {
             case 6:
                 return pacijent.getMejl();
             case 7:
-                return pacijent.getKrvnaGrupa().vratiKrvnuGrupu();
+                return pacijent.getKrvnaGrupa().toString();
             default:
                 return "n/v";
         }

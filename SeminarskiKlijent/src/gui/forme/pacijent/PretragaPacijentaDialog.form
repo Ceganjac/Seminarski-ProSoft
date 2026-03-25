@@ -33,7 +33,7 @@
                       <Group type="102" attributes="0">
                           <Component id="lblImePrezime" min="-2" pref="94" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txtVrednost" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="txtImePrezime" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblKrvnaGrupa" min="-2" pref="74" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -59,7 +59,7 @@
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblImePrezime" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtVrednost" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtImePrezime" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblKrvnaGrupa" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="cmbKrvnaGrupa" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="btnPretrazi" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
@@ -144,17 +144,11 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKrvnaGrupaActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtVrednost">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtVrednostActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JTextField" name="txtImePrezime">
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>

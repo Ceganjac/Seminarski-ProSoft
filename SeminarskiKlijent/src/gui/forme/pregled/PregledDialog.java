@@ -91,11 +91,6 @@ public class PregledDialog extends javax.swing.JDialog {
         });
 
         txtIdPregleda.setEditable(false);
-        txtIdPregleda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdPregledaActionPerformed(evt);
-            }
-        });
 
         lblPacijent.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblPacijent.setText("Пацијент :");
@@ -300,10 +295,6 @@ public class PregledDialog extends javax.swing.JDialog {
     private void btnKreirajPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajPregledActionPerformed
 
     }//GEN-LAST:event_btnKreirajPregledActionPerformed
-
-    private void txtIdPregledaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPregledaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdPregledaActionPerformed
 
     private void btnDodajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajStavkuActionPerformed
         StavkaPregleda stavka = new StavkaPregleda();
