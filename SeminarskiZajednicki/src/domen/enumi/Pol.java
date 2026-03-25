@@ -10,6 +10,16 @@ package domen.enumi;
  */
 public enum Pol {
 
-    MUSKI, ZENSKI
+    MUSKI, ZENSKI;
 
+    @Override
+    public String toString() {
+        switch (this) {
+            case MUSKI:
+                return "МУШКИ";
+            case ZENSKI:
+                return "ЖЕНСКИ";
+        }
+        return super.toString();
+    }
 }

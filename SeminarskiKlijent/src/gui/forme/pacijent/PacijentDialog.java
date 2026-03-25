@@ -31,6 +31,7 @@ public class PacijentDialog extends javax.swing.JDialog {
         this.modForme = modForme;
         this.parent = parent;
         obradaModa();
+        prikazPacijenta();
     }
 
     /**
@@ -59,8 +60,8 @@ public class PacijentDialog extends javax.swing.JDialog {
         btnIzmeni = new javax.swing.JButton();
         txtIme = new javax.swing.JTextField();
         cmbPol = new javax.swing.JComboBox<>();
-        lblDijagnoza = new javax.swing.JLabel();
-        cmbDijagnoza = new javax.swing.JComboBox<>();
+        lblKrvnaGrupa = new javax.swing.JLabel();
+        cmbKrvnaGrupa = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -126,11 +127,9 @@ public class PacijentDialog extends javax.swing.JDialog {
 
         txtIme.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        cmbPol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "мушки", "женски" }));
-
-        lblDijagnoza.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblDijagnoza.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDijagnoza.setText("Дијагноза :");
+        lblKrvnaGrupa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblKrvnaGrupa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblKrvnaGrupa.setText("Крвна група : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,9 +142,9 @@ public class PacijentDialog extends javax.swing.JDialog {
                     .addComponent(btnIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSacuvaj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cmbDijagnoza, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cmbKrvnaGrupa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblMejl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -211,8 +210,8 @@ public class PacijentDialog extends javax.swing.JDialog {
                     .addComponent(txtMejl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -262,11 +261,29 @@ public class PacijentDialog extends javax.swing.JDialog {
             txtDatumRodjenja.setVisible(false);
             txtMestoRodjenja.setEditable(false);
             txtMejl.setEditable(false);
-            cmbDijagnoza.setEnabled(false);
+            cmbKrvnaGrupa.setEnabled(false);
 
         }
 
     }
+    
+    private void obradaCmbModela(){
+        
+    }
+
+    private void prikazPacijenta() {
+
+        txtIdPacijenta.setText("" + pacijent.getIdPacijent());
+        txtIme.setText(pacijent.getIme());
+        txtPrezime.setText(pacijent.getPrezime());
+        cmbPol.setSelectedItem(pacijent.getPol());
+        txtDatumRodjenja.setText("" +pacijent.getDatumRodjenja());
+        txtMestoRodjenja.setText(pacijent.getMestoRodjenja());
+        txtMejl.setText(pacijent.getMejl());
+        cmbKrvnaGrupa.setSelectedItem(pacijent.getKrvnaGrupa().vratiKrvnuGrupu());
+    }
+    
+    
 
     /**
      * @param args the command line arguments
@@ -275,12 +292,12 @@ public class PacijentDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnSacuvaj;
-    private javax.swing.JComboBox<String> cmbDijagnoza;
+    private javax.swing.JComboBox<String> cmbKrvnaGrupa;
     private javax.swing.JComboBox<String> cmbPol;
     private javax.swing.JLabel lblDatumRodjenja;
-    private javax.swing.JLabel lblDijagnoza;
     private javax.swing.JLabel lblIdPacijenta;
     private javax.swing.JLabel lblIme;
+    private javax.swing.JLabel lblKrvnaGrupa;
     private javax.swing.JLabel lblMejl;
     private javax.swing.JLabel lblMestoRodjenja;
     private javax.swing.JLabel lblNaslov;

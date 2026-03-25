@@ -30,9 +30,9 @@
                   <Component id="btnIzmeni" max="32767" attributes="0"/>
                   <Component id="btnSacuvaj" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="lblDijagnoza" min="-2" pref="120" max="-2" attributes="0"/>
+                      <Component id="lblKrvnaGrupa" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cmbDijagnoza" max="32767" attributes="0"/>
+                      <Component id="cmbKrvnaGrupa" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblMejl" min="-2" pref="120" max="-2" attributes="0"/>
@@ -116,8 +116,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDijagnoza" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="cmbDijagnoza" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblKrvnaGrupa" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="cmbKrvnaGrupa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="btnSacuvaj" min="-2" pref="20" max="-2" attributes="0"/>
@@ -270,28 +270,20 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbPol">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="&#x43c;&#x443;&#x448;&#x43a;&#x438;"/>
-            <StringItem index="1" value="&#x436;&#x435;&#x43d;&#x441;&#x43a;&#x438;"/>
-          </StringArray>
-        </Property>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblDijagnoza">
+    <Component class="javax.swing.JLabel" name="lblKrvnaGrupa">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="&#x414;&#x438;&#x458;&#x430;&#x433;&#x43d;&#x43e;&#x437;&#x430; :"/>
+        <Property name="text" type="java.lang.String" value="&#x41a;&#x440;&#x432;&#x43d;&#x430; &#x433;&#x440;&#x443;&#x43f;&#x430; : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbDijagnoza">
+    <Component class="javax.swing.JComboBox" name="cmbKrvnaGrupa">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>

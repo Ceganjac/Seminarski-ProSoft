@@ -10,10 +10,12 @@ import domen.enumi.Pol;
 import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPacijent;
+import gui.pomocni.PomocniPacijent;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -26,18 +28,20 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
     /**
      * Creates new form KreirajPregledDialog
      */
-    private Pacijent pacijent;
     private java.awt.Frame parent;
     private ModFormePretrazi modForme;
+    private TblModelPacijent model;
 
     public PretragaPacijentaDialog(java.awt.Frame parent, boolean modal, ModFormePretrazi modForme) {
         super(parent, modal);
         initComponents();
         // postavljanje boje
         getContentPane().setBackground(Color.white);
-
+        
         this.parent = parent;
         this.modForme = modForme;
+        
+        // funkcije
         obradaModa();
         obradaTabele();
     }
@@ -209,6 +213,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
 
         int selektovanRed = tblPacijenti.getSelectedRow();
+        Pacijent pacijent = new Pacijent();
         if (selektovanRed != -1) {
             PacijentDialog dialog = new PacijentDialog(parent, true, pacijent, ModForme.MOD_IZMENA);
             dialog.setLocationRelativeTo(this);
@@ -219,8 +224,9 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnIzmeniActionPerformed
 
     private void btnPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziActionPerformed
-        int selektovaniRed = tblPacijenti.getSelectedRow();
-        if (selektovaniRed != -1) {
+        int red = tblPacijenti.getSelectedRow();
+        if (red != -1) {
+            Pacijent pacijent = model.getPacijent(red);
             PacijentDialog dialog = new PacijentDialog(parent, true, pacijent, ModForme.MOD_PRIKAZ);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
@@ -259,34 +265,10 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
 
     private void obradaTabele() {
 
-        // Kreiranje krvnih grupa
-        KrvnaGrupa kg1 = new KrvnaGrupa(1, "A", "+");
-        KrvnaGrupa kg2 = new KrvnaGrupa(2, "O", "-");
-        KrvnaGrupa kg3 = new KrvnaGrupa(3, "B", "+");
-        KrvnaGrupa kg4 = new KrvnaGrupa(4, "AB", "+");
-
-        // Kreiranje pacijenata
-        Pacijent p1 = new Pacijent(1, "Aleksandar", "Čeganjac", Pol.MUSKI,
-                java.time.LocalDate.of(2005, 3, 22), "Beograd", "aleksandar@example.com", kg1);
-
-        Pacijent p2 = new Pacijent(2, "Ana", "Jovanović", Pol.ZENSKI,
-                java.time.LocalDate.of(2006, 7, 10), "Novi Sad", "ana@example.com", kg2);
-
-        Pacijent p3 = new Pacijent(3, "Marko", "Petrović", Pol.MUSKI,
-                java.time.LocalDate.of(2004, 11, 5), "Niš", "marko@example.com", kg3);
-
-        Pacijent p4 = new Pacijent(4, "Jovana", "Kostić", Pol.ZENSKI,
-                java.time.LocalDate.of(2005, 1, 18), "Kragujevac", "jovana@example.com", kg4);
-
-        List<Pacijent> pacijenti = new ArrayList();
-        pacijenti.add(p1);
-        pacijenti.add(p2);
-        pacijenti.add(p3);
-        pacijenti.add(p4);
+        List<Pacijent> pacijenti = PomocniPacijent.vratiPacijente();
 
         // Dodavanje u model
-        TblModelPacijent model = new TblModelPacijent(pacijenti);
-
+        model = new TblModelPacijent(pacijenti);
         tblPacijenti.setModel(model);
     }
 
