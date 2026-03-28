@@ -35,7 +35,7 @@ public class Server {
             }
 
         } catch (IOException ex) {
-            System.getLogger(Server.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.out.println(ex);
         }
 
     }
