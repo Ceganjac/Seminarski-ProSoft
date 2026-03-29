@@ -15,38 +15,37 @@ import java.net.Socket;
 public class Server {
 
     private int brojPovezanih = 0;
-    boolean signal = true;
-    ServerSocket serverSocket;
+    private boolean signal = true;
+    private ServerSocket serverSocket;
+    private static Server instanca;
+    
+    public static Server vratiInstancu(){
+        if(instanca == null) instanca = new Server();
+        return instanca;
+    }
+    
+    public void pokreniServer() throws IOException {
 
-    public void pokreniServer() {
+        serverSocket = new ServerSocket(9000);
+        System.out.println("Server je podignut ...");
 
-        try {
-            serverSocket = new ServerSocket(9000);
-            System.out.println("Server je podignut ...");
+        while (signal) {
+            Socket socket = serverSocket.accept();
+            brojPovezanih++;
+            System.out.println("Klijent broj" + brojPovezanih
+                    + ". se povezao ...");
 
-            while (signal) {
-                Socket socket = serverSocket.accept();
-                System.out.println("Klijent se povezao ...");
-                brojPovezanih++;
-
-                // kreiranje niti
-                KlijentskaNit nit = new KlijentskaNit(socket, brojPovezanih);
-                nit.start();
-            }
-
-        } catch (IOException ex) {
-            System.out.println(ex);
+            // kreiranje niti
+            KlijentskaNit nit = new KlijentskaNit(socket, brojPovezanih);
+            nit.start();
         }
 
     }
 
-    public void zaustaviServer() {
+    public void zaustaviServer() throws IOException {
         signal = false;
-        try {
-            serverSocket.close();
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+        serverSocket.close();
+        System.out.println("Server je zaistavljen");
 
     }
 

@@ -4,11 +4,15 @@
  */
 package gui;
 
-import domen.Pacijent;
-import domen.Pregled;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import server.Server;
 
 /**
  *
@@ -16,7 +20,10 @@ import javax.swing.UIManager;
  */
 public class GlavniFrejm extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GlavniFrejm.class.getName());
+    private String port;
+    private String korisnickoIme;
+    private String lozinka;
+    private Server server;
 
     /**
      * Creates new form GlavniFrejm
@@ -29,6 +36,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
         UIManager.put("Menu.selectionBackground", new Color(0, 204, 102));
         SwingUtilities.updateComponentTreeUI(this);
         getContentPane().setBackground(Color.white);
+
     }
 
     /**
@@ -49,7 +57,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
         lblStatusVr = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         itemBaza = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        itemKonfiguracija = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -70,8 +78,13 @@ public class GlavniFrejm extends javax.swing.JFrame {
         btnZaustaviServer.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnZaustaviServer.setForeground(new java.awt.Color(255, 255, 255));
         btnZaustaviServer.setText("Заустави сервер");
+        btnZaustaviServer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZaustaviServerActionPerformed(evt);
+            }
+        });
 
-        btnPokreniServer.setBackground(new java.awt.Color(102, 255, 102));
+        btnPokreniServer.setBackground(new java.awt.Color(0, 204, 102));
         btnPokreniServer.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnPokreniServer.setForeground(new java.awt.Color(255, 255, 255));
         btnPokreniServer.setText("Покрени сервер");
@@ -95,20 +108,20 @@ public class GlavniFrejm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lblNazivAplikacije, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNazivSistema, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                    .addComponent(lblNazivSistema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGap(192, 192, 192)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPokreniServer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnZaustaviServer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblStatusVr, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnZaustaviServer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPokreniServer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblStatusVr, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,25 +134,26 @@ public class GlavniFrejm extends javax.swing.JFrame {
                 .addComponent(btnPokreniServer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnZaustaviServer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStatusVr, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblStatusVr, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        menuBar.setBackground(new java.awt.Color(0, 153, 153));
+        menuBar.setBackground(new java.awt.Color(0, 204, 102));
         menuBar.setPreferredSize(new java.awt.Dimension(438, 35));
 
+        itemBaza.setForeground(new java.awt.Color(255, 255, 255));
         itemBaza.setText("База података");
 
-        jMenuItem1.setText("Конфигурација података");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        itemKonfiguracija.setText("Конфигурација података");
+        itemKonfiguracija.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                itemKonfiguracijaActionPerformed(evt);
             }
         });
-        itemBaza.add(jMenuItem1);
+        itemBaza.add(itemKonfiguracija);
 
         menuBar.add(itemBaza);
 
@@ -149,24 +163,73 @@ public class GlavniFrejm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void itemKonfiguracijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemKonfiguracijaActionPerformed
+        PodesavanjaDialog dialog = new PodesavanjaDialog(this, true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_itemKonfiguracijaActionPerformed
 
     private void btnPokreniServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokreniServerActionPerformed
-        // TODO add your handling code here:
-        
+        new Thread(() -> {
+            try {
+                server = Server.vratiInstancu();
+
+                SwingUtilities.invokeLater(() -> {
+                    lblStatusVr.setText("ПОКРЕНУТ");
+                });
+                // ulaz u beskonačnu petlju
+                server.pokreniServer();
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this,
+                        "Грешка приликом покретања сервера !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE
+                );
+            }
+        }
+        ).start();
+
     }//GEN-LAST:event_btnPokreniServerActionPerformed
+
+    private void btnZaustaviServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZaustaviServerActionPerformed
+        try {
+            server = Server.vratiInstancu();
+            server.zaustaviServer();
+            lblStatusVr.setText("ЗУСТАВЉЕН");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this,
+                    "Грешка приликом заустављања сервера !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }//GEN-LAST:event_btnZaustaviServerActionPerformed
+
+    private void citanjeKonfiguracije() {
+        try {
+            BufferedReader bf = new BufferedReader(new FileReader("src/server/konfiguracija.txt"));
+            try {
+                port = bf.readLine();
+                korisnickoIme = bf.readLine();
+                lozinka = bf.readLine();
+            } catch (IOException ex) {
+                System.out.println("gui.GlavniFrejm.citanjeKonfiguracije()");
+            }
+
+            System.out.println("ISPIS: " + port + " " + korisnickoIme + " " + lozinka);
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -176,7 +239,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
     private javax.swing.JButton btnPokreniServer;
     private javax.swing.JButton btnZaustaviServer;
     private javax.swing.JMenu itemBaza;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem itemKonfiguracija;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblNazivAplikacije;
     private javax.swing.JLabel lblNazivSistema;

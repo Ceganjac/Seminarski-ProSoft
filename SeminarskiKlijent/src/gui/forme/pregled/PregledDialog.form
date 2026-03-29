@@ -51,7 +51,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblPacijent" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbPacijenti" pref="0" max="32767" attributes="0"/>
+                      <Component id="cmbPacijent" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="btnDodajStavku" alignment="1" max="32767" attributes="0"/>
                   <Component id="btnSacuvajPregled" alignment="0" max="32767" attributes="0"/>
@@ -62,7 +62,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cmbLekari" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmbLekar" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnKreirajPregled" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtIdPregleda" pref="398" max="32767" attributes="0"/>
                       </Group>
@@ -93,12 +93,12 @@
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblLekar" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="cmbLekari" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="cmbLekar" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPacijent" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="cmbPacijenti" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="cmbPacijent" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -226,38 +226,30 @@
         <Property name="text" type="java.lang.String" value="&#x422;&#x435;&#x440;&#x430;&#x43f;&#x438;&#x458;&#x430; :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbLekari">
+    <Component class="javax.swing.JComboBox" name="cmbLekar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="&#x41f;&#x435;&#x440;&#x430; &#x41f;&#x435;&#x440;&#x438;&#x45b;"/>
-            <StringItem index="1" value="&#x41c;&#x438;&#x43b;&#x435; &#x41c;&#x438;&#x43b;&#x438;&#x45b;"/>
-            <StringItem index="2" value="&#x416;&#x438;&#x432;&#x43e;&#x440;&#x430;&#x434; &#x416;&#x438;&#x43a;&#x438;&#x45b;"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Lekar&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbPacijenti">
+    <Component class="javax.swing.JComboBox" name="cmbPacijent">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="&#x41d;&#x435;&#x431;&#x43e;&#x458;&#x448;&#x430; &#x418;&#x432;&#x430;&#x43d;&#x43e;&#x432;&#x438;&#x45b;"/>
-            <StringItem index="1" value="&#x41c;&#x438;&#x43b;&#x43e;&#x448; &#x418;&#x43b;&#x438;&#x45b;"/>
-            <StringItem index="2" value="&#x41f;&#x435;&#x442;&#x430;&#x440; &#x421;&#x442;&#x430;&#x43d;&#x43a;&#x43e;&#x432;&#x438;&#x45b;"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Pacijent&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDatumVremeZavrsetka">

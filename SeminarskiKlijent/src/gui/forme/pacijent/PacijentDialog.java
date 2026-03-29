@@ -262,10 +262,12 @@ public class PacijentDialog extends javax.swing.JDialog {
     }
 
     private void obradaCmbModela() {
+        // za pol
         cmbPol.setModel(new DefaultComboBoxModel<>(Pol.values()));
-
-        List<KrvnaGrupa> sveKrvneGrupe = Pomocni.vratiKrvneGrupe();
-        cmbKrvnaGrupa.setModel(new DefaultComboBoxModel<>(sveKrvneGrupe.toArray(new KrvnaGrupa[0])));
+        
+        // za krvnu grupu
+        List<KrvnaGrupa> krvneKrupe = Pomocni.vratiKrvneGrupe();
+        cmbKrvnaGrupa.setModel(new DefaultComboBoxModel<>(krvneKrupe.toArray(new KrvnaGrupa[0])));
     }
 
     private void prikazPacijenta() {

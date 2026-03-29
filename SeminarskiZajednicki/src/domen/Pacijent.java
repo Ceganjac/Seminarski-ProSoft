@@ -122,4 +122,10 @@ public class Pacijent implements OpstiDomenskiObjekat {
         return ime + " " + prezime;
     }
 
+    // bitan za cmb
+    @Override
+    public String toString() {
+        return ime + " " + prezime;
+    }
+
 }

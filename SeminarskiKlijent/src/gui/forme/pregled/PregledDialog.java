@@ -4,10 +4,18 @@
  */
 package gui.forme.pregled;
 
+import domen.KrvnaGrupa;
+import domen.Lekar;
+import domen.Pacijent;
 import domen.Pregled;
 import domen.StavkaPregleda;
+import domen.enumi.Pol;
 import gui.enumi.ModForme;
+import gui.pomocni.Pomocni;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,7 +40,10 @@ public class PregledDialog extends javax.swing.JDialog {
         this.pregled = pregled;
         this.modForme = modForme;
         this.parent = parent;
+        
+        // funkcije
         obradaModa();
+        obradaCmbModela();
     }
 
     /**
@@ -54,8 +65,8 @@ public class PregledDialog extends javax.swing.JDialog {
         lblDatumVremeZavrsetka = new javax.swing.JLabel();
         lblUkupnoVremeTrajanja = new javax.swing.JLabel();
         lblTerapija = new javax.swing.JLabel();
-        cmbLekari = new javax.swing.JComboBox<>();
-        cmbPacijenti = new javax.swing.JComboBox<>();
+        cmbLekar = new javax.swing.JComboBox<>();
+        cmbPacijent = new javax.swing.JComboBox<>();
         txtDatumVremeZavrsetka = new javax.swing.JTextField();
         txtDatumVremeKontrole = new javax.swing.JTextField();
         txtDatumVremeTrajanja = new javax.swing.JTextField();
@@ -108,11 +119,9 @@ public class PregledDialog extends javax.swing.JDialog {
         lblTerapija.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTerapija.setText("Терапија :");
 
-        cmbLekari.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cmbLekari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Пера Перић", "Миле Милић", "Живорад Жикић" }));
+        cmbLekar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        cmbPacijenti.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cmbPacijenti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Небојша Ивановић", "Милош Илић", "Петар Станковић" }));
+        cmbPacijent.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         txtDatumVremeZavrsetka.setEditable(false);
         txtDatumVremeZavrsetka.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -220,7 +229,7 @@ public class PregledDialog extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cmbPacijenti, 0, 1, Short.MAX_VALUE))
+                        .addComponent(cmbPacijent, 0, 1, Short.MAX_VALUE))
                     .addComponent(btnDodajStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSacuvajPregled, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -229,7 +238,7 @@ public class PregledDialog extends javax.swing.JDialog {
                             .addComponent(lblLekar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbLekari, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbLekar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnKreirajPregled, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtIdPregleda, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)))
                     .addComponent(btnIzmeniPregled, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -253,11 +262,11 @@ public class PregledDialog extends javax.swing.JDialog {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbLekari, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbPacijenti, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDatumVremeZavrsetka, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,8 +384,8 @@ public class PregledDialog extends javax.swing.JDialog {
             btnIzmeniStavku.setVisible(false);
 
             // sakrivanje combo box-a
-            cmbPacijenti.setEnabled(false);
-            cmbLekari.setEnabled(false);
+            cmbPacijent.setEnabled(false);
+            cmbLekar.setEnabled(false);
 
             // onemogućavanje izmena txtField
             txtIdPregleda.setEditable(false);
@@ -384,6 +393,18 @@ public class PregledDialog extends javax.swing.JDialog {
             txtTerapija.setEditable(false);
 
         }
+
+    }
+
+    private void obradaCmbModela() {
+        // za pacijenta
+        List<Pacijent> pacijenti = Pomocni.vratiPacijente();
+        cmbPacijent.setModel(new DefaultComboBoxModel<>(pacijenti.toArray(new Pacijent[0])));
+        
+        // za lekara
+        List<Lekar> lekari = Pomocni.vratiLekare();
+        cmbLekar.setModel(new DefaultComboBoxModel<>(lekari.toArray(new Lekar[0])));
+        
 
     }
 
@@ -398,8 +419,8 @@ public class PregledDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnKreirajPregled;
     private javax.swing.JButton btnPrikaziStavku;
     private javax.swing.JButton btnSacuvajPregled;
-    private javax.swing.JComboBox<String> cmbLekari;
-    private javax.swing.JComboBox<String> cmbPacijenti;
+    private javax.swing.JComboBox<Lekar> cmbLekar;
+    private javax.swing.JComboBox<Pacijent> cmbPacijent;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDatumVremeKontrole;
     private javax.swing.JLabel lblDatumVremeZavrsetka;
