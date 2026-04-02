@@ -4,13 +4,15 @@
  */
 package domen;
 
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class Pregled implements OpstiDomenskiObjekat {
+public class Pregled implements ODObjekat {
 
     private int idPregled;
     private LocalDateTime datumVremeZavrsetka;
@@ -89,6 +91,7 @@ public class Pregled implements OpstiDomenskiObjekat {
         this.pacijent = pacijent;
     }
 
+    // METODE IZ INTERFEJSA
     @Override
     public String vratiVrednostiAtributa() {
         return idPregled + ", '"
@@ -103,6 +106,26 @@ public class Pregled implements OpstiDomenskiObjekat {
     @Override
     public String vratimImeTabele() {
         return "pregled";
+    }
+
+    @Override
+    public String vratiUslov() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiZaUpdate() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void postaviId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

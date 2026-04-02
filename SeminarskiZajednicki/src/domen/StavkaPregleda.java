@@ -4,13 +4,15 @@
  */
 package domen;
 
+import java.sql.ResultSet;
 import java.time.Duration;
+import java.util.List;
 
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class StavkaPregleda implements OpstiDomenskiObjekat {
+public class StavkaPregleda implements ODObjekat {
 
     private Pregled pregled;
     private int idStavkaPregleda;
@@ -93,6 +95,26 @@ public class StavkaPregleda implements OpstiDomenskiObjekat {
     @Override
     public String vratimImeTabele() {
         return "stavka_pregleda";
+    }
+
+    @Override
+    public String vratiUslov() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiZaUpdate() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void postaviId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

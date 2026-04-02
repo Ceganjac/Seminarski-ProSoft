@@ -5,13 +5,15 @@
 package domen;
 
 import domen.enumi.Pol;
+import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class Lekar implements OpstiDomenskiObjekat {
+public class Lekar implements ODObjekat {
 
     private int idLekar;
     private String ime;
@@ -111,10 +113,31 @@ public class Lekar implements OpstiDomenskiObjekat {
         return ime + " " + prezime;
     }
 
+    // METODE IZ INTERFEJSA
+    @Override
+    public String vratiUslov() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiZaUpdate() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void postaviId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     // bitan za cmb
     @Override
     public String toString() {
-        return ime+" "+prezime;
+        return ime + " " + prezime;
     }
-    
+
 }

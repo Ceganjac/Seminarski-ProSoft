@@ -5,13 +5,15 @@
 package domen;
 
 import domen.enumi.Pol;
+import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class Pacijent implements OpstiDomenskiObjekat {
+public class Pacijent implements ODObjekat {
 
     private int idPacijent;
     private String ime;
@@ -100,6 +102,7 @@ public class Pacijent implements OpstiDomenskiObjekat {
         this.krvnaGrupa = krvnaGrupa;
     }
 
+    // -------------------------------------------------- //
     @Override
     public String vratiVrednostiAtributa() {
         return idPacijent + ", '"
@@ -117,6 +120,22 @@ public class Pacijent implements OpstiDomenskiObjekat {
         return "pacijent";
     }
 
+    @Override
+    public String vratiUslov() {
+        return "id_pacijenta = " + idPacijent;
+    }
+
+    @Override
+    public String vratiZaUpdate() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void postaviId(int idPacijenta) {
+        this.idPacijent = idPacijenta;
+    }
+    // -------------------------------------------------- //
+
     // vrati ime i prezime
     public String vratiImePrezime() {
         return ime + " " + prezime;
@@ -126,6 +145,11 @@ public class Pacijent implements OpstiDomenskiObjekat {
     @Override
     public String toString() {
         return ime + " " + prezime;
+    }
+
+    @Override
+    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

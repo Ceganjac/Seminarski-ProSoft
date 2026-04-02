@@ -4,11 +4,14 @@
  */
 package domen;
 
+import java.sql.ResultSet;
+import java.util.List;
+
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class KrvnaGrupa implements OpstiDomenskiObjekat {
+public class KrvnaGrupa implements ODObjekat {
 
     private int idKrvnaGrupa;
     private String aboTip;
@@ -47,11 +50,7 @@ public class KrvnaGrupa implements OpstiDomenskiObjekat {
         this.rhFaktor = rhFaktor;
     }
 
-    @Override
-    public String toString() {
-        return aboTip + " " + rhFaktor;
-    }
-
+    
     @Override
     public String vratiVrednostiAtributa() {
         return idKrvnaGrupa + ", '"
@@ -65,6 +64,32 @@ public class KrvnaGrupa implements OpstiDomenskiObjekat {
     }
 
     @Override
+    public String vratiUslov() {
+        return "id_krvna_grupa =" + idKrvnaGrupa;
+    }
+
+    @Override
+    public String vratiZaUpdate() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void postaviId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    // bitan za cmb
+    @Override
+    public String toString() {
+        return aboTip + " " + rhFaktor;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -75,5 +100,4 @@ public class KrvnaGrupa implements OpstiDomenskiObjekat {
         KrvnaGrupa other = (KrvnaGrupa) obj;
         return this.idKrvnaGrupa == other.idKrvnaGrupa;
     }
-
 }
