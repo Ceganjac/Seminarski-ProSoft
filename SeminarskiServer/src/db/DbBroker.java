@@ -52,12 +52,14 @@ public class DbBroker {
     }
 
     public Lekar prijava(Lekar lekar) throws SQLException {
+        
+        connect();
+ 
         String upit = "SELECT * FROM lekar WHERE lekar_id = ?";
         PreparedStatement ps = konekcija.prepareStatement(upit);
-        konekcija.setAutoCommit(false);
         ps.setInt(1, lekar.getIdLekar());
-
         ResultSet rs = ps.executeQuery();
+        
         if (rs.next()) {
             lekar.setIdLekar(rs.getInt("id_lekar"));
             lekar.setIme(rs.getString("ime"));

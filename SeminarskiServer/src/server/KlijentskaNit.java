@@ -6,6 +6,7 @@ package server;
 
 import controller.ServerController;
 import domen.Lekar;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -48,8 +49,8 @@ public class KlijentskaNit extends Thread {
 
                 switch (operacija) {
                     case PRIJAVA:
-                        ServerController controller = ServerController.vratiInstancu();
-                        Lekar lekar = controller.prijava((Lekar) objekat);
+                        ServerController kontroler = ServerController.vratiInstancu();
+                        Lekar lekar = kontroler.prijava((Lekar) objekat);
                         odgovor.setRezultat(lekar);
                         break;
                 }
@@ -57,7 +58,7 @@ public class KlijentskaNit extends Thread {
                 izlazni.writeObject(odgovor); // OBAVEZNO slanje
             }
 
-        } catch (Exception ex) {
+        } catch (IOException | ClassNotFoundException ex) {
             if (odgovor == null) {
                 odgovor = new Odgovor();
             }

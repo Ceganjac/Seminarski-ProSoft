@@ -19,7 +19,7 @@ import komunikacija.Zahtev;
  */
 public class GuiController {
 
-    private GuiController instanca;
+    private static GuiController instanca;
     private Socket soket;
     private ObjectOutputStream izlazniTok;
     private ObjectInputStream ulazniTok;
@@ -32,7 +32,7 @@ public class GuiController {
     }
 
     // obezbeđuje singleton
-    public GuiController getInstanca() throws IOException {
+    public static GuiController getInstanca() throws IOException {
         if (instanca != null) {
             instanca = new GuiController();
         }
@@ -40,6 +40,8 @@ public class GuiController {
     }
 
     public Lekar prijava(Lekar lekar) throws Exception {
+        
+        // kreiranje zahteva
         Zahtev zahtev = new Zahtev(lekar, Operacija.PRIJAVA);
         izlazniTok.writeObject(zahtev);
 
