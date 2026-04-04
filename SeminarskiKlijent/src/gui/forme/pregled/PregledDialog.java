@@ -40,7 +40,7 @@ public class PregledDialog extends javax.swing.JDialog {
         this.pregled = pregled;
         this.modForme = modForme;
         this.parent = parent;
-        
+
         // funkcije
         obradaModa();
         obradaCmbModela();
@@ -399,12 +399,17 @@ public class PregledDialog extends javax.swing.JDialog {
     private void obradaCmbModela() {
         // za pacijenta
         List<Pacijent> pacijenti = Pomocni.vratiPacijente();
-        cmbPacijent.setModel(new DefaultComboBoxModel<>(pacijenti.toArray(new Pacijent[0])));
-        
+        Pacijent[] nizPacijenti = new Pacijent[pacijenti.size()];
+        nizPacijenti = pacijenti.toArray(nizPacijenti);
+        DefaultComboBoxModel<Pacijent> modelP = new DefaultComboBoxModel<>(nizPacijenti);
+        cmbPacijent.setModel(modelP);
+
         // za lekara
         List<Lekar> lekari = Pomocni.vratiLekare();
-        cmbLekar.setModel(new DefaultComboBoxModel<>(lekari.toArray(new Lekar[0])));
-        
+        Lekar[] nizLekari = new Lekar[lekari.size()];
+        nizLekari = lekari.toArray(nizLekari);
+        DefaultComboBoxModel<Lekar> modelL = new DefaultComboBoxModel<>(nizLekari);
+        cmbLekar.setModel(modelL);
 
     }
 

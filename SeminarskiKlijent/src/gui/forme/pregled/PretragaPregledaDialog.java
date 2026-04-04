@@ -4,16 +4,22 @@
  */
 package gui.forme.pregled;
 
+import domen.Dijagnoza;
+import domen.Lekar;
+import domen.Pacijent;
 import domen.Pregled;
 import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
+import gui.pomocni.Pomocni;
 import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-
+import java.util.List;
 /**
  *
  * @author Aleksandar Čeganjac
  */
+
 public class PretragaPregledaDialog extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PretragaPregledaDialog.class.getName());
@@ -33,7 +39,10 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
 
         this.parent = parent;
         this.modForme = modForme;
+        
+        //funkcije
         obradaModa();
+        obradaCmbModela();
 
     }
 
@@ -50,12 +59,14 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         lblKriterijumPretrage = new javax.swing.JLabel();
         btnPretrazi = new javax.swing.JButton();
         lblVrednost = new javax.swing.JLabel();
-        cmbKriterijum = new javax.swing.JComboBox<>();
-        txtVrednost = new javax.swing.JTextField();
+        cmbLekar = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPregledi = new javax.swing.JTable();
         btnIzmeni = new javax.swing.JButton();
         btnPrikazi = new javax.swing.JButton();
+        lblKriterijumPretrage2 = new javax.swing.JLabel();
+        cmbPacijent = new javax.swing.JComboBox<>();
+        cmbPDijagnoza = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,7 +75,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         lblNaslov.setText("ПРЕТРАГА ПРЕГЛЕДА");
 
         lblKriterijumPretrage.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblKriterijumPretrage.setText("Критеријум претраге :");
+        lblKriterijumPretrage.setText("Избор лекара");
         lblKriterijumPretrage.setPreferredSize(new java.awt.Dimension(170, 14));
 
         btnPretrazi.setBackground(new java.awt.Color(0, 153, 153));
@@ -78,20 +89,13 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         });
 
         lblVrednost.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblVrednost.setText("Вредност :");
+        lblVrednost.setText("Избор дијагнозе :");
 
-        cmbKriterijum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Лекар", "Пацијент", "Дијагноза" }));
-        cmbKriterijum.setOpaque(true);
-        cmbKriterijum.setPreferredSize(new java.awt.Dimension(300, 20));
-        cmbKriterijum.addActionListener(new java.awt.event.ActionListener() {
+        cmbLekar.setOpaque(true);
+        cmbLekar.setPreferredSize(new java.awt.Dimension(300, 20));
+        cmbLekar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbKriterijumActionPerformed(evt);
-            }
-        });
-
-        txtVrednost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVrednostActionPerformed(evt);
+                cmbLekarActionPerformed(evt);
             }
         });
 
@@ -128,35 +132,59 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
             }
         });
 
+        lblKriterijumPretrage2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblKriterijumPretrage2.setText("Избор пацијента :");
+        lblKriterijumPretrage2.setPreferredSize(new java.awt.Dimension(170, 14));
+
+        cmbPacijent.setOpaque(true);
+        cmbPacijent.setPreferredSize(new java.awt.Dimension(300, 20));
+        cmbPacijent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPacijentActionPerformed(evt);
+            }
+        });
+
+        cmbPDijagnoza.setOpaque(true);
+        cmbPDijagnoza.setPreferredSize(new java.awt.Dimension(300, 20));
+        cmbPDijagnoza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPDijagnozaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblNaslov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(50, Short.MAX_VALUE)
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cmbKriterijum, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(lblKriterijumPretrage, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(btnPretrazi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(0, 530, Short.MAX_VALUE)))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnPretrazi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(lblKriterijumPretrage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmbLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                .addComponent(lblKriterijumPretrage2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(lblVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbPDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,14 +192,17 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
                 .addGap(50, 50, 50)
                 .addComponent(lblNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblKriterijumPretrage, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbKriterijum, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblKriterijumPretrage2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbPDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblKriterijumPretrage, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
                 .addComponent(btnPretrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,7 +213,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        cmbKriterijum.getAccessibleContext().setAccessibleDescription("");
+        cmbLekar.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -190,10 +221,6 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed
 
     }//GEN-LAST:event_btnPretraziActionPerformed
-
-    private void txtVrednostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVrednostActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVrednostActionPerformed
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
 
@@ -218,13 +245,42 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnPrikaziActionPerformed
 
-    private void cmbKriterijumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKriterijumActionPerformed
+    private void cmbLekarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLekarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbKriterijumActionPerformed
+    }//GEN-LAST:event_cmbLekarActionPerformed
+
+    private void cmbPacijentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPacijentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPacijentActionPerformed
+
+    private void cmbPDijagnozaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPDijagnozaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPDijagnozaActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    private void obradaCmbModela() {
+
+        // za lekara
+        List<Lekar> lekari = Pomocni.vratiLekare();
+        Lekar[] nizLekari = new Lekar[lekari.size()];
+        nizLekari = lekari.toArray(nizLekari);
+        DefaultComboBoxModel<Lekar> modelL = new DefaultComboBoxModel<>(nizLekari);
+        cmbLekar.setModel(modelL);
+
+        // za pacijenta
+        List<Pacijent> pacijenti = Pomocni.vratiPacijente();
+        Pacijent[] nizPacijenti = new Pacijent[pacijenti.size()];
+        nizPacijenti = pacijenti.toArray(nizPacijenti);
+        DefaultComboBoxModel<Pacijent> modelP = new DefaultComboBoxModel<>(nizPacijenti);
+        cmbPacijent.setModel(modelP);
+        
+        // za dijagnozu
+        
+
+    }
+
     private void obradaModa() {
 
         if (modForme == ModFormePretrazi.MOD_PRETRAZI_IZMENI) {
@@ -238,16 +294,21 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
 
     }
 
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnPretrazi;
     private javax.swing.JButton btnPrikazi;
-    private javax.swing.JComboBox<String> cmbKriterijum;
+    private javax.swing.JComboBox<Lekar> cmbLekar;
+    private javax.swing.JComboBox<Dijagnoza> cmbPDijagnoza;
+    private javax.swing.JComboBox<Pacijent> cmbPacijent;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblKriterijumPretrage;
+    private javax.swing.JLabel lblKriterijumPretrage2;
     private javax.swing.JLabel lblNaslov;
     private javax.swing.JLabel lblVrednost;
     private javax.swing.JTable tblPregledi;
-    private javax.swing.JTextField txtVrednost;
     // End of variables declaration//GEN-END:variables
 }
+

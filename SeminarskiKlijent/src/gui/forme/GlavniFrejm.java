@@ -76,12 +76,12 @@ public class GlavniFrejm extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblPrijavljenVr.setBackground(new java.awt.Color(255, 255, 255));
-        lblPrijavljenVr.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        lblPrijavljenVr.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
         lblPrijavljenVr.setLabelFor(lblPrijavljen);
         lblPrijavljenVr.setText("Пера Перић");
 
         lblPrijavljen.setBackground(new java.awt.Color(255, 255, 255));
-        lblPrijavljen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPrijavljen.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblPrijavljen.setText("Пријављени лекар :  ");
 
         lblNazivSistema.setBackground(new java.awt.Color(255, 255, 255));
@@ -95,7 +95,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblPrijavljen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPrijavljen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblPrijavljenVr, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
