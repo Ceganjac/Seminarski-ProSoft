@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
  */
 public class PrijavaDialog extends javax.swing.JDialog {
 
-
     /**
      * Creates new form PrijavaDialog1
+     *
      * @param parent
      * @param modal
      */
@@ -126,22 +126,26 @@ public class PrijavaDialog extends javax.swing.JDialog {
         Lekar lekar = new Lekar();
         lekar.setKorisnickoIme(korisnickoIme);
         lekar.setLozinka(lozinka);
+
         try {
             // pozivanje kontrolera
-            GuiController kontroler = GuiController.getInstanca();
-            kontroler.prijava(lekar);
+            lekar = GuiController.getInstanca().prijava(lekar);
 
-            // prikaz glavnog frejma
-            GlavniFrejm glavni = new GlavniFrejm();
-            glavni.setLocationRelativeTo(this);
-            glavni.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            this.setVisible(false);
-            glavni.setVisible(true);
+            if (lekar != null) {
+                // prikaz glavnog frejma
+                GlavniFrejm glavni = new GlavniFrejm(lekar);
+                glavni.setLocationRelativeTo(this);
+                glavni.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                this.setVisible(false);
+                glavni.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Нема корисника са унетим креденцијалима !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+                
+            }
 
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Недоступан сервер !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex, "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
 
     }//GEN-LAST:event_btnPrijavaActionPerformed

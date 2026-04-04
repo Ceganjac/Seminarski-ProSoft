@@ -5,11 +5,13 @@
 
 package komunikacija;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public enum Operacija {
+public enum Operacija implements Serializable{
     PRIJAVA,
     KREIRAJ,
     PROMENI,

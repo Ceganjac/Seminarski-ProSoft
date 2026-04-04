@@ -4,11 +4,13 @@
  */
 package domen.enumi;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public enum RhFaktor {
+public enum RhFaktor implements Serializable {
 
     POZITIVAN , NEGATIVAN
 

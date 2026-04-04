@@ -6,6 +6,8 @@ package controller;
 
 import db.DbBroker;
 import domen.Lekar;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.SQLException;
 
 /**
@@ -23,24 +25,26 @@ public class ServerController {
         return instanca;
     }
 
-    public Lekar prijava(Lekar lekar) throws SQLException {
-        DbBroker db = new DbBroker("3306", "root", "root");
+public Lekar prijava(Lekar ulazniLekar) throws Exception {
+    
+    try (BufferedReader bf = new BufferedReader(new FileReader("konfiguracija.txt"))) {
+        String port = bf.readLine();
+        String username = bf.readLine();
+        String password = bf.readLine();
+
+        DbBroker db = new DbBroker(port, username, password);
+        Lekar izlazniLekar = null; // Inicijalno null
         try {
             db.connect();
-            lekar = db.prijava(lekar);
+            izlazniLekar = db.prijava(ulazniLekar);
             db.commit();
-            
-            // vraćanje lekara ako ga ima u bazi
-            return lekar;
-
+            return izlazniLekar; 
         } catch (SQLException ex) {
             db.rollback();
-            throw ex;
-        }
-        finally{
+            throw ex; // Prosledi grešku dalje
+        } finally {
             db.disconnect();
         }
-
     }
-
+}
 }

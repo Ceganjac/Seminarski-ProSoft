@@ -31,38 +31,42 @@ public class KlijentskaNit extends Thread {
     }
 
     @Override
-    public void run() {
-        Odgovor odgovor = new Odgovor();
+public void run() {
+    try {
+        izlazni = new ObjectOutputStream(socket.getOutputStream());
+        ulazni = new ObjectInputStream(socket.getInputStream());
 
-        try {
-            izlazni = new ObjectOutputStream(socket.getOutputStream());
-            ulazni = new ObjectInputStream(socket.getInputStream());
+        while (true) {
+            Odgovor odgovor = new Odgovor(); // reset za svaki zahtev
 
-            while (true) {
-
+            try {
                 Zahtev zahtev = (Zahtev) ulazni.readObject();
-
+                // rastavljenje zahteva
                 Object objekat = zahtev.getObjekat();
                 Operacija operacija = zahtev.getOperacija();
 
-                odgovor = new Odgovor(); // reset za svaki zahtev
-
                 switch (operacija) {
                     case PRIJAVA:
-                        ServerController kontroler = ServerController.vratiInstancu();
-                        Lekar lekar = kontroler.prijava((Lekar) objekat);
+                        // šalje se ka ServerController
+                        Lekar lekar = ServerController.vratiInstancu().prijava((Lekar) objekat);
+                        
+                        // nakon što dobije neki odgovor od ServerController
                         odgovor.setRezultat(lekar);
                         break;
+                    // dodaj ostale operacije po potrebi
                 }
 
-                izlazni.writeObject(odgovor); // OBAVEZNO slanje
+            } catch (Exception ex) {
+                odgovor.setIzuzetak(ex);
             }
 
-        } catch (IOException | ClassNotFoundException ex) {
-            if (odgovor == null) {
-                odgovor = new Odgovor();
-            }
-            odgovor.setIzuzetak(ex);
+            // OBAVEZNO pošalji odgovor, čak i ako je bila greška
+            izlazni.writeObject(odgovor);
+            izlazni.flush();
         }
+
+    } catch (IOException ex) {
+        ex.printStackTrace();
     }
+}
 }

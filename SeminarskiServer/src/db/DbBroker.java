@@ -14,9 +14,9 @@ import domen.ODObjekat;
  */
 public class DbBroker {
 
-    private String port;
-    private String username;
-    private String password;
+    private final String port;
+    private final String username;
+    private final String password;
     private Connection konekcija;
 
     public DbBroker(String port, String username, String password) {
@@ -26,7 +26,7 @@ public class DbBroker {
     }
 
     public void connect() throws SQLException {
-        String url = "jdbc:mysql://localhost:" + port + "prosoft";
+        String url = "jdbc:mysql://localhost:" + port +"/"+"seminarski";
         konekcija = DriverManager.getConnection(url, username, password);
         konekcija.setAutoCommit(false);
 
@@ -51,23 +51,27 @@ public class DbBroker {
         }
     }
 
-    public Lekar prijava(Lekar lekar) throws SQLException {
-        
+    public Lekar prijava(Lekar lekarUlazni) throws SQLException {
         connect();
- 
-        String upit = "SELECT * FROM lekar WHERE lekar_id = ?";
+
+        String upit = "SELECT * FROM lekar WHERE korisnicko_ime = ? AND lozinka = ?";
         PreparedStatement ps = konekcija.prepareStatement(upit);
-        ps.setInt(1, lekar.getIdLekar());
+        ps.setString(1, lekarUlazni.getKorisnickoIme());
+        ps.setString(2, lekarUlazni.getLozinka());
         ResultSet rs = ps.executeQuery();
-        
+
+        Lekar pronadjen = null;
         if (rs.next()) {
-            lekar.setIdLekar(rs.getInt("id_lekar"));
-            lekar.setIme(rs.getString("ime"));
-            lekar.setPrezime(rs.getString("prezime"));
-            lekar.setKorisnickoIme(rs.getString("korisnicko_ime"));
+            pronadjen = new Lekar();
+            pronadjen.setIdLekar(rs.getInt("id_lekar"));
+            pronadjen.setIme(rs.getString("ime"));
+            pronadjen.setPrezime(rs.getString("prezime"));
+            pronadjen.setKorisnickoIme(rs.getString("korisnicko_ime"));
         }
 
-        return lekar;
+        rs.close();
+        ps.close();
+        return pronadjen; // vraća null ako korisnik ne postoji
     }
 
     public ODObjekat ubaci(ODObjekat odo) throws SQLException {

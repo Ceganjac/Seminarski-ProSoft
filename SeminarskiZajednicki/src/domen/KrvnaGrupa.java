@@ -50,7 +50,6 @@ public class KrvnaGrupa implements ODObjekat {
         this.rhFaktor = rhFaktor;
     }
 
-    
     @Override
     public String vratiVrednostiAtributa() {
         return idKrvnaGrupa + ", '"

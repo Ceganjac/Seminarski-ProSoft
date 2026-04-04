@@ -5,11 +5,13 @@
 
 package domen.enumi;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public enum AboTip {
+public enum AboTip implements Serializable {
     
     A,B,O, AB
 

@@ -5,11 +5,13 @@
 
 package komunikacija;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class Zahtev {
+public class Zahtev implements Serializable{
     
     Object objekat;
     Operacija operacija;

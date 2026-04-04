@@ -8,12 +8,13 @@ package domen;
  *
  * @author Aleksandar Čeganjac
  */
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.util.List;
 
 
 
-public interface ODObjekat {
+public interface ODObjekat extends Serializable {
 
     // za INSERT: vraća vrednosti atributa u formatu "vrednost1, 'vrednost2', ..."
     String vratiVrednostiAtributa();

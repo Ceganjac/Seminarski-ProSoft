@@ -4,6 +4,7 @@
  */
 package gui.forme;
 
+import domen.Lekar;
 import gui.forme.specijalizacija.SpecijalizacijaDialog;
 import domen.Pacijent;
 import gui.forme.pregled.PregledDialog;
@@ -29,9 +30,13 @@ public class GlavniFrejm extends javax.swing.JFrame {
     /**
      * Creates new form GlavniFrejm
      */
-    public GlavniFrejm() {
-        initComponents();
+    Lekar lekar;
 
+    public GlavniFrejm(Lekar lekar) {
+        initComponents();
+        this.lekar = lekar;
+        upisPrijavljenog();
+        
         //izmene boja
         UIManager.put("MenuItem.selectionBackground", new Color(0, 204, 102));
         UIManager.put("Menu.selectionBackground", new Color(0, 204, 102));
@@ -266,10 +271,14 @@ public class GlavniFrejm extends javax.swing.JFrame {
 
     private void itemUbaciSpecijalizacijuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemUbaciSpecijalizacijuActionPerformed
         Specijalizacija specijalizacija = new Specijalizacija();
-        SpecijalizacijaDialog dialog = new SpecijalizacijaDialog(this, true,specijalizacija);
+        SpecijalizacijaDialog dialog = new SpecijalizacijaDialog(this, true, specijalizacija);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_itemUbaciSpecijalizacijuActionPerformed
+
+    public void upisPrijavljenog() {
+        lblPrijavljenVr.setText(lekar.vrartiImePrezime());
+    }
 
     /**
      * @param args the command line arguments

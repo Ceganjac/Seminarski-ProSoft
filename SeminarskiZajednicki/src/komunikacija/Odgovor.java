@@ -5,11 +5,13 @@
 
 package komunikacija;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class Odgovor {
+public class Odgovor implements Serializable {
     
     Object rezultat;
     Exception izuzetak;

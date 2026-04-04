@@ -4,11 +4,13 @@
  */
 package domen.enumi;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public enum Pol {
+public enum Pol implements Serializable {
 
     MUSKI, ZENSKI;
 
