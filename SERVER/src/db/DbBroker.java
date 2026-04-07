@@ -80,7 +80,6 @@ public class DbBroker {
                 + " VALUES (" + odo.vratiVrednostiAtributa() + ")";
         Statement st = konekcija.createStatement();
         st.executeUpdate(upit, Statement.RETURN_GENERATED_KEYS);
-        st.close();
 
         ResultSet rs = st.getGeneratedKeys();
         if (rs.next()) {
@@ -92,12 +91,13 @@ public class DbBroker {
 
     public ODObjekat kreiraj(ODObjekat odo) throws SQLException {
 
-        String upit = "INSERT INTO " + odo.vratiImeTabele() + " VALUES "
-                + "(" + odo.vratiVrednostiAtributa() + ")";
-        PreparedStatement ps = konekcija.prepareStatement(upit, Statement.RETURN_GENERATED_KEYS);
-        ps.executeUpdate();
+        String upit = "INSERT INTO " + odo.vratiImeTabele()
+                + " (" + odo.vratiNaziveAtributa() + ") VALUES ("
+                + odo.vratiVrednostiAtributa() + ")";
+        Statement st = konekcija.createStatement();
+        st.executeUpdate(upit, Statement.RETURN_GENERATED_KEYS);
 
-        ResultSet rs = ps.getGeneratedKeys();
+        ResultSet rs = st.getGeneratedKeys();
         if (rs.next()) {
             odo.postaviId(rs.getInt(1));
         }

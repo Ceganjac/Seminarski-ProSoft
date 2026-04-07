@@ -99,4 +99,9 @@ public class KrvnaGrupa implements ODObjekat {
         KrvnaGrupa other = (KrvnaGrupa) obj;
         return this.idKrvnaGrupa == other.idKrvnaGrupa;
     }
+
+    @Override
+    public String vratiNaziveAtributa() {
+        return "aboTip, rhFaktor";
+    }
 }

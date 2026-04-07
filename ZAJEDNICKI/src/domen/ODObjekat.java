@@ -16,6 +16,8 @@ import java.util.List;
 
 public interface ODObjekat extends Serializable {
 
+    String vratiNaziveAtributa();
+    
     // za INSERT: vraća vrednosti atributa u formatu "vrednost1, 'vrednost2', ..."
     String vratiVrednostiAtributa();
 

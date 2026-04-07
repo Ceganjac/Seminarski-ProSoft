@@ -117,4 +117,10 @@ public class StavkaPregleda implements ODObjekat {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public String vratiNaziveAtributa() {
+        return "idPregled, naziv, lekarskiNalaz, vremeTrajanja, idDijagnoza";
+
+    }
+
 }

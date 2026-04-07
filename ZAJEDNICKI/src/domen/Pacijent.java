@@ -105,7 +105,7 @@ public class Pacijent implements ODObjekat {
     // -------------------------------------------------- //
     @Override
     public String vratiVrednostiAtributa() {
-        return  " '"
+        return " '"
                 + ime + "', '"
                 + prezime + "', '"
                 + pol + "', '"
@@ -150,6 +150,12 @@ public class Pacijent implements ODObjekat {
     @Override
     public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiNaziveAtributa() {
+        return "ime, prezime, pol, datumRodjenja, mestoRodjenja, mejl, idKrvnaGrupa";
+
     }
 
 }

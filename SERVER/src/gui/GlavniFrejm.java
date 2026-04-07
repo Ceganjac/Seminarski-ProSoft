@@ -138,11 +138,11 @@ public class GlavniFrejm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblStatusVr, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         menuBar.setBackground(new java.awt.Color(0, 153, 153));
-        menuBar.setPreferredSize(new java.awt.Dimension(438, 35));
+        menuBar.setPreferredSize(new java.awt.Dimension(438, 50));
 
         itemBaza.setForeground(new java.awt.Color(255, 255, 255));
         itemBaza.setText("База података");

@@ -94,13 +94,18 @@ public class Pregled implements ODObjekat {
     // METODE IZ INTERFEJSA
     @Override
     public String vratiVrednostiAtributa() {
-        return " '"
-                + datumVremeZavrsetka + "', '"
-                + datumVremeKontrole + "', '"
-                + ukupnoVremeTrajanja + "', '"
-                + terapija + "', '"
-                + lekar + "', '"
-                + pacijent + "'";
+        String datumZavrsetka = (datumVremeZavrsetka == null) ? "NULL"
+                : "'" + datumVremeZavrsetka.toString().replace("T", " ") + "'";
+        String datumKontrole = (datumVremeKontrole == null) ? "NULL"
+                : "'" + datumVremeKontrole.toString().replace("T", " ") + "'";
+        String terapijaStr = (terapija == null) ? "NULL" : "'" + terapija + "'";
+
+        return datumZavrsetka + ", "
+                + datumKontrole + ", "
+                + ukupnoVremeTrajanja + ", "
+                + terapijaStr + ", "
+                + lekar.getIdLekar() + ", "
+                + pacijent.getIdPacijent();
     }
 
     @Override
@@ -126,6 +131,13 @@ public class Pregled implements ODObjekat {
     @Override
     public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiNaziveAtributa() {
+        return "datum_vreme_zavrsetka, datum_vreme_kontrole, ukupno_vreme_trajanja, "
+                + "terapija, id_lekar, id_pacijent";
+
     }
 
 }

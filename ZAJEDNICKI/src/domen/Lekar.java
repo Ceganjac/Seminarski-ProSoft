@@ -140,4 +140,10 @@ public class Lekar implements ODObjekat {
         return ime + " " + prezime;
     }
 
+    @Override
+    public String vratiNaziveAtributa() {
+        return "ime, prezime, pol, datumRodjenja, korisnickoIme, lozinka";
+
+    }
+
 }
