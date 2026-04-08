@@ -111,4 +111,14 @@ public class LekarSpecijalizacija implements ODObjekat {
         return "idLekar, idSpecijalizacija, datumSticanja, institucijaSticanja, trajanje";
     }
 
+    @Override
+    public String vratiNazivId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiVrednostId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

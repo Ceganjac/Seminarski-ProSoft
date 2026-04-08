@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 import komunikacija.Odgovor;
 import komunikacija.Operacija;
 import static komunikacija.Operacija.PRIJAVA;
@@ -63,6 +64,12 @@ public class KlijentskaNit extends Thread {
                             // nakon što dobije neki odgovor od ServerController
                             odgovor.setRezultat(rezultat);
                             break;
+                        case VRATI_USLOV:
+                            // šalje ka ServerController
+                            List<ODObjekat> rezultatRz = (List<ODObjekat>) ServerController.vratiInstancu().
+                                    vratiUslov((ODObjekat) objekat);
+                            // nakon što dobije neki odgovor od ServerController
+                            odgovor.setRezultat(rezultatRz);
                     }
 
                 } catch (Exception ex) {

@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import komunikacija.Odgovor;
 import komunikacija.Operacija;
 import komunikacija.Zahtev;
@@ -41,7 +43,7 @@ public class GuiController {
     }
 
     public Lekar prijava(Lekar lekar) throws Exception {
-        
+
         // kreiranje i slanje zahteva
         Zahtev zahtev = new Zahtev(lekar, Operacija.PRIJAVA);
         izlazniTok.writeObject(zahtev);
@@ -56,13 +58,13 @@ public class GuiController {
         }
 
     }
-    
-    public Object kreiraj(ODObjekat objekat) throws Exception{
+
+    public Object kreiraj(ODObjekat objekat) throws Exception {
         // kreiranje i slanje zahteva
         Zahtev zahtev = new Zahtev(objekat, Operacija.KREIRAJ);
         izlazniTok.writeObject(zahtev);
         izlazniTok.flush();
-        
+
         // uzimamo odgovor od servera
         Odgovor odgovor = (Odgovor) ulazniTok.readObject();
         if (odgovor.getIzuzetak() == null) {
@@ -70,7 +72,22 @@ public class GuiController {
         } else {
             throw odgovor.getIzuzetak();
         }
-    
+
+    }
+
+    public List<ODObjekat> vratiUslov(ODObjekat objekat) throws Exception {
+        // kreiranje i slanje zahteva
+        Zahtev zahtev = new Zahtev(objekat, Operacija.VRATI_USLOV);
+        izlazniTok.writeObject(zahtev);
+        izlazniTok.flush();
+
+        // uzimamo odgovor od servera
+        Odgovor odgovor = (Odgovor) ulazniTok.readObject();
+        if (odgovor.getIzuzetak() == null) {
+            return (List<ODObjekat>) odgovor.getRezultat();
+        } else {
+            throw odgovor.getIzuzetak();
+        }
     }
 
 }

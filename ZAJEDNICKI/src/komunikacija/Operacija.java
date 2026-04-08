@@ -16,5 +16,6 @@ public enum Operacija implements Serializable{
     KREIRAJ,
     PROMENI,
     VRATI_SVE,
+    VRATI_USLOV
 
 }

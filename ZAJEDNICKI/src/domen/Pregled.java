@@ -4,8 +4,9 @@
  */
 package domen;
 
-import java.sql.ResultSet;
+import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -112,10 +113,24 @@ public class Pregled implements ODObjekat {
     public String vratiImeTabele() {
         return "pregled";
     }
+    
+    public String vratiNazivId(){
+        return "id_pregled";
+    }
 
     @Override
+
     public String vratiUslov() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String uslov = "1=1";
+
+        if (lekar != null) {
+            uslov += " AND id_lekar = " + lekar.getIdLekar();
+        }
+        if (pacijent != null) {
+            uslov += " AND id_pacijent = " + pacijent.getIdPacijent();
+        }
+
+        return uslov;
     }
 
     @Override
@@ -130,7 +145,41 @@ public class Pregled implements ODObjekat {
 
     @Override
     public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        List<ODObjekat> lista = new ArrayList<>();
+
+        while (rs.next()) {
+            Pregled pregled = new Pregled();
+            pregled.setIdPregled(rs.getInt("id_pregled"));
+
+            Timestamp tsZavrsetak = rs.getTimestamp("datum_vreme_zavrsetka");
+            if (tsZavrsetak != null) {
+                pregled.setDatumVremeZavrsetka(tsZavrsetak.toLocalDateTime());
+            }
+            Timestamp tsKontrola = rs.getTimestamp("datum_vreme_kontrole");
+            if (tsKontrola != null) {
+                pregled.setDatumVremeKontrole(tsKontrola.toLocalDateTime());
+            }
+
+            pregled.setUkupnoVremeTrajanja(rs.getFloat("ukupno_vreme_trajanja"));
+            pregled.setTerapija(rs.getString("terapija"));
+
+            // Lekar
+            Lekar lekar = new Lekar();
+            lekar.setIdLekar(rs.getInt("id_lekar"));
+            // trba za idLekara vratiti lekara
+            pregled.setLekar(lekar);
+
+            // Pacijent
+            Pacijent pacijent = new Pacijent();
+            pacijent.setIdPacijent(rs.getInt("id_pacijent"));
+            // trba za idPacijenta vratiti pacijenta
+            pregled.setPacijent(pacijent);
+
+            lista.add(pregled);
+        }
+
+        return lista;
     }
 
     @Override
@@ -138,6 +187,11 @@ public class Pregled implements ODObjekat {
         return "datum_vreme_zavrsetka, datum_vreme_kontrole, ukupno_vreme_trajanja, "
                 + "terapija, id_lekar, id_pacijent";
 
+    }
+
+    @Override
+    public String vratiVrednostId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

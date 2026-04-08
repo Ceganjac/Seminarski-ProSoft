@@ -146,4 +146,14 @@ public class Lekar implements ODObjekat {
 
     }
 
+    @Override
+    public String vratiNazivId() {
+        return "id_lekar";
+    }
+
+    @Override
+    public String vratiVrednostId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

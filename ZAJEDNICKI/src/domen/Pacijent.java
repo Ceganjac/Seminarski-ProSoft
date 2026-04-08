@@ -129,6 +129,11 @@ public class Pacijent implements ODObjekat {
     public String vratiZaUpdate() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    @Override
+    public String vratiNazivId(){
+        return "id_pacijent";
+    }
 
     @Override
     public void postaviId(int idPacijenta) {
@@ -156,6 +161,11 @@ public class Pacijent implements ODObjekat {
     public String vratiNaziveAtributa() {
         return "ime, prezime, pol, datumRodjenja, mestoRodjenja, mejl, idKrvnaGrupa";
 
+    }
+
+    @Override
+    public String vratiVrednostId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -12,27 +12,27 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.util.List;
 
-
-
 public interface ODObjekat extends Serializable {
 
-    String vratiNaziveAtributa();
-    
-    // za INSERT: vraća vrednosti atributa u formatu "vrednost1, 'vrednost2', ..."
-    String vratiVrednostiAtributa();
-
-    // ime tabele u bazi
+    // --- osnovne informacije o tabeli i identitetu ---
     String vratiImeTabele();
 
-    // WHERE uslov (za SELECT ili UPDATE/DELETE)
-    String vratiUslov();
+    String vratiNazivId();
 
-    // za UPDATE: vraća kolona=vrednost
-    String vratiZaUpdate();
-
-    // postavljanje generisanog ID-a iz baze nakon INSERT-a
     void postaviId(int id);
 
-    // parsira ResultSet u listu objekata ove klase (za SELECT)
+    // --- atributi i vrednosti za upite ---
+    String vratiVrednostId();
+
+    String vratiNaziveAtributa();
+
+    String vratiVrednostiAtributa();
+
+    String vratiZaUpdate();
+
+    // --- uslovi za SELECT/UPDATE/DELETE ---
+    String vratiUslov();
+
+    // --- parsiranje rezultata iz baze ---
     List<ODObjekat> napraviListu(ResultSet rs) throws Exception;
 }

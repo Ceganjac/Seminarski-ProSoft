@@ -8,6 +8,7 @@ import domen.Lekar;
 import java.sql.*;
 import domen.ODObjekat;
 import domen.Pregled;
+import java.util.List;
 
 /**
  *
@@ -89,7 +90,7 @@ public class DbBroker {
 
     }
 
-    public ODObjekat kreiraj(ODObjekat odo) throws SQLException {
+    public ODObjekat kreiraj(ODObjekat odo) throws SQLException { // kreiraj NE RADI kako treba
 
         String upit = "INSERT INTO " + odo.vratiImeTabele()
                 + " (" + odo.vratiNaziveAtributa() + ") VALUES ("
@@ -104,5 +105,33 @@ public class DbBroker {
         return odo;
 
     }
+
+    public List<ODObjekat> vratiPoUslovu(ODObjekat odo) throws SQLException, Exception {
+        List<ODObjekat> lista;
+        connect();
+        String upit = "SELECT * FROM " + odo.vratiImeTabele() + " WHERE " + odo.vratiUslov();
+        Statement st = konekcija.createStatement();
+        ResultSet rs = st.executeQuery(upit);
+
+        lista = odo.napraviListu(rs);
+        return lista;
+    }
+
+    /*public ODObjekat vratiPoId(ODObjekat odo) throws SQLException, Exception {
+        String upit = "SELECT * FROM " + odo.vratiImeTabele()
+                + " WHERE " + odo.vratiNazivId()+ " = " + odo;
+
+        Statement st = konekcija.createStatement();
+        ResultSet rs = st.executeQuery(upit);
+
+        ODObjekat rezultat = null;
+        if (rs.next()) {
+            rezultat = odo.napraviObjekat(rs);
+        }
+
+        rs.close();
+        st.close();
+        return rezultat; // vraća null ako ne postoji red sa tim ID-jem
+    }*/
 
 }

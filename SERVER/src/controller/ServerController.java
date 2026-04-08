@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -44,38 +45,51 @@ public class ServerController {
 
     public Lekar prijava(Lekar ulazniLekar) throws Exception {
 
-            db = new DbBroker(port, username, password);
-            Lekar izlazniLekar = null; // Inicijalno null
-            try {
-                db.connect();
-                izlazniLekar = db.prijava(ulazniLekar);
-                db.commit();
-                return izlazniLekar;
-            } catch (SQLException ex) {
-                db.rollback();
-                throw ex; // Prosledi grešku dalje
-            } finally {
-                db.disconnect();
-            }
+        db = new DbBroker(port, username, password);
+        Lekar izlazniLekar = null; // Inicijalno null
+        try {
+            db.connect();
+            izlazniLekar = db.prijava(ulazniLekar);
+            db.commit();
+            return izlazniLekar;
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex; // Prosledi grešku dalje
+        } finally {
+            db.disconnect();
         }
-    
-    public ODObjekat kreiraj(ODObjekat objekat) throws SQLException{
-         db = new DbBroker(port, username, password);
-            ODObjekat izlazniObjekat = null; // Inicijalno null
-            try {
-                db.connect();
-                izlazniObjekat = db.kreiraj(objekat);
-                db.commit();
-                return izlazniObjekat;
-            } catch (SQLException ex) {
-                db.rollback();
-                throw ex; // Prosledi grešku dalje
-            } finally {
-                db.disconnect();
-            }
+    }
+
+    public ODObjekat kreiraj(ODObjekat objekat) throws SQLException {
+        db = new DbBroker(port, username, password);
+        ODObjekat izlazniObjekat;
+        try {
+            db.connect();
+            izlazniObjekat = db.kreiraj(objekat);
+            db.commit();
+            return izlazniObjekat;
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex; // Prosledi grešku dalje
+        } finally {
+            db.disconnect();
         }
-        
-        
-    
-    
+    }
+
+    public List<ODObjekat> vratiUslov(ODObjekat objekat) throws Exception {
+        db = new DbBroker(port, username, password);
+        List<ODObjekat> izlazniObjekti;
+        try {
+            db.connect();
+            izlazniObjekti = db.vratiPoUslovu(objekat);
+            db.commit();
+            return izlazniObjekti;
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex; // Prosledi grešku dalje
+        } finally {
+            db.disconnect();
+        }
+    }
+
 }

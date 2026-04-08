@@ -4,22 +4,27 @@
  */
 package gui.forme.pregled;
 
+import controller.GuiController;
 import domen.Dijagnoza;
 import domen.Lekar;
+import domen.ODObjekat;
 import domen.Pacijent;
 import domen.Pregled;
 import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
+import gui.komponente.TblModelPregled;
 import gui.pomocni.Pomocni;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import java.util.List;
+
 /**
  *
  * @author Aleksandar Čeganjac
  */
-
 public class PretragaPregledaDialog extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PretragaPregledaDialog.class.getName());
@@ -39,7 +44,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
 
         this.parent = parent;
         this.modForme = modForme;
-        
+
         //funkcije
         obradaModa();
         obradaCmbModela();
@@ -220,6 +225,26 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
 
     private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed
 
+        Pregled pregledPr = new Pregled();
+        // uzimanje uslova
+        pregledPr.setLekar((Lekar) cmbLekar.getSelectedItem());
+        pregledPr.setPacijent((Pacijent) cmbPacijent.getSelectedItem());
+
+        try {
+            List<ODObjekat> listaObjekata = GuiController.vratiInstancu().vratiUslov(pregledPr);
+            List<Pregled> pregledi = new ArrayList<>();
+
+            for (ODObjekat o : listaObjekata) {
+                pregledi.add((Pregled) o);
+            }
+            // postavljanje modela tabele
+            TblModelPregled model = new TblModelPregled(pregledi);
+            tblPregledi.setModel(model);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, ex, "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnPretraziActionPerformed
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
@@ -275,10 +300,8 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         nizPacijenti = pacijenti.toArray(nizPacijenti);
         DefaultComboBoxModel<Pacijent> modelP = new DefaultComboBoxModel<>(nizPacijenti);
         cmbPacijent.setModel(modelP);
-        
-        // za dijagnozu
-        
 
+        // za dijagnozu
     }
 
     private void obradaModa() {
@@ -293,7 +316,6 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         }
 
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -311,4 +333,3 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     private javax.swing.JTable tblPregledi;
     // End of variables declaration//GEN-END:variables
 }
-
