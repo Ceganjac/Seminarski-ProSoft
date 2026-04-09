@@ -113,11 +113,6 @@ public class StavkaPregleda implements ODObjekat {
     }
 
     @Override
-    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public String vratiNaziveAtributa() {
         return "idPregled, naziv, lekarskiNalaz, vremeTrajanja, idDijagnoza";
 

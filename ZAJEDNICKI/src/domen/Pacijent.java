@@ -7,6 +7,7 @@ package domen;
 import domen.enumi.Pol;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -129,9 +130,9 @@ public class Pacijent implements ODObjekat {
     public String vratiZaUpdate() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
-    public String vratiNazivId(){
+    public String vratiNazivId() {
         return "id_pacijent";
     }
 
@@ -153,11 +154,6 @@ public class Pacijent implements ODObjekat {
     }
 
     @Override
-    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public String vratiNaziveAtributa() {
         return "ime, prezime, pol, datumRodjenja, mestoRodjenja, mejl, idKrvnaGrupa";
 
@@ -165,7 +161,7 @@ public class Pacijent implements ODObjekat {
 
     @Override
     public String vratiVrednostId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "" + idPacijent;
     }
 
 }

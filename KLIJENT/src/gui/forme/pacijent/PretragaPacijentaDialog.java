@@ -4,12 +4,18 @@
  */
 package gui.forme.pacijent;
 
+import controller.GuiController;
+import domen.KrvnaGrupa;
+import domen.ODObjekat;
 import domen.Pacijent;
+import domen.Pregled;
 import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPacijent;
+import gui.komponente.TblModelPregled;
 import gui.pomocni.Pomocni;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -33,13 +39,12 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         initComponents();
         // postavljanje boje
         getContentPane().setBackground(Color.white);
-        
+
         this.parent = parent;
         this.modForme = modForme;
-        
+
         // funkcije
         obradaModa();
-        obradaTabele();
     }
 
     /**
@@ -54,14 +59,16 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         lblNaslov = new javax.swing.JLabel();
         lblKrvnaGrupa = new javax.swing.JLabel();
         btnPretrazi = new javax.swing.JButton();
-        lblImePrezime = new javax.swing.JLabel();
+        lblIme = new javax.swing.JLabel();
         cmbKrvnaGrupa = new javax.swing.JComboBox<>();
-        txtImePrezime = new javax.swing.JTextField();
+        txtPrezime = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPacijenti = new javax.swing.JTable();
         btnIzmeni = new javax.swing.JButton();
         btnPrikazi = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
+        lblPrezime = new javax.swing.JLabel();
+        txtIme = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -83,8 +90,8 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             }
         });
 
-        lblImePrezime.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblImePrezime.setText("Име и презиме :");
+        lblIme.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblIme.setText("Име :");
 
         cmbKrvnaGrupa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "B+", "A-", "B-", "AB", "O+", "O-" }));
         cmbKrvnaGrupa.setOpaque(true);
@@ -133,31 +140,44 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             }
         });
 
+        lblPrezime.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblPrezime.setText("Презиме :");
+
+        txtIme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblNaslov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane2)
+                        .addComponent(btnPrikazi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnIzmeni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblImePrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtImePrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIme, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtIme, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addGap(18, 18, 18)
+                            .addComponent(lblPrezime)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtPrezime, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addGap(18, 18, 18)
                             .addComponent(lblKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cmbKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnPretrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnPrikazi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                        .addComponent(btnIzmeni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                            .addGap(10, 10, 10)
+                            .addComponent(cmbKrvnaGrupa, 0, 162, Short.MAX_VALUE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnPretrazi, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2)))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,14 +186,16 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
                 .addComponent(lblNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblImePrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtImePrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIme, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPretrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPretrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(18, 18, 18)
                 .addComponent(btnPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,6 +211,27 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
 
     private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed
 
+        Pacijent pacijentPr = new Pacijent();
+        // punjenje pacijenta uslovima
+        pacijentPr.setIme(txtIme.getText());
+        pacijentPr.setPrezime(txtPrezime.getText());
+        pacijentPr.setKrvnaGrupa((KrvnaGrupa) cmbKrvnaGrupa.getSelectedItem());
+
+        try {
+            List<ODObjekat> listaObjekata = GuiController.vratiInstancu().vratiUslov(pacijentPr);
+            List<Pacijent> pacijenti = new ArrayList<>();
+
+            for (ODObjekat o : listaObjekata) {
+                pacijenti.add((Pacijent) o);
+            }
+            // postavljanje modela tabele
+            TblModelPacijent model = new TblModelPacijent(pacijenti);
+            tblPacijenti.setModel(model);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, ex, "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnPretraziActionPerformed
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
@@ -220,6 +263,10 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnObrisiActionPerformed
 
+    private void txtImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtImeActionPerformed
+
     private void obradaModa() {
 
         if (modForme == ModFormePretrazi.MOD_PRETRAZI_PRIKAZI) {
@@ -240,15 +287,6 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
 
     }
 
-    private void obradaTabele() {
-
-        List<Pacijent> pacijenti = Pomocni.vratiPacijente();
-
-        // Dodavanje u model
-        model = new TblModelPacijent(pacijenti);
-        tblPacijenti.setModel(model);
-    }
-
     /**
      * @param args the command line arguments
      */
@@ -260,10 +298,12 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnPrikazi;
     private javax.swing.JComboBox<String> cmbKrvnaGrupa;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblImePrezime;
+    private javax.swing.JLabel lblIme;
     private javax.swing.JLabel lblKrvnaGrupa;
     private javax.swing.JLabel lblNaslov;
+    private javax.swing.JLabel lblPrezime;
     private javax.swing.JTable tblPacijenti;
-    private javax.swing.JTextField txtImePrezime;
+    private javax.swing.JTextField txtIme;
+    private javax.swing.JTextField txtPrezime;
     // End of variables declaration//GEN-END:variables
 }

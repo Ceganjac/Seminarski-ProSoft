@@ -3,7 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/db/konfiguracija.txt</file>
+            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/server/KlijentskaNit.java</file>
+            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/controller/ServerController.java</file>
             <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/db/DbBroker.java</file>
         </group>
     </open-files>

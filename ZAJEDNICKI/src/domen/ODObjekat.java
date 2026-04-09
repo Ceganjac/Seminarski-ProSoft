@@ -33,6 +33,4 @@ public interface ODObjekat extends Serializable {
     // --- uslovi za SELECT/UPDATE/DELETE ---
     String vratiUslov();
 
-    // --- parsiranje rezultata iz baze ---
-    List<ODObjekat> napraviListu(ResultSet rs) throws Exception;
 }

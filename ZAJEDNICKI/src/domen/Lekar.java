@@ -7,6 +7,7 @@ package domen;
 import domen.enumi.Pol;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -129,11 +130,6 @@ public class Lekar implements ODObjekat {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     // bitan za cmb
     @Override
     public String toString() {
@@ -153,7 +149,7 @@ public class Lekar implements ODObjekat {
 
     @Override
     public String vratiVrednostId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "" + idLekar;
     }
 
 }
