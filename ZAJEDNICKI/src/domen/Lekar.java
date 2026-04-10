@@ -5,10 +5,11 @@
 package domen;
 
 import domen.enumi.Pol;
-import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -150,6 +151,27 @@ public class Lekar implements ODObjekat {
     @Override
     public String vratiVrednostId() {
         return "" + idLekar;
+    }
+
+    @Override
+    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+        List<ODObjekat> lista = new ArrayList<>();
+
+        while (rs.next()) {
+            Lekar l = new Lekar();
+
+            l.setIdLekar(rs.getInt("id_lekar"));
+            l.setIme(rs.getString("ime"));
+            l.setPrezime(rs.getString("prezime"));
+            l.setPol(Pol.valueOf(rs.getString("pol")));
+            l.setDatumRodjenja(rs.getDate("datum_rodjenja").toLocalDate());
+            l.setKorisnickoIme(rs.getString("korisnicko_ime"));
+            l.setLozinka(rs.getString("lozinka"));
+
+            lista.add(l);
+        }
+
+        return lista;
     }
 
 }

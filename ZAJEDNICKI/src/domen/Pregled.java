@@ -155,4 +155,39 @@ public class Pregled implements ODObjekat {
         return "" + idPregled;
     }
 
+    @Override
+    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+        List<ODObjekat> lista = new ArrayList<>();
+
+        while (rs.next()) {
+
+            Pregled pr = new Pregled();
+
+            pr.setIdPregled(rs.getInt("id_pregled"));
+
+            Timestamp tz = rs.getTimestamp("datum_vreme_zavrsetka");
+            pr.setDatumVremeZavrsetka(tz != null ? tz.toLocalDateTime() : null);
+
+            Timestamp tk = rs.getTimestamp("datum_vreme_kontrole");
+            pr.setDatumVremeKontrole(tk != null ? tk.toLocalDateTime() : null);
+
+            pr.setUkupnoVremeTrajanja(rs.getFloat("ukupno_vreme_trajanja"));
+            pr.setTerapija(rs.getString("terapija"));
+
+            // --- samo ID za povezane objekte ---
+            Lekar l = new Lekar();
+            l.setIdLekar(rs.getInt("id_lekar"));
+
+            Pacijent p = new Pacijent();
+            p.setIdPacijent(rs.getInt("id_pacijent"));
+
+            pr.setLekar(l);
+            pr.setPacijent(p);
+
+            lista.add(pr);
+        }
+
+        return lista;
+    }
+
 }

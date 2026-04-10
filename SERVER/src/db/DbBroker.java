@@ -108,80 +108,59 @@ public class DbBroker {
 
     }
 
-    public List<ODObjekat> vratiPoUslovu(ODObjekat odo) throws SQLException, Exception {
+    public List<ODObjekat> vratiPoUslovu(ODObjekat odo) throws Exception {
         connect();
-        List<ODObjekat> objekti = new ArrayList<>();
+        List<ODObjekat> objekti;
 
-        String upit = "SELECT * FROM " + odo.vratiImeTabele() + " WHERE " + odo.vratiUslov();
+        String upit = "SELECT * FROM " + odo.vratiImeTabele()
+                + " WHERE " + odo.vratiUslov();
+
         Statement st = konekcija.createStatement();
         ResultSet rs = st.executeQuery(upit);
 
-        while (rs.next()) {
-            Pregled pregled = new Pregled();
-            pregled.setIdPregled(rs.getInt("id_pregled"));
+        objekti = odo.napraviListu(rs);
 
-            Timestamp tsZavrsetak = rs.getTimestamp("datum_vreme_zavrsetka");
-            if (tsZavrsetak != null) {
-                pregled.setDatumVremeZavrsetka(tsZavrsetak.toLocalDateTime());
+        // NARUŠAVANJE GENERIČNOSTI
+        if (odo instanceof Pregled) {
+
+            for (ODObjekat o : objekti) {
+
+                Pregled p = (Pregled) o;
+
+                // --- Lekar ---
+                Lekar l = new Lekar();
+                l.setIdLekar(p.getLekar().getIdLekar());
+                l = (Lekar) vratiPoId(l);
+
+                // --- Pacijent ---
+                Pacijent pa = new Pacijent();
+                pa.setIdPacijent(p.getPacijent().getIdPacijent());
+                pa = (Pacijent) vratiPoId(pa);
+
+                p.setLekar(l);
+                p.setPacijent(pa);
             }
-
-            Timestamp tsKontrola = rs.getTimestamp("datum_vreme_kontrole");
-            if (tsKontrola != null) {
-                pregled.setDatumVremeKontrole(tsKontrola.toLocalDateTime());
-            }
-
-            pregled.setUkupnoVremeTrajanja(rs.getFloat("ukupno_vreme_trajanja"));
-            pregled.setTerapija(rs.getString("terapija"));
-
-            // --- Pacijent ---
-            int idPacijent = rs.getInt("id_pacijent");
-            Pacijent pacijent = new Pacijent();
-            pacijent.setIdPacijent(idPacijent);
-            Pacijent pacijentRez = (Pacijent) vratiPoId(pacijent);
-            pregled.setPacijent(pacijentRez);
-
-            // --- Lekar ---
-            int idLekar = rs.getInt("id_lekar");
-            Lekar lekar = new Lekar();
-            lekar.setIdLekar(idLekar);  // ovde je bila greška u originalu
-            Lekar lekarRez = (Lekar) vratiPoId(lekar);
-            pregled.setLekar(lekarRez);
-
-            // dodavanje u listu
-            objekti.add(pregled);
         }
 
         return objekti;
     }
 
-    public ODObjekat vratiPoId(ODObjekat odo) throws SQLException, Exception {
+    public ODObjekat vratiPoId(ODObjekat odo) throws Exception {
+        connect();
+
         String upit = "SELECT * FROM " + odo.vratiImeTabele()
                 + " WHERE " + odo.vratiNazivId() + " = " + odo.vratiVrednostId();
 
         Statement st = konekcija.createStatement();
         ResultSet rs = st.executeQuery(upit);
 
-        ODObjekat rezultat = null;
+        List<ODObjekat> lista = odo.napraviListu(rs);
 
-        if (rs.next()) {
-            if (odo instanceof Lekar) {
-                Lekar lekar = new Lekar();
-                lekar.setIdLekar(rs.getInt("id_lekar"));
-                lekar.setIme(rs.getString("ime"));
-                lekar.setPrezime(rs.getString("prezime"));
-                // po potrebi dodaj ostale atribute
-                rezultat = lekar;
-            } else if (odo instanceof Pacijent) {
-                Pacijent pacijent = new Pacijent();
-                pacijent.setIdPacijent(rs.getInt("id_pacijent"));
-                pacijent.setIme(rs.getString("ime"));
-                pacijent.setPrezime(rs.getString("prezime"));
-                // po potrebi dodaj ostale atribute
-                rezultat = pacijent;
-            }
+        if (lista.isEmpty()) {
+            return null;
         }
 
-        return rezultat;
+        return lista.get(0);
     }
 
 }

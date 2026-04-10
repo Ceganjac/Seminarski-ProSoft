@@ -164,4 +164,31 @@ public class Pacijent implements ODObjekat {
         return "" + idPacijent;
     }
 
+    @Override
+    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+        
+        List<ODObjekat> lista = new ArrayList<>();
+
+        while (rs.next()) {
+
+            KrvnaGrupa kg = new KrvnaGrupa();
+            kg.setIdKrvnaGrupa(rs.getInt("id_krvna_grupa"));
+
+            Pacijent pacijent = new Pacijent();
+
+            pacijent.setIdPacijent(rs.getInt("id_pacijent"));
+            pacijent.setIme(rs.getString("ime"));
+            pacijent.setPrezime(rs.getString("prezime"));
+            pacijent.setPol(Pol.valueOf(rs.getString("pol")));
+            pacijent.setDatumRodjenja(rs.getDate("datum_rodjenja").toLocalDate());
+            pacijent.setMestoRodjenja(rs.getString("mesto_rodjenja"));
+            pacijent.setMejl(rs.getString("mejl"));
+            pacijent.setKrvnaGrupa(kg);
+
+            lista.add(pacijent);
+        }
+
+        return lista;
+    }
+
 }
