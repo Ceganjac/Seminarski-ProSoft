@@ -43,53 +43,30 @@ public class ServerController {
         return instanca;
     }
 
-    public Lekar prijava(Lekar ulazniLekar) throws Exception {
+    public Lekar prijaviLekar(Lekar lekar) throws Exception {
 
         db = new DbBroker(port, username, password);
-        Lekar izlazniLekar = null; // Inicijalno null
+        Lekar lekarRez = null;
+
         try {
+
             db.connect();
-            izlazniLekar = db.prijava(ulazniLekar);
+            List<ODObjekat> lista = db.vratiPoUslovu(lekar);
+            if (!lista.isEmpty()) {
+                lekarRez = (Lekar) lista.get(0);
+            }
             db.commit();
-            return izlazniLekar;
+
         } catch (SQLException ex) {
             db.rollback();
-            throw ex; // Prosledi grešku dalje
+            throw ex;
         } finally {
             db.disconnect();
         }
+
+        return lekarRez;
     }
 
-    public ODObjekat kreiraj(ODObjekat objekat) throws SQLException {
-        db = new DbBroker(port, username, password);
-        ODObjekat izlazniObjekat;
-        try {
-            db.connect();
-            izlazniObjekat = db.kreiraj(objekat);
-            db.commit();
-            return izlazniObjekat;
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex; // Prosledi grešku dalje
-        } finally {
-            db.disconnect();
-        }
-    }
-
-    public List<ODObjekat> vratiUslov(ODObjekat objekat) throws Exception {
-        db = new DbBroker(port, username, password);
-        List<ODObjekat> izlazniObjekti;
-        try {
-            db.connect();
-            izlazniObjekti = db.vratiPoUslovu(objekat);
-            db.commit();
-            return izlazniObjekti;
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex; // Prosledi grešku dalje
-        } finally {
-            db.disconnect();
-        }
-    }
+    
 
 }

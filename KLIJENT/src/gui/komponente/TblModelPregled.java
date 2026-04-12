@@ -46,7 +46,7 @@ public class TblModelPregled extends AbstractTableModel {
             case 4:
                 return pregled.getTerapija();
             case 5:
-                return pregled.getLekar().vrartiImePrezime();
+                return pregled.getLekar().vratiImePrezime();
             case 6:
                 return pregled.getPacijent().vratiImePrezime();
             default:

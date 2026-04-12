@@ -6,11 +6,11 @@ package controller;
 
 import domen.Lekar;
 import domen.ODObjekat;
+import domen.Pregled;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.List;
 import komunikacija.Odgovor;
 import komunikacija.Operacija;
 import komunikacija.Zahtev;
@@ -41,10 +41,10 @@ public class GuiController {
         return instanca;
     }
 
-    public Lekar prijava(Lekar lekar) throws Exception {
+    public Lekar prijaviLekar(Lekar lekar) throws Exception {
 
         // kreiranje i slanje zahteva
-        Zahtev zahtev = new Zahtev(lekar, Operacija.PRIJAVA);
+        Zahtev zahtev = new Zahtev(lekar, Operacija.PRIJAVI_LEKAR);
         izlazniTok.writeObject(zahtev);
         izlazniTok.flush();
 
@@ -58,9 +58,10 @@ public class GuiController {
 
     }
 
-    public Object kreiraj(ODObjekat objekat) throws Exception {
+    //PREGLED
+    public Object kreirajPregled(Pregled pregled) throws Exception {
         // kreiranje i slanje zahteva
-        Zahtev zahtev = new Zahtev(objekat, Operacija.KREIRAJ);
+        Zahtev zahtev = new Zahtev(pregled, Operacija.KREIRAJ_PREGLED);
         izlazniTok.writeObject(zahtev);
         izlazniTok.flush();
 
@@ -73,20 +74,37 @@ public class GuiController {
         }
 
     }
-
-    public List<ODObjekat> vratiUslov(ODObjekat objekat) throws Exception {
+    
+    public Object promeniPregled(Pregled pregled) throws Exception {
         // kreiranje i slanje zahteva
-        Zahtev zahtev = new Zahtev(objekat, Operacija.VRATI_USLOV);
+        Zahtev zahtev = new Zahtev(pregled, Operacija.PROMENI_PREGLED);
         izlazniTok.writeObject(zahtev);
         izlazniTok.flush();
 
         // uzimamo odgovor od servera
         Odgovor odgovor = (Odgovor) ulazniTok.readObject();
         if (odgovor.getIzuzetak() == null) {
-            return (List<ODObjekat>) odgovor.getRezultat();
+            return (ODObjekat) odgovor.getRezultat();
         } else {
             throw odgovor.getIzuzetak();
         }
+
+    }
+    
+    public Object pretraziPregled(Pregled pregled) throws Exception {
+        // kreiranje i slanje zahteva
+        Zahtev zahtev = new Zahtev(pregled, Operacija.PRETRAZI_PREGLED);
+        izlazniTok.writeObject(zahtev);
+        izlazniTok.flush();
+
+        // uzimamo odgovor od servera
+        Odgovor odgovor = (Odgovor) ulazniTok.readObject();
+        if (odgovor.getIzuzetak() == null) {
+            return (Pregled) odgovor.getRezultat();
+        } else {
+            throw odgovor.getIzuzetak();
+        }
+
     }
 
 }

@@ -36,7 +36,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblUkupnoVremeTrajanja" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtDatumVremeTrajanja" max="32767" attributes="0"/>
+                      <Component id="txtVremeTrajanja" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblDatumVremeKontrole" min="-2" pref="150" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblUkupnoVremeTrajanja" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtDatumVremeTrajanja" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="txtVremeTrajanja" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -267,7 +267,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDatumVremeTrajanja">
+    <Component class="javax.swing.JTextField" name="txtVremeTrajanja">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

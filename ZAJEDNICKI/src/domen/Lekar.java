@@ -96,11 +96,10 @@ public class Lekar implements ODObjekat {
 
     @Override
     public String vratiVrednostiAtributa() {
-        return idLekar + ", '"
-                + ime + "', '"
+        return "'" + ime + "', '"
                 + prezime + "', '"
-                + pol + "', '"
-                + datumRodjenja + "', '"
+                + pol + "', "
+                + (datumRodjenja == null ? "NULL" : "'" + datumRodjenja + "'") + ", '"
                 + korisnickoIme + "', '"
                 + lozinka + "'";
     }
@@ -111,14 +110,14 @@ public class Lekar implements ODObjekat {
     }
 
     // vrati ime i prezime lekara
-    public String vrartiImePrezime() {
+    public String vratiImePrezime() {
         return ime + " " + prezime;
     }
 
     // METODE IZ INTERFEJSA
     @Override
     public String vratiUslov() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "korisnicko_ime = '" + korisnickoIme + "' AND lozinka = '" + lozinka + "'";
     }
 
     @Override
@@ -128,7 +127,7 @@ public class Lekar implements ODObjekat {
 
     @Override
     public void postaviId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.idLekar = id;
     }
 
     // bitan za cmb
@@ -139,7 +138,7 @@ public class Lekar implements ODObjekat {
 
     @Override
     public String vratiNaziveAtributa() {
-        return "ime, prezime, pol, datumRodjenja, korisnickoIme, lozinka";
+        return "ime, prezime, pol, datum_rodjenja, korisnicko_ime, lozinka";
 
     }
 
@@ -155,23 +154,26 @@ public class Lekar implements ODObjekat {
 
     @Override
     public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        List<ODObjekat> lista = new ArrayList<>();
+        List<ODObjekat> lekari = new ArrayList<>();
 
         while (rs.next()) {
-            Lekar l = new Lekar();
+            Lekar lekar = new Lekar();
 
-            l.setIdLekar(rs.getInt("id_lekar"));
-            l.setIme(rs.getString("ime"));
-            l.setPrezime(rs.getString("prezime"));
-            l.setPol(Pol.valueOf(rs.getString("pol")));
-            l.setDatumRodjenja(rs.getDate("datum_rodjenja").toLocalDate());
-            l.setKorisnickoIme(rs.getString("korisnicko_ime"));
-            l.setLozinka(rs.getString("lozinka"));
+            lekar.setIdLekar(rs.getInt("id_lekar"));
+            lekar.setIme(rs.getString("ime"));
+            lekar.setPrezime(rs.getString("prezime"));
+            lekar.setPol(Pol.valueOf(rs.getString("pol")));
 
-            lista.add(l);
+            java.sql.Date datum = rs.getDate("datum_rodjenja");
+            lekar.setDatumRodjenja(datum != null ? datum.toLocalDate() : null);
+
+            lekar.setKorisnickoIme(rs.getString("korisnicko_ime"));
+            lekar.setLozinka(rs.getString("lozinka"));
+
+            lekari.add(lekar);
         }
 
-        return lista;
+        return lekari;
     }
 
 }

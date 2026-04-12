@@ -5,17 +5,14 @@
 package gui.forme.pregled;
 
 import controller.GuiController;
-import domen.KrvnaGrupa;
 import domen.Lekar;
 import domen.Pacijent;
 import domen.Pregled;
 import domen.StavkaPregleda;
-import domen.enumi.Pol;
 import gui.enumi.ModForme;
+import gui.komponente.TblModelStavkaPregleda;
 import gui.pomocni.Pomocni;
 import java.awt.Color;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -31,9 +28,10 @@ public class PregledDialog extends javax.swing.JDialog {
     /**
      * Creates new form PregledDialog
      */
-    private Pregled pregled;
-    private ModForme modForme;
-    private java.awt.Frame parent;
+    private final Pregled pregled;
+    private final ModForme modForme;
+    private final java.awt.Frame parent;
+    private TblModelStavkaPregleda model;
 
     public PregledDialog(java.awt.Frame parent, boolean modal, Pregled pregled, ModForme modForme) {
         super(parent, modal);
@@ -46,6 +44,7 @@ public class PregledDialog extends javax.swing.JDialog {
         // funkcije
         obradaModa();
         obradaCmbModela();
+        prikazPregleda();
     }
 
     /**
@@ -71,7 +70,7 @@ public class PregledDialog extends javax.swing.JDialog {
         cmbPacijent = new javax.swing.JComboBox<>();
         txtDatumVremeZavrsetka = new javax.swing.JTextField();
         txtDatumVremeKontrole = new javax.swing.JTextField();
-        txtDatumVremeTrajanja = new javax.swing.JTextField();
+        txtVremeTrajanja = new javax.swing.JTextField();
         txtTerapija = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblStavkePregleda = new javax.swing.JTable();
@@ -130,8 +129,8 @@ public class PregledDialog extends javax.swing.JDialog {
 
         txtDatumVremeKontrole.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        txtDatumVremeTrajanja.setEditable(false);
-        txtDatumVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtVremeTrajanja.setEditable(false);
+        txtVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         txtTerapija.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -219,7 +218,7 @@ public class PregledDialog extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblUkupnoVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtDatumVremeTrajanja))
+                        .addComponent(txtVremeTrajanja))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblDatumVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -280,7 +279,7 @@ public class PregledDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUkupnoVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDatumVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTerapija, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,26 +303,7 @@ public class PregledDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnKreirajPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajPregledActionPerformed
-        try {
-            
-            GuiController kontroler = GuiController.vratiInstancu();
-            Pregled pregledS = new Pregled();
-            // lekar i pregled -> PROBLEM !!!
-            Lekar lekar = new Lekar();
-            Pacijent pacijent = new Pacijent();
-            pregledS.setLekar(lekar);
-            pregledS.setPacijent(pacijent);
-            
-            Pregled rezPregled = (Pregled) kontroler.kreiraj(pregledS);
 
-            // ispis id-a
-            txtIdPregleda.setText("" + rezPregled.getIdPregled());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Грешка приликом креирања прегледа !",
-                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
-
-        }
 
     }//GEN-LAST:event_btnKreirajPregledActionPerformed
 
@@ -435,6 +415,16 @@ public class PregledDialog extends javax.swing.JDialog {
 
     }
 
+    private void prikazPregleda() {
+        txtIdPregleda.setText("" + pregled.getIdPregled());
+        cmbLekar.setSelectedItem(pregled.getLekar());
+        cmbPacijent.setSelectedItem(pregled.getPacijent());
+        txtDatumVremeZavrsetka.setText("" + pregled.getDatumVremeZavrsetka());
+        txtDatumVremeKontrole.setText("" + pregled.getDatumVremeKontrole());
+        txtVremeTrajanja.setText("" + pregled.getUkupnoVremeTrajanja());
+        txtTerapija.setText(pregled.getTerapija());
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -459,9 +449,9 @@ public class PregledDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblUkupnoVremeTrajanja;
     private javax.swing.JTable tblStavkePregleda;
     private javax.swing.JTextField txtDatumVremeKontrole;
-    private javax.swing.JTextField txtDatumVremeTrajanja;
     private javax.swing.JTextField txtDatumVremeZavrsetka;
     private javax.swing.JTextField txtIdPregleda;
     private javax.swing.JTextField txtTerapija;
+    private javax.swing.JTextField txtVremeTrajanja;
     // End of variables declaration//GEN-END:variables
 }

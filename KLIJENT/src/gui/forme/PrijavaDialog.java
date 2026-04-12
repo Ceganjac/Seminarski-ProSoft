@@ -6,7 +6,9 @@ package gui.forme;
 
 import controller.GuiController;
 import domen.Lekar;
+import domen.ODObjekat;
 import java.io.IOException;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -127,20 +129,22 @@ public class PrijavaDialog extends javax.swing.JDialog {
         lekar.setKorisnickoIme(korisnickoIme);
         lekar.setLozinka(lozinka);
 
+        // lekar rezultat
+        Lekar lekarRez;
+
         try {
             // pozivanje kontrolera
-            lekar = GuiController.vratiInstancu().prijava(lekar);
+            lekarRez = GuiController.vratiInstancu().prijaviLekar(lekar);
 
-            if (lekar != null) {
+            if (lekarRez == null) {
+                JOptionPane.showMessageDialog(this, "Нема корисника са унетим креденцијалима !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            } else {
                 // prikaz glavnog frejma
-                GlavniFrejm glavni = new GlavniFrejm(lekar);
+                GlavniFrejm glavni = new GlavniFrejm(lekarRez);
                 glavni.setLocationRelativeTo(this);
                 glavni.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 this.setVisible(false);
                 glavni.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Нема корисника са унетим креденцијалима !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
-                
             }
 
         } catch (Exception ex) {

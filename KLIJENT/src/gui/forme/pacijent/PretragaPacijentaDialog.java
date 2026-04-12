@@ -217,7 +217,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         pacijentPr.setPrezime(txtPrezime.getText());
         pacijentPr.setKrvnaGrupa((KrvnaGrupa) cmbKrvnaGrupa.getSelectedItem());
 
-        try {
+        /*try {
             List<ODObjekat> listaObjekata = GuiController.vratiInstancu().vratiUslov(pacijentPr);
             List<Pacijent> pacijenti = new ArrayList<>();
 
@@ -231,7 +231,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, ex, "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_btnPretraziActionPerformed
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed

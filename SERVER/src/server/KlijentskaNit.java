@@ -14,7 +14,6 @@ import java.net.Socket;
 import java.util.List;
 import komunikacija.Odgovor;
 import komunikacija.Operacija;
-import static komunikacija.Operacija.PRIJAVA;
 import komunikacija.Zahtev;
 
 /**
@@ -45,31 +44,19 @@ public class KlijentskaNit extends Thread {
                 try {
                     Zahtev zahtev = (Zahtev) ulazni.readObject();
                     // rastavljenje zahteva
-                    Object objekat = zahtev.getObjekat();
+                    Object domenskiObjekat = zahtev.getObjekat();
                     Operacija operacija = zahtev.getOperacija();
+                    ODObjekat rezultat;
 
                     switch (operacija) {
-                        case PRIJAVA:
-                            // šalje ka ServerController
-                            Lekar lekar = ServerController.
-                                    vratiInstancu().prijava((Lekar) objekat);
 
-                            // nakon što dobije neki odgovor od ServerController
+                        case PRIJAVI_LEKAR:
+                            // šalje ka ServerController
+                            Lekar lekar = ServerController.vratiInstancu().
+                                    prijaviLekar((Lekar) domenskiObjekat);
+                            // upisuju domenski domenskiObjekat u odgovor
                             odgovor.setRezultat(lekar);
-                            break;
-                        case KREIRAJ:
-                            // šalje ka ServerController
-                            ODObjekat rezultat = (ODObjekat) ServerController.
-                                    vratiInstancu().kreiraj((ODObjekat) objekat);
-                            // nakon što dobije neki odgovor od ServerController
-                            odgovor.setRezultat(rezultat);
-                            break;
-                        case VRATI_USLOV:
-                            // šalje ka ServerController
-                            List<ODObjekat> rezultatRz = (List<ODObjekat>) ServerController.vratiInstancu().
-                                    vratiUslov((ODObjekat) objekat);
-                            // nakon što dobije neki odgovor od ServerController
-                            odgovor.setRezultat(rezultatRz);
+
                     }
 
                 } catch (Exception ex) {

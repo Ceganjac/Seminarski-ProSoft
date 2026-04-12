@@ -277,7 +277,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
     }//GEN-LAST:event_itemUbaciSpecijalizacijuActionPerformed
 
     public void upisPrijavljenog() {
-        lblPrijavljenVr.setText(lekar.vrartiImePrezime());
+        lblPrijavljenVr.setText(lekar.vratiImePrezime());
     }
 
     /**

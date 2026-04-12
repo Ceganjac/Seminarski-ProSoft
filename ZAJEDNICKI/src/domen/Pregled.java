@@ -22,6 +22,7 @@ public class Pregled implements ODObjekat {
     private String terapija;
     private Lekar lekar;
     private Pacijent pacijent;
+    List <StavkaPregleda> stavke;
 
     public Pregled() {
     }
@@ -91,6 +92,16 @@ public class Pregled implements ODObjekat {
     public void setPacijent(Pacijent pacijent) {
         this.pacijent = pacijent;
     }
+
+    public List<StavkaPregleda> getStavke() {
+        return stavke;
+    }
+
+    public void setStavke(List<StavkaPregleda> stavke) {
+        this.stavke = stavke;
+    }
+    
+    
 
     // METODE IZ INTERFEJSA
     @Override

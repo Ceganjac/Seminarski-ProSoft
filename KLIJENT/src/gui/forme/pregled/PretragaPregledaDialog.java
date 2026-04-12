@@ -10,6 +10,7 @@ import domen.Lekar;
 import domen.ODObjekat;
 import domen.Pacijent;
 import domen.Pregled;
+import domen.StavkaPregleda;
 import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPregled;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import java.util.List;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -32,9 +34,9 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     /**
      * Creates new form KreirajPregledDialog
      */
-    private Pregled pregled;
     private java.awt.Frame parent;
     private ModFormePretrazi modForme;
+    private TblModelPregled model;
 
     public PretragaPregledaDialog(java.awt.Frame parent, boolean modal, ModFormePretrazi modForme) {
         super(parent, modal);
@@ -230,7 +232,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         pregledPr.setLekar((Lekar) cmbLekar.getSelectedItem());
         pregledPr.setPacijent((Pacijent) cmbPacijent.getSelectedItem());
 
-        try {
+        /*try {
             List<ODObjekat> listaObjekata = GuiController.vratiInstancu().vratiUslov(pregledPr);
             List<Pregled> pregledi = new ArrayList<>();
 
@@ -238,30 +240,34 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
                 pregledi.add((Pregled) o);
             }
             // postavljanje modela tabele
-            TblModelPregled model = new TblModelPregled(pregledi);
+            model = new TblModelPregled(pregledi);
             tblPregledi.setModel(model);
 
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, ex, "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_btnPretraziActionPerformed
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
 
-        int selektovanRed = tblPregledi.getSelectedRow();
+        /*int selektovanRed = tblPregledi.getSelectedRow();
         if (selektovanRed != -1) {
             PregledDialog dialog = new PregledDialog(parent, true, pregled, ModForme.MOD_IZMENA);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Нисте селектовали преглед !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_btnIzmeniActionPerformed
 
     private void btnPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziActionPerformed
+        
         int selektovaniRed = tblPregledi.getSelectedRow();
         if (selektovaniRed != -1) {
+            // kreiranje pregleda
+            Pregled pregled = model.getPregled(selektovaniRed);
+            // forma 
             PregledDialog dialog = new PregledDialog(parent, true, pregled, ModForme.MOD_PRIKAZ);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
