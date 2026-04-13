@@ -4,10 +4,16 @@
  */
 package gui.forme.pregled;
 
+import domen.Dijagnoza;
 import domen.Pregled;
 import domen.StavkaPregleda;
 import gui.enumi.ModForme;
+import gui.komponente.TblModelStavkaPregleda;
+import gui.pomocni.Pomocni;
 import java.awt.Color;
+import java.time.Duration;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -15,21 +21,23 @@ import java.awt.Color;
  */
 public class StavkaPregledaDialog extends javax.swing.JDialog {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(StavkaPregledaDialog.class.getName());
-
     /**
      * Creates new form KreirajPregledDialog
      */
     private StavkaPregleda stavkaPregleda;
-    ModForme modForme;
+    private ModForme modForme;
+    TblModelStavkaPregleda model;
 
-    public StavkaPregledaDialog(java.awt.Frame parent, boolean modal, StavkaPregleda stavka, ModForme mod) {
+    public StavkaPregledaDialog(java.awt.Frame parent, boolean modal, StavkaPregleda stavkaPregleda,
+            ModForme mod, TblModelStavkaPregleda model) {
         super(parent, modal);
         initComponents();
         getContentPane().setBackground(Color.white);
         this.stavkaPregleda = stavkaPregleda;
         this.modForme = mod;
+        this.model = model;
         obradaModa();
+        obradaCmbDijagnoza();
 
     }
 
@@ -47,7 +55,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         lblIdStavke = new javax.swing.JLabel();
         txtIdStavke = new javax.swing.JTextField();
         lblDijagnoza = new javax.swing.JLabel();
-        cmbDijagnoze = new javax.swing.JComboBox<>();
+        cmbDijagnoza = new javax.swing.JComboBox<>();
         btnSacuvajStavku = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaLekarskiNalaz = new javax.swing.JTextArea();
@@ -76,8 +84,6 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
         lblDijagnoza.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblDijagnoza.setText("Дијагноза :");
-
-        cmbDijagnoze.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Прехлада", "Стомачни вирус", "Главобоља" }));
 
         btnSacuvajStavku.setBackground(new java.awt.Color(0, 153, 153));
         btnSacuvajStavku.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -139,7 +145,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                             .addComponent(txtNaziv, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                             .addComponent(txtIdStavke)
                             .addComponent(txtVremeTrajanja, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                            .addComponent(cmbDijagnoze, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(cmbDijagnoza, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -162,12 +168,12 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbDijagnoze, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblLekarskiNalaz, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(btnSacuvajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -176,7 +182,22 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSacuvajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajStavkuActionPerformed
-        // TODO add your handling code here:
+
+        // uzimanje podataka iz polja
+        StavkaPregleda stavka = new StavkaPregleda();
+
+        stavka.setNaziv(txtNaziv.getText());
+        // trajanje
+        int trajanjeInt = Integer.parseInt(txtVremeTrajanja.getText());
+        Duration trajanjeD = Duration.ofMinutes(trajanjeInt);
+        stavka.setVremeTrajanja(trajanjeD);
+
+        stavka.setDijagnoza((Dijagnoza) cmbDijagnoza.getSelectedItem());
+        stavka.setLekarskiNalaz(txaLekarskiNalaz.getText());
+
+        model.dodajStavku(stavka);
+        dispose();
+
     }//GEN-LAST:event_btnSacuvajStavkuActionPerformed
 
     private void txtIdStavkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdStavkeActionPerformed
@@ -208,10 +229,19 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
             txtNaziv.setEditable(false);
             txtVremeTrajanja.setEditable(false);
             txaLekarskiNalaz.setEditable(false);
-            cmbDijagnoze.setEnabled(false);
+            cmbDijagnoza.setEnabled(false);
             txaLekarskiNalaz.setEditable(false);
         }
 
+    }
+
+    // obrada cmbDijagnoza
+    private void obradaCmbDijagnoza() {
+        List<Dijagnoza> dijagnoze = Pomocni.vratiDijagnoze();
+        Dijagnoza[] nizDijagnoze = new Dijagnoza[dijagnoze.size()];
+        nizDijagnoze = dijagnoze.toArray(nizDijagnoze);
+        DefaultComboBoxModel<Dijagnoza> modelD = new DefaultComboBoxModel<>(nizDijagnoze);
+        cmbDijagnoza.setModel(modelD);
     }
 
     /**
@@ -220,7 +250,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSacuvajStavku;
-    private javax.swing.JComboBox<String> cmbDijagnoze;
+    private javax.swing.JComboBox<Dijagnoza> cmbDijagnoza;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblDijagnoza;

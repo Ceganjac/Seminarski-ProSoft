@@ -61,6 +61,11 @@ public class Dijagnoza implements ODObjekat {
     }
 
     @Override
+    public String toString() {
+        return sifra+"-"+srpskiNaziv+"-"+latinskiNaziv;
+    }
+    
+    @Override
     public String vratiVrednostiAtributa() {
         return idDijagnoza + ", '"
                 + sifra + "', '"

@@ -23,28 +23,25 @@ import javax.swing.JOptionPane;
  */
 public class PregledDialog extends javax.swing.JDialog {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PregledDialog.class.getName());
-
     /**
      * Creates new form PregledDialog
      */
-    private final Pregled pregled;
+    private final Pregled pregledGlobal;
     private final ModForme modForme;
     private final java.awt.Frame parent;
-    private TblModelStavkaPregleda model;
+    private TblModelStavkaPregleda tblModel;
 
     public PregledDialog(java.awt.Frame parent, boolean modal, Pregled pregled, ModForme modForme) {
         super(parent, modal);
         initComponents();
         getContentPane().setBackground(Color.white);
-        this.pregled = pregled;
+        this.pregledGlobal = pregled;
         this.modForme = modForme;
         this.parent = parent;
 
         // funkcije
         obradaModa();
         obradaCmbModela();
-        prikazPregleda();
     }
 
     /**
@@ -259,8 +256,8 @@ public class PregledDialog extends javax.swing.JDialog {
                         .addComponent(txtIdPregleda, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblIdPregleda, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnKreirajPregled, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addComponent(btnKreirajPregled)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -304,14 +301,30 @@ public class PregledDialog extends javax.swing.JDialog {
 
     private void btnKreirajPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajPregledActionPerformed
 
+        try {
+            Pregled pregledRez = (Pregled) GuiController.vratiInstancu().kreirajPregled(new Pregled());
+            if (pregledRez != null) {
+                txtIdPregleda.setText("" + pregledRez.getIdPregled());
+                JOptionPane.showMessageDialog(this, "Успешно креиран Ид прегледа !",
+                        "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
 
     }//GEN-LAST:event_btnKreirajPregledActionPerformed
 
     private void btnDodajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajStavkuActionPerformed
+
         StavkaPregleda stavka = new StavkaPregleda();
-        StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme);
+        // prikaz dialoga za stavku
+
+        StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme, tblModel);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
+
 
     }//GEN-LAST:event_btnDodajStavkuActionPerformed
 
@@ -328,7 +341,7 @@ public class PregledDialog extends javax.swing.JDialog {
 
         if (selektovaniRed != -1) {
             StavkaPregleda stavka = new StavkaPregleda();
-            StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme);
+            StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme, tblModel);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
@@ -342,7 +355,7 @@ public class PregledDialog extends javax.swing.JDialog {
 
         if (selektovaniRed != -1) {
             StavkaPregleda stavka = new StavkaPregleda();
-            StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme);
+            StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme, tblModel);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
@@ -389,6 +402,9 @@ public class PregledDialog extends javax.swing.JDialog {
             cmbPacijent.setEnabled(false);
             cmbLekar.setEnabled(false);
 
+            // prikaz
+            prikazPregleda();
+
             // onemogućavanje izmena txtField
             txtIdPregleda.setEditable(false);
             txtDatumVremeKontrole.setEditable(false);
@@ -416,13 +432,13 @@ public class PregledDialog extends javax.swing.JDialog {
     }
 
     private void prikazPregleda() {
-        txtIdPregleda.setText("" + pregled.getIdPregled());
-        cmbLekar.setSelectedItem(pregled.getLekar());
-        cmbPacijent.setSelectedItem(pregled.getPacijent());
-        txtDatumVremeZavrsetka.setText("" + pregled.getDatumVremeZavrsetka());
-        txtDatumVremeKontrole.setText("" + pregled.getDatumVremeKontrole());
-        txtVremeTrajanja.setText("" + pregled.getUkupnoVremeTrajanja());
-        txtTerapija.setText(pregled.getTerapija());
+        txtIdPregleda.setText("" + pregledGlobal.getIdPregled());
+        cmbLekar.setSelectedItem(pregledGlobal.getLekar());
+        cmbPacijent.setSelectedItem(pregledGlobal.getPacijent());
+        txtDatumVremeZavrsetka.setText("" + pregledGlobal.getDatumVremeZavrsetka());
+        txtDatumVremeKontrole.setText("" + pregledGlobal.getDatumVremeKontrole());
+        txtVremeTrajanja.setText("" + pregledGlobal.getUkupnoVremeTrajanja());
+        txtTerapija.setText(pregledGlobal.getTerapija());
     }
 
     /**

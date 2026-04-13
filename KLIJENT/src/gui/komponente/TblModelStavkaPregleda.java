@@ -55,4 +55,10 @@ public class TblModelStavkaPregleda extends AbstractTableModel {
         return stavke.get(rowIndex);
     }
 
+    public void dodajStavku(StavkaPregleda stavka) {
+        stavke.add(stavka);
+        int poslednjiRed = stavke.size() - 1;
+        fireTableRowsInserted(poslednjiRed, poslednjiRed);
+    }
+
 }

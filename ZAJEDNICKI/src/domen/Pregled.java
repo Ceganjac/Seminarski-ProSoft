@@ -22,7 +22,7 @@ public class Pregled implements ODObjekat {
     private String terapija;
     private Lekar lekar;
     private Pacijent pacijent;
-    List <StavkaPregleda> stavke;
+    List<StavkaPregleda> stavke;
 
     public Pregled() {
     }
@@ -100,8 +100,6 @@ public class Pregled implements ODObjekat {
     public void setStavke(List<StavkaPregleda> stavke) {
         this.stavke = stavke;
     }
-    
-    
 
     // METODE IZ INTERFEJSA
     @Override
@@ -112,12 +110,15 @@ public class Pregled implements ODObjekat {
                 : "'" + datumVremeKontrole.toString().replace("T", " ") + "'";
         String terapijaStr = (terapija == null) ? "NULL" : "'" + terapija + "'";
 
+        String lekarId = (lekar == null) ? "NULL" : String.valueOf(lekar.getIdLekar());
+        String pacijentId = (pacijent == null) ? "NULL" : String.valueOf(pacijent.getIdPacijent());
+
         return datumZavrsetka + ", "
                 + datumKontrole + ", "
                 + ukupnoVremeTrajanja + ", "
                 + terapijaStr + ", "
-                + lekar.getIdLekar() + ", "
-                + pacijent.getIdPacijent();
+                + lekarId + ", "
+                + pacijentId;
     }
 
     @Override
@@ -151,7 +152,7 @@ public class Pregled implements ODObjekat {
 
     @Override
     public void postaviId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.idPregled = id;
     }
 
     @Override

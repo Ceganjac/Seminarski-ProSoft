@@ -7,11 +7,11 @@ package server;
 import controller.ServerController;
 import domen.Lekar;
 import domen.ODObjekat;
+import domen.Pregled;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.List;
 import komunikacija.Odgovor;
 import komunikacija.Operacija;
 import komunikacija.Zahtev;
@@ -56,7 +56,12 @@ public class KlijentskaNit extends Thread {
                                     prijaviLekar((Lekar) domenskiObjekat);
                             // upisuju domenski domenskiObjekat u odgovor
                             odgovor.setRezultat(lekar);
-
+                            break;
+                        case KREIRAJ_PREGLED:
+                            Pregled pregled = ServerController.vratiInstancu().
+                                    kreirajPregled((Pregled) domenskiObjekat);
+                            odgovor.setRezultat(pregled);
+                            break;
                     }
 
                 } catch (Exception ex) {

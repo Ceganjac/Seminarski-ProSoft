@@ -7,6 +7,7 @@ package controller;
 import db.DbBroker;
 import domen.Lekar;
 import domen.ODObjekat;
+import domen.Pregled;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class ServerController {
         return instanca;
     }
 
+    // LEKAR
     public Lekar prijaviLekar(Lekar lekar) throws Exception {
 
         db = new DbBroker(port, username, password);
@@ -67,6 +69,24 @@ public class ServerController {
         return lekarRez;
     }
 
-    
+    // PREGLED
+    public Pregled kreirajPregled(Pregled pregled) throws Exception {
+
+        db = new DbBroker(port, username, password);
+        Pregled pregledRez = null;
+
+        try {
+
+            db.connect();
+            pregledRez = (Pregled) db.kreiraj(pregled);
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+
+        return pregledRez;
+    }
 
 }
