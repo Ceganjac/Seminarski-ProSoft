@@ -13,6 +13,7 @@ import gui.enumi.ModForme;
 import gui.komponente.TblModelStavkaPregleda;
 import gui.pomocni.Pomocni;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -38,6 +39,8 @@ public class PregledDialog extends javax.swing.JDialog {
         this.pregledGlobal = pregled;
         this.modForme = modForme;
         this.parent = parent;
+        tblModel = new TblModelStavkaPregleda(new ArrayList<>());
+        tblStavkePregleda.setModel(tblModel);
 
         // funkcije
         obradaModa();
@@ -319,8 +322,8 @@ public class PregledDialog extends javax.swing.JDialog {
     private void btnDodajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajStavkuActionPerformed
 
         StavkaPregleda stavka = new StavkaPregleda();
+        
         // prikaz dialoga za stavku
-
         StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme, tblModel);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);

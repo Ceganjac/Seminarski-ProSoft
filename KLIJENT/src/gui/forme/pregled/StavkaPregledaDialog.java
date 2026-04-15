@@ -5,7 +5,6 @@
 package gui.forme.pregled;
 
 import domen.Dijagnoza;
-import domen.Pregled;
 import domen.StavkaPregleda;
 import gui.enumi.ModForme;
 import gui.komponente.TblModelStavkaPregleda;
@@ -183,9 +182,9 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
     private void btnSacuvajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajStavkuActionPerformed
 
-        // uzimanje podataka iz polja
         StavkaPregleda stavka = new StavkaPregleda();
 
+        // uzimanje podataka iz polja
         stavka.setNaziv(txtNaziv.getText());
         // trajanje
         int trajanjeInt = Integer.parseInt(txtVremeTrajanja.getText());
