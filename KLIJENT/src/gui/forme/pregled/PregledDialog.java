@@ -39,12 +39,11 @@ public class PregledDialog extends javax.swing.JDialog {
         this.pregledGlobal = pregled;
         this.modForme = modForme;
         this.parent = parent;
-        tblModel = new TblModelStavkaPregleda(new ArrayList<>());
-        tblStavkePregleda.setModel(tblModel);
 
         // funkcije
         obradaModa();
         obradaCmbModela();
+        obradaTblModela();
     }
 
     /**
@@ -322,7 +321,7 @@ public class PregledDialog extends javax.swing.JDialog {
     private void btnDodajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajStavkuActionPerformed
 
         StavkaPregleda stavka = new StavkaPregleda();
-        
+
         // prikaz dialoga za stavku
         StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme, tblModel);
         dialog.setLocationRelativeTo(this);
@@ -432,6 +431,13 @@ public class PregledDialog extends javax.swing.JDialog {
         DefaultComboBoxModel<Lekar> modelL = new DefaultComboBoxModel<>(nizLekari);
         cmbLekar.setModel(modelL);
 
+    }
+
+    private void obradaTblModela() {
+
+        //List<StavkaPregleda> stavke = Pomocni.vratiStavke();
+        tblModel = new TblModelStavkaPregleda(new ArrayList());
+        tblStavkePregleda.setModel(tblModel);
     }
 
     private void prikazPregleda() {

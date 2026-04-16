@@ -23,18 +23,18 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
     /**
      * Creates new form KreirajPregledDialog
      */
-    private StavkaPregleda stavkaPregleda;
-    private ModForme modForme;
-    TblModelStavkaPregleda model;
+    private final StavkaPregleda stavkaPregleda;
+    private final ModForme modForme;
+    TblModelStavkaPregleda tblModel;
 
     public StavkaPregledaDialog(java.awt.Frame parent, boolean modal, StavkaPregleda stavkaPregleda,
-            ModForme mod, TblModelStavkaPregleda model) {
+            ModForme modForme, TblModelStavkaPregleda tblModel) {
         super(parent, modal);
         initComponents();
         getContentPane().setBackground(Color.white);
         this.stavkaPregleda = stavkaPregleda;
-        this.modForme = mod;
-        this.model = model;
+        this.modForme = modForme;
+        this.tblModel = tblModel;
         obradaModa();
         obradaCmbDijagnoza();
 
@@ -194,8 +194,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         stavka.setDijagnoza((Dijagnoza) cmbDijagnoza.getSelectedItem());
         stavka.setLekarskiNalaz(txaLekarskiNalaz.getText());
 
-        model.dodajStavku(stavka);
-        dispose();
+        tblModel.dodajStavku(stavka);
 
     }//GEN-LAST:event_btnSacuvajStavkuActionPerformed
 

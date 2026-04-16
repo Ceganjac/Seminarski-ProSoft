@@ -138,7 +138,7 @@ public class Pomocni {
     public static Dijagnoza d5 = new Dijagnoza(5, "E11", "Diabetes mellitus typus 2", "Дијабетес тип 2");
 
     public static List<Dijagnoza> vratiDijagnoze() {
-        
+
         List<Dijagnoza> dijagnoze = new ArrayList();
         dijagnoze.add(d1);
         dijagnoze.add(d2);
@@ -147,6 +147,24 @@ public class Pomocni {
         dijagnoze.add(d5);
 
         return dijagnoze;
+    }
+
+    public static List<StavkaPregleda> vratiStavke() {
+
+        List<StavkaPregleda> stavke = new ArrayList<>();
+
+        // za pr1
+        stavke.add(new StavkaPregleda(pr1, 1, "Преглед грла", "Црвенило", Duration.ofMinutes(10), d2));
+        stavke.add(new StavkaPregleda(pr1, 2, "Контрола грла", "Побољшање", Duration.ofMinutes(8), d2));
+
+        // za pr2
+        stavke.add(new StavkaPregleda(pr2, 3, "Преглед плућа", "Шиштање", Duration.ofMinutes(15), d3));
+        stavke.add(new StavkaPregleda(pr2, 4, "Контрола плућа", "Боље дисање", Duration.ofMinutes(12), d3));
+
+        // dodatna stavka
+        stavke.add(new StavkaPregleda(pr2, 5, "Општи преглед", "Стабилно стање", Duration.ofMinutes(20), d1));
+
+        return stavke;
     }
 
 }
