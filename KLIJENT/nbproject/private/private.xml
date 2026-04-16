@@ -4,11 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/KLIJENT/src/gui/forme/pregled/PregledDialog.java</file>
-            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/KLIJENT/src/gui/forme/pregled/StavkaPregledaDialog.java</file>
             <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/KLIJENT/src/controller/GuiController.java</file>
-            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/KLIJENT/src/gui/komponente/TblModelStavkaPregleda.java</file>
-            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/KLIJENT/src/gui/pomocni/Pomocni.java</file>
-            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/KLIJENT/src/gui/komponente/TblModelPregled.java</file>
         </group>
     </open-files>
 </project-private>

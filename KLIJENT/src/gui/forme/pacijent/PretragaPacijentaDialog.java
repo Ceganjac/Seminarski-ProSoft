@@ -62,7 +62,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         lblIme = new javax.swing.JLabel();
         cmbKrvnaGrupa = new javax.swing.JComboBox<>();
         txtPrezime = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrTblPacijent = new javax.swing.JScrollPane();
         tblPacijenti = new javax.swing.JTable();
         btnIzmeni = new javax.swing.JButton();
         btnPrikazi = new javax.swing.JButton();
@@ -108,7 +108,9 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
                 "Ид пацијента", "Име", "Презиме", "Пол", "Датум рођења", "Место рођења", "Мејл", "Крвна група"
             }
         ));
-        jScrollPane2.setViewportView(tblPacijenti);
+        tblPacijenti.setMinimumSize(new java.awt.Dimension(148, 80));
+        tblPacijenti.setPreferredSize(new java.awt.Dimension(600, 148));
+        scrTblPacijent.setViewportView(tblPacijenti);
 
         btnIzmeni.setBackground(new java.awt.Color(0, 204, 102));
         btnIzmeni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -176,7 +178,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
                             .addComponent(cmbKrvnaGrupa, 0, 162, Short.MAX_VALUE)
                             .addGap(18, 18, 18)
                             .addComponent(btnPretrazi, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
-                        .addComponent(jScrollPane2)))
+                        .addComponent(scrTblPacijent)))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
@@ -194,7 +196,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
                     .addComponent(lblPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrTblPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -297,11 +299,11 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnPretrazi;
     private javax.swing.JButton btnPrikazi;
     private javax.swing.JComboBox<String> cmbKrvnaGrupa;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblIme;
     private javax.swing.JLabel lblKrvnaGrupa;
     private javax.swing.JLabel lblNaslov;
     private javax.swing.JLabel lblPrezime;
+    private javax.swing.JScrollPane scrTblPacijent;
     private javax.swing.JTable tblPacijenti;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtPrezime;

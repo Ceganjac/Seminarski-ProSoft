@@ -26,6 +26,7 @@ public class MainClass {
             dialog.setLocationRelativeTo(null);
             dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
             dialog.setVisible(true);
+            
         });
 
     }

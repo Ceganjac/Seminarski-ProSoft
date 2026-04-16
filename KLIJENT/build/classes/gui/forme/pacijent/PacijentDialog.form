@@ -25,52 +25,42 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="lblNaslov" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="btnIzmeni" max="32767" attributes="0"/>
                   <Component id="btnSacuvaj" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="lblKrvnaGrupa" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cmbKrvnaGrupa" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblPrezime" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="lblPol" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtPrezime" pref="200" max="32767" attributes="0"/>
+                          <Component id="cmbPol" pref="200" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblMejl" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtMejl" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblMestoRodjenja" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtMestoRodjenja" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblDatumRodjenja" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtDatumRodjenja" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblPol" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cmbPol" pref="300" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblPrezime" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtPrezime" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblIme" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtIme" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblIdPacijenta" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtIdPacijenta" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblKrvnaGrupa" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="lblMejl" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="lblMestoRodjenja" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="lblDatumRodjenja" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="lblIme" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="lblIdPacijenta" min="-2" pref="200" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtIdPacijenta" alignment="1" pref="200" max="32767" attributes="0"/>
+                          <Component id="txtIme" pref="200" max="32767" attributes="0"/>
+                          <Component id="txtDatumRodjenja" alignment="1" pref="200" max="32767" attributes="0"/>
+                          <Component id="txtMestoRodjenja" alignment="1" pref="200" max="32767" attributes="0"/>
+                          <Component id="txtMejl" alignment="1" pref="200" max="32767" attributes="0"/>
+                          <Component id="cmbKrvnaGrupa" alignment="1" pref="200" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -84,20 +74,15 @@
                   <Component id="lblIdPacijenta" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="txtIdPacijenta" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblIme" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="txtIme" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPrezime" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="txtPrezime" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblPol" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="cmbPol" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -119,7 +104,12 @@
                   <Component id="lblKrvnaGrupa" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="cmbKrvnaGrupa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblPol" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="cmbPol" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="btnSacuvaj" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnIzmeni" min="-2" pref="20" max="-2" attributes="0"/>
@@ -145,6 +135,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x418;&#x434; &#x43f;&#x430;&#x446;&#x438;&#x458;&#x435;&#x43d;&#x442;&#x430; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblIme">
       <Properties>
@@ -153,6 +146,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x418;&#x43c;&#x435; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtIdPacijenta">
     </Component>
@@ -163,14 +159,20 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x435;&#x437;&#x438;&#x43c;&#x435; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDatumRodjenja">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x414;&#x430;&#x442;&#x443;&#x43c; &#x440;&#x43e;&#x452;&#x435;&#x45a;&#x430; :"/>
+        <Property name="text" type="java.lang.String" value="&#x414;&#x430;&#x442;&#x443;&#x43c; &#x440;&#x43e;&#x452;&#x435;&#x45a;&#x430; (&#x434;&#x434;.&#x43c;&#x43c;.&#x433;&#x433;&#x433;&#x433;) :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPol">
       <Properties>
@@ -179,6 +181,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x43b; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMestoRodjenja">
       <Properties>
@@ -187,6 +192,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x41c;&#x435;&#x441;&#x442;&#x43e; &#x440;&#x43e;&#x452;&#x435;&#x45a;&#x430; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMejl">
       <Properties>
@@ -196,6 +204,9 @@
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="text" type="java.lang.String" value="&#x41c;&#x435;&#x458;&#x43b; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPrezime">
       <Properties>
@@ -279,6 +290,9 @@
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="text" type="java.lang.String" value="&#x41a;&#x440;&#x432;&#x43d;&#x430; &#x433;&#x440;&#x443;&#x43f;&#x430; : "/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbKrvnaGrupa">
       <Properties>

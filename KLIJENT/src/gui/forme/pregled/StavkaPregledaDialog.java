@@ -172,7 +172,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                 .addComponent(lblLekarskiNalaz, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(btnSacuvajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -195,6 +195,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         stavka.setLekarskiNalaz(txaLekarskiNalaz.getText());
 
         tblModel.dodajStavku(stavka);
+
 
     }//GEN-LAST:event_btnSacuvajStavkuActionPerformed
 

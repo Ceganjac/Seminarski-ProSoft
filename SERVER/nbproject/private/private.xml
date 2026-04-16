@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/server/KlijentskaNit.java</file>
             <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/controller/ServerController.java</file>
+            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/db/DbBroker.java</file>
         </group>
     </open-files>
 </project-private>

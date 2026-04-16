@@ -118,4 +118,14 @@ public class DbBroker {
         return lista.get(0);
     }
 
+    public void promeni(ODObjekat odo) throws SQLException {
+
+        connect();
+        String upit = "UPDATE " + odo.vratiImeTabele()
+                + " SET " + odo.vratiZaUpdate()
+                + " WHERE " + odo.vratiNazivId() + " = " + odo.vratiVrednostId();
+        Statement st = konekcija.createStatement();
+        st.executeUpdate(upit);
+    }
+
 }

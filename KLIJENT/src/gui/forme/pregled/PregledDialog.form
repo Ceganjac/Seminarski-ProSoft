@@ -25,53 +25,47 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="lblNaslov" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jScrollPane2" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblTerapija" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTerapija" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblUkupnoVremeTrajanja" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtVremeTrajanja" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblDatumVremeKontrole" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtDatumVremeKontrole" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblDatumVremeZavrsetka" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtDatumVremeZavrsetka" pref="398" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblPacijent" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbPacijent" pref="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="scrTblStavke" pref="570" max="32767" attributes="0"/>
                   <Component id="btnDodajStavku" alignment="1" max="32767" attributes="0"/>
                   <Component id="btnSacuvajPregled" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="lblIdPregleda" pref="150" max="32767" attributes="0"/>
-                          <Component id="lblLekar" pref="150" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cmbLekar" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnKreirajPregled" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtIdPregleda" pref="398" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Component id="btnIzmeniPregled" alignment="1" max="32767" attributes="0"/>
                   <Component id="btnIzmeniStavku" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnPrikaziStavku" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="lblDatumVremeKontrole1" pref="170" max="32767" attributes="0"/>
+                          <Component id="lblDatumVremeZavrsetka" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblPacijent" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblDatumVremeKontrole" max="32767" attributes="0"/>
+                          <Component id="lblUkupnoVremeTrajanja" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblTerapija" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtVremeTrajanja" max="32767" attributes="0"/>
+                          <Component id="txtDatumVremeKontrole1" max="32767" attributes="0"/>
+                          <Component id="txtDatumVremeKontrole" max="32767" attributes="0"/>
+                          <Component id="txtDatumVremeZavrsetka" max="32767" attributes="0"/>
+                          <Component id="cmbPacijent" max="32767" attributes="0"/>
+                          <Component id="txtTerapija" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblIdPregleda" pref="170" max="32767" attributes="0"/>
+                          <Component id="lblLekar" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="cmbLekar" max="32767" attributes="0"/>
+                          <Component id="btnKreirajPregled" max="32767" attributes="0"/>
+                          <Component id="txtIdPregleda" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,17 +74,14 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="lblNaslov" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="txtIdPregleda" min="-2" pref="20" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="lblIdPregleda" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtIdPregleda" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="lblIdPregleda" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnKreirajPregled" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblLekar" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="cmbLekar" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
@@ -105,24 +96,29 @@
                   <Component id="lblDatumVremeZavrsetka" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="txtDatumVremeZavrsetka" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtDatumVremeKontrole" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="lblDatumVremeKontrole1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblDatumVremeKontrole" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtDatumVremeKontrole" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="txtDatumVremeKontrole1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblUkupnoVremeTrajanja" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="txtVremeTrajanja" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblTerapija" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtTerapija" min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtTerapija" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="lblTerapija" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="scrTblStavke" min="-2" pref="107" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="btnDodajStavku" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnSacuvajPregled" min="-2" pref="20" max="-2" attributes="0"/>
@@ -154,6 +150,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x418;&#x434; &#x43f;&#x440;&#x435;&#x433;&#x43b;&#x435;&#x434;&#x430; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="200"/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLekar">
       <Properties>
@@ -162,6 +161,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x41b;&#x435;&#x43a;&#x430;&#x440; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="200"/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JButton" name="btnKreirajPregled">
       <Properties>
@@ -192,14 +194,20 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x41f;&#x430;&#x446;&#x438;&#x458;&#x435;&#x43d;&#x442; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="200"/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDatumVremeKontrole">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x414;&#x430;&#x442;&#x443;&#x43c; &#x438; &#x432;&#x440;&#x435;&#x43c;&#x435; &#x43a;&#x43e;&#x43d;&#x442;&#x440;&#x43e;&#x43b;&#x435; :"/>
+        <Property name="text" type="java.lang.String" value="&#x412;&#x440;&#x435;&#x43c;&#x435; &#x43a;&#x43e;&#x43d;&#x442;&#x440;&#x43e;&#x43b;&#x435; (&#x447;&#x447;:&#x43c;&#x43c;) :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="200"/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDatumVremeZavrsetka">
       <Properties>
@@ -208,6 +216,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x414;&#x430;&#x442;&#x443;&#x43c; &#x438; &#x432;&#x440;&#x435;&#x43c;&#x435; &#x437;&#x430;&#x432;&#x440;&#x448;&#x435;&#x442;&#x43a;&#x430; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="200"/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblUkupnoVremeTrajanja">
       <Properties>
@@ -216,6 +227,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x423;&#x43a;&#x443;&#x43f;&#x43d;&#x43e; &#x432;&#x440;&#x435;&#x43c;&#x435; &#x442;&#x440;&#x430;&#x458;&#x430;&#x45a;&#x430; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="200"/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTerapija">
       <Properties>
@@ -225,6 +239,9 @@
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="text" type="java.lang.String" value="&#x422;&#x435;&#x440;&#x430;&#x43f;&#x438;&#x458;&#x430; :"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="200"/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbLekar">
       <Properties>
@@ -282,14 +299,14 @@
         </Property>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+    <Container class="javax.swing.JScrollPane" name="scrTblStavke">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblStavkePregleda">
+        <Component class="javax.swing.JTable" name="tblStavkaPregleda">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="0"/>
@@ -303,8 +320,8 @@
                 <Column editable="true" title="&#x414;&#x438;&#x458;&#x430;&#x433;&#x43d;&#x43e;&#x437;&#x430;" type="java.lang.Object"/>
               </Table>
             </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[375, 80]"/>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[80, 100]"/>
             </Property>
             <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -398,6 +415,24 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrikaziStavkuActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDatumVremeKontrole1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x414;&#x430;&#x442;&#x443;&#x43c; &#x43a;&#x43e;&#x43d;&#x442;&#x440;&#x43e;&#x43b;&#x435; (&#x434;&#x434;.&#x43c;&#x43c;.&#x433;&#x433;&#x433;&#x433;) :"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="200"/>
+      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtDatumVremeKontrole1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

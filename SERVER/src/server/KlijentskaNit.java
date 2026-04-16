@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import komunikacija.Odgovor;
 import komunikacija.Operacija;
+import static komunikacija.Operacija.KREIRAJ_PREGLED;
 import komunikacija.Zahtev;
 
 /**
@@ -58,10 +59,17 @@ public class KlijentskaNit extends Thread {
                             odgovor.setRezultat(lekar);
                             break;
                         case KREIRAJ_PREGLED:
-                            Pregled pregled = ServerController.vratiInstancu().
+                            Pregled pregledKreiraj = ServerController.vratiInstancu().
                                     kreirajPregled((Pregled) domenskiObjekat);
-                            odgovor.setRezultat(pregled);
+                            odgovor.setRezultat(pregledKreiraj);
                             break;
+
+                        case PROMENI_PREGLED:
+                            Pregled pregledPromeni = ServerController.vratiInstancu().
+                                    kreirajPregled((Pregled) domenskiObjekat);
+                            odgovor.setRezultat(pregledPromeni);
+                            break;
+
                     }
 
                 } catch (Exception ex) {

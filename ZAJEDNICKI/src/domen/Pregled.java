@@ -147,7 +147,24 @@ public class Pregled implements ODObjekat {
 
     @Override
     public String vratiZaUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        String datumZavrsetka = (datumVremeZavrsetka == null) ? "NULL"
+                : "'" + datumVremeZavrsetka.toString().replace("T", " ") + "'";
+
+        String datumKontrole = (datumVremeKontrole == null) ? "NULL"
+                : "'" + datumVremeKontrole.toString().replace("T", " ") + "'";
+
+        String terapijaStr = (terapija == null) ? "NULL" : "'" + terapija + "'";
+
+        String lekarId = (lekar == null) ? "NULL" : String.valueOf(lekar.getIdLekar());
+        String pacijentId = (pacijent == null) ? "NULL" : String.valueOf(pacijent.getIdPacijent());
+
+        return "datum_vreme_zavrsetka = " + datumZavrsetka + ", "
+                + "datum_vreme_kontrole = " + datumKontrole + ", "
+                + "ukupno_vreme_trajanja = " + ukupnoVremeTrajanja + ", "
+                + "terapija = " + terapijaStr + ", "
+                + "id_lekar = " + lekarId + ", "
+                + "id_pacijent = " + pacijentId;
     }
 
     @Override
