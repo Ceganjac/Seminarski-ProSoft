@@ -136,6 +136,7 @@ public class Pomocni {
     public static Dijagnoza d3 = new Dijagnoza(3, "J18", "Pneumonia", "Упала плућа");
     public static Dijagnoza d4 = new Dijagnoza(4, "I10", "Hypertensio arterialis", "Повишен крвни притисак");
     public static Dijagnoza d5 = new Dijagnoza(5, "E11", "Diabetes mellitus typus 2", "Дијабетес тип 2");
+    public static Dijagnoza d7 = new Dijagnoza(6, "Z03.9", "Observation for suspected disease, unspecified", "Посматрање без утврђене болести");
 
     public static List<Dijagnoza> vratiDijagnoze() {
 

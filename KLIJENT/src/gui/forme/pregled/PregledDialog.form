@@ -45,8 +45,8 @@
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtVremeTrajanja" max="32767" attributes="0"/>
-                          <Component id="txtDatumVremeKontrole1" max="32767" attributes="0"/>
-                          <Component id="txtDatumVremeKontrole" max="32767" attributes="0"/>
+                          <Component id="txtVremeKontrole" max="32767" attributes="0"/>
+                          <Component id="txtDatumKontrole" max="32767" attributes="0"/>
                           <Component id="txtDatumVremeZavrsetka" max="32767" attributes="0"/>
                           <Component id="cmbPacijent" max="32767" attributes="0"/>
                           <Component id="txtTerapija" alignment="1" max="32767" attributes="0"/>
@@ -98,13 +98,13 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtDatumVremeKontrole" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="txtDatumKontrole" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblDatumVremeKontrole1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblDatumVremeKontrole" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtDatumVremeKontrole1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="txtVremeKontrole" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -277,7 +277,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDatumVremeKontrole">
+    <Component class="javax.swing.JTextField" name="txtDatumKontrole">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
@@ -427,7 +427,7 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="200"/>
       </AccessibilityProperties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDatumVremeKontrole1">
+    <Component class="javax.swing.JTextField" name="txtVremeKontrole">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>

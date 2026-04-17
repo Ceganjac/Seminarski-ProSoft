@@ -79,6 +79,7 @@ public class ServerController {
 
             db.connect();
             pregledRez = (Pregled) db.kreiraj(pregled);
+            db.commit();
         } catch (SQLException ex) {
             db.rollback();
             throw ex;
@@ -87,6 +88,22 @@ public class ServerController {
         }
 
         return pregledRez;
+    }
+
+    public void promeniPregled(Pregled pregled) throws Exception {
+
+        db = new DbBroker(port, username, password);
+
+        try {
+            db.connect();
+            db.promeni(pregled);
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+
     }
 
 }

@@ -59,23 +59,21 @@ public class GuiController {
     }
 
     //PREGLED
-    public Object kreirajPregled(Pregled pregled) throws Exception {
-        // kreiranje i slanje zahteva
+    public Pregled kreirajPregled(Pregled pregled) throws Exception {
+
         Zahtev zahtev = new Zahtev(pregled, Operacija.KREIRAJ_PREGLED);
         izlazniTok.writeObject(zahtev);
         izlazniTok.flush();
 
-        // uzimamo odgovor od servera
         Odgovor odgovor = (Odgovor) ulazniTok.readObject();
         if (odgovor.getIzuzetak() == null) {
-            return (ODObjekat) odgovor.getRezultat();
+            return (Pregled) odgovor.getRezultat();
         } else {
             throw odgovor.getIzuzetak();
         }
-
     }
-    
-    public Object promeniPregled(Pregled pregled) throws Exception {
+
+    public void promeniPregled(Pregled pregled) throws Exception {
         // kreiranje i slanje zahteva
         Zahtev zahtev = new Zahtev(pregled, Operacija.PROMENI_PREGLED);
         izlazniTok.writeObject(zahtev);
@@ -84,13 +82,13 @@ public class GuiController {
         // uzimamo odgovor od servera
         Odgovor odgovor = (Odgovor) ulazniTok.readObject();
         if (odgovor.getIzuzetak() == null) {
-            return (ODObjekat) odgovor.getRezultat();
+            System.out.println("Promeni pregled prošao bez grešaka !");
         } else {
             throw odgovor.getIzuzetak();
         }
 
     }
-    
+
     public Object pretraziPregled(Pregled pregled) throws Exception {
         // kreiranje i slanje zahteva
         Zahtev zahtev = new Zahtev(pregled, Operacija.PRETRAZI_PREGLED);

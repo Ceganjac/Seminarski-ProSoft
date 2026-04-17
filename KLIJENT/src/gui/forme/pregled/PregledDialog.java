@@ -13,7 +13,10 @@ import gui.enumi.ModForme;
 import gui.komponente.TblModelStavkaPregleda;
 import gui.pomocni.Pomocni;
 import java.awt.Color;
-import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -69,7 +72,7 @@ public class PregledDialog extends javax.swing.JDialog {
         cmbLekar = new javax.swing.JComboBox<>();
         cmbPacijent = new javax.swing.JComboBox<>();
         txtDatumVremeZavrsetka = new javax.swing.JTextField();
-        txtDatumVremeKontrole = new javax.swing.JTextField();
+        txtDatumKontrole = new javax.swing.JTextField();
         txtVremeTrajanja = new javax.swing.JTextField();
         txtTerapija = new javax.swing.JTextField();
         scrTblStavke = new javax.swing.JScrollPane();
@@ -80,7 +83,7 @@ public class PregledDialog extends javax.swing.JDialog {
         btnIzmeniStavku = new javax.swing.JButton();
         btnPrikaziStavku = new javax.swing.JButton();
         lblDatumVremeKontrole1 = new javax.swing.JLabel();
-        txtDatumVremeKontrole1 = new javax.swing.JTextField();
+        txtVremeKontrole = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -129,7 +132,7 @@ public class PregledDialog extends javax.swing.JDialog {
         txtDatumVremeZavrsetka.setEditable(false);
         txtDatumVremeZavrsetka.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        txtDatumVremeKontrole.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtDatumKontrole.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         txtVremeTrajanja.setEditable(false);
         txtVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -207,7 +210,7 @@ public class PregledDialog extends javax.swing.JDialog {
         lblDatumVremeKontrole1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblDatumVremeKontrole1.setText("Датум контроле (дд.мм.гггг) :");
 
-        txtDatumVremeKontrole1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtVremeKontrole.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,8 +237,8 @@ public class PregledDialog extends javax.swing.JDialog {
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtVremeTrajanja)
-                            .addComponent(txtDatumVremeKontrole1)
-                            .addComponent(txtDatumVremeKontrole)
+                            .addComponent(txtVremeKontrole)
+                            .addComponent(txtDatumKontrole)
                             .addComponent(txtDatumVremeZavrsetka)
                             .addComponent(cmbPacijent, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtTerapija, javax.swing.GroupLayout.Alignment.TRAILING)))
@@ -275,12 +278,12 @@ public class PregledDialog extends javax.swing.JDialog {
                     .addComponent(txtDatumVremeZavrsetka, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDatumVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDatumKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDatumVremeKontrole1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDatumVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDatumVremeKontrole1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVremeKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUkupnoVremeTrajanja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -367,7 +370,21 @@ public class PregledDialog extends javax.swing.JDialog {
         // pokretanje izmene (update) koja je deo SK:Kreiraj pregled
         try {
             Pregled pregled = new Pregled();
+
             pregled.setIdPregled(Integer.parseInt(txtIdPregleda.getText()));
+            pregled.setLekar((Lekar) cmbLekar.getSelectedItem());
+            pregled.setPacijent((Pacijent) cmbPacijent.getSelectedItem());
+            pregled.setDatumVremeZavrsetka(LocalDateTime.now());
+
+            // datum i vreme
+            DateTimeFormatter formaterDatum = DateTimeFormatter.ofPattern("dd.MM.yyyy['.']");
+            DateTimeFormatter formaterVreme = DateTimeFormatter.ofPattern("HH:mm");
+            LocalDate datum = LocalDate.parse(txtDatumKontrole.getText());
+            LocalTime vreme = LocalTime.parse(txtVremeKontrole.getText());
+            LocalDateTime datumVremeKontrole = LocalDateTime.of(datum, vreme);
+            pregled.setDatumVremeKontrole(datumVremeKontrole);
+            pregled.setTerapija(txtTerapija.getText());
+
             GuiController.vratiInstancu().promeniPregled(pregled);
         } catch (Exception ex) {
             System.getLogger(PregledDialog.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -449,7 +466,7 @@ public class PregledDialog extends javax.swing.JDialog {
 
             // onemogućavanje izmena txtField
             txtIdPregleda.setEditable(false);
-            txtDatumVremeKontrole.setEditable(false);
+            txtDatumKontrole.setEditable(false);
             txtTerapija.setEditable(false);
 
         }
@@ -485,7 +502,7 @@ public class PregledDialog extends javax.swing.JDialog {
         cmbLekar.setSelectedItem(pregledGlobal.getLekar());
         cmbPacijent.setSelectedItem(pregledGlobal.getPacijent());
         txtDatumVremeZavrsetka.setText("" + pregledGlobal.getDatumVremeZavrsetka());
-        txtDatumVremeKontrole.setText("" + pregledGlobal.getDatumVremeKontrole());
+        txtDatumKontrole.setText("" + pregledGlobal.getDatumVremeKontrole());
         txtVremeTrajanja.setText("" + pregledGlobal.getUkupnoVremeTrajanja());
         txtTerapija.setText(pregledGlobal.getTerapija());
     }
@@ -514,11 +531,11 @@ public class PregledDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblUkupnoVremeTrajanja;
     private javax.swing.JScrollPane scrTblStavke;
     private javax.swing.JTable tblStavkaPregleda;
-    private javax.swing.JTextField txtDatumVremeKontrole;
-    private javax.swing.JTextField txtDatumVremeKontrole1;
+    private javax.swing.JTextField txtDatumKontrole;
     private javax.swing.JTextField txtDatumVremeZavrsetka;
     private javax.swing.JTextField txtIdPregleda;
     private javax.swing.JTextField txtTerapija;
+    private javax.swing.JTextField txtVremeKontrole;
     private javax.swing.JTextField txtVremeTrajanja;
     // End of variables declaration//GEN-END:variables
 }

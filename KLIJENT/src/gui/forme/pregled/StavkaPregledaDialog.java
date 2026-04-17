@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.time.Duration;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -181,6 +182,12 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSacuvajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajStavkuActionPerformed
+
+        if ("".equals(txtNaziv.getText()) || "".equals(txtVremeTrajanja.getText())
+                || cmbDijagnoza.getSelectedItem() == null || "".equals(txaLekarskiNalaz.getText())) {
+            JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         StavkaPregleda stavka = new StavkaPregleda();
 

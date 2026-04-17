@@ -65,9 +65,8 @@ public class KlijentskaNit extends Thread {
                             break;
 
                         case PROMENI_PREGLED:
-                            Pregled pregledPromeni = ServerController.vratiInstancu().
-                                    kreirajPregled((Pregled) domenskiObjekat);
-                            odgovor.setRezultat(pregledPromeni);
+                            ServerController.vratiInstancu().
+                                    promeniPregled((Pregled) domenskiObjekat);
                             break;
 
                     }
