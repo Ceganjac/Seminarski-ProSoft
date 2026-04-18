@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
 import db.DbBroker;
@@ -15,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Aleksandar Čeganjac
- */
 public class ServerController {
 
     private static ServerController instanca;
@@ -45,21 +37,19 @@ public class ServerController {
         return instanca;
     }
 
-    // LEKAR
+    // ================= LEKAR =================
     public Lekar prijaviLekar(Lekar lekar) throws Exception {
 
         db = new DbBroker(port, username, password);
         Lekar lekarRez = null;
 
         try {
-
             db.connect();
             List<ODObjekat> lista = db.vratiPoUslovu(lekar);
             if (!lista.isEmpty()) {
                 lekarRez = (Lekar) lista.get(0);
             }
             db.commit();
-
         } catch (SQLException ex) {
             db.rollback();
             throw ex;
@@ -70,14 +60,38 @@ public class ServerController {
         return lekarRez;
     }
 
-    // PREGLED
+    public List<Lekar> vratiSveLekare() throws Exception {
+
+        List<Lekar> lista = new ArrayList<>();
+        db = new DbBroker(port, username, password);
+
+        try {
+            db.connect();
+
+            List<ODObjekat> rez = db.vratiSve(new Lekar());
+
+            for (ODObjekat o : rez) {
+                lista.add((Lekar) o);
+            }
+
+            db.commit();
+            return lista;
+
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
+
+    // ================= PREGLED =================
     public Pregled kreirajPregled(Pregled pregled) throws Exception {
 
         db = new DbBroker(port, username, password);
         Pregled pregledRez = null;
 
         try {
-
             db.connect();
             pregledRez = (Pregled) db.kreiraj(pregled);
             db.commit();
@@ -105,18 +119,19 @@ public class ServerController {
         } finally {
             db.disconnect();
         }
-
     }
 
     public List<Pregled> pretraziPreged(Pregled pregled) throws Exception {
 
         List<Pregled> pregledi = new ArrayList<>();
-        DbBroker db = new DbBroker(port, username, password);
+        db = new DbBroker(port, username, password);
+
         try {
             db.connect();
+
             List<ODObjekat> listaObjekata = db.vratiPoUslovu(pregled);
 
-            for(ODObjekat odo: listaObjekata){
+            for (ODObjekat odo : listaObjekata) {
                 pregledi.add((Pregled) odo);
             }
 
@@ -129,7 +144,55 @@ public class ServerController {
         } finally {
             db.disconnect();
         }
-
     }
 
+    /*
+    public List<Pregled> vratiSvePreglede() throws Exception {
+
+        List<Pregled> pregledi = new ArrayList<>();
+        db = new DbBroker(port, username, password);
+
+        try {
+            db.connect();
+
+            List<ODObjekat> lista = db.vratiSve(new Pregled());
+
+            for (ODObjekat o : lista) {
+                pregledi.add((Pregled) o);
+            }
+
+            db.commit();
+            return pregledi;
+
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
+     */
+    public Pregled vratiPregledPoId(Pregled pregled) throws Exception {
+
+        db = new DbBroker(port, username, password);
+        Pregled rezultat = null;
+
+        try {
+            db.connect();
+
+            ODObjekat odo = db.vratiPoId(pregled);
+            if (odo != null) {
+                rezultat = (Pregled) odo;
+            }
+
+            db.commit();
+            return rezultat;
+
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
 }

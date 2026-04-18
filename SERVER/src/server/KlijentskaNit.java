@@ -5,8 +5,11 @@
 package server;
 
 import controller.ServerController;
+import domen.Dijagnoza;
+import domen.KrvnaGrupa;
 import domen.Lekar;
 import domen.ODObjekat;
+import domen.Pacijent;
 import domen.Pregled;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -52,29 +55,86 @@ public class KlijentskaNit extends Thread {
 
                     switch (operacija) {
 
+                        // ================= LEKAR =================
                         case PRIJAVI_LEKARA:
-                            // šalje ka ServerController
-                            Lekar lekar = ServerController.vratiInstancu().
-                                    prijaviLekar((Lekar) domenskiObjekat);
-                            // upisuju domenski domenskiObjekat u odgovor
+                            Lekar lekar = ServerController.vratiInstancu()
+                                    .prijaviLekar((Lekar) domenskiObjekat);
                             odgovor.setRezultat(lekar);
                             break;
+
+                        case VRATI_SVE_LEKARE:
+                            List<Lekar> lekari = ServerController.vratiInstancu()
+                                    .vratiSveLekare();
+                            odgovor.setRezultat(lekari);
+                            break;
+
+                        // ================= PREGLED =================
                         case KREIRAJ_PREGLED:
-                            Pregled pregledKreiraj = ServerController.vratiInstancu().
-                                    kreirajPregled((Pregled) domenskiObjekat);
+                            Pregled pregledKreiraj = ServerController.vratiInstancu()
+                                    .kreirajPregled((Pregled) domenskiObjekat);
                             odgovor.setRezultat(pregledKreiraj);
                             break;
 
                         case PROMENI_PREGLED:
-                            ServerController.vratiInstancu().
-                                    promeniPregled((Pregled) domenskiObjekat);
-                            break;
-                        case PRETRAZI_PREGLEDE:
-                            List<Pregled> pregledi = ServerController.vratiInstancu().
-                                    pretraziPreged((Pregled) domenskiObjekat);
-                            odgovor.setRezultat(pregledi);
+                            ServerController.vratiInstancu()
+                                    .promeniPregled((Pregled) domenskiObjekat);
                             break;
 
+                        case VRATI_PREGLED_PO_ID:
+                            Pregled pregledPoId = ServerController.vratiInstancu()
+                                    .vratiPregledPoId((Pregled) domenskiObjekat);
+                            odgovor.setRezultat(pregledPoId);
+                            break;
+
+                        case VRATI_SVE_PREGLEDE:
+                           
+                            break;
+
+                        case PRETRAZI_PREGLEDE:
+                            List<Pregled> pretragaPregleda = ServerController.vratiInstancu()
+                                    .pretraziPreged((Pregled) domenskiObjekat);
+                            odgovor.setRezultat(pretragaPregleda);
+                            break;
+
+                        // ================= PACIJENT =================
+                        case KREIRAJ_PACIJENTA:
+                           
+                            break;
+
+                        case PROMENI_PACIJENTA:
+                           
+                            break;
+
+                        case VRATI_PACIJENTA_PO_ID:
+                            
+                            break;
+
+                        case PRETRAZI_PACIJENTE:
+                            
+                            break;
+
+                        case OBRISI_PACIJENTA:
+                           
+                            break;
+
+                        case VRATI_SVE_PACIJENTE:
+                           
+                            break;
+
+                        // ================= DIJAGNOZA =================
+                        case VRATI_SVE_DIJAGNOZE:
+                           
+                            break;
+
+                        // ================= KRVNA GRUPA =================
+                        case VRATI_SVE_KRVNE_GRUPE:
+                           
+                            break;
+
+                        // ================= SPECIJALIZACIJA =================
+                        case UBACI_SPECIJALIZACIJU:
+                           
+                            break;
                     }
 
                 } catch (Exception ex) {
