@@ -86,8 +86,18 @@ public class DbBroker {
 
     }
 
-    public List<ODObjekat> vratiSve(ODObjekat odo) {
-        return null;
+    public List<ODObjekat> vratiSve(ODObjekat odo) throws Exception {
+
+        List<ODObjekat> objekti;
+
+        String upit = "SELECT * FROM " + odo.vratiImeTabele();
+
+        Statement st = konekcija.createStatement();
+        ResultSet rs = st.executeQuery(upit);
+
+        objekti = odo.napraviListu(rs);
+
+        return objekti;
     }
 
     public List<ODObjekat> vratiPoUslovu(ODObjekat odo) throws Exception {

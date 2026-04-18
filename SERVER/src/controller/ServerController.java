@@ -1,8 +1,11 @@
 package controller;
 
 import db.DbBroker;
+import domen.Dijagnoza;
+import domen.KrvnaGrupa;
 import domen.Lekar;
 import domen.ODObjekat;
+import domen.Pacijent;
 import domen.Pregled;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -146,7 +149,6 @@ public class ServerController {
         }
     }
 
-    /*
     public List<Pregled> vratiSvePreglede() throws Exception {
 
         List<Pregled> pregledi = new ArrayList<>();
@@ -171,7 +173,7 @@ public class ServerController {
             db.disconnect();
         }
     }
-     */
+
     public Pregled vratiPregledPoId(Pregled pregled) throws Exception {
 
         db = new DbBroker(port, username, password);
@@ -194,5 +196,71 @@ public class ServerController {
         } finally {
             db.disconnect();
         }
+    }
+
+    // ================= PACIJENT =================
+    public List<Pacijent> vratiSvePacijente() throws Exception {
+
+        db = new DbBroker(port, username, password);
+        List<Pacijent> pacijenti = new ArrayList<>();
+
+        try {
+            db.connect();
+            List<ODObjekat> lista = db.vratiSve(new Pacijent());
+            for (ODObjekat odo : lista) {
+                pacijenti.add((Pacijent) odo);
+            }
+            db.commit();
+            return pacijenti;
+
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
+
+    // ================= KRVNA GRUPA =================
+    public List<KrvnaGrupa> vratiSveKGrupe() throws Exception {
+
+        db = new DbBroker(port, username, password);
+        List<KrvnaGrupa> kGrupe = new ArrayList();
+        try {
+            db.connect();
+            List<ODObjekat> lista = db.vratiSve(new KrvnaGrupa());
+            for (ODObjekat odo : lista) {
+                kGrupe.add((KrvnaGrupa) odo);
+            }
+            db.commit();
+            return kGrupe;
+
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+
+    }
+
+    // ================= DIJAGNOZA =================
+    public List<Dijagnoza> vratiSveDijagnoze() throws Exception {
+
+        List<Dijagnoza> dijagnoze = new ArrayList();
+        db = new DbBroker(port, username, password);
+
+        try {
+            db.connect();
+            List<ODObjekat> lista = db.vratiSve(new Dijagnoza());
+            for (ODObjekat odo : lista) {
+                dijagnoze.add((Dijagnoza) odo);
+            }
+            db.commit();
+            return dijagnoze;
+
+        } catch (SQLException ex) {
+            System.getLogger(ServerController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+
+        return null;
     }
 }

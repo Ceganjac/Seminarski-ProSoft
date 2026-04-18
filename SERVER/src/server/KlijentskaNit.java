@@ -87,7 +87,7 @@ public class KlijentskaNit extends Thread {
                             break;
 
                         case VRATI_SVE_PREGLEDE:
-                           
+
                             break;
 
                         case PRETRAZI_PREGLEDE:
@@ -98,42 +98,49 @@ public class KlijentskaNit extends Thread {
 
                         // ================= PACIJENT =================
                         case KREIRAJ_PACIJENTA:
-                           
+
                             break;
 
                         case PROMENI_PACIJENTA:
-                           
+
                             break;
 
                         case VRATI_PACIJENTA_PO_ID:
-                            
+
                             break;
 
                         case PRETRAZI_PACIJENTE:
-                            
+
                             break;
 
                         case OBRISI_PACIJENTA:
-                           
+
                             break;
 
                         case VRATI_SVE_PACIJENTE:
-                           
+                            List<Pacijent> pacijenti = ServerController.
+                                    vratiInstancu().vratiSvePacijente();
+                            odgovor.setRezultat(pacijenti);
                             break;
 
                         // ================= DIJAGNOZA =================
                         case VRATI_SVE_DIJAGNOZE:
-                           
+                            List<Dijagnoza> dijagnoze = ServerController.
+                                    vratiInstancu().vratiSveDijagnoze();
+                            odgovor.setRezultat(dijagnoze);
                             break;
 
                         // ================= KRVNA GRUPA =================
                         case VRATI_SVE_KRVNE_GRUPE:
-                           
+                            List<KrvnaGrupa> krvneGrupe = ServerController.
+                                    vratiInstancu().vratiSveKGrupe();
+                            odgovor.setRezultat(krvneGrupe);
+
                             break;
 
                         // ================= SPECIJALIZACIJA =================
                         case UBACI_SPECIJALIZACIJU:
-                           
+
                             break;
                     }
 

@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,9 +63,9 @@ public class Dijagnoza implements ODObjekat {
 
     @Override
     public String toString() {
-        return sifra+"-"+srpskiNaziv+"-"+latinskiNaziv;
+        return sifra + "-" + srpskiNaziv;
     }
-    
+
     @Override
     public String vratiVrednostiAtributa() {
         return idDijagnoza + ", '"
@@ -110,7 +111,22 @@ public class Dijagnoza implements ODObjekat {
 
     @Override
     public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        List<ODObjekat> lista = new ArrayList<>();
+
+        while (rs.next()) {
+
+            Dijagnoza d = new Dijagnoza();
+
+            d.setIdDijagnoza(rs.getInt("id_dijagnoza"));
+            d.setSifra(rs.getString("sifra"));
+            d.setLatinskiNaziv(rs.getString("latinski_naziv"));
+            d.setSrpskiNaziv(rs.getString("srpski_naziv"));
+
+            lista.add(d);
+        }
+
+        return lista;
     }
 
 }

@@ -18,28 +18,39 @@ public class Server {
     private boolean signal = true;
     private ServerSocket serverSocket;
     private static Server instanca;
-    
-    public static Server vratiInstancu(){
-        if(instanca == null) instanca = new Server();
+
+    public static Server vratiInstancu() {
+        if (instanca == null) {
+            instanca = new Server();
+        }
         return instanca;
     }
-    
+
     public void pokreniServer() throws IOException {
 
         serverSocket = new ServerSocket(9000);
-        System.out.println("Server je podignut ...");
+        System.out.println("Server pokrenut...");
 
-        while (signal) {
-            Socket socket = serverSocket.accept();
-            brojPovezanih++;
-            System.out.println("Klijent broj" + brojPovezanih
-                    + ". se povezao ...");
+        while (!serverSocket.isClosed()) {
+            try {
+                Socket socket = serverSocket.accept();
 
-            // kreiranje niti
-            KlijentskaNit nit = new KlijentskaNit(socket, brojPovezanih);
-            nit.start();
+                // za svakog klijenta nova nit
+                KlijentskaNit nit = new KlijentskaNit(socket, brojPovezanih);
+                nit.start();
+
+            } catch (IOException e) {
+
+                // ako je zatvoren server → normalno gašenje
+                if (serverSocket.isClosed()) {
+                    System.out.println("Server zaustavljen.");
+                    break;
+                }
+
+                // neka druga greška
+                e.printStackTrace();
+            }
         }
-
     }
 
     public void zaustaviServer() throws IOException {

@@ -12,9 +12,7 @@ import domen.Pregled;
 import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPregled;
-import gui.pomocni.Pomocni;
 import java.awt.Color;
-import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import java.util.List;
@@ -248,19 +246,20 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         pregledPr.setIdPregled(Integer.parseInt(txtIdPregleda.getText()));
         pregledPr.setLekar((Lekar) cmbLekar.getSelectedItem());
         pregledPr.setPacijent((Pacijent) cmbPacijent.getSelectedItem());
+        
 
     }//GEN-LAST:event_btnPretraziActionPerformed
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
 
-        /*int selektovanRed = tblPregledi.getSelectedRow();
+        int selektovanRed = tblPregledi.getSelectedRow();
         if (selektovanRed != -1) {
-            PregledDialog dialog = new PregledDialog(parent, true, pregled, ModForme.MOD_IZMENA);
+            PregledDialog dialog = new PregledDialog(parent, true, new Pregled(), ModForme.MOD_IZMENA);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Нисте селектовали преглед !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
-        }*/
+        }
     }//GEN-LAST:event_btnIzmeniActionPerformed
 
     private void btnPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziActionPerformed

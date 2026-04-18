@@ -190,7 +190,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
                 // ulaz u beskonačnu petlju
                 server.pokreniServer();
 
-            } catch (Exception ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this,
                         "Грешка приликом покретања сервера !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE
