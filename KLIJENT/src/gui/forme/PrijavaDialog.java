@@ -134,7 +134,7 @@ public class PrijavaDialog extends javax.swing.JDialog {
 
         try {
             // pozivanje kontrolera
-            lekarRez = GuiController.vratiInstancu().prijaviLekar(lekar);
+            lekarRez = GuiController.vratiInstancu().prijaviLekara(lekar);
 
             if (lekarRez == null) {
                 JOptionPane.showMessageDialog(this, "Нема корисника са унетим креденцијалима !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);

@@ -13,23 +13,23 @@ import java.io.Serializable;
  */
 public class Zahtev implements Serializable{
     
-    Object objekat;
+    Object domenskiObjekat;
     Operacija operacija;
 
     public Zahtev() {
     }
 
     public Zahtev(Object objekat, Operacija operacija) {
-        this.objekat = objekat;
+        this.domenskiObjekat = objekat;
         this.operacija = operacija;
     }
 
-    public Object getObjekat() {
-        return objekat;
+    public Object getDomenskiObjekat() {
+        return domenskiObjekat;
     }
 
-    public void setObjekat(Object objekat) {
-        this.objekat = objekat;
+    public void setDomenskiObjekat(Object domenskiObjekat) {
+        this.domenskiObjekat = domenskiObjekat;
     }
 
     public Operacija getOperacija() {
@@ -42,7 +42,7 @@ public class Zahtev implements Serializable{
 
     @Override
     public String toString() {
-        return "Zahtev{" + "objekat=" + objekat + ", operacija=" + operacija + '}';
+        return "Zahtev{" + "objekat=" + domenskiObjekat + ", operacija=" + operacija + '}';
     }
     
     

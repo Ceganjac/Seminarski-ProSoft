@@ -56,6 +56,7 @@ public class DbBroker {
     }
 
     public ODObjekat ubaci(ODObjekat odo) throws SQLException {
+        
         String upit = "INSERT INTO " + odo.vratiImeTabele()
                 + " VALUES (" + odo.vratiVrednostiAtributa() + ")";
         Statement st = konekcija.createStatement();
@@ -86,7 +87,7 @@ public class DbBroker {
     }
 
     public List<ODObjekat> vratiPoUslovu(ODObjekat odo) throws Exception {
-        connect();
+        
         List<ODObjekat> objekti;
 
         String upit = "SELECT * FROM " + odo.vratiImeTabele()
@@ -101,7 +102,6 @@ public class DbBroker {
     }
 
     public ODObjekat vratiPoId(ODObjekat odo) throws Exception {
-        connect();
 
         String upit = "SELECT * FROM " + odo.vratiImeTabele()
                 + " WHERE " + odo.vratiNazivId() + " = " + odo.vratiVrednostId();
@@ -120,7 +120,6 @@ public class DbBroker {
 
     public void promeni(ODObjekat odo) throws SQLException {
 
-        connect();
         String upit = "UPDATE " + odo.vratiImeTabele()
                 + " SET " + odo.vratiZaUpdate()
                 + " WHERE " + odo.vratiNazivId() + " = " + odo.vratiVrednostId();

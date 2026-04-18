@@ -345,13 +345,6 @@ public class PregledDialog extends javax.swing.JDialog {
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
 
-        // ispis dimenzija
-        int visinaReda = tblStavkaPregleda.getRowHeight();
-        System.out.println("Visina reda: " + visinaReda);
-        int visinaHedera = tblStavkaPregleda.getTableHeader().getHeight();
-        System.out.println("Visina hedera: " + visinaHedera);
-
-
     }//GEN-LAST:event_btnDodajStavkuActionPerformed
 
     private void btnSacuvajPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajPregledActionPerformed
@@ -379,8 +372,9 @@ public class PregledDialog extends javax.swing.JDialog {
             // datum i vreme
             DateTimeFormatter formaterDatum = DateTimeFormatter.ofPattern("dd.MM.yyyy['.']");
             DateTimeFormatter formaterVreme = DateTimeFormatter.ofPattern("HH:mm");
-            LocalDate datum = LocalDate.parse(txtDatumKontrole.getText());
-            LocalTime vreme = LocalTime.parse(txtVremeKontrole.getText());
+
+            LocalDate datum = LocalDate.parse(txtDatumKontrole.getText(), formaterDatum);
+            LocalTime vreme = LocalTime.parse(txtVremeKontrole.getText(), formaterVreme);
             LocalDateTime datumVremeKontrole = LocalDateTime.of(datum, vreme);
             pregled.setDatumVremeKontrole(datumVremeKontrole);
             pregled.setTerapija(txtTerapija.getText());

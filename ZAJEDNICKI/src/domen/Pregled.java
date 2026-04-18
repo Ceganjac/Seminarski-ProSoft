@@ -126,6 +126,7 @@ public class Pregled implements ODObjekat {
         return "pregled";
     }
 
+    @Override
     public String vratiNazivId() {
         return "id_pregled";
     }

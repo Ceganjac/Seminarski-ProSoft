@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 import komunikacija.Odgovor;
 import komunikacija.Operacija;
 import static komunikacija.Operacija.KREIRAJ_PREGLED;
@@ -45,13 +46,13 @@ public class KlijentskaNit extends Thread {
                 try {
                     Zahtev zahtev = (Zahtev) ulazni.readObject();
                     // rastavljenje zahteva
-                    Object domenskiObjekat = zahtev.getObjekat();
+                    Object domenskiObjekat = zahtev.getDomenskiObjekat();
                     Operacija operacija = zahtev.getOperacija();
                     ODObjekat rezultat;
 
                     switch (operacija) {
 
-                        case PRIJAVI_LEKAR:
+                        case PRIJAVI_LEKARA:
                             // šalje ka ServerController
                             Lekar lekar = ServerController.vratiInstancu().
                                     prijaviLekar((Lekar) domenskiObjekat);
@@ -67,6 +68,11 @@ public class KlijentskaNit extends Thread {
                         case PROMENI_PREGLED:
                             ServerController.vratiInstancu().
                                     promeniPregled((Pregled) domenskiObjekat);
+                            break;
+                        case PRETRAZI_PREGLEDE:
+                            List<Pregled> pregledi = ServerController.vratiInstancu().
+                                    pretraziPreged((Pregled) domenskiObjekat);
+                            odgovor.setRezultat(pregledi);
                             break;
 
                     }

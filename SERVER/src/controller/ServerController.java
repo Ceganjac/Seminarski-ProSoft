@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -97,6 +98,31 @@ public class ServerController {
         try {
             db.connect();
             db.promeni(pregled);
+            db.commit();
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+
+    }
+
+    public List<Pregled> pretraziPreged(Pregled pregled) throws Exception {
+
+        List<Pregled> pregledi = new ArrayList<>();
+        DbBroker db = new DbBroker(port, username, password);
+        try {
+            db.connect();
+            List<ODObjekat> listaObjekata = db.vratiPoUslovu(pregled);
+
+            for(ODObjekat odo: listaObjekata){
+                pregledi.add((Pregled) odo);
+            }
+
+            db.commit();
+            return pregledi;
+
         } catch (SQLException ex) {
             db.rollback();
             throw ex;
