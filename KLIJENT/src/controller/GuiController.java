@@ -111,8 +111,8 @@ public class GuiController {
         throw odgovor.getIzuzetak();
     }
 
-    public List<Pregled> pretraziPregled(Pregled pregled) throws Exception {
-        Zahtev zahtev = new Zahtev(pregled, Operacija.PRETRAZI_PREGLEDE);
+    public List<Pregled> vratiPregledeUslov(Pregled pregled) throws Exception {
+        Zahtev zahtev = new Zahtev(pregled, Operacija.VRATI_PREGLEDE_USLOV);
         izlazniTok.writeObject(zahtev);
         izlazniTok.flush();
 
@@ -159,7 +159,7 @@ public class GuiController {
     }
 
     public List<Pacijent> pretraziPacijente(Pacijent kriterijum) throws Exception {
-        Zahtev zahtev = new Zahtev(kriterijum, Operacija.PRETRAZI_PACIJENTE);
+        Zahtev zahtev = new Zahtev(kriterijum, Operacija.VRATI_PACIJENTE_USLOV);
         izlazniTok.writeObject(zahtev);
         izlazniTok.flush();
 

@@ -9,7 +9,7 @@ public enum Operacija implements Serializable {
     PROMENI_PREGLED,
     VRATI_PREGLED_PO_ID,
     VRATI_SVE_PREGLEDE,
-    PRETRAZI_PREGLEDE,  // vraća preglede po uslovu
+    VRATI_PREGLEDE_USLOV,  
     
     // LEKAR
     PRIJAVI_LEKARA,
@@ -19,7 +19,7 @@ public enum Operacija implements Serializable {
     KREIRAJ_PACIJENTA,
     PROMENI_PACIJENTA,
     VRATI_PACIJENTA_PO_ID,
-    PRETRAZI_PACIJENTE,  // vraća pacijente po uslovu
+    VRATI_PACIJENTE_USLOV,  
     OBRISI_PACIJENTA,
     VRATI_SVE_PACIJENTE,
     

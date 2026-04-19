@@ -62,4 +62,6 @@ public class TblModelPregled extends AbstractTableModel {
     public Pregled getPregled(int rowIndex) {
         return pregledi.get(rowIndex);
     }
+    
+   
 }

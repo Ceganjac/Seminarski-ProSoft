@@ -9,10 +9,12 @@ import domen.Dijagnoza;
 import domen.Lekar;
 import domen.Pacijent;
 import domen.Pregled;
+import domen.StavkaPregleda;
 import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPregled;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import java.util.List;
@@ -69,7 +71,8 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         cmbPacijent = new javax.swing.JComboBox<>();
         cmbDijagnoza = new javax.swing.JComboBox<>();
         lblIdPregleda = new javax.swing.JLabel();
-        txtDatumVremeZavrsetka = new javax.swing.JTextField();
+        txtDatumKontrole = new javax.swing.JTextField();
+        txtKorisnickoIme = new javax.swing.JTextField();
         txtIdPregleda = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -160,11 +163,13 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         lblIdPregleda.setText("Ид прегледа :");
         lblIdPregleda.setPreferredSize(new java.awt.Dimension(170, 14));
 
-        txtDatumVremeZavrsetka.setEditable(false);
-        txtDatumVremeZavrsetka.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtDatumKontrole.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        txtIdPregleda.setEditable(false);
-        txtIdPregleda.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtIdPregleda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdPregledaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,7 +188,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblIdPregleda, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdPregleda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIdPregleda, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,16 +204,21 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
                 .addGap(50, 50, 50))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(409, 409, 409)
-                    .addComponent(txtDatumVremeZavrsetka, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(732, Short.MAX_VALUE)))
+                    .addGap(444, 444, 444)
+                    .addComponent(txtDatumKontrole)
+                    .addGap(445, 445, 445)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(558, 558, 558)
+                    .addComponent(txtKorisnickoIme, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addGap(559, 559, 559)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(lblNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbDijagnoza, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +240,12 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(240, 240, 240)
-                    .addComponent(txtDatumVremeZavrsetka, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDatumKontrole, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(240, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(240, 240, 240)
+                    .addComponent(txtKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(240, Short.MAX_VALUE)))
         );
 
@@ -243,10 +258,30 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
 
         Pregled pregledPr = new Pregled();
         // uzimanje uslova
-        pregledPr.setIdPregled(Integer.parseInt(txtIdPregleda.getText()));
+        // uzimanje id-a samo ako je unesen
+        if (!txtIdPregleda.getText().trim().isEmpty()) {
+            pregledPr.setIdPregled(Integer.parseInt(txtIdPregleda.getText()));
+        }
         pregledPr.setLekar((Lekar) cmbLekar.getSelectedItem());
         pregledPr.setPacijent((Pacijent) cmbPacijent.getSelectedItem());
-        
+
+        // dijagnoza
+        StavkaPregleda sp = new StavkaPregleda();
+        sp.setDijagnoza((Dijagnoza) cmbDijagnoza.getSelectedItem());
+        List<StavkaPregleda> stavke = new ArrayList();
+        stavke.add(sp);
+        pregledPr.setStavke(stavke);
+
+        List<Pregled> preglediRez = null;
+        try {
+            preglediRez = GuiController.vratiInstancu().vratiPregledeUslov(pregledPr);
+            model = new TblModelPregled(preglediRez);
+            tblPregledi.setModel(model);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом претраге прегледа ! !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+
 
     }//GEN-LAST:event_btnPretraziActionPerformed
 
@@ -289,6 +324,10 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbDijagnozaActionPerformed
 
+    private void txtIdPregledaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPregledaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdPregledaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,9 +336,13 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         // za lekara
         List<Lekar> lekari;
         try {
+            // vraćanje podataka iz baze
             lekari = GuiController.vratiInstancu().vratiSveLekare();
+            lekari.add(0,null);
+            // pravljenje niza
             Lekar[] nizLekari = new Lekar[lekari.size()];
             nizLekari = lekari.toArray(nizLekari);
+            
             DefaultComboBoxModel<Lekar> modelL = new DefaultComboBoxModel<>(nizLekari);
             cmbLekar.setModel(modelL);
         } catch (Exception ex) {
@@ -310,7 +353,10 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         // za pacijente
         List<Pacijent> pacijenti;
         try {
+            // vraćanje podataka iz baze
             pacijenti = GuiController.vratiInstancu().vratiSvePacijente();
+            pacijenti.add(0,null);
+            // pravljenje niza
             Pacijent[] nizPacijenti = new Pacijent[pacijenti.size()];
             nizPacijenti = pacijenti.toArray(nizPacijenti);
             DefaultComboBoxModel<Pacijent> modelP = new DefaultComboBoxModel<>(nizPacijenti);
@@ -362,7 +408,8 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblNaslov;
     private javax.swing.JLabel lblPacijent;
     private javax.swing.JTable tblPregledi;
-    private javax.swing.JTextField txtDatumVremeZavrsetka;
+    private javax.swing.JTextField txtDatumKontrole;
     private javax.swing.JTextField txtIdPregleda;
+    private javax.swing.JTextField txtKorisnickoIme;
     // End of variables declaration//GEN-END:variables
 }

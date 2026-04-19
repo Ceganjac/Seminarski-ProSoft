@@ -142,6 +142,9 @@ public class Pregled implements ODObjekat {
         if (pacijent != null) {
             uslov += " AND id_pacijent = " + pacijent.getIdPacijent();
         }
+        if (idPregled != 0) {
+            uslov += " AND id_pregled = " + idPregled;
+        }
 
         return uslov;
     }
@@ -187,6 +190,7 @@ public class Pregled implements ODObjekat {
 
     @Override
     public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+
         List<ODObjekat> lista = new ArrayList<>();
 
         while (rs.next()) {
@@ -204,12 +208,19 @@ public class Pregled implements ODObjekat {
             pr.setUkupnoVremeTrajanja(rs.getFloat("ukupno_vreme_trajanja"));
             pr.setTerapija(rs.getString("terapija"));
 
-            // --- samo ID za povezane objekte ---
+            // lekar
             Lekar l = new Lekar();
             l.setIdLekar(rs.getInt("id_lekar"));
+            l.setIme(rs.getString("lekar_ime"));
+            l.setPrezime(rs.getString("lekar_prezime"));
 
+            // pacijent
             Pacijent p = new Pacijent();
             p.setIdPacijent(rs.getInt("id_pacijent"));
+
+            // zbog duplih kolona "ime/prezime" moraš ovako:
+            p.setIme(rs.getString("pacijent_ime"));
+            p.setPrezime(rs.getString("pacijent_prezime"));
 
             pr.setLekar(l);
             pr.setPacijent(p);
@@ -219,5 +230,4 @@ public class Pregled implements ODObjekat {
 
         return lista;
     }
-
 }

@@ -124,7 +124,7 @@ public class ServerController {
         }
     }
 
-    public List<Pregled> pretraziPreged(Pregled pregled) throws Exception {
+    public List<Pregled> vratiPoUslovuPregled(Pregled pregled) throws Exception {
 
         List<Pregled> pregledi = new ArrayList<>();
         db = new DbBroker(port, username, password);
@@ -132,7 +132,7 @@ public class ServerController {
         try {
             db.connect();
 
-            List<ODObjekat> listaObjekata = db.vratiPoUslovu(pregled);
+            List<ODObjekat> listaObjekata = db.vratiPoUslovuPregled(pregled);
 
             for (ODObjekat odo : listaObjekata) {
                 pregledi.add((Pregled) odo);
@@ -199,6 +199,66 @@ public class ServerController {
     }
 
     // ================= PACIJENT =================
+    public Pacijent kreirajPacijenta(Pacijent pacijent) throws Exception {
+
+        db = new DbBroker(port, username, password);
+        Pacijent rezultat = null;
+
+        try {
+            db.connect();
+            rezultat = (Pacijent) db.kreiraj(pacijent);
+            db.commit();
+            return rezultat;
+
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
+
+    public void promeniPacijenta(Pacijent pacijent) throws Exception {
+
+        db = new DbBroker(port, username, password);
+
+        try {
+            db.connect();
+            db.promeni(pacijent);
+            db.commit();
+
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
+
+    public Pacijent vratiPacijentaPoId(Pacijent pacijent) throws Exception {
+
+        db = new DbBroker(port, username, password);
+        Pacijent rezultat = null;
+
+        try {
+            db.connect();
+
+            ODObjekat odo = db.vratiPoId(pacijent);
+            if (odo != null) {
+                rezultat = (Pacijent) odo;
+            }
+
+            db.commit();
+            return rezultat;
+
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
+
     public List<Pacijent> vratiSvePacijente() throws Exception {
 
         db = new DbBroker(port, username, password);
@@ -214,6 +274,48 @@ public class ServerController {
             return pacijenti;
 
         } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
+
+    public List<Pacijent> pretraziPacijente(Pacijent pacijent) throws Exception {
+
+        List<Pacijent> pacijenti = new ArrayList<>();
+        db = new DbBroker(port, username, password);
+
+        try {
+            db.connect();
+
+            List<ODObjekat> lista = db.vratiPoUslovu(pacijent);
+
+            for (ODObjekat odo : lista) {
+                pacijenti.add((Pacijent) odo);
+            }
+
+            db.commit();
+            return pacijenti;
+
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
+
+    public void obrisiPacijenta(Pacijent pacijent) throws Exception {
+
+        db = new DbBroker(port, username, password);
+
+        try {
+            db.connect();
+            db.obrisi(pacijent);
+            db.commit();
+
+        } catch (SQLException ex) {
+            db.rollback();
             throw ex;
         } finally {
             db.disconnect();

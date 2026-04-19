@@ -4,11 +4,8 @@
  */
 package db;
 
-import domen.Lekar;
 import java.sql.*;
 import domen.ODObjekat;
-import domen.Pacijent;
-import domen.Pregled;
 import java.util.List;
 
 /**
@@ -100,6 +97,28 @@ public class DbBroker {
         return objekti;
     }
 
+    // SPECIFIČNA ZA PREGLED
+    public List<ODObjekat> vratiPoUslovuPregled(ODObjekat odo) throws Exception {
+
+        List<ODObjekat> objekti;
+
+        String upit
+                = "SELECT p.*,"
+                + " l.ime AS lekar_ime, l.prezime AS lekar_prezime,"
+                + " pa.ime AS pacijent_ime, pa.prezime AS pacijent_prezime "
+                + "FROM pregled p "
+                + "JOIN lekar l ON p.id_lekar = l.id_lekar "
+                + "JOIN pacijent pa ON p.id_pacijent = pa.id_pacijent "
+                + "WHERE " + odo.vratiUslov();
+
+        Statement st = konekcija.createStatement();
+        ResultSet rs = st.executeQuery(upit);
+
+        objekti = odo.napraviListu(rs);
+
+        return objekti;
+    }
+
     public List<ODObjekat> vratiPoUslovu(ODObjekat odo) throws Exception {
 
         List<ODObjekat> objekti;
@@ -139,6 +158,19 @@ public class DbBroker {
                 + " WHERE " + odo.vratiNazivId() + " = " + odo.vratiVrednostId();
         Statement st = konekcija.createStatement();
         st.executeUpdate(upit);
+    }
+
+    public void obrisi(ODObjekat odo) throws SQLException {
+
+        String upit = "DELETE FROM " + odo.vratiImeTabele()
+                + " WHERE " + odo.vratiNazivId()
+                + " = " + odo.vratiVrednostId();
+
+        System.out.println(upit);
+
+        Statement s = konekcija.createStatement();
+        s.executeUpdate(upit);
+        s.close();
     }
 
 }

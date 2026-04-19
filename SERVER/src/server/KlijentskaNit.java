@@ -90,9 +90,9 @@ public class KlijentskaNit extends Thread {
 
                             break;
 
-                        case PRETRAZI_PREGLEDE:
+                        case VRATI_PREGLEDE_USLOV:
                             List<Pregled> pretragaPregleda = ServerController.vratiInstancu()
-                                    .pretraziPreged((Pregled) domenskiObjekat);
+                                    .vratiPoUslovuPregled((Pregled) domenskiObjekat);
                             odgovor.setRezultat(pretragaPregleda);
                             break;
 
@@ -109,7 +109,7 @@ public class KlijentskaNit extends Thread {
 
                             break;
 
-                        case PRETRAZI_PACIJENTE:
+                        case VRATI_PACIJENTE_USLOV:
 
                             break;
 
