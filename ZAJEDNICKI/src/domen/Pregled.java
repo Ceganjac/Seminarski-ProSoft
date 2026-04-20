@@ -5,7 +5,9 @@
 package domen;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,27 +18,41 @@ import java.util.List;
 public class Pregled implements ODObjekat {
 
     private int idPregled;
+
     private LocalDateTime datumVremeZavrsetka;
-    private LocalDateTime datumVremeKontrole;
+
+    private LocalDate datumKontrole;
+    private LocalTime vremeKontrole;
+
     private float ukupnoVremeTrajanja;
     private String terapija;
+
     private Lekar lekar;
     private Pacijent pacijent;
-    List<StavkaPregleda> stavke;
+
+    private List<StavkaPregleda> stavke;
 
     public Pregled() {
     }
 
-    public Pregled(int idPregled, LocalDateTime datumVremeZavrsetka, LocalDateTime datumVremeKontrole, float ukupnoVremeTrajanja, String terapija, Lekar lekar, Pacijent pacijent) {
+    public Pregled(int idPregled, LocalDateTime datumVremeZavrsetka,
+            LocalDate datumKontrole, LocalTime vremeKontrole,
+            float ukupnoVremeTrajanja, String terapija,
+            Lekar lekar, Pacijent pacijent,
+            List<StavkaPregleda> stavke) {
+
         this.idPregled = idPregled;
         this.datumVremeZavrsetka = datumVremeZavrsetka;
-        this.datumVremeKontrole = datumVremeKontrole;
+        this.datumKontrole = datumKontrole;
+        this.vremeKontrole = vremeKontrole;
         this.ukupnoVremeTrajanja = ukupnoVremeTrajanja;
         this.terapija = terapija;
         this.lekar = lekar;
         this.pacijent = pacijent;
+        this.stavke = stavke;
     }
 
+    // GET / SET
     public int getIdPregled() {
         return idPregled;
     }
@@ -53,12 +69,20 @@ public class Pregled implements ODObjekat {
         this.datumVremeZavrsetka = datumVremeZavrsetka;
     }
 
-    public LocalDateTime getDatumVremeKontrole() {
-        return datumVremeKontrole;
+    public LocalDate getDatumKontrole() {
+        return datumKontrole;
     }
 
-    public void setDatumVremeKontrole(LocalDateTime datumVremeKontrole) {
-        this.datumVremeKontrole = datumVremeKontrole;
+    public void setDatumKontrole(LocalDate datumKontrole) {
+        this.datumKontrole = datumKontrole;
+    }
+
+    public LocalTime getVremeKontrole() {
+        return vremeKontrole;
+    }
+
+    public void setVremeKontrole(LocalTime vremeKontrole) {
+        this.vremeKontrole = vremeKontrole;
     }
 
     public float getUkupnoVremeTrajanja() {
@@ -101,20 +125,27 @@ public class Pregled implements ODObjekat {
         this.stavke = stavke;
     }
 
-    // METODE IZ INTERFEJSA
+    // INSERT
     @Override
     public String vratiVrednostiAtributa() {
+
         String datumZavrsetka = (datumVremeZavrsetka == null) ? "NULL"
                 : "'" + datumVremeZavrsetka.toString().replace("T", " ") + "'";
-        String datumKontrole = (datumVremeKontrole == null) ? "NULL"
-                : "'" + datumVremeKontrole.toString().replace("T", " ") + "'";
+
+        String datumKontroleStr = (datumKontrole == null) ? "NULL"
+                : "'" + datumKontrole.toString() + "'";
+
+        String vremeKontroleStr = (vremeKontrole == null) ? "NULL"
+                : "'" + vremeKontrole.toString() + "'";
+
         String terapijaStr = (terapija == null) ? "NULL" : "'" + terapija + "'";
 
         String lekarId = (lekar == null) ? "NULL" : String.valueOf(lekar.getIdLekar());
         String pacijentId = (pacijent == null) ? "NULL" : String.valueOf(pacijent.getIdPacijent());
 
         return datumZavrsetka + ", "
-                + datumKontrole + ", "
+                + datumKontroleStr + ", "
+                + vremeKontroleStr + ", "
                 + ukupnoVremeTrajanja + ", "
                 + terapijaStr + ", "
                 + lekarId + ", "
@@ -132,31 +163,41 @@ public class Pregled implements ODObjekat {
     }
 
     @Override
+    public String vratiNaziveAtributa() {
+        return "datum_vreme_zavrsetka, datum_kontrole, vreme_kontrole, "
+                + "ukupno_vreme_trajanja, terapija, id_lekar, id_pacijent";
+    }
 
+    // WHERE
+    @Override
     public String vratiUslov() {
         String uslov = "1=1";
 
         if (lekar != null) {
-            uslov += " AND id_lekar = " + lekar.getIdLekar();
+            uslov += " AND p.id_lekar = " + lekar.getIdLekar();
         }
         if (pacijent != null) {
-            uslov += " AND id_pacijent = " + pacijent.getIdPacijent();
+            uslov += " AND p.id_pacijent = " + pacijent.getIdPacijent();
         }
         if (idPregled != 0) {
-            uslov += " AND id_pregled = " + idPregled;
+            uslov += " AND p.id_pregled = " + idPregled;
         }
 
         return uslov;
     }
 
+    // UPDATE
     @Override
     public String vratiZaUpdate() {
 
         String datumZavrsetka = (datumVremeZavrsetka == null) ? "NULL"
                 : "'" + datumVremeZavrsetka.toString().replace("T", " ") + "'";
 
-        String datumKontrole = (datumVremeKontrole == null) ? "NULL"
-                : "'" + datumVremeKontrole.toString().replace("T", " ") + "'";
+        String datumKontroleStr = (datumKontrole == null) ? "NULL"
+                : "'" + datumKontrole.toString() + "'";
+
+        String vremeKontroleStr = (vremeKontrole == null) ? "NULL"
+                : "'" + vremeKontrole.toString() + "'";
 
         String terapijaStr = (terapija == null) ? "NULL" : "'" + terapija + "'";
 
@@ -164,7 +205,8 @@ public class Pregled implements ODObjekat {
         String pacijentId = (pacijent == null) ? "NULL" : String.valueOf(pacijent.getIdPacijent());
 
         return "datum_vreme_zavrsetka = " + datumZavrsetka + ", "
-                + "datum_vreme_kontrole = " + datumKontrole + ", "
+                + "datum_kontrole = " + datumKontroleStr + ", "
+                + "vreme_kontrole = " + vremeKontroleStr + ", "
                 + "ukupno_vreme_trajanja = " + ukupnoVremeTrajanja + ", "
                 + "terapija = " + terapijaStr + ", "
                 + "id_lekar = " + lekarId + ", "
@@ -177,17 +219,11 @@ public class Pregled implements ODObjekat {
     }
 
     @Override
-    public String vratiNaziveAtributa() {
-        return "datum_vreme_zavrsetka, datum_vreme_kontrole, ukupno_vreme_trajanja, "
-                + "terapija, id_lekar, id_pacijent";
-
-    }
-
-    @Override
     public String vratiVrednostId() {
         return "" + idPregled;
     }
 
+    // RESULT SET
     @Override
     public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
 
@@ -202,23 +238,22 @@ public class Pregled implements ODObjekat {
             Timestamp tz = rs.getTimestamp("datum_vreme_zavrsetka");
             pr.setDatumVremeZavrsetka(tz != null ? tz.toLocalDateTime() : null);
 
-            Timestamp tk = rs.getTimestamp("datum_vreme_kontrole");
-            pr.setDatumVremeKontrole(tk != null ? tk.toLocalDateTime() : null);
+            Date dk = rs.getDate("datum_kontrole");
+            pr.setDatumKontrole(dk != null ? dk.toLocalDate() : null);
+
+            Time tk = rs.getTime("vreme_kontrole");
+            pr.setVremeKontrole(tk != null ? tk.toLocalTime() : null);
 
             pr.setUkupnoVremeTrajanja(rs.getFloat("ukupno_vreme_trajanja"));
             pr.setTerapija(rs.getString("terapija"));
 
-            // lekar
             Lekar l = new Lekar();
             l.setIdLekar(rs.getInt("id_lekar"));
             l.setIme(rs.getString("lekar_ime"));
             l.setPrezime(rs.getString("lekar_prezime"));
 
-            // pacijent
             Pacijent p = new Pacijent();
             p.setIdPacijent(rs.getInt("id_pacijent"));
-
-            // zbog duplih kolona "ime/prezime" moraš ovako:
             p.setIme(rs.getString("pacijent_ime"));
             p.setPrezime(rs.getString("pacijent_prezime"));
 

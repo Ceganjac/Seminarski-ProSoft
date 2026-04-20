@@ -12,8 +12,6 @@ import domen.Pregled;
 import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPacijent;
-import gui.komponente.TblModelPregled;
-import gui.pomocni.Pomocni;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;

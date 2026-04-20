@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class TblModelPregled extends AbstractTableModel {
 
     private final List<Pregled> pregledi;
-    private final String[] columnNames = {"ИД прегледа", "Датум завршетка", "Датум контроле", "Укупно трајање", "Терапија", "Лекар", "Пацијент"};
+    private final String[] columnNames = {"ИД прегледа", "Датум и време завршетка", "Датум контроле","Време контроле", "Укупно трајање", "Терапија", "Лекар", "Пацијент"};
 
     public TblModelPregled(List<Pregled> pregledi) {
         this.pregledi = pregledi;
@@ -40,14 +40,16 @@ public class TblModelPregled extends AbstractTableModel {
             case 1:
                 return pregled.getDatumVremeZavrsetka();
             case 2:
-                return pregled.getDatumVremeKontrole();
+                return pregled.getDatumKontrole();
             case 3:
-                return pregled.getUkupnoVremeTrajanja();
+                return pregled.getVremeKontrole();
             case 4:
-                return pregled.getTerapija();
+                return pregled.getUkupnoVremeTrajanja();
             case 5:
-                return pregled.getLekar().vratiImePrezime();
+                return pregled.getTerapija();
             case 6:
+                return pregled.getLekar().vratiImePrezime();
+            case 7:
                 return pregled.getPacijent().vratiImePrezime();
             default:
                 return "н/в";
@@ -62,6 +64,5 @@ public class TblModelPregled extends AbstractTableModel {
     public Pregled getPregled(int rowIndex) {
         return pregledi.get(rowIndex);
     }
-    
-   
+
 }

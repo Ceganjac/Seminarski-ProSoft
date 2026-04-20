@@ -8,9 +8,7 @@ import domen.KrvnaGrupa;
 import domen.Pacijent;
 import domen.enumi.Pol;
 import gui.enumi.ModForme;
-import gui.pomocni.Pomocni;
 import java.awt.Color;
-import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -276,8 +274,8 @@ public class PacijentDialog extends javax.swing.JDialog {
         cmbPol.setModel(new DefaultComboBoxModel<>(Pol.values()));
 
         // za krvnu grupu
-        List<KrvnaGrupa> krvneKrupe = Pomocni.vratiKrvneGrupe();
-        cmbKrvnaGrupa.setModel(new DefaultComboBoxModel<>(krvneKrupe.toArray(new KrvnaGrupa[0])));
+       /* List<KrvnaGrupa> krvneKrupe = Pomocni.vratiKrvneGrupe();
+        cmbKrvnaGrupa.setModel(new DefaultComboBoxModel<>(krvneKrupe.toArray(new KrvnaGrupa[0])));*/
     }
 
     private void prikazPacijenta() {

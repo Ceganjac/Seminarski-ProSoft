@@ -8,7 +8,6 @@ import domen.Dijagnoza;
 import domen.StavkaPregleda;
 import gui.enumi.ModForme;
 import gui.komponente.TblModelStavkaPregleda;
-import gui.pomocni.Pomocni;
 import java.awt.Color;
 import java.time.Duration;
 import java.util.List;
@@ -243,11 +242,10 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
     // obrada cmbDijagnoza
     private void obradaCmbDijagnoza() {
-        List<Dijagnoza> dijagnoze = Pomocni.vratiDijagnoze();
-        Dijagnoza[] nizDijagnoze = new Dijagnoza[dijagnoze.size()];
+       /* Dijagnoza[] nizDijagnoze = new Dijagnoza[dijagnoze.size()];
         nizDijagnoze = dijagnoze.toArray(nizDijagnoze);
         DefaultComboBoxModel<Dijagnoza> modelD = new DefaultComboBoxModel<>(nizDijagnoze);
-        cmbDijagnoza.setModel(modelD);
+        cmbDijagnoza.setModel(modelD);*/
     }
 
     /**
