@@ -87,36 +87,43 @@ public class KlijentskaNit extends Thread {
                             break;
 
                         case VRATI_SVE_PREGLEDE:
-
+                            List<Pregled> pregledi = ServerController.vratiInstancu()
+                                    .vratiSvePreglede();
+                            odgovor.setRezultat(pregledi);
                             break;
 
                         case VRATI_PREGLEDE_USLOV:
                             List<Pregled> pretragaPregleda = ServerController.vratiInstancu()
-                                    .vratiPoUslovuPregled((Pregled) domenskiObjekat);
+                                    .vratiPregledPoUslovu((Pregled) domenskiObjekat);
                             odgovor.setRezultat(pretragaPregleda);
                             break;
 
                         // ================= PACIJENT =================
                         case KREIRAJ_PACIJENTA:
-
+                            Pacijent pacijent = ServerController.vratiInstancu().
+                                    kreirajPacijenta((Pacijent) domenskiObjekat);
                             break;
 
                         case PROMENI_PACIJENTA:
-
+                            ServerController.vratiInstancu()
+                                    .promeniPacijenta((Pacijent) domenskiObjekat);
                             break;
-
                         case VRATI_PACIJENTA_PO_ID:
-
+                            Pacijent pacijentPoId = ServerController.vratiInstancu()
+                                    .vratiPacijentaPoId((Pacijent) domenskiObjekat);
+                            odgovor.setRezultat(pacijentPoId);
                             break;
 
                         case VRATI_PACIJENTE_USLOV:
-
+                            List<Pacijent> pacijentiUslov = ServerController.vratiInstancu()
+                                    .vratiPacijentePoUslovu((Pacijent) domenskiObjekat);
+                            odgovor.setRezultat(pacijentiUslov);
                             break;
 
                         case OBRISI_PACIJENTA:
-
+                            ServerController.vratiInstancu()
+                                    .obrisiPacijenta((Pacijent) domenskiObjekat);
                             break;
-
                         case VRATI_SVE_PACIJENTE:
                             List<Pacijent> pacijenti = ServerController.
                                     vratiInstancu().vratiSvePacijente();

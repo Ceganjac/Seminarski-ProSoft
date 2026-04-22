@@ -15,6 +15,7 @@ import gui.komponente.TblModelPacijent;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,6 +44,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
 
         // funkcije
         obradaModa();
+        obradaCmbModela();
     }
 
     /**
@@ -91,23 +93,19 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         lblIme.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblIme.setText("Име :");
 
-        cmbKrvnaGrupa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "B+", "A-", "B-", "AB", "O+", "O-" }));
         cmbKrvnaGrupa.setOpaque(true);
         cmbKrvnaGrupa.setPreferredSize(new java.awt.Dimension(300, 20));
 
         tblPacijenti.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Ид пацијента", "Име", "Презиме", "Пол", "Датум рођења", "Место рођења", "Мејл", "Крвна група"
+
             }
         ));
-        tblPacijenti.setMinimumSize(new java.awt.Dimension(148, 80));
-        tblPacijenti.setPreferredSize(new java.awt.Dimension(600, 148));
+        tblPacijenti.setMinimumSize(new java.awt.Dimension(160, 80));
+        tblPacijenti.setPreferredSize(new java.awt.Dimension(600, 160));
         scrTblPacijent.setViewportView(tblPacijenti);
 
         btnIzmeni.setBackground(new java.awt.Color(0, 204, 102));
@@ -194,7 +192,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
                     .addComponent(lblPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
-                .addComponent(scrTblPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrTblPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,27 +209,33 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
 
     private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed
 
-        Pacijent pacijentPr = new Pacijent();
-        // punjenje pacijenta uslovima
-        pacijentPr.setIme(txtIme.getText());
-        pacijentPr.setPrezime(txtPrezime.getText());
-        pacijentPr.setKrvnaGrupa((KrvnaGrupa) cmbKrvnaGrupa.getSelectedItem());
+        //////////////////////////////////////////////////////////////////////
+        //   --- USLOVI ---
+        Pacijent pacijentKr = new Pacijent();
 
-        /*try {
-            List<ODObjekat> listaObjekata = GuiController.vratiInstancu().vratiUslov(pacijentPr);
-            List<Pacijent> pacijenti = new ArrayList<>();
+        if (!txtIme.getText().trim().isEmpty()) {
+            pacijentKr.setIme(txtIme.getText().trim());
+        }
+        if (!txtPrezime.getText().trim().isEmpty()) {
+            pacijentKr.setPrezime(txtPrezime.getText().trim());
+        }
 
-            for (ODObjekat o : listaObjekata) {
-                pacijenti.add((Pacijent) o);
-            }
+        KrvnaGrupa kGrupa = (KrvnaGrupa) cmbKrvnaGrupa.getSelectedItem();
+        if (kGrupa != null) {
+            pacijentKr.setKrvnaGrupa(kGrupa);
+        }
+        //////////////////////////////////////////////////////////////////////
+        try {
+            List<Pacijent> pacijenti = GuiController.vratiInstancu().vratiPacijenteUslov(pacijentKr);
+
             // postavljanje modela tabele
-            TblModelPacijent model = new TblModelPacijent(pacijenti);
+            model = new TblModelPacijent(pacijenti);
             tblPacijenti.setModel(model);
 
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, ex, "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }//GEN-LAST:event_btnPretraziActionPerformed
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
@@ -287,6 +291,26 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
 
     }
 
+    private void obradaCmbModela() {
+        List<KrvnaGrupa> kGrupe;
+        try {
+            // vraćanje podataka iz baze
+            kGrupe = GuiController.vratiInstancu().vratiSveKrvneGrupe();
+            // dodavanje null vrednosti
+            kGrupe.add(0, null);
+            // pravljenje niza
+            KrvnaGrupa[] nizKGrupe = new KrvnaGrupa[kGrupe.size()];
+            nizKGrupe = kGrupe.toArray(nizKGrupe);
+
+            DefaultComboBoxModel<KrvnaGrupa> modelKG = new DefaultComboBoxModel<>(nizKGrupe);
+            cmbKrvnaGrupa.setModel(modelKG);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом учитавања крвних група !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -296,7 +320,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPretrazi;
     private javax.swing.JButton btnPrikazi;
-    private javax.swing.JComboBox<String> cmbKrvnaGrupa;
+    private javax.swing.JComboBox<KrvnaGrupa> cmbKrvnaGrupa;
     private javax.swing.JLabel lblIme;
     private javax.swing.JLabel lblKrvnaGrupa;
     private javax.swing.JLabel lblNaslov;

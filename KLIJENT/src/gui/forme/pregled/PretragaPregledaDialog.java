@@ -213,12 +213,12 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
                 .addGap(35, 35, 35)
                 .addComponent(btnPretrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         cmbLekar.getAccessibleContext().setAccessibleDescription("");
@@ -228,25 +228,25 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
 
     private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed
 
-        Pregled pregledPr = new Pregled();
+        Pregled pregledKr = new Pregled();
         // uzimanje uslova
         // uzimanje id-a samo ako je unesen
         if (!txtIdPregleda.getText().trim().isEmpty()) {
-            pregledPr.setIdPregled(Integer.parseInt(txtIdPregleda.getText()));
+            pregledKr.setIdPregled(Integer.parseInt(txtIdPregleda.getText()));
         }
         Lekar lekar = (Lekar) cmbLekar.getSelectedItem();
         Pacijent pacijent = (Pacijent) cmbPacijent.getSelectedItem();
 
         if (lekar != null) {
-            pregledPr.setLekar(lekar);
+            pregledKr.setLekar(lekar);
         }
         if (pacijent != null) {
-            pregledPr.setPacijent(pacijent);
+            pregledKr.setPacijent(pacijent);
         }
 
         List<Pregled> preglediRez;
         try {
-            preglediRez = GuiController.vratiInstancu().vratiPregledeUslov(pregledPr);
+            preglediRez = GuiController.vratiInstancu().vratiPregledeUslov(pregledKr);
             model = new TblModelPregled(preglediRez);
             tblPregledi.setModel(model);
 

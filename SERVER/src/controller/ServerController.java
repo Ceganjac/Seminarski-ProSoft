@@ -124,7 +124,7 @@ public class ServerController {
         }
     }
 
-    public List<Pregled> vratiPoUslovuPregled(Pregled pregled) throws Exception {
+    public List<Pregled> vratiPregledPoUslovu(Pregled pregled) throws Exception {
 
         List<Pregled> pregledi = new ArrayList<>();
         db = new DbBroker(port, username, password);
@@ -280,7 +280,7 @@ public class ServerController {
         }
     }
 
-    public List<Pacijent> pretraziPacijente(Pacijent pacijent) throws Exception {
+    public List<Pacijent> vratiPacijentePoUslovu(Pacijent pacijent) throws Exception {
 
         List<Pacijent> pacijenti = new ArrayList<>();
         db = new DbBroker(port, username, password);

@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -112,6 +113,17 @@ public class KrvnaGrupa implements ODObjekat {
 
     @Override
     public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<ODObjekat> lista = new ArrayList<>();
+
+        while (rs.next()) {
+            int id = rs.getInt("id_krvna_grupa");
+            String abo = rs.getString("abo_tip");
+            String rh = rs.getString("rh_faktor");
+
+            KrvnaGrupa kg = new KrvnaGrupa(id, abo, rh);
+            lista.add(kg);
+        }
+
+        return lista;
     }
 }

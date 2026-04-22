@@ -109,7 +109,7 @@ public class Pacijent implements ODObjekat {
         return " '"
                 + ime + "', '"
                 + prezime + "', '"
-                + pol + "', '"
+                + pol.name() + "', '"
                 + datumRodjenja + "', '"
                 + mestoRodjenja + "', '"
                 + mejl + "', "
@@ -123,7 +123,22 @@ public class Pacijent implements ODObjekat {
 
     @Override
     public String vratiUslov() {
-        return "id_pacijenta = " + idPacijent;
+
+        String uslov = "1=1";
+
+        if (ime != null && !ime.trim().isEmpty()) {
+            uslov += " AND ime LIKE '%" + ime.trim() + "%'";
+        }
+
+        if (prezime != null && !prezime.trim().isEmpty()) {
+            uslov += " AND prezime LIKE '%" + prezime.trim() + "%'";
+        }
+
+        if (krvnaGrupa != null) {
+            uslov += " AND id_krvna_grupa = " + krvnaGrupa.getIdKrvnaGrupa();
+        }
+
+        return uslov;
     }
 
     @Override
@@ -155,7 +170,7 @@ public class Pacijent implements ODObjekat {
 
     @Override
     public String vratiNaziveAtributa() {
-        return "ime, prezime, pol, datumRodjenja, mestoRodjenja, mejl, idKrvnaGrupa";
+        return "ime, prezime, pol, datum_rodjenja, mesto_rodjenja, mejl, id_krvna_grupa";
 
     }
 
@@ -166,7 +181,7 @@ public class Pacijent implements ODObjekat {
 
     @Override
     public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        
+
         List<ODObjekat> lista = new ArrayList<>();
 
         while (rs.next()) {

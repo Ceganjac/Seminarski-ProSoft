@@ -158,7 +158,7 @@ public class GuiController {
         throw odgovor.getIzuzetak();
     }
 
-    public List<Pacijent> pretraziPacijente(Pacijent kriterijum) throws Exception {
+    public List<Pacijent> vratiPacijenteUslov(Pacijent kriterijum) throws Exception {
         Zahtev zahtev = new Zahtev(kriterijum, Operacija.VRATI_PACIJENTE_USLOV);
         izlazniTok.writeObject(zahtev);
         izlazniTok.flush();

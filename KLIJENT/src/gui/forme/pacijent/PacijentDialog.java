@@ -4,11 +4,16 @@
  */
 package gui.forme.pacijent;
 
+import controller.GuiController;
 import domen.KrvnaGrupa;
 import domen.Pacijent;
 import domen.enumi.Pol;
 import gui.enumi.ModForme;
 import java.awt.Color;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -33,7 +38,6 @@ public class PacijentDialog extends javax.swing.JDialog {
         this.pacijent = pacijent;
         this.modForme = modForme;
         obradaModa();
-        prikazPacijenta();
         obradaCmbModela();
     }
 
@@ -221,13 +225,37 @@ public class PacijentDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
+
         // provera da li su uneta neophodna polja
         if ("".equals(txtIme.getText()) || "".equals(txtPrezime.getText())
                 || cmbPol.getSelectedItem() == null || "".equals(txtDatumRodjenja.getText())
                 || "".equals(txtMestoRodjenja.getText()) || "".equals(txtMejl.getText())
                 || cmbKrvnaGrupa.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+        }
 
+        Pacijent pacijentPr = new Pacijent();
+        pacijentPr.setIme(txtIme.getText());
+        pacijentPr.setPrezime(txtPrezime.getText());
+        // datum
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        pacijentPr.setDatumRodjenja(
+                LocalDate.parse(txtDatumRodjenja.getText(), formater)
+        );
+        pacijentPr.setMestoRodjenja(txtMestoRodjenja.getText());
+        pacijentPr.setMejl(txtMejl.getText());
+        pacijentPr.setKrvnaGrupa((KrvnaGrupa) cmbKrvnaGrupa.getSelectedItem());
+        pacijentPr.setPol((Pol) cmbPol.getSelectedItem());
+
+        try {
+
+            GuiController.vratiInstancu().kreirajPacijenta(pacijentPr);
+            JOptionPane.showMessageDialog(this, "Успешно креиран пацијент ! ",
+                    "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом чувања пацијента ! ",
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
 
     }//GEN-LAST:event_btnSacuvajActionPerformed
@@ -265,6 +293,8 @@ public class PacijentDialog extends javax.swing.JDialog {
             txtMejl.setEditable(false);
             cmbKrvnaGrupa.setEnabled(false);
 
+            prikazPacijenta();
+
         }
 
     }
@@ -274,8 +304,14 @@ public class PacijentDialog extends javax.swing.JDialog {
         cmbPol.setModel(new DefaultComboBoxModel<>(Pol.values()));
 
         // za krvnu grupu
-       /* List<KrvnaGrupa> krvneKrupe = Pomocni.vratiKrvneGrupe();
-        cmbKrvnaGrupa.setModel(new DefaultComboBoxModel<>(krvneKrupe.toArray(new KrvnaGrupa[0])));*/
+        List<KrvnaGrupa> krvneKrupe;
+        try {
+            krvneKrupe = GuiController.vratiInstancu().vratiSveKrvneGrupe();
+            cmbKrvnaGrupa.setModel(new DefaultComboBoxModel<>(krvneKrupe.toArray(new KrvnaGrupa[0])));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом учитавања крвних група !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
     }
 
     private void prikazPacijenta() {
