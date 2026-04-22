@@ -288,7 +288,7 @@ public class ServerController {
         try {
             db.connect();
 
-            List<ODObjekat> lista = db.vratiPoUslovu(pacijent);
+            List<ODObjekat> lista = db.vratiPoUslovuPacijent(pacijent);
 
             for (ODObjekat odo : lista) {
                 pacijenti.add((Pacijent) odo);

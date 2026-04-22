@@ -127,15 +127,15 @@ public class Pacijent implements ODObjekat {
         String uslov = "1=1";
 
         if (ime != null && !ime.trim().isEmpty()) {
-            uslov += " AND ime LIKE '%" + ime.trim() + "%'";
+            uslov += " AND p.ime LIKE '%" + ime.trim() + "%'";
         }
 
         if (prezime != null && !prezime.trim().isEmpty()) {
-            uslov += " AND prezime LIKE '%" + prezime.trim() + "%'";
+            uslov += " AND p.prezime LIKE '%" + prezime.trim() + "%'";
         }
 
         if (krvnaGrupa != null) {
-            uslov += " AND id_krvna_grupa = " + krvnaGrupa.getIdKrvnaGrupa();
+            uslov += " AND p.id_krvna_grupa = " + krvnaGrupa.getIdKrvnaGrupa();
         }
 
         return uslov;
@@ -188,6 +188,8 @@ public class Pacijent implements ODObjekat {
 
             KrvnaGrupa kg = new KrvnaGrupa();
             kg.setIdKrvnaGrupa(rs.getInt("id_krvna_grupa"));
+            kg.setAboTip(rs.getString("abo_tip"));
+            kg.setRhFaktor(rs.getString("rh_faktor"));
 
             Pacijent pacijent = new Pacijent();
 
@@ -198,6 +200,7 @@ public class Pacijent implements ODObjekat {
             pacijent.setDatumRodjenja(rs.getDate("datum_rodjenja").toLocalDate());
             pacijent.setMestoRodjenja(rs.getString("mesto_rodjenja"));
             pacijent.setMejl(rs.getString("mejl"));
+            // postavljanje krvne grupe
             pacijent.setKrvnaGrupa(kg);
 
             lista.add(pacijent);

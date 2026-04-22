@@ -261,7 +261,38 @@ public class PacijentDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSacuvajActionPerformed
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
-        // TODO add your handling code here:
+
+        // provera da li su uneta neophodna polja
+        if ("".equals(txtIme.getText()) || "".equals(txtPrezime.getText())
+                || cmbPol.getSelectedItem() == null || "".equals(txtDatumRodjenja.getText())
+                || "".equals(txtMestoRodjenja.getText()) || "".equals(txtMejl.getText())
+                || cmbKrvnaGrupa.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+        }
+        // kreiranje pacijenta
+        Pacijent pacijentIzmena = new Pacijent();
+
+        // postavljanje vrednosti
+        pacijentIzmena.setIme(txtIme.getText());
+        pacijentIzmena.setPrezime(txtPrezime.getText());
+        // datum
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        pacijentIzmena.setDatumRodjenja(
+                LocalDate.parse(txtDatumRodjenja.getText(), formater)
+        );
+        pacijentIzmena.setMestoRodjenja(txtMestoRodjenja.getText());
+        pacijentIzmena.setMejl(txtMejl.getText());
+        pacijentIzmena.setKrvnaGrupa((KrvnaGrupa) cmbKrvnaGrupa.getSelectedItem());
+        pacijentIzmena.setPol((Pol) cmbPol.getSelectedItem());
+
+        try {
+            GuiController.vratiInstancu().promeniPacijenta(pacijentIzmena);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом измене пацијента ! ",
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnIzmeniActionPerformed
 
     private void obradaModa() {
@@ -275,24 +306,7 @@ public class PacijentDialog extends javax.swing.JDialog {
         } else if (modForme == ModForme.MOD_IZMENA) {
             lblNaslov.setText("ИЗМЕНА ПАЦИЈЕНТА");
             btnSacuvaj.setVisible(false);
-            lblIdPacijenta.setVisible(false);
-            txtIdPacijenta.setVisible(false);
-
-        } else if (modForme == ModForme.MOD_PRIKAZ) {
-            lblNaslov.setText("ПРИКАЗ ПАЦИЈЕНТА");
-            btnSacuvaj.setVisible(false);
-            btnIzmeni.setVisible(false);
-
-            // onemogucavanje polja
             txtIdPacijenta.setEditable(false);
-            txtIme.setEditable(false);
-            txtPrezime.setEditable(false);
-            cmbPol.setEnabled(false);
-            txtDatumRodjenja.setVisible(false);
-            txtMestoRodjenja.setEditable(false);
-            txtMejl.setEditable(false);
-            cmbKrvnaGrupa.setEnabled(false);
-
             prikazPacijenta();
 
         }
@@ -319,11 +333,11 @@ public class PacijentDialog extends javax.swing.JDialog {
         txtIdPacijenta.setText("" + pacijent.getIdPacijent());
         txtIme.setText(pacijent.getIme());
         txtPrezime.setText(pacijent.getPrezime());
-        cmbPol.setSelectedItem(pacijent.getPol());
+        //cmbPol.setSelectedItem(""+pacijent.getPol());
         txtDatumRodjenja.setText("" + pacijent.getDatumRodjenja());
         txtMestoRodjenja.setText(pacijent.getMestoRodjenja());
         txtMejl.setText(pacijent.getMejl());
-        cmbKrvnaGrupa.setSelectedItem(pacijent.getKrvnaGrupa());
+        //cmbKrvnaGrupa.setSelectedItem(pacijent.getKrvnaGrupa().toString());
     }
 
     /**

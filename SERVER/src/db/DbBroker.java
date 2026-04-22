@@ -6,6 +6,7 @@ package db;
 
 import java.sql.*;
 import domen.ODObjekat;
+import domen.Pacijent;
 import java.util.List;
 
 /**
@@ -97,6 +98,8 @@ public class DbBroker {
         return objekti;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    
     // SPECIFIČNA ZA PREGLED
     public List<ODObjekat> vratiPoUslovuPregled(ODObjekat odo) throws Exception {
 
@@ -119,6 +122,29 @@ public class DbBroker {
         return objekti;
     }
 
+    // SPECIFIČNA ZA PACIJENTA
+    public List<ODObjekat> vratiPoUslovuPacijent(Pacijent p) throws Exception {
+
+        List<ODObjekat> lista;
+
+        String upit
+                = "SELECT p.id_pacijent, p.ime, p.prezime, p.pol, p.datum_rodjenja, "
+                + "p.mesto_rodjenja, p.mejl, p.id_krvna_grupa, "
+                + "kg.abo_tip, kg.rh_faktor "
+                + "FROM pacijent p "
+                + "JOIN krvna_grupa kg ON p.id_krvna_grupa = kg.id_krvna_grupa "
+                + "WHERE " + p.vratiUslov();
+
+        Statement st = konekcija.createStatement();
+        ResultSet rs = st.executeQuery(upit);
+
+        lista = p.napraviListu(rs);
+
+        return lista;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    
     public List<ODObjekat> vratiPoUslovu(ODObjekat odo) throws Exception {
 
         List<ODObjekat> objekti;
