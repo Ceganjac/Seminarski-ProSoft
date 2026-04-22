@@ -132,7 +132,7 @@ public class ServerController {
         try {
             db.connect();
 
-            List<ODObjekat> listaObjekata = db.vratiPoUslovuPregled(pregled);
+            List<ODObjekat> listaObjekata = db.vratiPregledeUslov(pregled);
 
             for (ODObjekat odo : listaObjekata) {
                 pregledi.add((Pregled) odo);
@@ -280,7 +280,7 @@ public class ServerController {
         }
     }
 
-    public List<Pacijent> vratiPacijentePoUslovu(Pacijent pacijent) throws Exception {
+    public List<Pacijent> vratiPacijenteUslov(Pacijent pacijent) throws Exception {
 
         List<Pacijent> pacijenti = new ArrayList<>();
         db = new DbBroker(port, username, password);
@@ -288,7 +288,7 @@ public class ServerController {
         try {
             db.connect();
 
-            List<ODObjekat> lista = db.vratiPoUslovuPacijent(pacijent);
+            List<ODObjekat> lista = db.vratiPacijenteUslov(pacijent);
 
             for (ODObjekat odo : lista) {
                 pacijenti.add((Pacijent) odo);

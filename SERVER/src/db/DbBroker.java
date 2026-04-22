@@ -101,7 +101,7 @@ public class DbBroker {
     ///////////////////////////////////////////////////////////////////////////
     
     // SPECIFIČNA ZA PREGLED
-    public List<ODObjekat> vratiPoUslovuPregled(ODObjekat odo) throws Exception {
+    public List<ODObjekat> vratiPregledeUslov(ODObjekat odo) throws Exception {
 
         List<ODObjekat> objekti;
 
@@ -123,7 +123,7 @@ public class DbBroker {
     }
 
     // SPECIFIČNA ZA PACIJENTA
-    public List<ODObjekat> vratiPoUslovuPacijent(Pacijent p) throws Exception {
+    public List<ODObjekat> vratiPacijenteUslov(Pacijent p) throws Exception {
 
         List<ODObjekat> lista;
 

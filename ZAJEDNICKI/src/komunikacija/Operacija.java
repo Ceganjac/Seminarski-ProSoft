@@ -9,7 +9,10 @@ public enum Operacija implements Serializable {
     PROMENI_PREGLED,
     VRATI_PREGLED_PO_ID,
     VRATI_SVE_PREGLEDE,
-    VRATI_PREGLEDE_USLOV,  
+    VRATI_PREGLEDE_USLOV, 
+    
+    // STAVKE PREGLEDA
+    VRATI_STAVKE_PREGLEDA,
     
     // LEKAR
     PRIJAVI_LEKARA,

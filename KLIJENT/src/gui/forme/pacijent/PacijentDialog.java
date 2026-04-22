@@ -34,6 +34,7 @@ public class PacijentDialog extends javax.swing.JDialog {
     public PacijentDialog(java.awt.Frame parent, boolean modal, Pacijent pacijent, ModForme modForme) {
         super(parent, modal);
         initComponents();
+        // postavljanje boje
         getContentPane().setBackground(Color.white);
         this.pacijent = pacijent;
         this.modForme = modForme;

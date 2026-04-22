@@ -5,6 +5,7 @@ import domen.KrvnaGrupa;
 import domen.Lekar;
 import domen.Pacijent;
 import domen.Pregled;
+import domen.StavkaPregleda;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -30,7 +31,7 @@ public class GuiController {
         izlazniTok = new ObjectOutputStream(soket.getOutputStream());
         ulazniTok = new ObjectInputStream(soket.getInputStream());
     }
-    
+
     //obezbeđuje singleton
     public static GuiController vratiInstancu() throws IOException {
         if (instanca == null) {
@@ -39,6 +40,7 @@ public class GuiController {
         return instanca;
     }
 // ================= LEKAR =================
+
     public Lekar prijaviLekara(Lekar lekar) throws Exception {
         Zahtev zahtev = new Zahtev(lekar, Operacija.PRIJAVI_LEKARA);
         izlazniTok.writeObject(zahtev);
@@ -123,7 +125,22 @@ public class GuiController {
         throw odgovor.getIzuzetak();
     }
 
-// ================= PACIJENT =================
+    // ================= STAVKE PREGLEDA =================
+     public List<StavkaPregleda> vratiSveStavke(Pregled pregled) throws Exception {
+        Zahtev zahtev = new Zahtev(pregled, Operacija.VRATI_STAVKE_PREGLEDA);
+        izlazniTok.writeObject(zahtev);
+        izlazniTok.flush();
+
+        Odgovor odgovor = (Odgovor) ulazniTok.readObject();
+        if (odgovor.getIzuzetak() == null) {
+            return (List<StavkaPregleda>) odgovor.getRezultat();
+        }
+        throw odgovor.getIzuzetak();
+    }
+    
+    
+    
+    // ================= PACIJENT =================
     public void kreirajPacijenta(Pacijent pacijent) throws Exception {
         Zahtev zahtev = new Zahtev(pacijent, Operacija.KREIRAJ_PACIJENTA);
         izlazniTok.writeObject(zahtev);
@@ -193,7 +210,7 @@ public class GuiController {
         throw odgovor.getIzuzetak();
     }
 
-// ================= DIJAGNOZA =================
+    // ================= DIJAGNOZA =================
     public List<Dijagnoza> vratiSveDijagnoze() throws Exception {
         Zahtev zahtev = new Zahtev(null, Operacija.VRATI_SVE_DIJAGNOZE);
         izlazniTok.writeObject(zahtev);
@@ -206,7 +223,7 @@ public class GuiController {
         throw odgovor.getIzuzetak();
     }
 
-// ================= KRVNA GRUPA =================
+    // ================= KRVNA GRUPA =================
     public List<KrvnaGrupa> vratiSveKrvneGrupe() throws Exception {
         Zahtev zahtev = new Zahtev(null, Operacija.VRATI_SVE_KRVNE_GRUPE);
         izlazniTok.writeObject(zahtev);
@@ -219,7 +236,7 @@ public class GuiController {
         throw odgovor.getIzuzetak();
     }
 
-// ================= SPECIJALIZACIJA =================
+    // ================= SPECIJALIZACIJA =================
     public void ubaciSpecijalizaciju(Object spec) throws Exception {
         Zahtev zahtev = new Zahtev(spec, Operacija.UBACI_SPECIJALIZACIJU);
         izlazniTok.writeObject(zahtev);

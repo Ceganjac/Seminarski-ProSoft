@@ -188,8 +188,6 @@ public class Pacijent implements ODObjekat {
 
             KrvnaGrupa kg = new KrvnaGrupa();
             kg.setIdKrvnaGrupa(rs.getInt("id_krvna_grupa"));
-            kg.setAboTip(rs.getString("abo_tip"));
-            kg.setRhFaktor(rs.getString("rh_faktor"));
 
             Pacijent pacijent = new Pacijent();
 

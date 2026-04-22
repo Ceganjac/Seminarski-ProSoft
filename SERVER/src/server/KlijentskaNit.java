@@ -11,6 +11,7 @@ import domen.Lekar;
 import domen.ODObjekat;
 import domen.Pacijent;
 import domen.Pregled;
+import domen.StavkaPregleda;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -19,6 +20,7 @@ import java.util.List;
 import komunikacija.Odgovor;
 import komunikacija.Operacija;
 import static komunikacija.Operacija.KREIRAJ_PREGLED;
+import static komunikacija.Operacija.VRATI_PREGLEDE_USLOV;
 import komunikacija.Zahtev;
 
 /**
@@ -97,6 +99,9 @@ public class KlijentskaNit extends Thread {
                                     .vratiPregledPoUslovu((Pregled) domenskiObjekat);
                             odgovor.setRezultat(pretragaPregleda);
                             break;
+                        // ================= STAVKE PREGLEDA =================
+                        case VRATI_STAVKE_PREGLEDA:
+                            break;
 
                         // ================= PACIJENT =================
                         case KREIRAJ_PACIJENTA:
@@ -116,7 +121,7 @@ public class KlijentskaNit extends Thread {
 
                         case VRATI_PACIJENTE_USLOV:
                             List<Pacijent> pacijentiUslov = ServerController.vratiInstancu()
-                                    .vratiPacijentePoUslovu((Pacijent) domenskiObjekat);
+                                    .vratiPacijenteUslov((Pacijent) domenskiObjekat);
                             odgovor.setRezultat(pacijentiUslov);
                             break;
 

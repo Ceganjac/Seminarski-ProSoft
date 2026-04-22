@@ -6,9 +6,7 @@ package gui.forme;
 
 import controller.GuiController;
 import domen.Lekar;
-import domen.ODObjekat;
-import java.io.IOException;
-import java.util.List;
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -27,6 +25,8 @@ public class PrijavaDialog extends javax.swing.JDialog {
     public PrijavaDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        // postavljanje boje
+        getContentPane().setBackground(Color.white);
     }
 
     /**
