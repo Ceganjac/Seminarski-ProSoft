@@ -282,18 +282,11 @@ public class ServerController {
 
     public List<Pacijent> vratiPacijenteUslov(Pacijent pacijent) throws Exception {
 
-        List<Pacijent> pacijenti = new ArrayList<>();
         db = new DbBroker(port, username, password);
 
         try {
             db.connect();
-
-            List<ODObjekat> lista = db.vratiPacijenteUslov(pacijent);
-
-            for (ODObjekat odo : lista) {
-                pacijenti.add((Pacijent) odo);
-            }
-
+            List<Pacijent> pacijenti = db.vratiPacijenteUslov(pacijent);
             db.commit();
             return pacijenti;
 

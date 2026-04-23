@@ -4,9 +4,14 @@
  */
 package db;
 
+import domen.KrvnaGrupa;
+import domen.Lekar;
 import java.sql.*;
 import domen.ODObjekat;
 import domen.Pacijent;
+import domen.Pregled;
+import domen.enumi.Pol;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -103,12 +108,10 @@ public class DbBroker {
     // SPECIFIČNA ZA PREGLED
     public List<ODObjekat> vratiPregledeUslov(ODObjekat odo) throws Exception {
 
-        List<ODObjekat> objekti;
-
         String upit
-                = "SELECT p.*,"
-                + " l.ime AS lekar_ime, l.prezime AS lekar_prezime,"
-                + " pa.ime AS pacijent_ime, pa.prezime AS pacijent_prezime "
+                = "SELECT p.*, "
+                + "l.ime AS lekar_ime, l.prezime AS lekar_prezime, "
+                + "pa.ime AS pacijent_ime, pa.prezime AS pacijent_prezime "
                 + "FROM pregled p "
                 + "JOIN lekar l ON p.id_lekar = l.id_lekar "
                 + "JOIN pacijent pa ON p.id_pacijent = pa.id_pacijent "
@@ -117,15 +120,49 @@ public class DbBroker {
         Statement st = konekcija.createStatement();
         ResultSet rs = st.executeQuery(upit);
 
-        objekti = odo.napraviListu(rs);
+        List<ODObjekat> lista = new ArrayList<>();
 
-        return objekti;
+        while (rs.next()) {
+
+            Pregled pr = new Pregled();
+
+            pr.setIdPregled(rs.getInt("id_pregled"));
+
+            Timestamp tz = rs.getTimestamp("datum_vreme_zavrsetka");
+            pr.setDatumVremeZavrsetka(tz != null ? tz.toLocalDateTime() : null);
+
+            Date dk = rs.getDate("datum_kontrole");
+            pr.setDatumKontrole(dk != null ? dk.toLocalDate() : null);
+
+            Time tk = rs.getTime("vreme_kontrole");
+            pr.setVremeKontrole(tk != null ? tk.toLocalTime() : null);
+
+            pr.setUkupnoVremeTrajanja(rs.getFloat("ukupno_vreme_trajanja"));
+            pr.setTerapija(rs.getString("terapija"));
+
+            // lekar
+            Lekar l = new Lekar();
+            l.setIdLekar(rs.getInt("id_lekar"));
+            l.setIme(rs.getString("lekar_ime"));
+            l.setPrezime(rs.getString("lekar_prezime"));
+
+            // pacijent
+            Pacijent p = new Pacijent();
+            p.setIdPacijent(rs.getInt("id_pacijent"));
+            p.setIme(rs.getString("pacijent_ime"));
+            p.setPrezime(rs.getString("pacijent_prezime"));
+
+            pr.setLekar(l);
+            pr.setPacijent(p);
+
+            lista.add(pr);
+        }
+
+        return lista;
     }
 
     // SPECIFIČNA ZA PACIJENTA
-    public List<ODObjekat> vratiPacijenteUslov(Pacijent p) throws Exception {
-
-        List<ODObjekat> lista;
+    public List<Pacijent> vratiPacijenteUslov(Pacijent p) throws Exception {
 
         String upit
                 = "SELECT p.id_pacijent, p.ime, p.prezime, p.pol, p.datum_rodjenja, "
@@ -138,9 +175,33 @@ public class DbBroker {
         Statement st = konekcija.createStatement();
         ResultSet rs = st.executeQuery(upit);
 
-        lista = p.napraviListu(rs);
+        List<Pacijent> pacijenti = new ArrayList();
 
-        return lista;
+        while (rs.next()) {
+
+            Pacijent pacijent = new Pacijent();
+            KrvnaGrupa kg = new KrvnaGrupa();
+
+            // pacijent
+            pacijent.setIdPacijent(rs.getInt("p.id_pacijent"));
+            pacijent.setIme(rs.getString("p.ime"));
+            pacijent.setPrezime(rs.getString("p.prezime"));
+            pacijent.setPol(Pol.valueOf(rs.getString("pol")));
+            pacijent.setDatumRodjenja(rs.getDate("p.datum_rodjenja").toLocalDate());
+            pacijent.setMestoRodjenja(rs.getString("p.mesto_rodjenja"));
+            pacijent.setMejl(rs.getString("p.mejl"));
+
+            // krvna grupa
+            kg.setIdKrvnaGrupa(rs.getInt("p.id_krvna_grupa"));
+            kg.setAboTip(rs.getString("kg.abo_tip"));
+            kg.setRhFaktor(rs.getString("kg.rh_faktor"));
+
+            pacijent.setKrvnaGrupa(kg);
+            pacijenti.add(pacijent);
+
+        }
+
+        return pacijenti;
     }
 
     ///////////////////////////////////////////////////////////////////////////
