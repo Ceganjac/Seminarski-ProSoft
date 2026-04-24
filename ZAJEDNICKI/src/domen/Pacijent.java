@@ -143,7 +143,13 @@ public class Pacijent implements ODObjekat {
 
     @Override
     public String vratiZaUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "ime = '" + ime + "', "
+                + "prezime = '" + prezime + "', "
+                + "pol = '" + pol.name() + "', "
+                + "datum_rodjenja = '" + datumRodjenja + "', "
+                + "mesto_rodjenja = '" + mestoRodjenja + "', "
+                + "mejl = '" + mejl + "', "
+                + "id_krvna_grupa = " + krvnaGrupa.getIdKrvnaGrupa();
     }
 
     @Override

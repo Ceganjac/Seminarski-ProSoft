@@ -106,7 +106,7 @@ public class DbBroker {
     ///////////////////////////////////////////////////////////////////////////
     
     // SPECIFIČNA ZA PREGLED
-    public List<ODObjekat> vratiPregledeUslov(ODObjekat odo) throws Exception {
+    public List<Pregled> vratiPregledeUslov(Pregled pregled) throws Exception {
 
         String upit
                 = "SELECT p.*, "
@@ -115,12 +115,12 @@ public class DbBroker {
                 + "FROM pregled p "
                 + "JOIN lekar l ON p.id_lekar = l.id_lekar "
                 + "JOIN pacijent pa ON p.id_pacijent = pa.id_pacijent "
-                + "WHERE " + odo.vratiUslov();
+                + "WHERE " + pregled.vratiUslov();
 
         Statement st = konekcija.createStatement();
         ResultSet rs = st.executeQuery(upit);
 
-        List<ODObjekat> lista = new ArrayList<>();
+        List<Pregled> pregledi = new ArrayList<>();
 
         while (rs.next()) {
 
@@ -155,10 +155,10 @@ public class DbBroker {
             pr.setLekar(l);
             pr.setPacijent(p);
 
-            lista.add(pr);
+            pregledi.add(pr);
         }
 
-        return lista;
+        return pregledi;
     }
 
     // SPECIFIČNA ZA PACIJENTA
@@ -256,8 +256,7 @@ public class DbBroker {
         System.out.println(upit);
 
         Statement s = konekcija.createStatement();
-        s.executeUpdate(upit);
-        s.close();
+       s.executeUpdate(upit);
     }
 
 }

@@ -11,6 +11,7 @@ import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPacijent;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -136,12 +137,6 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         lblPrezime.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblPrezime.setText("Презиме :");
 
-        txtIme.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtImeActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,17 +250,32 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Нисте селектовали пацијента !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Нисте селектовали пацијента !", "УПОЗОРЕЊЕ", 
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnPrikaziActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnObrisiActionPerformed
 
-    private void txtImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtImeActionPerformed
+        int selektovanRed = tblPacijenti.getSelectedRow();
+        if (selektovanRed == -1) {
+            JOptionPane.showMessageDialog(this, "Нисте селектовали пацијента !", "УПОЗОРЕЊЕ", 
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            Pacijent pacijent = modelTabele.getPacijent(selektovanRed);
+            try {
+                GuiController.vratiInstancu().obrisiPacijenta(pacijent);
+                JOptionPane.showMessageDialog(this, "Успешно брисање пацијента !", "ОБАВЕШТЕЊЕ", 
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Грешка приликом брисања пацијента !", "ГРЕШКА", 
+                        JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+
+        }
+
+    }//GEN-LAST:event_btnObrisiActionPerformed
 
     private void obradaModa() {
 

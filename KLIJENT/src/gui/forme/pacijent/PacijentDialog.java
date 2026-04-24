@@ -10,7 +10,6 @@ import domen.Pacijent;
 import domen.enumi.Pol;
 import gui.enumi.ModForme;
 import java.awt.Color;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -22,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author Aleksandar Čeganjac
  */
 public class PacijentDialog extends javax.swing.JDialog {
-
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PacijentDialog.class.getName());
 
     /**
@@ -30,12 +29,14 @@ public class PacijentDialog extends javax.swing.JDialog {
      */
     private final Pacijent pacijent;
     private final ModForme modForme;
-
+    
     public PacijentDialog(java.awt.Frame parent, boolean modal, Pacijent pacijent, ModForme modForme) {
         super(parent, modal);
         initComponents();
         // postavljanje boje
-        getContentPane().setBackground(Color.white);
+        getContentPane().setBackground(Color.WHITE);
+        btnIsprazniPolja.setBackground(Color.WHITE);
+        
         this.pacijent = pacijent;
         this.modForme = modForme;
         obradaModa();
@@ -70,6 +71,7 @@ public class PacijentDialog extends javax.swing.JDialog {
         cmbPol = new javax.swing.JComboBox<>();
         lblKrvnaGrupa = new javax.swing.JLabel();
         cmbKrvnaGrupa = new javax.swing.JComboBox<>();
+        btnIsprazniPolja = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -133,6 +135,14 @@ public class PacijentDialog extends javax.swing.JDialog {
         lblKrvnaGrupa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblKrvnaGrupa.setText("Крвна група : ");
 
+        btnIsprazniPolja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnIsprazniPolja.setText("ИСПРАЗНИ ПОЉА");
+        btnIsprazniPolja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIsprazniPoljaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,7 +176,8 @@ public class PacijentDialog extends javax.swing.JDialog {
                             .addComponent(txtDatumRodjenja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(txtMestoRodjenja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(txtMejl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(cmbKrvnaGrupa, javax.swing.GroupLayout.Alignment.TRAILING, 0, 200, Short.MAX_VALUE))))
+                            .addComponent(cmbKrvnaGrupa, javax.swing.GroupLayout.Alignment.TRAILING, 0, 200, Short.MAX_VALUE)))
+                    .addComponent(btnIsprazniPolja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
@@ -210,7 +221,9 @@ public class PacijentDialog extends javax.swing.JDialog {
                 .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnIsprazniPolja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         lblIdPacijenta.getAccessibleContext().setAccessibleName("");
@@ -234,7 +247,7 @@ public class PacijentDialog extends javax.swing.JDialog {
                 || cmbKrvnaGrupa.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
         }
-
+        
         Pacijent pacijentPr = new Pacijent();
         pacijentPr.setIme(txtIme.getText());
         pacijentPr.setPrezime(txtPrezime.getText());
@@ -247,9 +260,9 @@ public class PacijentDialog extends javax.swing.JDialog {
         pacijentPr.setMejl(txtMejl.getText());
         pacijentPr.setKrvnaGrupa((KrvnaGrupa) cmbKrvnaGrupa.getSelectedItem());
         pacijentPr.setPol((Pol) cmbPol.getSelectedItem());
-
+        
         try {
-
+            
             GuiController.vratiInstancu().kreirajPacijenta(pacijentPr);
             JOptionPane.showMessageDialog(this, "Успешно креиран пацијент ! ",
                     "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
@@ -274,20 +287,23 @@ public class PacijentDialog extends javax.swing.JDialog {
         Pacijent pacijentIzmena = new Pacijent();
 
         // postavljanje vrednosti
+        pacijentIzmena.setIdPacijent(pacijent.getIdPacijent());
         pacijentIzmena.setIme(txtIme.getText());
         pacijentIzmena.setPrezime(txtPrezime.getText());
         // datum
         DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        pacijentIzmena.setDatumRodjenja(
-                LocalDate.parse(txtDatumRodjenja.getText(), formater)
-        );
+        LocalDate datum = LocalDate.parse(txtDatumRodjenja.getText(),formater);
+        pacijentIzmena.setDatumRodjenja(datum);
+        
         pacijentIzmena.setMestoRodjenja(txtMestoRodjenja.getText());
         pacijentIzmena.setMejl(txtMejl.getText());
         pacijentIzmena.setKrvnaGrupa((KrvnaGrupa) cmbKrvnaGrupa.getSelectedItem());
         pacijentIzmena.setPol((Pol) cmbPol.getSelectedItem());
-
+        
         try {
             GuiController.vratiInstancu().promeniPacijenta(pacijentIzmena);
+            JOptionPane.showMessageDialog(this, "Успешно измењен пацијент ! ",
+                    "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Грешка приликом измене пацијента ! ",
                     "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
@@ -296,24 +312,34 @@ public class PacijentDialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnIzmeniActionPerformed
 
+    private void btnIsprazniPoljaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIsprazniPoljaActionPerformed
+        
+        txtIdPacijenta.setText("");
+        txtIme.setText("");
+        txtPrezime.setText("");
+        txtDatumRodjenja.setText("");
+        txtMestoRodjenja.setText("");
+        txtMejl.setText("");
+    }//GEN-LAST:event_btnIsprazniPoljaActionPerformed
+    
     private void obradaModa() {
-
+        
         if (modForme == ModForme.MOD_KREIRANJE) {
             lblNaslov.setText("КРЕИРАЊЕ ПАЦИЈЕНТА");
             btnIzmeni.setVisible(false);
             lblIdPacijenta.setVisible(false);
             txtIdPacijenta.setVisible(false);
-
+            
         } else if (modForme == ModForme.MOD_IZMENA) {
             lblNaslov.setText("ИЗМЕНА ПАЦИЈЕНТА");
             btnSacuvaj.setVisible(false);
             txtIdPacijenta.setEditable(false);
             prikazPacijenta();
-
+            
         }
-
+        
     }
-
+    
     private void obradaCmbModela() {
         // za pol
         cmbPol.setModel(new DefaultComboBoxModel<>(Pol.values()));
@@ -328,17 +354,22 @@ public class PacijentDialog extends javax.swing.JDialog {
             ex.printStackTrace();
         }
     }
-
+    
     private void prikazPacijenta() {
-
+        
         txtIdPacijenta.setText("" + pacijent.getIdPacijent());
         txtIme.setText(pacijent.getIme());
         txtPrezime.setText(pacijent.getPrezime());
-        //cmbPol.setSelectedItem(""+pacijent.getPol());
-        txtDatumRodjenja.setText("" + pacijent.getDatumRodjenja());
+        cmbPol.setSelectedItem("" + pacijent.getPol());
+
+        // datum
+        LocalDate datum = pacijent.getDatumRodjenja();
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        txtDatumRodjenja.setText(datum.format(formater));
+        
         txtMestoRodjenja.setText(pacijent.getMestoRodjenja());
         txtMejl.setText(pacijent.getMejl());
-        //cmbKrvnaGrupa.setSelectedItem(pacijent.getKrvnaGrupa().toString());
+        cmbKrvnaGrupa.setSelectedItem(pacijent.getKrvnaGrupa().toString());
     }
 
     /**
@@ -346,6 +377,7 @@ public class PacijentDialog extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIsprazniPolja;
     private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnSacuvaj;
     private javax.swing.JComboBox<KrvnaGrupa> cmbKrvnaGrupa;

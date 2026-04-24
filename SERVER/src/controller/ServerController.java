@@ -126,21 +126,15 @@ public class ServerController {
 
     public List<Pregled> vratiPregledPoUslovu(Pregled pregled) throws Exception {
 
-        List<Pregled> pregledi = new ArrayList<>();
         db = new DbBroker(port, username, password);
 
         try {
+            
             db.connect();
-
-            List<ODObjekat> listaObjekata = db.vratiPregledeUslov(pregled);
-
-            for (ODObjekat odo : listaObjekata) {
-                pregledi.add((Pregled) odo);
-            }
-
+            List<Pregled> pregledi = db.vratiPregledeUslov(pregled);
             db.commit();
             return pregledi;
-
+            
         } catch (SQLException ex) {
             db.rollback();
             throw ex;
