@@ -127,7 +127,10 @@ public class GuiController {
 
     // ================= STAVKE PREGLEDA =================
      public List<StavkaPregleda> vratiSveStavke(Pregled pregled) throws Exception {
-        Zahtev zahtev = new Zahtev(pregled, Operacija.VRATI_STAVKE_PREGLEDA);
+         
+        StavkaPregleda sp = new StavkaPregleda();
+        sp.setPregled(pregled);
+        Zahtev zahtev = new Zahtev(sp, Operacija.VRATI_STAVKE_PREGLEDA);
         izlazniTok.writeObject(zahtev);
         izlazniTok.flush();
 

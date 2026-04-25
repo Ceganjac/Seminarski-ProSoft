@@ -7,6 +7,7 @@ import domen.Lekar;
 import domen.ODObjekat;
 import domen.Pacijent;
 import domen.Pregled;
+import domen.StavkaPregleda;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -129,12 +130,12 @@ public class ServerController {
         db = new DbBroker(port, username, password);
 
         try {
-            
+
             db.connect();
             List<Pregled> pregledi = db.vratiPregledeUslov(pregled);
             db.commit();
             return pregledi;
-            
+
         } catch (SQLException ex) {
             db.rollback();
             throw ex;
@@ -183,6 +184,32 @@ public class ServerController {
 
             db.commit();
             return rezultat;
+
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
+
+    // ================= STAVKE PREGLEDA =================
+    public List<StavkaPregleda> vratiSveStavke(StavkaPregleda stavka) throws Exception {
+
+        db = new DbBroker(port, username, password);
+
+        try {
+            db.connect();
+
+            List<ODObjekat> lista = db.vratiPoUslovu(stavka);
+            List<StavkaPregleda> stavke = new ArrayList<>();
+            
+            for (ODObjekat odo : lista) {
+                stavke.add((StavkaPregleda) odo);
+            }
+
+            db.commit();
+            return stavke;
 
         } catch (SQLException ex) {
             db.rollback();

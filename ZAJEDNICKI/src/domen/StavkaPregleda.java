@@ -6,6 +6,7 @@ package domen;
 
 import java.sql.ResultSet;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -99,7 +100,11 @@ public class StavkaPregleda implements ODObjekat {
 
     @Override
     public String vratiUslov() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String uslov = "1=1";
+        if (pregled != null) {
+            uslov += " AND id_pregled = " + pregled.getIdPregled();
+        }
+        return uslov;
     }
 
     @Override
@@ -130,7 +135,29 @@ public class StavkaPregleda implements ODObjekat {
 
     @Override
     public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        List<ODObjekat> stavke = new ArrayList();
+
+        while (rs.next()) {
+            StavkaPregleda sp = new StavkaPregleda();
+            sp.setIdStavkaPregleda(rs.getInt("id_stavka_pregleda"));
+            sp.setNaziv(rs.getString("naziv"));
+            sp.setLekarskiNalaz(rs.getString("lekarski_nalaz"));
+            // vreme trajanja
+            sp.setVremeTrajanja(Duration.ofMinutes(rs.getInt("vreme_trajanja")));
+            // pregled
+            Pregled pregled = new Pregled();
+            pregled.setIdPregled(rs.getInt("id_pregled"));
+            sp.setPregled(pregled);
+            // dijagnoza
+            Dijagnoza dijagnoza = new Dijagnoza();
+            dijagnoza.setIdDijagnoza(rs.getInt("id_dijagnoza"));
+            sp.setDijagnoza(dijagnoza);
+            
+            stavke.add(sp);
+        }
+
+       return stavke;
     }
 
 }

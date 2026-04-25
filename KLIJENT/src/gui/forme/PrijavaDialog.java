@@ -25,6 +25,9 @@ public class PrijavaDialog extends javax.swing.JDialog {
     public PrijavaDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        txtKorisnickoIme.setText("i");
+        pwdLozinka.setText("i");
+        
         // postavljanje boje
         getContentPane().setBackground(Color.white);
     }

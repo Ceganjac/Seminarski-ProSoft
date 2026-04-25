@@ -10,6 +10,7 @@ import domen.StavkaPregleda;
 import gui.enumi.ModForme;
 import gui.komponente.TblModelStavkaPregleda;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -37,8 +38,8 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
         this.parent = parent;
 
         // funkcije
-        obradaTblModela();
         prikazPregleda();
+        ucitajStavke();
     }
 
     /**
@@ -173,8 +174,8 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtPacijent))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(txtDatumVremeZavrsetka))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDatumVremeZavrsetka, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtDatumKontrole))
@@ -195,7 +196,7 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtLekar)
                             .addComponent(txtIdPregleda)))
-                    .addComponent(scrTblStavke, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE))
+                    .addComponent(scrTblStavke))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
@@ -267,12 +268,7 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnPrikaziStavkuActionPerformed
 
-    private void obradaTblModela() {
-
-        //List<StavkaPregleda> stavke = GuiController.vratiInstancu().vrat
-        tblModel = new TblModelStavkaPregleda(new ArrayList());
-        tblStavkaPregleda.setModel(tblModel);
-    }
+    
 
     private void prikazPregleda() {
 
@@ -286,6 +282,21 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
 
         txtUkupnoVremeTrajanja.setText("" + pregled.getUkupnoVremeTrajanja());
         txtTerapija.setText(pregled.getTerapija());
+    }
+
+    private void ucitajStavke() {
+
+        List<StavkaPregleda> stavke;
+        try {
+            stavke = GuiController.vratiInstancu().vratiSveStavke(pregled);
+            tblModel = new TblModelStavkaPregleda(stavke);
+            tblStavkaPregleda.setModel(tblModel);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом учитавања ставки !",
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
     }
 
     /**

@@ -250,7 +250,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Нисте селектовали пацијента !", "УПОЗОРЕЊЕ", 
+            JOptionPane.showMessageDialog(this, "Нисте селектовали пацијента !", "УПОЗОРЕЊЕ",
                     JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnPrikaziActionPerformed
@@ -259,18 +259,25 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
 
         int selektovanRed = tblPacijenti.getSelectedRow();
         if (selektovanRed == -1) {
-            JOptionPane.showMessageDialog(this, "Нисте селектовали пацијента !", "УПОЗОРЕЊЕ", 
+            JOptionPane.showMessageDialog(this, "Нисте селектовали пацијента !", "УПОЗОРЕЊЕ",
                     JOptionPane.WARNING_MESSAGE);
         } else {
             Pacijent pacijent = modelTabele.getPacijent(selektovanRed);
             try {
                 GuiController.vratiInstancu().obrisiPacijenta(pacijent);
-                JOptionPane.showMessageDialog(this, "Успешно брисање пацијента !", "ОБАВЕШТЕЊЕ", 
+                JOptionPane.showMessageDialog(this, "Успешно брисање пацијента !", "ОБАВЕШТЕЊЕ",
                         JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Грешка приликом брисања пацијента !", "ГРЕШКА", 
-                        JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
+
+                if (ex instanceof java.sql.SQLException sqlEx && sqlEx.getErrorCode() == 1451) {
+                    JOptionPane.showMessageDialog(this, "Не можете обрисати пацијента, "
+                            + "постоје прегледи везани за њега !", "ГРЕШКА",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Грешка приликом брисања пацијента !", "ГРЕШКА",
+                            JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
+                }
             }
 
         }
