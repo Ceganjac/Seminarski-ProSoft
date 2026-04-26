@@ -84,13 +84,29 @@ public class StavkaPregleda implements ODObjekat {
 
     @Override
     public String vratiVrednostiAtributa() {
+
+        if (pregled == null) {
+            throw new RuntimeException("Pregled ne sme biti null u StavkaPregleda");
+        }
+
+        if (naziv == null || lekarskiNalaz == null) {
+            throw new RuntimeException("Naziv ili lekarski nalaz su null");
+        }
+
+        if (vremeTrajanja == null) {
+            throw new RuntimeException("Vreme trajanja je null");
+        }
+
+        if (dijagnoza == null) {
+            throw new RuntimeException("Dijagnoza je null");
+        }
+
         return pregled.getIdPregled() + ", "
                 + idStavkaPregleda + ", '"
                 + naziv + "', '"
                 + lekarskiNalaz + "', "
                 + vremeTrajanja.toMinutes() + ", "
-                + // ili seconds, zavisi kako čuvaš u bazi
-                dijagnoza.getIdDijagnoza();
+                + dijagnoza.getIdDijagnoza();
     }
 
     @Override
@@ -114,7 +130,7 @@ public class StavkaPregleda implements ODObjekat {
 
     @Override
     public void postaviId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.idStavkaPregleda = id;
     }
 
     @Override
@@ -153,11 +169,11 @@ public class StavkaPregleda implements ODObjekat {
             Dijagnoza dijagnoza = new Dijagnoza();
             dijagnoza.setIdDijagnoza(rs.getInt("id_dijagnoza"));
             sp.setDijagnoza(dijagnoza);
-            
+
             stavke.add(sp);
         }
 
-       return stavke;
+        return stavke;
     }
 
 }

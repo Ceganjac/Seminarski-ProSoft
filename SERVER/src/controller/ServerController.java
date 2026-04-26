@@ -7,6 +7,7 @@ import domen.Lekar;
 import domen.ODObjekat;
 import domen.Pacijent;
 import domen.Pregled;
+import domen.Specijalizacija;
 import domen.StavkaPregleda;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -115,7 +116,15 @@ public class ServerController {
 
         try {
             db.connect();
+
+            // promena pregleda
             db.promeni(pregled);
+
+            // dodavanje novih stavki
+            for (StavkaPregleda sp : pregled.getStavke()) {
+                db.ubaci(sp);
+            }
+
             db.commit();
         } catch (SQLException ex) {
             db.rollback();
@@ -203,7 +212,7 @@ public class ServerController {
 
             List<ODObjekat> lista = db.vratiPoUslovu(stavka);
             List<StavkaPregleda> stavke = new ArrayList<>();
-            
+
             for (ODObjekat odo : lista) {
                 stavke.add((StavkaPregleda) odo);
             }
@@ -379,4 +388,22 @@ public class ServerController {
 
         return null;
     }
+
+    // ================= SPECIJALIZACIJA =================
+    public void ubaciSpecijalizaciju(Specijalizacija spec) throws Exception {
+
+        db = new DbBroker(port, username, password);
+        try {
+            db.connect();
+            db.ubaci(spec);
+            db.commit();
+
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+
+    }
+
 }

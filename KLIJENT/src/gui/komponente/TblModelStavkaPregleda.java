@@ -54,6 +54,10 @@ public class TblModelStavkaPregleda extends AbstractTableModel {
     public StavkaPregleda getStavka(int rowIndex) {
         return stavke.get(rowIndex);
     }
+    
+    public List<StavkaPregleda> getStavke(){
+        return stavke;
+    }
 
     public void dodajStavku(StavkaPregleda stavka) {
         stavke.add(stavka);

@@ -11,6 +11,7 @@ import domen.Lekar;
 import domen.ODObjekat;
 import domen.Pacijent;
 import domen.Pregled;
+import domen.Specijalizacija;
 import domen.StavkaPregleda;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -155,7 +156,7 @@ public class KlijentskaNit extends Thread {
 
                         // ================= SPECIJALIZACIJA =================
                         case UBACI_SPECIJALIZACIJU:
-
+                            ServerController.vratiInstancu().ubaciSpecijalizaciju((Specijalizacija) domenskiObjekat);
                             break;
                     }
 

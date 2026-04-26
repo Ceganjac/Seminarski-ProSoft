@@ -4,12 +4,15 @@
  */
 package gui.forme.pregled;
 
+import controller.GuiController;
 import domen.Dijagnoza;
 import domen.StavkaPregleda;
 import gui.enumi.ModForme;
 import gui.komponente.TblModelStavkaPregleda;
 import java.awt.Color;
 import java.time.Duration;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -75,16 +78,10 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         lblIdStavke.setText("Ид ставке :");
         lblIdStavke.setPreferredSize(new java.awt.Dimension(80, 20));
 
-        txtIdStavke.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdStavkeActionPerformed(evt);
-            }
-        });
-
         lblDijagnoza.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblDijagnoza.setText("Дијагноза :");
 
-        btnSacuvajStavku.setBackground(new java.awt.Color(0, 153, 153));
+        btnSacuvajStavku.setBackground(new java.awt.Color(0, 204, 102));
         btnSacuvajStavku.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnSacuvajStavku.setForeground(new java.awt.Color(255, 255, 255));
         btnSacuvajStavku.setText("Сачувај ставку прегледа");
@@ -103,21 +100,9 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         lblNaziv.setText("Назив :");
         lblNaziv.setPreferredSize(new java.awt.Dimension(80, 20));
 
-        txtNaziv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNazivActionPerformed(evt);
-            }
-        });
-
         lblVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblVremeTrajanja.setText("Време трајања :");
         lblVremeTrajanja.setPreferredSize(new java.awt.Dimension(80, 20));
-
-        txtVremeTrajanja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVremeTrajanjaActionPerformed(evt);
-            }
-        });
 
         lblLekarskiNalaz.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblLekarskiNalaz.setText("Лекарски налаз :");
@@ -172,7 +157,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                 .addComponent(lblLekarskiNalaz, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(btnSacuvajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -182,9 +167,10 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
     private void btnSacuvajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajStavkuActionPerformed
 
-        if ("".equals(txtNaziv.getText()) || "".equals(txtVremeTrajanja.getText())
-                || cmbDijagnoza.getSelectedItem() == null || "".equals(txaLekarskiNalaz.getText())) {
-            JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+        if (txtNaziv.getText().isEmpty() || txtVremeTrajanja.getText().isEmpty()
+                || cmbDijagnoza.getSelectedItem() == null || txaLekarskiNalaz.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља!",
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -204,18 +190,6 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_btnSacuvajStavkuActionPerformed
-
-    private void txtIdStavkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdStavkeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdStavkeActionPerformed
-
-    private void txtNazivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNazivActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNazivActionPerformed
-
-    private void txtVremeTrajanjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVremeTrajanjaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVremeTrajanjaActionPerformed
 
     // obrada moda forme
     private void obradaModa() {
@@ -242,10 +216,20 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
     // obrada cmbDijagnoza
     private void obradaCmbDijagnoza() {
-        /* Dijagnoza[] nizDijagnoze = new Dijagnoza[dijagnoze.size()];
-        nizDijagnoze = dijagnoze.toArray(nizDijagnoze);
-        DefaultComboBoxModel<Dijagnoza> modelD = new DefaultComboBoxModel<>(nizDijagnoze);
-        cmbDijagnoza.setModel(modelD);*/
+        List<Dijagnoza> dijagnoze;
+        try {
+            dijagnoze = GuiController.vratiInstancu().vratiSveDijagnoze();
+            // null vrednost na vrh
+            dijagnoze.add(0, null);
+            Dijagnoza[] nizDijagnoze = new Dijagnoza[dijagnoze.size()];
+            nizDijagnoze = dijagnoze.toArray(nizDijagnoze);
+            DefaultComboBoxModel<Dijagnoza> modelD = new DefaultComboBoxModel<>(nizDijagnoze);
+            cmbDijagnoza.setModel(modelD);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом учитавања дијагноза ! "
+                    + "", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     /**

@@ -37,31 +37,14 @@
                           <Component id="lblUkupnoVremeTrajanja" alignment="0" max="32767" attributes="0"/>
                           <Component id="lblTerapija" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtPacijent" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtDatumVremeZavrsetka" pref="400" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtDatumKontrole" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtVremeKontrole" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtUkupnoVremeTrajanja" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtTerapija" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="txtPacijent" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtDatumVremeZavrsetka" pref="400" max="32767" attributes="0"/>
+                          <Component id="txtDatumKontrole" max="32767" attributes="0"/>
+                          <Component id="txtVremeKontrole" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtUkupnoVremeTrajanja" max="32767" attributes="0"/>
+                          <Component id="txtTerapija" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -294,7 +277,7 @@
     <Component class="javax.swing.JButton" name="btnPrikaziStavku">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="0" type="rgb"/>
+          <Color blue="66" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>

@@ -61,7 +61,7 @@ public class PrijavaDialog extends javax.swing.JDialog {
         lblLozinka.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblLozinka.setText("Лозинка :");
 
-        btnPrijava.setBackground(new java.awt.Color(0, 153, 153));
+        btnPrijava.setBackground(new java.awt.Color(0, 204, 102));
         btnPrijava.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnPrijava.setForeground(new java.awt.Color(255, 255, 255));
         btnPrijava.setText("Пријави се");

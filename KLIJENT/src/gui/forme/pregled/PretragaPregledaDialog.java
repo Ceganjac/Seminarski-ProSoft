@@ -9,7 +9,6 @@ import domen.Dijagnoza;
 import domen.Lekar;
 import domen.Pacijent;
 import domen.Pregled;
-import domen.StavkaPregleda;
 import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPregled;
@@ -80,7 +79,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         lblLekar.setText("Избор лекара :");
         lblLekar.setPreferredSize(new java.awt.Dimension(170, 14));
 
-        btnPretrazi.setBackground(new java.awt.Color(0, 153, 153));
+        btnPretrazi.setBackground(new java.awt.Color(0, 204, 102));
         btnPretrazi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnPretrazi.setForeground(new java.awt.Color(255, 255, 255));
         btnPretrazi.setText("Претражи");
@@ -106,7 +105,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(tblPregledi);
 
-        btnIzmeni.setBackground(new java.awt.Color(0, 153, 153));
+        btnIzmeni.setBackground(new java.awt.Color(0, 204, 102));
         btnIzmeni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnIzmeni.setForeground(new java.awt.Color(255, 255, 255));
         btnIzmeni.setText("Измени селектовани преглед");
@@ -116,7 +115,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
             }
         });
 
-        btnPrikazi.setBackground(new java.awt.Color(0, 153, 153));
+        btnPrikazi.setBackground(new java.awt.Color(0, 204, 102));
         btnPrikazi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnPrikazi.setForeground(new java.awt.Color(255, 255, 255));
         btnPrikazi.setText("Прикажи селектовани преглед");

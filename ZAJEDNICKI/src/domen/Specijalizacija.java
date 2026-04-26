@@ -15,6 +15,7 @@ public class Specijalizacija implements ODObjekat {
 
     private int idSpecijalizacija;
     private String naziv;
+    private int trajanje;
 
     public Specijalizacija() {
     }
@@ -22,6 +23,14 @@ public class Specijalizacija implements ODObjekat {
     public Specijalizacija(int idSpecijalizacija, String naziv) {
         this.idSpecijalizacija = idSpecijalizacija;
         this.naziv = naziv;
+    }
+
+    public int getTrajanje() {
+        return trajanje;
+    }
+
+    public void setTrajanje(int trajanje) {
+        this.trajanje = trajanje;
     }
 
     public int getIdSpecijalizacija() {
@@ -43,7 +52,6 @@ public class Specijalizacija implements ODObjekat {
     @Override
     public String vratiVrednostiAtributa() {
         return idSpecijalizacija + ", '" + naziv + "'";
-
     }
 
     @Override
@@ -63,7 +71,7 @@ public class Specijalizacija implements ODObjekat {
 
     @Override
     public void postaviId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.idSpecijalizacija = id;
     }
 
     @Override

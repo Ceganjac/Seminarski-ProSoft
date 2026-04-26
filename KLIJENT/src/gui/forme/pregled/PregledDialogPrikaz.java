@@ -131,7 +131,7 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
         tblStavkaPregleda.setSelectionBackground(new java.awt.Color(255, 255, 255));
         scrTblStavke.setViewportView(tblStavkaPregleda);
 
-        btnPrikaziStavku.setBackground(new java.awt.Color(0, 153, 153));
+        btnPrikaziStavku.setBackground(new java.awt.Color(0, 204, 102));
         btnPrikaziStavku.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnPrikaziStavku.setForeground(new java.awt.Color(255, 255, 255));
         btnPrikaziStavku.setText("Прикажи селектовану ставку");
@@ -169,25 +169,14 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
                             .addComponent(lblDatumVremeKontrole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblUkupnoVremeTrajanja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblTerapija, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPacijent))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDatumVremeZavrsetka, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDatumKontrole))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVremeKontrole))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtUkupnoVremeTrajanja))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTerapija))))
+                            .addComponent(txtPacijent, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtDatumVremeZavrsetka, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                            .addComponent(txtDatumKontrole)
+                            .addComponent(txtVremeKontrole)
+                            .addComponent(txtUkupnoVremeTrajanja)
+                            .addComponent(txtTerapija)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblIdPregleda, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -4,10 +4,13 @@
  */
 package gui.forme.specijalizacija;
 
+import controller.GuiController;
 import domen.Pacijent;
 import domen.Specijalizacija;
 import gui.enumi.ModForme;
 import java.awt.Color;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,8 +46,10 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
 
         lblNaslov = new javax.swing.JLabel();
         lblNaziv = new javax.swing.JLabel();
-        txtNaziv = new javax.swing.JTextField();
+        txtTrajanje = new javax.swing.JTextField();
         btnUbaci = new javax.swing.JButton();
+        lblTrajanje = new javax.swing.JLabel();
+        txtNaziv = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -54,12 +59,6 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
 
         lblNaziv.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblNaziv.setText("Назив :");
-
-        txtNaziv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNazivActionPerformed(evt);
-            }
-        });
 
         btnUbaci.setBackground(new java.awt.Color(0, 204, 102));
         btnUbaci.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -71,19 +70,26 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
             }
         });
 
+        lblTrajanje.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblTrajanje.setText("Трајање (у годинама):");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblNaslov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnUbaci, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNaziv, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)))
+                    .addComponent(btnUbaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNaziv, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(txtTrajanje, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
@@ -95,6 +101,10 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(btnUbaci, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
@@ -103,12 +113,26 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNazivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNazivActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNazivActionPerformed
-
     private void btnUbaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbaciActionPerformed
-        // TODO add your handling code here:
+        if (txtNaziv.getText().isEmpty() || txtTrajanje.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља!",
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Specijalizacija spec = new Specijalizacija();
+        spec.setNaziv(txtNaziv.getText());
+        spec.setTrajanje(Integer.parseInt(txtTrajanje.getText()));
+
+        try {
+            // slanje kontroleru
+            GuiController.vratiInstancu().ubaciSpecijalizaciju(spec);
+            JOptionPane.showMessageDialog(this, "Успешно додата специјализација !",
+                    "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом убацивања специјализације !",
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnUbaciActionPerformed
 
     /**
@@ -119,6 +143,8 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnUbaci;
     private javax.swing.JLabel lblNaslov;
     private javax.swing.JLabel lblNaziv;
+    private javax.swing.JLabel lblTrajanje;
     private javax.swing.JTextField txtNaziv;
+    private javax.swing.JTextField txtTrajanje;
     // End of variables declaration//GEN-END:variables
 }
