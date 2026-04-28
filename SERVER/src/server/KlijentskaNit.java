@@ -22,6 +22,7 @@ import komunikacija.Odgovor;
 import komunikacija.Operacija;
 import static komunikacija.Operacija.KREIRAJ_PREGLED;
 import static komunikacija.Operacija.VRATI_PREGLEDE_USLOV;
+import static komunikacija.Operacija.VRATI_STAVKE_PREGLEDA;
 import komunikacija.Zahtev;
 
 /**
@@ -105,6 +106,9 @@ public class KlijentskaNit extends Thread {
                             List<StavkaPregleda> stavke = ServerController.vratiInstancu()
                                     .vratiStavkeUslov((Pregled) domenskiObjekat);
                             odgovor.setRezultat(stavke);
+                            break;
+                        case IZMENI_STAVKU_PREGLEDA:
+                            
                             break;
 
                         // ================= PACIJENT =================

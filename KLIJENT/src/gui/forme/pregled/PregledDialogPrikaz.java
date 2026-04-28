@@ -248,8 +248,8 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
         int selektovaniRed = tblStavkaPregleda.getSelectedRow();
 
         if (selektovaniRed != -1) {
-            
-            StavkaPregleda stavka = new StavkaPregleda();
+
+            StavkaPregleda stavka = tblModel.getStavka(selektovaniRed);
             StavkaPregledaDialogPrikaz dialog = new StavkaPregledaDialogPrikaz(parent, true, stavka);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);

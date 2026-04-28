@@ -116,16 +116,10 @@ public class ServerController {
 
         try {
             db.connect();
-
             // promena pregleda
             db.promeni(pregled);
-
-            // dodavanje novih stavki
-            for (StavkaPregleda sp : pregled.getStavke()) {
-                db.ubaci(sp);
-            }
-
             db.commit();
+
         } catch (SQLException ex) {
             db.rollback();
             throw ex;
@@ -212,6 +206,23 @@ public class ServerController {
             List<StavkaPregleda> stavke = db.vratiStavkeUslov(pregled);
             db.commit();
             return stavke;
+
+        } catch (SQLException ex) {
+            db.rollback();
+            throw ex;
+        } finally {
+            db.disconnect();
+        }
+    }
+
+    public void izmeniStavkuPregleda(StavkaPregleda sp) throws Exception {
+
+        db = new DbBroker(port, username, password);
+
+        try {
+            db.connect();
+            db.promeni(sp);
+            db.commit();
 
         } catch (SQLException ex) {
             db.rollback();

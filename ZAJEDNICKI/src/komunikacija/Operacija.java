@@ -13,6 +13,7 @@ public enum Operacija implements Serializable {
     
     // STAVKE PREGLEDA
     VRATI_STAVKE_PREGLEDA,
+    IZMENI_STAVKU_PREGLEDA,
     
     // LEKAR
     PRIJAVI_LEKARA,

@@ -64,9 +64,12 @@ public class StavkaPregledaDialogPrikaz extends javax.swing.JDialog {
         lblIdStavke.setText("Ид ставке :");
         lblIdStavke.setPreferredSize(new java.awt.Dimension(80, 20));
 
+        txtIdStavke.setEditable(false);
+
         lblDijagnoza.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblDijagnoza.setText("Дијагноза :");
 
+        txaLekarskiNalaz.setEditable(false);
         txaLekarskiNalaz.setColumns(20);
         txaLekarskiNalaz.setRows(5);
         txaLekarskiNalaz.setPreferredSize(new java.awt.Dimension(240, 80));
@@ -76,12 +79,18 @@ public class StavkaPregledaDialogPrikaz extends javax.swing.JDialog {
         lblNaziv.setText("Назив :");
         lblNaziv.setPreferredSize(new java.awt.Dimension(80, 20));
 
+        txtNaziv.setEditable(false);
+
         lblVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblVremeTrajanja.setText("Време трајања :");
         lblVremeTrajanja.setPreferredSize(new java.awt.Dimension(80, 20));
 
+        txtVremeTrajanja.setEditable(false);
+
         lblLekarskiNalaz.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblLekarskiNalaz.setText("Лекарски налаз :");
+
+        txtDijagnoza.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,7 +170,7 @@ public class StavkaPregledaDialogPrikaz extends javax.swing.JDialog {
         txtIdStavke.setText("" + stavkaPregleda.getIdStavkaPregleda());
         txtNaziv.setText("" + stavkaPregleda.getNaziv());
         txtVremeTrajanja.setText("" + stavkaPregleda.getVremeTrajanja());
-        txtDijagnoza.setText("" + stavkaPregleda.getDijagnoza().toString());
+        txtDijagnoza.setText("" + stavkaPregleda.getDijagnoza());
         txaLekarskiNalaz.setText("" + stavkaPregleda.getLekarskiNalaz());
 
     }

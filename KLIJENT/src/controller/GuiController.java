@@ -139,6 +139,20 @@ public class GuiController {
         }
         throw odgovor.getIzuzetak();
     }
+     
+     public List<StavkaPregleda> promeniStavku(StavkaPregleda sp) throws Exception {
+         
+         
+        Zahtev zahtev = new Zahtev(sp, Operacija.IZMENI_STAVKU_PREGLEDA);
+        izlazniTok.writeObject(zahtev);
+        izlazniTok.flush();
+
+        Odgovor odgovor = (Odgovor) ulazniTok.readObject();
+        if (odgovor.getIzuzetak() == null) {
+            return (List<StavkaPregleda>) odgovor.getRezultat();
+        }
+        throw odgovor.getIzuzetak();
+    }
     
     
     

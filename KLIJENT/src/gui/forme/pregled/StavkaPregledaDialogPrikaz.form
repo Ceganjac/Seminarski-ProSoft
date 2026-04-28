@@ -112,6 +112,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtIdStavke">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDijagnoza">
       <Properties>
@@ -130,6 +133,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="txaLekarskiNalaz">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -151,6 +155,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNaziv">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblVremeTrajanja">
       <Properties>
@@ -164,6 +171,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtVremeTrajanja">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLekarskiNalaz">
       <Properties>
@@ -174,6 +184,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDijagnoza">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

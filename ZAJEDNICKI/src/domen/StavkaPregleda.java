@@ -125,7 +125,15 @@ public class StavkaPregleda implements ODObjekat {
 
     @Override
     public String vratiZaUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        if (naziv == null || lekarskiNalaz == null || vremeTrajanja == null || dijagnoza == null) {
+            throw new RuntimeException("Nisu postavljeni svi podaci za update");
+        }
+
+        return "naziv = '" + naziv + "', "
+                + "lekarski_nalaz = '" + lekarskiNalaz + "', "
+                + "vreme_trajanja = " + vremeTrajanja.toMinutes() + ", "
+                + "id_dijagnoza = " + dijagnoza.getIdDijagnoza();
     }
 
     @Override

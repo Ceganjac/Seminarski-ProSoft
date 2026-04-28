@@ -12,6 +12,7 @@ import domen.StavkaPregleda;
 import gui.enumi.ModForme;
 import gui.komponente.TblModelStavkaPregleda;
 import java.awt.Color;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -399,7 +400,34 @@ public class PregledDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSacuvajPregledActionPerformed
 
     private void btnSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajIzmeneActionPerformed
-        // TODO add your handling code here:
+
+        // provera da li su uneta neophodna polja
+        if (cmbLekar.getSelectedItem() == null || cmbPacijent.getSelectedItem() == null
+                || "".equals(txtTerapija.getText()) || "".equals(txtDatumKontrole.getText())
+                || "".equals(txtVremeKontrole.getText()) || "".equals(txtTerapija.getText())) {
+            JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Pregled pi = new Pregled();
+        pi.setIdPregled(Integer.parseInt(txtIdPregleda.getText()));
+        pi.setLekar((Lekar) cmbLekar.getSelectedItem());
+        pi.setPacijent((Pacijent) cmbPacijent.getSelectedItem());
+        pi.setDatumVremeZavrsetka(LocalDateTime.parse(txtDatumVremeZavrsetka.getText()));
+        pi.setDatumKontrole(LocalDate.parse(txtDatumKontrole.getText()));
+        pi.setVremeKontrole(LocalTime.parse(txtVremeKontrole.getText()));
+        pi.setUkupnoVremeTrajanja(Float.parseFloat(txtUkupnoVremeTrajanja.getText()));
+        pi.setTerapija("" + txtTerapija.getText());
+
+        try {
+            GuiController.vratiInstancu().promeniPregled(pi);
+            JOptionPane.showMessageDialog(this, "Успешна измена прегледа ! ", "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом измене прегледа ! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_btnSacuvajIzmeneActionPerformed
 
     private void btnIzmeniStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniStavkuActionPerformed

@@ -210,7 +210,7 @@ public class DbBroker {
     // SPECIFIČNA ZA STAVKE
     public List<StavkaPregleda> vratiStavkeUslov(Pregled pregled) throws Exception {
 
-        String upit = "SELECT *"
+        String upit = "SELECT * "
                 + "FROM stavka_pregleda sp "
                 + "JOIN dijagnoza d ON sp.id_dijagnoza = d.id_dijagnoza "
                 + "WHERE sp.id_pregled = " + pregled.getIdPregled();
