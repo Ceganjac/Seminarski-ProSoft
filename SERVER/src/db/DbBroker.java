@@ -4,13 +4,16 @@
  */
 package db;
 
+import domen.Dijagnoza;
 import domen.KrvnaGrupa;
 import domen.Lekar;
 import java.sql.*;
 import domen.ODObjekat;
 import domen.Pacijent;
 import domen.Pregled;
+import domen.StavkaPregleda;
 import domen.enumi.Pol;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,6 +207,46 @@ public class DbBroker {
         return pacijenti;
     }
 
+    // SPECIFIČNA ZA STAVKE
+    public List<StavkaPregleda> vratiStavkeUslov(Pregled pregled) throws Exception {
+
+        String upit = "SELECT *"
+                + "FROM stavka_pregleda sp "
+                + "JOIN dijagnoza d ON sp.id_dijagnoza = d.id_dijagnoza "
+                + "WHERE sp.id_pregled = " + pregled.getIdPregled();
+
+        Statement st = konekcija.createStatement();
+        ResultSet rs = st.executeQuery(upit);
+
+        List<StavkaPregleda> lista = new ArrayList<>();
+
+        while (rs.next()) {
+
+            StavkaPregleda sp = new StavkaPregleda();
+
+            sp.setIdStavkaPregleda(rs.getInt("id_stavka_pregleda"));
+            sp.setNaziv(rs.getString("naziv"));
+            sp.setLekarskiNalaz(rs.getString("lekarski_nalaz"));
+            sp.setVremeTrajanja(Duration.ofMinutes(rs.getInt("vreme_trajanja")));
+
+            // pregled
+            Pregled pr = new Pregled();
+            pr.setIdPregled(rs.getInt("id_pregled"));
+            sp.setPregled(pr);
+
+            // dijagnoza
+            Dijagnoza d = new Dijagnoza();
+            d.setIdDijagnoza(rs.getInt("id_dijagnoza"));
+            d.setSifra(rs.getString("sifra"));
+            d.setSrpskiNaziv(rs.getString("srpski_naziv"));
+            sp.setDijagnoza(d);
+
+            lista.add(sp);
+        }
+
+        return lista;
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     
     public List<ODObjekat> vratiPoUslovu(ODObjekat odo) throws Exception {
@@ -256,7 +299,7 @@ public class DbBroker {
         System.out.println(upit);
 
         Statement s = konekcija.createStatement();
-       s.executeUpdate(upit);
+        s.executeUpdate(upit);
     }
 
 }

@@ -248,16 +248,15 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
         int selektovaniRed = tblStavkaPregleda.getSelectedRow();
 
         if (selektovaniRed != -1) {
+            
             StavkaPregleda stavka = new StavkaPregleda();
-            StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme, tblModel);
+            StavkaPregledaDialogPrikaz dialog = new StavkaPregledaDialogPrikaz(parent, true, stavka);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Нисте селектовали ставку прегледа !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnPrikaziStavkuActionPerformed
-
-    
 
     private void prikazPregleda() {
 
@@ -277,12 +276,12 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
 
         List<StavkaPregleda> stavke;
         try {
-            stavke = GuiController.vratiInstancu().vratiSveStavke(pregled);
+            stavke = GuiController.vratiInstancu().vratiStavkeUslov(pregled);
             tblModel = new TblModelStavkaPregleda(stavke);
             tblStavkaPregleda.setModel(tblModel);
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Грешка приликом учитавања ставки !",
+            JOptionPane.showMessageDialog(this, "Грешка приликом учитавања ставки прегледа !",
                     "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }

@@ -102,8 +102,8 @@ public class KlijentskaNit extends Thread {
                             break;
                         // ================= STAVKE PREGLEDA =================
                         case VRATI_STAVKE_PREGLEDA:
-                            List<StavkaPregleda> stavke = ServerController.vratiInstancu().
-                                    vratiSveStavke((StavkaPregleda) domenskiObjekat);
+                            List<StavkaPregleda> stavke = ServerController.vratiInstancu()
+                                    .vratiStavkeUslov((Pregled) domenskiObjekat);
                             odgovor.setRezultat(stavke);
                             break;
 

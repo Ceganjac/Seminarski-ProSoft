@@ -12,6 +12,7 @@ import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPacijent;
 import java.awt.Color;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -27,7 +28,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
      */
     private final java.awt.Frame parent;
     private final ModFormePretrazi modForme;
-    private TblModelPacijent modelTabele;
+    private TblModelPacijent tblModel;
 
     public PretragaPacijentaDialog(java.awt.Frame parent, boolean modal, ModFormePretrazi modForme) {
         super(parent, modal);
@@ -41,6 +42,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         // funkcije
         obradaModa();
         obradaCmbModela();
+        obradaTblModela();
     }
 
     /**
@@ -219,8 +221,8 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             List<Pacijent> pacijenti = GuiController.vratiInstancu().vratiPacijenteUslov(pacijentKr);
 
             // postavljanje modela tabele
-            modelTabele = new TblModelPacijent(pacijenti);
-            tblPacijenti.setModel(modelTabele);
+            tblModel = new TblModelPacijent(pacijenti);
+            tblPacijenti.setModel(tblModel);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -233,7 +235,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         int selektovanRed = tblPacijenti.getSelectedRow();
         if (selektovanRed != -1) {
             // uzimanje pacijenta iz modela
-            Pacijent pacijent = modelTabele.getPacijent(selektovanRed);
+            Pacijent pacijent = tblModel.getPacijent(selektovanRed);
             PacijentDialog dialog = new PacijentDialog(parent, true, pacijent, ModForme.MOD_IZMENA);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
@@ -245,7 +247,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
     private void btnPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziActionPerformed
         int red = tblPacijenti.getSelectedRow();
         if (red != -1) {
-            Pacijent pacijent = modelTabele.getPacijent(red);
+            Pacijent pacijent = tblModel.getPacijent(red);
             PacijentDialogPrikaz dialog = new PacijentDialogPrikaz(parent, true, pacijent);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
@@ -262,7 +264,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Нисте селектовали пацијента !", "УПОЗОРЕЊЕ",
                     JOptionPane.WARNING_MESSAGE);
         } else {
-            Pacijent pacijent = modelTabele.getPacijent(selektovanRed);
+            Pacijent pacijent = tblModel.getPacijent(selektovanRed);
             try {
                 GuiController.vratiInstancu().obrisiPacijenta(pacijent);
                 JOptionPane.showMessageDialog(this, "Успешно брисање пацијента !", "ОБАВЕШТЕЊЕ",
@@ -322,6 +324,11 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Грешка приликом учитавања крвних група !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
+    }
+    
+    private void obradaTblModela(){
+        tblModel = new TblModelPacijent(new ArrayList<>());
+        tblPacijenti.setModel(tblModel);
     }
 
     /**

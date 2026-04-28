@@ -46,7 +46,7 @@ public class PregledDialog extends javax.swing.JDialog {
         // funkcije
         obradaCmbModela();
         obradaModa();
-        obradaTblModela();
+        ucitajStavke();
     }
 
     /**
@@ -78,7 +78,7 @@ public class PregledDialog extends javax.swing.JDialog {
         tblStavkaPregleda = new javax.swing.JTable();
         btnDodajStavku = new javax.swing.JButton();
         btnSacuvajPregled = new javax.swing.JButton();
-        btnIzmeniPregled = new javax.swing.JButton();
+        btnSacuvajIzmene = new javax.swing.JButton();
         btnIzmeniStavku = new javax.swing.JButton();
         btnPrikaziStavku = new javax.swing.JButton();
         lblDatumVremeKontrole1 = new javax.swing.JLabel();
@@ -155,7 +155,7 @@ public class PregledDialog extends javax.swing.JDialog {
         tblStavkaPregleda.setSelectionBackground(new java.awt.Color(255, 255, 255));
         scrTblStavke.setViewportView(tblStavkaPregleda);
 
-        btnDodajStavku.setBackground(new java.awt.Color(0, 153, 153));
+        btnDodajStavku.setBackground(new java.awt.Color(0, 204, 102));
         btnDodajStavku.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnDodajStavku.setForeground(new java.awt.Color(255, 255, 255));
         btnDodajStavku.setText("Додај ставку прегледа");
@@ -165,7 +165,7 @@ public class PregledDialog extends javax.swing.JDialog {
             }
         });
 
-        btnSacuvajPregled.setBackground(new java.awt.Color(0, 153, 153));
+        btnSacuvajPregled.setBackground(new java.awt.Color(0, 204, 102));
         btnSacuvajPregled.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnSacuvajPregled.setForeground(new java.awt.Color(255, 255, 255));
         btnSacuvajPregled.setText("САЧУВАЈ ПРЕГЛЕД");
@@ -175,17 +175,17 @@ public class PregledDialog extends javax.swing.JDialog {
             }
         });
 
-        btnIzmeniPregled.setBackground(new java.awt.Color(0, 153, 153));
-        btnIzmeniPregled.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnIzmeniPregled.setForeground(new java.awt.Color(255, 255, 255));
-        btnIzmeniPregled.setText("ИЗМЕНИ ПРЕГЛЕД");
-        btnIzmeniPregled.addActionListener(new java.awt.event.ActionListener() {
+        btnSacuvajIzmene.setBackground(new java.awt.Color(0, 204, 102));
+        btnSacuvajIzmene.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnSacuvajIzmene.setForeground(new java.awt.Color(255, 255, 255));
+        btnSacuvajIzmene.setText("САЧУВАЈ ИЗМЕНЕ");
+        btnSacuvajIzmene.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIzmeniPregledActionPerformed(evt);
+                btnSacuvajIzmeneActionPerformed(evt);
             }
         });
 
-        btnIzmeniStavku.setBackground(new java.awt.Color(0, 153, 153));
+        btnIzmeniStavku.setBackground(new java.awt.Color(0, 204, 102));
         btnIzmeniStavku.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnIzmeniStavku.setForeground(new java.awt.Color(255, 255, 255));
         btnIzmeniStavku.setText("Измени селектовану ставку");
@@ -195,7 +195,7 @@ public class PregledDialog extends javax.swing.JDialog {
             }
         });
 
-        btnPrikaziStavku.setBackground(new java.awt.Color(0, 153, 153));
+        btnPrikaziStavku.setBackground(new java.awt.Color(0, 204, 102));
         btnPrikaziStavku.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnPrikaziStavku.setForeground(new java.awt.Color(255, 255, 255));
         btnPrikaziStavku.setText("Прикажи селектовану ставку");
@@ -222,7 +222,7 @@ public class PregledDialog extends javax.swing.JDialog {
                     .addComponent(scrTblStavke, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
                     .addComponent(btnDodajStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSacuvajPregled, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnIzmeniPregled, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSacuvajIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnIzmeniStavku, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPrikaziStavku, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -300,7 +300,7 @@ public class PregledDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIzmeniStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIzmeniPregled, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSacuvajIzmene, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPrikaziStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
@@ -377,30 +377,30 @@ public class PregledDialog extends javax.swing.JDialog {
             pregled.setDatumKontrole(datumKontrole);
             pregled.setVremeKontrole(vremeKontrole);
             pregled.setTerapija(txtTerapija.getText());
-            
+
             // stavke pregleda
             List<StavkaPregleda> stavke = tblModel.getStavke();
-            
-            for(StavkaPregleda sp:stavke){
+
+            for (StavkaPregleda sp : stavke) {
                 sp.setPregled(pregled);
             }
-            
+
             pregled.setStavke(stavke);
 
             GuiController.vratiInstancu().promeniPregled(pregled);
-            
-             JOptionPane.showMessageDialog(this, "Успешно чување прегледа !", 
+
+            JOptionPane.showMessageDialog(this, "Успешно чување прегледа !",
                     "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Грешка приликом чувања прегледа !", 
+            JOptionPane.showMessageDialog(this, "Грешка приликом чувања прегледа !",
                     "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnSacuvajPregledActionPerformed
 
-    private void btnIzmeniPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniPregledActionPerformed
+    private void btnSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajIzmeneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnIzmeniPregledActionPerformed
+    }//GEN-LAST:event_btnSacuvajIzmeneActionPerformed
 
     private void btnIzmeniStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniStavkuActionPerformed
         int selektovaniRed = tblStavkaPregleda.getSelectedRow();
@@ -437,7 +437,7 @@ public class PregledDialog extends javax.swing.JDialog {
             txtDatumVremeZavrsetka.setVisible(false);
 
             // sakrivanje dugmeta
-            btnIzmeniPregled.setVisible(false);
+            btnSacuvajIzmene.setVisible(false);
             btnIzmeniStavku.setVisible(false);
             btnPrikaziStavku.setVisible(false);
 
@@ -454,14 +454,7 @@ public class PregledDialog extends javax.swing.JDialog {
             btnDodajStavku.setVisible(false);
             btnPrikaziStavku.setVisible(false);
 
-            // prikaz podataka
-            cmbLekar.setSelectedItem(pregledGlobal.getLekar());
-            cmbPacijent.setSelectedItem(pregledGlobal.getPacijent());
-            // datumKontrole i vremeKontrole kontrole
-
-            // vremeKontrole trajanja
-            txtUkupnoVremeTrajanja.setText("" + pregledGlobal.getUkupnoVremeTrajanja());
-            txtTerapija.setText("" + pregledGlobal.getTerapija());
+            prikazPregleda();
 
         } else if (modForme == ModForme.MOD_PRIKAZ) {
             lblNaslov.setText("ПРИКАЗ ПРЕГЛЕДА");
@@ -469,7 +462,7 @@ public class PregledDialog extends javax.swing.JDialog {
             // sakrivanje dugmadi
             btnKreirajPregled.setVisible(false);
             btnSacuvajPregled.setVisible(false);
-            btnIzmeniPregled.setVisible(false);
+            btnSacuvajIzmene.setVisible(false);
             btnDodajStavku.setVisible(false);
             btnIzmeniStavku.setVisible(false);
 
@@ -519,14 +512,23 @@ public class PregledDialog extends javax.swing.JDialog {
 
     }
 
-    private void obradaTblModela() {
+    private void ucitajStavke() {
 
-        //List<StavkaPregleda> stavke = Pomocni.vratiStavke();
-        tblModel = new TblModelStavkaPregleda(new ArrayList());
-        tblStavkaPregleda.setModel(tblModel);
+        List<StavkaPregleda> stavke;
+        try {
+            stavke = GuiController.vratiInstancu().vratiStavkeUslov(pregledGlobal);
+            tblModel = new TblModelStavkaPregleda(stavke);
+            tblStavkaPregleda.setModel(tblModel);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом учитавања ставки прегледа !",
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+
     }
 
     private void prikazPregleda() {
+
         txtIdPregleda.setText("" + pregledGlobal.getIdPregled());
         cmbLekar.setSelectedItem(pregledGlobal.getLekar());
         cmbPacijent.setSelectedItem(pregledGlobal.getPacijent());
@@ -544,10 +546,10 @@ public class PregledDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodajStavku;
-    private javax.swing.JButton btnIzmeniPregled;
     private javax.swing.JButton btnIzmeniStavku;
     private javax.swing.JButton btnKreirajPregled;
     private javax.swing.JButton btnPrikaziStavku;
+    private javax.swing.JButton btnSacuvajIzmene;
     private javax.swing.JButton btnSacuvajPregled;
     private javax.swing.JComboBox<Lekar> cmbLekar;
     private javax.swing.JComboBox<Pacijent> cmbPacijent;

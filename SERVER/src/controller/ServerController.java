@@ -203,20 +203,13 @@ public class ServerController {
     }
 
     // ================= STAVKE PREGLEDA =================
-    public List<StavkaPregleda> vratiSveStavke(StavkaPregleda stavka) throws Exception {
+    public List<StavkaPregleda> vratiStavkeUslov(Pregled pregled) throws Exception {
 
         db = new DbBroker(port, username, password);
 
         try {
             db.connect();
-
-            List<ODObjekat> lista = db.vratiPoUslovu(stavka);
-            List<StavkaPregleda> stavke = new ArrayList<>();
-
-            for (ODObjekat odo : lista) {
-                stavke.add((StavkaPregleda) odo);
-            }
-
+            List<StavkaPregleda> stavke = db.vratiStavkeUslov(pregled);
             db.commit();
             return stavke;
 

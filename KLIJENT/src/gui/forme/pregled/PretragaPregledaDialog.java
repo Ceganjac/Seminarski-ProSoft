@@ -13,6 +13,7 @@ import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPregled;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import java.util.List;
@@ -29,6 +30,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     private final java.awt.Frame parent;
     private final ModFormePretrazi modForme;
     private TblModelPregled model;
+    
 
     public PretragaPregledaDialog(java.awt.Frame parent, boolean modal, ModFormePretrazi modForme) {
         super(parent, modal);
@@ -42,6 +44,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         //funkcije
         obradaModa();
         obradaCmbModela();
+        obradaTblModela();
 
     }
 
@@ -342,6 +345,12 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         }
 
     }
+
+    private void obradaTblModela() {
+        model = new TblModelPregled(new ArrayList<>());
+        tblPregledi.setModel(model);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIzmeni;
