@@ -268,7 +268,7 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
         txtDatumKontrole.setText("" + pregled.getDatumKontrole());
         txtVremeKontrole.setText("" + pregled.getVremeKontrole());
 
-        txtUkupnoVremeTrajanja.setText("" + pregled.getUkupnoVremeTrajanja());
+        txtUkupnoVremeTrajanja.setText("" + pregled.getUkupnoVremeTrajanja().toMinutes());
         txtTerapija.setText(pregled.getTerapija());
     }
 

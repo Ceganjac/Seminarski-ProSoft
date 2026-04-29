@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.*;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -20,16 +21,13 @@ public class Pregled implements ODObjekat {
     private int idPregled;
 
     private LocalDateTime datumVremeZavrsetka;
-
     private LocalDate datumKontrole;
     private LocalTime vremeKontrole;
-
-    private float ukupnoVremeTrajanja;
+    private Duration ukupnoVremeTrajanja;
     private String terapija;
-
+    
     private Lekar lekar;
     private Pacijent pacijent;
-
     private List<StavkaPregleda> stavke;
 
     public Pregled() {
@@ -37,7 +35,7 @@ public class Pregled implements ODObjekat {
 
     public Pregled(int idPregled, LocalDateTime datumVremeZavrsetka,
             LocalDate datumKontrole, LocalTime vremeKontrole,
-            float ukupnoVremeTrajanja, String terapija,
+            Duration ukupnoVremeTrajanja, String terapija,
             Lekar lekar, Pacijent pacijent,
             List<StavkaPregleda> stavke) {
 
@@ -85,11 +83,11 @@ public class Pregled implements ODObjekat {
         this.vremeKontrole = vremeKontrole;
     }
 
-    public float getUkupnoVremeTrajanja() {
+    public Duration getUkupnoVremeTrajanja() {
         return ukupnoVremeTrajanja;
     }
 
-    public void setUkupnoVremeTrajanja(float ukupnoVremeTrajanja) {
+    public void setUkupnoVremeTrajanja(Duration ukupnoVremeTrajanja) {
         this.ukupnoVremeTrajanja = ukupnoVremeTrajanja;
     }
 
@@ -244,7 +242,11 @@ public class Pregled implements ODObjekat {
             Time tk = rs.getTime("vreme_kontrole");
             pr.setVremeKontrole(tk != null ? tk.toLocalTime() : null);
 
-            pr.setUkupnoVremeTrajanja(rs.getFloat("ukupno_vreme_trajanja"));
+            // ukupno vreme trajanja
+            int minuti = rs.getInt("ukupno_vreme_trajanja");
+            Duration d = Duration.ofMinutes((long) minuti);
+            pr.setUkupnoVremeTrajanja(d);
+            
             pr.setTerapija(rs.getString("terapija"));
 
             Lekar l = new Lekar();

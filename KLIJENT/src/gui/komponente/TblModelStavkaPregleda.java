@@ -11,7 +11,7 @@ import javax.swing.table.AbstractTableModel;
 public class TblModelStavkaPregleda extends AbstractTableModel {
 
     private final List<StavkaPregleda> stavke;
-    private final String[] columnNames = {"ИД ставке", "Назив", "Лекарски налаз", "Трајање (мин)", "Дијагноза"};
+    private final String[] columnNames = {"Назив", "Лекарски налаз", "Трајање (мин)", "Дијагноза"};
 
     public TblModelStavkaPregleda(List<StavkaPregleda> stavke) {
         this.stavke = stavke;
@@ -32,14 +32,12 @@ public class TblModelStavkaPregleda extends AbstractTableModel {
         StavkaPregleda stavka = stavke.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return stavka.getIdStavkaPregleda();
-            case 1:
                 return stavka.getNaziv();
-            case 2:
+            case 1:
                 return stavka.getLekarskiNalaz();
+            case 2:
+                return stavka.getVremeTrajanja().toMinutes();
             case 3:
-                return stavka.getVremeTrajanja().toMinutes(); // prikaz u minutima
-            case 4:
                 return stavka.getDijagnoza().getSrpskiNaziv();
             default:
                 return "н/в";
@@ -54,8 +52,8 @@ public class TblModelStavkaPregleda extends AbstractTableModel {
     public StavkaPregleda getStavka(int rowIndex) {
         return stavke.get(rowIndex);
     }
-    
-    public List<StavkaPregleda> getStavke(){
+
+    public List<StavkaPregleda> getStavke() {
         return stavke;
     }
 

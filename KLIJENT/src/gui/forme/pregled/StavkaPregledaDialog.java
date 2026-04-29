@@ -201,15 +201,6 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
             lblNaslov.setText("ИЗМЕНА СТАВКЕ ПРЕГЛЕДА");
             txtIdStavke.setEditable(false);
             btnSacuvajStavku.setText("Сачувај измене");
-        } else if (modForme == modForme.MOD_PRIKAZ) {
-            lblNaslov.setText("ПРИКАЗ СТАВКЕ ПРЕГЛЕДА");
-            btnSacuvajStavku.setVisible(false);
-            txtIdStavke.setEditable(false);
-            txtNaziv.setEditable(false);
-            txtVremeTrajanja.setEditable(false);
-            txaLekarskiNalaz.setEditable(false);
-            cmbDijagnoza.setEnabled(false);
-            txaLekarskiNalaz.setEditable(false);
         }
 
     }
@@ -219,9 +210,8 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         List<Dijagnoza> dijagnoze;
         try {
             dijagnoze = GuiController.vratiInstancu().vratiSveDijagnoze();
-            // null vrednost na vrh
-            dijagnoze.add(0, null);
             Dijagnoza[] nizDijagnoze = new Dijagnoza[dijagnoze.size()];
+            // pretvaranje liste u niz
             nizDijagnoze = dijagnoze.toArray(nizDijagnoze);
             DefaultComboBoxModel<Dijagnoza> modelD = new DefaultComboBoxModel<>(nizDijagnoze);
             cmbDijagnoza.setModel(modelD);

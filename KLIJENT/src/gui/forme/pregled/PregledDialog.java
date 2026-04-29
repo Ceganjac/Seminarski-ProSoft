@@ -13,6 +13,7 @@ import gui.enumi.ModForme;
 import gui.komponente.TblModelStavkaPregleda;
 import java.awt.Color;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import static javax.xml.datatype.DatatypeConstants.DURATION;
 
 /**
  *
@@ -234,7 +236,7 @@ public class PregledDialog extends javax.swing.JDialog {
                             .addComponent(lblDatumVremeKontrole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblUkupnoVremeTrajanja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblTerapija, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(22, 22, 22)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUkupnoVremeTrajanja)
                             .addComponent(txtVremeKontrole)
@@ -246,7 +248,7 @@ public class PregledDialog extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblIdPregleda, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                             .addComponent(lblLekar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(22, 22, 22)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmbLekar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnKreirajPregled, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -372,22 +374,22 @@ public class PregledDialog extends javax.swing.JDialog {
             // datumKontrole i vremeKontrole
             DateTimeFormatter formaterDatum = DateTimeFormatter.ofPattern("dd.MM.yyyy['.']");
             DateTimeFormatter formaterVreme = DateTimeFormatter.ofPattern("HH:mm");
-
             LocalDate datumKontrole = LocalDate.parse(txtDatumKontrole.getText(), formaterDatum);
             LocalTime vremeKontrole = LocalTime.parse(txtVremeKontrole.getText(), formaterVreme);
             pregled.setDatumKontrole(datumKontrole);
             pregled.setVremeKontrole(vremeKontrole);
-            pregled.setTerapija(txtTerapija.getText());
-
+            
             // stavke pregleda
             List<StavkaPregleda> stavke = tblModel.getStavke();
-
+            Duration ukupnoVremeTrajanja = Duration.ZERO;
             for (StavkaPregleda sp : stavke) {
                 sp.setPregled(pregled);
+                ukupnoVremeTrajanja = ukupnoVremeTrajanja.plus(sp.getVremeTrajanja());
             }
-
+            
+            // ukupno vreme trajanja
+            pregled.setUkupnoVremeTrajanja(ukupnoVremeTrajanja);
             pregled.setStavke(stavke);
-
             GuiController.vratiInstancu().promeniPregled(pregled);
 
             JOptionPane.showMessageDialog(this, "Успешно чување прегледа !",
@@ -416,7 +418,11 @@ public class PregledDialog extends javax.swing.JDialog {
         pi.setDatumVremeZavrsetka(LocalDateTime.parse(txtDatumVremeZavrsetka.getText()));
         pi.setDatumKontrole(LocalDate.parse(txtDatumKontrole.getText()));
         pi.setVremeKontrole(LocalTime.parse(txtVremeKontrole.getText()));
-        pi.setUkupnoVremeTrajanja(Float.parseFloat(txtUkupnoVremeTrajanja.getText()));
+        // ukupno vreme trajanja
+        int minuti = Integer.parseInt(txtUkupnoVremeTrajanja.getText());
+        Duration ukupnoVreme = Duration.ofMinutes(minuti);
+        pi.setUkupnoVremeTrajanja(ukupnoVreme);
+        // terapija
         pi.setTerapija("" + txtTerapija.getText());
 
         try {

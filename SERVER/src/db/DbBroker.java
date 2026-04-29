@@ -140,7 +140,11 @@ public class DbBroker {
             Time tk = rs.getTime("vreme_kontrole");
             pr.setVremeKontrole(tk != null ? tk.toLocalTime() : null);
 
-            pr.setUkupnoVremeTrajanja(rs.getFloat("ukupno_vreme_trajanja"));
+            // ukupno vreme trajanja
+            int vremeTrajanja = rs.getInt("ukupno_vreme_trajanja");
+            Duration d = Duration.ofMinutes((long) vremeTrajanja);
+            pr.setUkupnoVremeTrajanja(d);
+            
             pr.setTerapija(rs.getString("terapija"));
 
             // lekar
