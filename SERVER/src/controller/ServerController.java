@@ -116,8 +116,14 @@ public class ServerController {
 
         try {
             db.connect();
-            // promena pregleda
+
+            // 1. update pregled
             db.promeni(pregled);
+
+            // 2. ubaci stavke
+            for (StavkaPregleda sp : pregled.getStavke()) {
+                db.ubaci(sp);
+            }
             db.commit();
 
         } catch (SQLException ex) {

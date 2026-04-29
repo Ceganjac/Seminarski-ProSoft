@@ -27,7 +27,6 @@ public class DbBroker {
     private final String username;
     private final String password;
     private Connection konekcija;
-    private static DbBroker instanca;
 
     public DbBroker(String port, String username, String password) {
         this.port = port;

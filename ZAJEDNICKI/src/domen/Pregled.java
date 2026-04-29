@@ -25,7 +25,7 @@ public class Pregled implements ODObjekat {
     private LocalTime vremeKontrole;
     private Duration ukupnoVremeTrajanja;
     private String terapija;
-    
+
     private Lekar lekar;
     private Pacijent pacijent;
     private List<StavkaPregleda> stavke;
@@ -137,14 +137,16 @@ public class Pregled implements ODObjekat {
                 : "'" + vremeKontrole.toString() + "'";
 
         String terapijaStr = (terapija == null) ? "NULL" : "'" + terapija + "'";
-
         String lekarId = (lekar == null) ? "NULL" : String.valueOf(lekar.getIdLekar());
         String pacijentId = (pacijent == null) ? "NULL" : String.valueOf(pacijent.getIdPacijent());
+        String ukupnoVremeTrajanjaStr = (ukupnoVremeTrajanja == null)
+                ? "NULL"
+                : String.valueOf(ukupnoVremeTrajanja.toMinutes());
 
         return datumZavrsetka + ", "
                 + datumKontroleStr + ", "
                 + vremeKontroleStr + ", "
-                + ukupnoVremeTrajanja + ", "
+                + ukupnoVremeTrajanjaStr + ", "
                 + terapijaStr + ", "
                 + lekarId + ", "
                 + pacijentId;
@@ -196,6 +198,8 @@ public class Pregled implements ODObjekat {
 
         String vremeKontroleStr = (vremeKontrole == null) ? "NULL"
                 : "'" + vremeKontrole.toString() + "'";
+        String ukupnoVremeTrajanjaStr = (ukupnoVremeTrajanja == null)
+                ? "NULL" : String.valueOf(ukupnoVremeTrajanja.toMinutes());
 
         String terapijaStr = (terapija == null) ? "NULL" : "'" + terapija + "'";
 
@@ -205,7 +209,7 @@ public class Pregled implements ODObjekat {
         return "datum_vreme_zavrsetka = " + datumZavrsetka + ", "
                 + "datum_kontrole = " + datumKontroleStr + ", "
                 + "vreme_kontrole = " + vremeKontroleStr + ", "
-                + "ukupno_vreme_trajanja = " + ukupnoVremeTrajanja + ", "
+                + "ukupno_vreme_trajanja = " + ukupnoVremeTrajanjaStr + ", "
                 + "terapija = " + terapijaStr + ", "
                 + "id_lekar = " + lekarId + ", "
                 + "id_pacijent = " + pacijentId;
@@ -246,7 +250,7 @@ public class Pregled implements ODObjekat {
             int minuti = rs.getInt("ukupno_vreme_trajanja");
             Duration d = Duration.ofMinutes((long) minuti);
             pr.setUkupnoVremeTrajanja(d);
-            
+
             pr.setTerapija(rs.getString("terapija"));
 
             Lekar l = new Lekar();

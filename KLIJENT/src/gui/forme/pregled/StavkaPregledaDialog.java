@@ -182,12 +182,15 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         int trajanjeInt = Integer.parseInt(txtVremeTrajanja.getText());
         Duration trajanjeD = Duration.ofMinutes(trajanjeInt);
         stavka.setVremeTrajanja(trajanjeD);
-
         stavka.setDijagnoza((Dijagnoza) cmbDijagnoza.getSelectedItem());
         stavka.setLekarskiNalaz(txaLekarskiNalaz.getText());
 
         tblModel.dodajStavku(stavka);
-
+        
+        // praznjenje polja
+        txtNaziv.setText("");
+        txtVremeTrajanja.setText("");
+        txaLekarskiNalaz.setText("");
 
     }//GEN-LAST:event_btnSacuvajStavkuActionPerformed
 

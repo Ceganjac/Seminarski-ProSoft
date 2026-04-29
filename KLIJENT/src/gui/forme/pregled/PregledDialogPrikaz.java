@@ -96,7 +96,7 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
         lblDatumVremeZavrsetka.setText("Датум и време завршетка :");
 
         lblUkupnoVremeTrajanja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblUkupnoVremeTrajanja.setText("Укупно време трајања :");
+        lblUkupnoVremeTrajanja.setText("Укупно време трајања (минути):");
 
         lblTerapija.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblTerapija.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -117,14 +117,14 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
         tblStavkaPregleda.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tblStavkaPregleda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Ид ставке прегледа", "Назив", "Лекарски налаз", "Време трајања", "Дијагноза"
+
             }
         ));
         tblStavkaPregleda.setMinimumSize(new java.awt.Dimension(80, 100));
@@ -172,15 +172,15 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPacijent, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDatumVremeZavrsetka, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                            .addComponent(txtDatumVremeZavrsetka, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
                             .addComponent(txtDatumKontrole)
                             .addComponent(txtVremeKontrole)
                             .addComponent(txtUkupnoVremeTrajanja)
                             .addComponent(txtTerapija)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIdPregleda, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblLekar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblLekar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblIdPregleda, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtLekar)
@@ -268,7 +268,9 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
         txtDatumKontrole.setText("" + pregled.getDatumKontrole());
         txtVremeKontrole.setText("" + pregled.getVremeKontrole());
 
-        txtUkupnoVremeTrajanja.setText("" + pregled.getUkupnoVremeTrajanja().toMinutes());
+        // ukupno vreme trajanja
+        long minuti = pregled.getUkupnoVremeTrajanja().toMinutes();
+        txtUkupnoVremeTrajanja.setText(""+minuti);
         txtTerapija.setText(pregled.getTerapija());
     }
 

@@ -418,6 +418,7 @@ public class PregledDialog extends javax.swing.JDialog {
         pi.setDatumVremeZavrsetka(LocalDateTime.parse(txtDatumVremeZavrsetka.getText()));
         pi.setDatumKontrole(LocalDate.parse(txtDatumKontrole.getText()));
         pi.setVremeKontrole(LocalTime.parse(txtVremeKontrole.getText()));
+        
         // ukupno vreme trajanja
         int minuti = Integer.parseInt(txtUkupnoVremeTrajanja.getText());
         Duration ukupnoVreme = Duration.ofMinutes(minuti);

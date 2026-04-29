@@ -44,7 +44,7 @@ public class TblModelPregled extends AbstractTableModel {
             case 3:
                 return pregled.getVremeKontrole();
             case 4:
-                return pregled.getUkupnoVremeTrajanja();
+                return pregled.getUkupnoVremeTrajanja().toMinutes();
             case 5:
                 return pregled.getTerapija();
             case 6:

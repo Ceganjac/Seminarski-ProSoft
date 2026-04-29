@@ -126,9 +126,8 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             }
         });
 
-        btnObrisi.setBackground(new java.awt.Color(0, 204, 102));
         btnObrisi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnObrisi.setForeground(new java.awt.Color(255, 255, 255));
+        btnObrisi.setForeground(new java.awt.Color(255, 0, 0));
         btnObrisi.setText("Обриши селектованог пацијента");
         btnObrisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
