@@ -63,4 +63,10 @@ public class TblModelStavkaPregleda extends AbstractTableModel {
         fireTableRowsInserted(poslednjiRed, poslednjiRed);
     }
 
+    public void izbrisiStavku(int rowIndex) {
+        stavke.remove(rowIndex);
+        int poslednjiRed = stavke.size() - 1;
+        fireTableRowsInserted(poslednjiRed, poslednjiRed);
+    }
+
 }

@@ -5,7 +5,7 @@
 package gui.komponente;
 
 import domen.Pacijent;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -35,6 +35,8 @@ public class TblModelPacijent extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         Pacijent pacijent = pacijenti.get(rowIndex);
         switch (columnIndex) {
             case 0:
@@ -46,7 +48,7 @@ public class TblModelPacijent extends AbstractTableModel {
             case 3:
                 return pacijent.getPol();
             case 4:
-                return pacijent.getDatumRodjenja();
+                return pacijent.getDatumRodjenja().format(formater);
             case 5:
                 return pacijent.getMestoRodjenja();
             case 6:

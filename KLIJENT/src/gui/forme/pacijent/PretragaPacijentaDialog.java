@@ -35,6 +35,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         initComponents();
         // postavljanje boje
         getContentPane().setBackground(Color.white);
+        btnObrisi.setBackground(Color.WHITE);
 
         this.parent = parent;
         this.modForme = modForme;

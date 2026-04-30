@@ -149,12 +149,12 @@ public class StavkaPregleda implements ODObjekat {
 
     @Override
     public String vratiNazivId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "id_stavka_pregleda";  
     }
 
     @Override
     public String vratiVrednostId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return ""+idStavkaPregleda;
     }
 
     @Override

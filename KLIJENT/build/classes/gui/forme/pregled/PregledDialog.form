@@ -64,6 +64,7 @@
                           <Component id="txtIdPregleda" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="btnObrisiStavku" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
@@ -124,11 +125,13 @@
               <Component id="btnSacuvajPregled" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnIzmeniStavku" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnObrisiStavku" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnSacuvajIzmene" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnPrikaziStavku" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -312,13 +315,7 @@
               <Font name="Arial" size="12" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="5">
-                <Column editable="true" title="&#x418;&#x434; &#x441;&#x442;&#x430;&#x432;&#x43a;&#x435; &#x43f;&#x440;&#x435;&#x433;&#x43b;&#x435;&#x434;&#x430;" type="java.lang.Object"/>
-                <Column editable="true" title="&#x41d;&#x430;&#x437;&#x438;&#x432;" type="java.lang.Object"/>
-                <Column editable="true" title="&#x41b;&#x435;&#x43a;&#x430;&#x440;&#x441;&#x43a;&#x438; &#x43d;&#x430;&#x43b;&#x430;&#x437;" type="java.lang.Object"/>
-                <Column editable="true" title="&#x412;&#x440;&#x435;&#x43c;&#x435; &#x442;&#x440;&#x430;&#x458;&#x430;&#x45a;&#x430;" type="java.lang.Object"/>
-                <Column editable="true" title="&#x414;&#x438;&#x458;&#x430;&#x433;&#x43d;&#x43e;&#x437;&#x430;" type="java.lang.Object"/>
-              </Table>
+              <Table columnCount="0" rowCount="0"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[80, 100]"/>
@@ -433,6 +430,20 @@
           <Font name="Arial" size="12" style="0"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnObrisiStavku">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x41e;&#x431;&#x440;&#x438;&#x448;&#x438; &#x441;&#x435;&#x43b;&#x435;&#x43a;&#x442;&#x43e;&#x432;&#x430;&#x43d;&#x443; &#x441;&#x442;&#x430;&#x432;&#x43a;&#x443;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnObrisiStavkuActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

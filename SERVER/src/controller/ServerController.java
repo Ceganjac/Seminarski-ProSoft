@@ -117,10 +117,15 @@ public class ServerController {
         try {
             db.connect();
 
-            // 1. update pregled
+            // 1. promena samog pregleda
             db.promeni(pregled);
 
-            // 2. ubaci stavke
+            // 2. obriši sve stare stavke za taj pregled
+            for (StavkaPregleda sp : db.vratiStavkeUslov(pregled)) {
+                db.obrisi(sp);
+            }
+
+            // 3. ubaci sve nove stavke
             for (StavkaPregleda sp : pregled.getStavke()) {
                 db.ubaci(sp);
             }
