@@ -7,6 +7,7 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import javax.swing.JLabel;
 
 /**
  *
@@ -26,10 +27,11 @@ public class Server {
         return instanca;
     }
 
-    public void pokreniServer() throws IOException {
+    public void pokreniServer(JLabel lblStatus) throws IOException {
 
         serverSocket = new ServerSocket(9000);
         System.out.println("Server pokrenut...");
+        lblStatus.setText("ПОКРЕНУТ");
 
         while (!serverSocket.isClosed()) {
             try {

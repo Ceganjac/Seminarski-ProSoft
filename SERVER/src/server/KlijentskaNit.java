@@ -115,6 +115,7 @@ public class KlijentskaNit extends Thread {
                         case KREIRAJ_PACIJENTA:
                             Pacijent pacijent = ServerController.vratiInstancu().
                                     kreirajPacijenta((Pacijent) domenskiObjekat);
+                            odgovor.setRezultat(pacijent);
                             break;
 
                         case PROMENI_PACIJENTA:

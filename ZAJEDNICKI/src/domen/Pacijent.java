@@ -106,14 +106,14 @@ public class Pacijent implements ODObjekat {
     // -------------------------------------------------- //
     @Override
     public String vratiVrednostiAtributa() {
-        return " '"
-                + ime + "', '"
-                + prezime + "', '"
-                + pol.name() + "', '"
-                + datumRodjenja + "', '"
-                + mestoRodjenja + "', '"
-                + mejl + "', "
-                + krvnaGrupa.getIdKrvnaGrupa();
+        return " "
+                + (ime != null ? "'" + ime + "'" : "NULL") + ", "
+                + (prezime != null ? "'" + prezime + "'" : "NULL") + ", "
+                + (pol != null ? "'" + pol.name() + "'" : "NULL") + ", "
+                + (datumRodjenja != null ? "'" + datumRodjenja + "'" : "NULL") + ", "
+                + (mestoRodjenja != null ? "'" + mestoRodjenja + "'" : "NULL") + ", "
+                + (mejl != null ? "'" + mejl + "'" : "NULL") + ", "
+                + (krvnaGrupa != null ? krvnaGrupa.getIdKrvnaGrupa() : "NULL");
     }
 
     @Override
@@ -126,12 +126,12 @@ public class Pacijent implements ODObjekat {
 
         String uslov = "1=1";
 
-        if (ime != null && !ime.trim().isEmpty()) {
+        if (ime != null && !ime.isEmpty()) {
             uslov += " AND p.ime LIKE '%" + ime.trim() + "%'";
         }
 
-        if (prezime != null && !prezime.trim().isEmpty()) {
-            uslov += " AND p.prezime LIKE '%" + prezime.trim() + "%'";
+        if (prezime != null && !prezime.isEmpty()) {
+            uslov += " AND p.prezime LIKE '%" + prezime + "%'";
         }
 
         if (krvnaGrupa != null) {
@@ -143,13 +143,13 @@ public class Pacijent implements ODObjekat {
 
     @Override
     public String vratiZaUpdate() {
-        return "ime = '" + ime + "', "
-                + "prezime = '" + prezime + "', "
-                + "pol = '" + pol.name() + "', "
-                + "datum_rodjenja = '" + datumRodjenja + "', "
-                + "mesto_rodjenja = '" + mestoRodjenja + "', "
-                + "mejl = '" + mejl + "', "
-                + "id_krvna_grupa = " + krvnaGrupa.getIdKrvnaGrupa();
+        return "ime = " + (ime != null ? "'" + ime + "'" : "NULL") + ", "
+                + "prezime = " + (prezime != null ? "'" + prezime + "'" : "NULL") + ", "
+                + "pol = " + (pol != null ? "'" + pol.name() + "'" : "NULL") + ", "
+                + "datum_rodjenja = " + (datumRodjenja != null ? "'" + datumRodjenja + "'" : "NULL") + ", "
+                + "mesto_rodjenja = " + (mestoRodjenja != null ? "'" + mestoRodjenja + "'" : "NULL") + ", "
+                + "mejl = " + (mejl != null ? "'" + mejl + "'" : "NULL") + ", "
+                + "id_krvna_grupa = " + (krvnaGrupa != null ? krvnaGrupa.getIdKrvnaGrupa() : "NULL");
     }
 
     @Override
@@ -192,19 +192,28 @@ public class Pacijent implements ODObjekat {
 
         while (rs.next()) {
 
-            KrvnaGrupa kg = new KrvnaGrupa();
-            kg.setIdKrvnaGrupa(rs.getInt("id_krvna_grupa"));
+            KrvnaGrupa kg = null;
+            int idKg = rs.getInt("id_krvna_grupa");
+            if (!rs.wasNull()) {
+                kg = new KrvnaGrupa();
+                kg.setIdKrvnaGrupa(idKg);
+            }
 
             Pacijent pacijent = new Pacijent();
 
             pacijent.setIdPacijent(rs.getInt("id_pacijent"));
             pacijent.setIme(rs.getString("ime"));
             pacijent.setPrezime(rs.getString("prezime"));
-            pacijent.setPol(Pol.valueOf(rs.getString("pol")));
-            pacijent.setDatumRodjenja(rs.getDate("datum_rodjenja").toLocalDate());
+
+            String polStr = rs.getString("pol");
+            pacijent.setPol(polStr != null ? Pol.valueOf(polStr) : null);
+
+            java.sql.Date datum = rs.getDate("datum_rodjenja");
+            pacijent.setDatumRodjenja(datum != null ? datum.toLocalDate() : null);
+
             pacijent.setMestoRodjenja(rs.getString("mesto_rodjenja"));
             pacijent.setMejl(rs.getString("mejl"));
-            // postavljanje krvne grupe
+
             pacijent.setKrvnaGrupa(kg);
 
             lista.add(pacijent);

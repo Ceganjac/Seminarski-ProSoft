@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package gui.forme.pregled;
+package gui.forme.stavke;
 
 import domen.StavkaPregleda;
 import java.awt.Color;

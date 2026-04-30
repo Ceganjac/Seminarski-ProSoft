@@ -34,6 +34,8 @@ public class GlavniFrejm extends javax.swing.JFrame {
         //izmene boja
         UIManager.put("MenuItem.selectionBackground", new Color(0, 204, 102));
         UIManager.put("Menu.selectionBackground", new Color(0, 204, 102));
+        btnZaustaviServer.setBackground(Color.WHITE);
+        
         SwingUtilities.updateComponentTreeUI(this);
         getContentPane().setBackground(Color.white);
 
@@ -74,9 +76,8 @@ public class GlavniFrejm extends javax.swing.JFrame {
         lblNazivSistema.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNazivSistema.setText("СОФТВЕРСКИ СИСТЕМ ЗА ОБАВЉАЊЕ ПРЕГЛЕДА У ЗДРАВСТВЕНОЈ УСТАНОВИ");
 
-        btnZaustaviServer.setBackground(java.awt.Color.red);
         btnZaustaviServer.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btnZaustaviServer.setForeground(new java.awt.Color(255, 255, 255));
+        btnZaustaviServer.setForeground(new java.awt.Color(255, 0, 0));
         btnZaustaviServer.setText("Заустави сервер");
         btnZaustaviServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,38 +183,23 @@ public class GlavniFrejm extends javax.swing.JFrame {
     }//GEN-LAST:event_itemKonfiguracijaActionPerformed
 
     private void btnPokreniServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokreniServerActionPerformed
-        new Thread(() -> {
-            try {
-                server = Server.vratiInstancu();
-
-                SwingUtilities.invokeLater(() -> {
-                    lblStatusVr.setText("ПОКРЕНУТ");
-                });
-                // ulaz u beskonačnu petlju
-                server.pokreniServer();
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(this,
-                        "Грешка приликом покретања сервера !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE
-                );
-                return;
-            }
-        }
-        ).start();
+       
+        NitPokretanje nitP = new NitPokretanje(this,lblStatusVr);
+        Thread t = new Thread(nitP);
+        t.start();
 
     }//GEN-LAST:event_btnPokreniServerActionPerformed
 
     private void btnZaustaviServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZaustaviServerActionPerformed
         try {
-            server = Server.vratiInstancu();
-            server.zaustaviServer();
+            Server.vratiInstancu().zaustaviServer();
             lblStatusVr.setText("ЗУСТАВЉЕН");
         } catch (IOException ex) {
-            ex.printStackTrace();
             JOptionPane.showMessageDialog(this,
                     "Грешка приликом заустављања сервера !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE
             );
+            ex.printStackTrace();
+
         }
     }//GEN-LAST:event_btnZaustaviServerActionPerformed
 

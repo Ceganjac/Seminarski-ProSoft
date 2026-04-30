@@ -30,7 +30,6 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     private final java.awt.Frame parent;
     private final ModFormePretrazi modForme;
     private TblModelPregled model;
-    
 
     public PretragaPregledaDialog(java.awt.Frame parent, boolean modal, ModFormePretrazi modForme) {
         super(parent, modal);
@@ -235,8 +234,17 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
             model = new TblModelPregled(preglediRez);
             tblPregledi.setModel(model);
 
+            if (tblPregledi.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Систем не може да нађе прегледе по задатим критеријумима. ",
+                        "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Систем је нашао прегледе по задатим критеријумима. ",
+                        "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
+            }
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Грешка приликом претраге прегледа !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Грешка приликом претраге прегледа. ",
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
 
@@ -266,6 +274,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
             PregledDialogPrikaz dialog = new PregledDialogPrikaz(parent, true, pregled, ModForme.MOD_PRIKAZ);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
+
         } else {
             JOptionPane.showMessageDialog(this, "Нисте селектовали преглед !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
         }

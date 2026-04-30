@@ -4,6 +4,7 @@
  */
 package gui.forme.pregled;
 
+import gui.forme.stavke.StavkaPregledaDialogPrikaz;
 import controller.GuiController;
 import domen.Pregled;
 import domen.StavkaPregleda;

@@ -263,25 +263,32 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         if (selektovanRed == -1) {
             JOptionPane.showMessageDialog(this, "Нисте селектовали пацијента !", "УПОЗОРЕЊЕ",
                     JOptionPane.WARNING_MESSAGE);
+            return;
         } else {
-            Pacijent pacijent = tblModel.getPacijent(selektovanRed);
-            try {
-                GuiController.vratiInstancu().obrisiPacijenta(pacijent);
-                JOptionPane.showMessageDialog(this, "Успешно брисање пацијента !", "ОБАВЕШТЕЊЕ",
-                        JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception ex) {
 
-                if (ex instanceof java.sql.SQLException sqlEx && sqlEx.getErrorCode() == 1451) {
-                    JOptionPane.showMessageDialog(this, "Не можете обрисати пацијента, "
-                            + "постоје прегледи везани за њега !", "ГРЕШКА",
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Грешка приликом брисања пацијента !", "ГРЕШКА",
-                            JOptionPane.ERROR_MESSAGE);
-                    ex.printStackTrace();
+            int odgovor = JOptionPane.showConfirmDialog(this, "Да ли желите да обришете пацијента ?",
+                     "УПИТНИК", JOptionPane.YES_NO_OPTION);
+            if (odgovor == JOptionPane.YES_OPTION) {
+
+                Pacijent pacijent = tblModel.getPacijent(selektovanRed);
+                try {
+                    GuiController.vratiInstancu().obrisiPacijenta(pacijent);
+                    JOptionPane.showMessageDialog(this, "Успешно брисање пацијента !", "ОБАВЕШТЕЊЕ",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+
+                    if (ex instanceof java.sql.SQLException sqlEx && sqlEx.getErrorCode() == 1451) {
+                        JOptionPane.showMessageDialog(this, "Не можете обрисати пацијента, "
+                                + "постоје прегледи везани за њега !", "ГРЕШКА",
+                                JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Грешка приликом брисања пацијента !", "ГРЕШКА",
+                                JOptionPane.ERROR_MESSAGE);
+                        ex.printStackTrace();
+                    }
                 }
-            }
 
+            }
         }
 
     }//GEN-LAST:event_btnObrisiActionPerformed
@@ -325,8 +332,8 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             ex.printStackTrace();
         }
     }
-    
-    private void obradaTblModela(){
+
+    private void obradaTblModela() {
         tblModel = new TblModelPacijent(new ArrayList<>());
         tblPacijenti.setModel(tblModel);
     }

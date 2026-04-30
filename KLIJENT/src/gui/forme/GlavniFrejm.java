@@ -78,7 +78,6 @@ public class GlavniFrejm extends javax.swing.JFrame {
         lblPrijavljenVr.setBackground(new java.awt.Color(255, 255, 255));
         lblPrijavljenVr.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
         lblPrijavljenVr.setLabelFor(lblPrijavljen);
-        lblPrijavljenVr.setText("Пера Перић");
 
         lblPrijavljen.setBackground(new java.awt.Color(255, 255, 255));
         lblPrijavljen.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -138,7 +137,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
         menuPregled.add(itemPretraziPregled);
 
         itemIzmeniPregled.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        itemIzmeniPregled.setText("Измени преглед");
+        itemIzmeniPregled.setText("Промени преглед");
         itemIzmeniPregled.setToolTipText("");
         itemIzmeniPregled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

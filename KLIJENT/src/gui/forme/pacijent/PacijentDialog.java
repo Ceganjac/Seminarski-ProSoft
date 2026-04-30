@@ -10,6 +10,7 @@ import domen.Pacijent;
 import domen.enumi.Pol;
 import gui.enumi.ModForme;
 import java.awt.Color;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -27,7 +28,7 @@ public class PacijentDialog extends javax.swing.JDialog {
     /**
      * Creates new form PregledDialog
      */
-    private final Pacijent pacijent;
+    private final Pacijent pacijentGlobal;
     private final ModForme modForme;
 
     public PacijentDialog(java.awt.Frame parent, boolean modal, Pacijent pacijent, ModForme modForme) {
@@ -37,7 +38,7 @@ public class PacijentDialog extends javax.swing.JDialog {
         getContentPane().setBackground(Color.WHITE);
         btnIsprazniPolja.setBackground(Color.WHITE);
 
-        this.pacijent = pacijent;
+        this.pacijentGlobal = pacijent;
         this.modForme = modForme;
         obradaModa();
         obradaCmbModela();
@@ -72,8 +73,10 @@ public class PacijentDialog extends javax.swing.JDialog {
         lblKrvnaGrupa = new javax.swing.JLabel();
         cmbKrvnaGrupa = new javax.swing.JComboBox<>();
         btnIsprazniPolja = new javax.swing.JButton();
+        btnKreiraj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(620, 572));
 
         lblNaslov.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNaslov.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -143,13 +146,24 @@ public class PacijentDialog extends javax.swing.JDialog {
             }
         });
 
+        btnKreiraj.setBackground(new java.awt.Color(0, 204, 102));
+        btnKreiraj.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnKreiraj.setForeground(new java.awt.Color(255, 255, 255));
+        btnKreiraj.setText("КРЕИРАЈ ПАЦИЈЕНТА");
+        btnKreiraj.setToolTipText("");
+        btnKreiraj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKreirajActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblNaslov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSacuvaj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -159,8 +173,8 @@ public class PacijentDialog extends javax.swing.JDialog {
                             .addComponent(lblPol, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrezime, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(cmbPol, 0, 200, Short.MAX_VALUE)))
+                            .addComponent(txtPrezime, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                            .addComponent(cmbPol, 0, 314, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblKrvnaGrupa, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,14 +185,15 @@ public class PacijentDialog extends javax.swing.JDialog {
                             .addComponent(lblIdPacijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdPacijenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtIme, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtDatumRodjenja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtMestoRodjenja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtMejl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(cmbKrvnaGrupa, javax.swing.GroupLayout.Alignment.TRAILING, 0, 200, Short.MAX_VALUE)))
-                    .addComponent(btnIsprazniPolja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50))
+                            .addComponent(txtIdPacijenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                            .addComponent(txtIme, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                            .addComponent(txtDatumRodjenja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                            .addComponent(txtMestoRodjenja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                            .addComponent(txtMejl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                            .addComponent(cmbKrvnaGrupa, javax.swing.GroupLayout.Alignment.TRAILING, 0, 314, Short.MAX_VALUE)))
+                    .addComponent(btnIsprazniPolja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +204,9 @@ public class PacijentDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIdPacijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIdPacijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnKreiraj, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIme, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,7 +234,7 @@ public class PacijentDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPol, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbPol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(50, 50, 50)
                 .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,6 +267,7 @@ public class PacijentDialog extends javax.swing.JDialog {
         }
 
         Pacijent pacijentPr = new Pacijent();
+        pacijentPr.setIdPacijent(Integer.parseInt(txtIdPacijenta.getText()));
         pacijentPr.setIme(txtIme.getText());
         pacijentPr.setPrezime(txtPrezime.getText());
         // datum
@@ -264,11 +282,11 @@ public class PacijentDialog extends javax.swing.JDialog {
 
         try {
 
-            GuiController.vratiInstancu().kreirajPacijenta(pacijentPr);
-            JOptionPane.showMessageDialog(this, "Успешно креиран пацијент ! ",
+            GuiController.vratiInstancu().promeniPacijenta(pacijentPr);
+            JOptionPane.showMessageDialog(this, "Систем је запамтио пацијента. ",
                     "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Грешка приликом чувања пацијента ! ",
+            JOptionPane.showMessageDialog(this, "Систем не може да запамти пацијента.",
                     "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
@@ -288,7 +306,7 @@ public class PacijentDialog extends javax.swing.JDialog {
         Pacijent pacijentIzmena = new Pacijent();
 
         // postavljanje vrednosti
-        pacijentIzmena.setIdPacijent(pacijent.getIdPacijent());
+        pacijentIzmena.setIdPacijent(pacijentGlobal.getIdPacijent());
         pacijentIzmena.setIme(txtIme.getText());
         pacijentIzmena.setPrezime(txtPrezime.getText());
         // datum
@@ -323,13 +341,24 @@ public class PacijentDialog extends javax.swing.JDialog {
         txtMejl.setText("");
     }//GEN-LAST:event_btnIsprazniPoljaActionPerformed
 
+    private void btnKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajActionPerformed
+        Pacijent pacijent = new Pacijent();
+        try {
+            Pacijent pacijentRez = GuiController.vratiInstancu().kreirajPacijenta(pacijent);
+            txtIdPacijenta.setText("" + pacijentRez.getIdPacijent());
+            JOptionPane.showMessageDialog(this, "Систем је креирао пацијента. ", "ГРЕШКА", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Систем не може да креира пацијента. ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnKreirajActionPerformed
+
     private void obradaModa() {
 
         if (modForme == ModForme.MOD_KREIRANJE) {
             lblNaslov.setText("КРЕИРАЊЕ ПАЦИЈЕНТА");
             btnIzmeni.setVisible(false);
-            lblIdPacijenta.setVisible(false);
-            txtIdPacijenta.setVisible(false);
 
         } else if (modForme == ModForme.MOD_IZMENA) {
             lblNaslov.setText("ИЗМЕНА ПАЦИЈЕНТА");
@@ -358,19 +387,19 @@ public class PacijentDialog extends javax.swing.JDialog {
 
     private void prikazPacijenta() {
 
-        txtIdPacijenta.setText("" + pacijent.getIdPacijent());
-        txtIme.setText(pacijent.getIme());
-        txtPrezime.setText(pacijent.getPrezime());
-        cmbPol.setSelectedItem("" + pacijent.getPol());
+        txtIdPacijenta.setText("" + pacijentGlobal.getIdPacijent());
+        txtIme.setText(pacijentGlobal.getIme());
+        txtPrezime.setText(pacijentGlobal.getPrezime());
+        cmbPol.setSelectedItem("" + pacijentGlobal.getPol());
 
         // datum
-        LocalDate datum = pacijent.getDatumRodjenja();
+        LocalDate datum = pacijentGlobal.getDatumRodjenja();
         DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         txtDatumRodjenja.setText(datum.format(formater));
 
-        txtMestoRodjenja.setText(pacijent.getMestoRodjenja());
-        txtMejl.setText(pacijent.getMejl());
-        cmbKrvnaGrupa.setSelectedItem(pacijent.getKrvnaGrupa().toString());
+        txtMestoRodjenja.setText(pacijentGlobal.getMestoRodjenja());
+        txtMejl.setText(pacijentGlobal.getMejl());
+        cmbKrvnaGrupa.setSelectedItem(pacijentGlobal.getKrvnaGrupa().toString());
     }
 
     /**
@@ -380,6 +409,7 @@ public class PacijentDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIsprazniPolja;
     private javax.swing.JButton btnIzmeni;
+    private javax.swing.JButton btnKreiraj;
     private javax.swing.JButton btnSacuvaj;
     private javax.swing.JComboBox<KrvnaGrupa> cmbKrvnaGrupa;
     private javax.swing.JComboBox<Pol> cmbPol;

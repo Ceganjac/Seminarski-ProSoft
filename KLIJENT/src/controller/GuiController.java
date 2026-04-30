@@ -157,15 +157,16 @@ public class GuiController {
     
     
     // ================= PACIJENT =================
-    public void kreirajPacijenta(Pacijent pacijent) throws Exception {
+    public Pacijent kreirajPacijenta(Pacijent pacijent) throws Exception {
         Zahtev zahtev = new Zahtev(pacijent, Operacija.KREIRAJ_PACIJENTA);
         izlazniTok.writeObject(zahtev);
         izlazniTok.flush();
 
         Odgovor odgovor = (Odgovor) ulazniTok.readObject();
-        if (odgovor.getIzuzetak() != null) {
-            throw odgovor.getIzuzetak();
+        if (odgovor.getIzuzetak() == null) {
+            return (Pacijent) odgovor.getRezultat();
         }
+        throw odgovor.getIzuzetak();
     }
 
     public void promeniPacijenta(Pacijent pacijent) throws Exception {
