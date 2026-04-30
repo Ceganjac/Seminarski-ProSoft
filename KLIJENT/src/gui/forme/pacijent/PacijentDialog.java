@@ -125,7 +125,7 @@ public class PacijentDialog extends javax.swing.JDialog {
         btnIzmeni.setBackground(new java.awt.Color(0, 204, 102));
         btnIzmeni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnIzmeni.setForeground(new java.awt.Color(255, 255, 255));
-        btnIzmeni.setText("ИЗМЕНИ ПАЦИЈЕНТА");
+        btnIzmeni.setText("САЧУВАЈ ИЗМЕНЕ");
         btnIzmeni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIzmeniActionPerformed(evt);

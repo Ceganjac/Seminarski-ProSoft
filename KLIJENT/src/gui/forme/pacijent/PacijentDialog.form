@@ -273,7 +273,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x418;&#x417;&#x41c;&#x415;&#x41d;&#x418; &#x41f;&#x410;&#x426;&#x418;&#x408;&#x415;&#x41d;&#x422;&#x410;"/>
+        <Property name="text" type="java.lang.String" value="&#x421;&#x410;&#x427;&#x423;&#x412;&#x410;&#x408; &#x418;&#x417;&#x41c;&#x415;&#x41d;&#x415;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIzmeniActionPerformed"/>

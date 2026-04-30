@@ -11,7 +11,6 @@ import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPacijent;
 import java.awt.Color;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -224,9 +223,19 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             tblModel = new TblModelPacijent(pacijenti);
             tblPacijenti.setModel(tblModel);
 
+            if (tblPacijenti.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Систем не може да нађе пацијенте по задатим критеријумима. ",
+                        "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            JOptionPane.showMessageDialog(this, "Систем је нашао пацијенте по задатим критеријумима.",
+                    "ГРЕШКА", JOptionPane.INFORMATION_MESSAGE);
+
         } catch (Exception ex) {
-            ex.printStackTrace();
             JOptionPane.showMessageDialog(this, ex, "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+
         }
     }//GEN-LAST:event_btnPretraziActionPerformed
 
@@ -267,7 +276,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         } else {
 
             int odgovor = JOptionPane.showConfirmDialog(this, "Да ли желите да обришете пацијента ?",
-                     "УПИТНИК", JOptionPane.YES_NO_OPTION);
+                    "УПИТНИК", JOptionPane.YES_NO_OPTION);
             if (odgovor == JOptionPane.YES_OPTION) {
 
                 Pacijent pacijent = tblModel.getPacijent(selektovanRed);
