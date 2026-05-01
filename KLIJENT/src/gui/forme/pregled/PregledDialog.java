@@ -44,8 +44,11 @@ public class PregledDialog extends javax.swing.JDialog {
         this.modForme = modForme;
         this.parent = parent;
 
-        // boja dugmeta
+        // bojе
         btnObrisiStavku.setBackground(Color.WHITE);
+        btnIsprazni.setBackground(Color.WHITE);
+        cmbLekar.setBackground(Color.WHITE);
+        cmbPacijent.setBackground(Color.WHITE);
 
         // funkcije
         obradaCmbModela();
@@ -88,7 +91,7 @@ public class PregledDialog extends javax.swing.JDialog {
         lblDatumVremeKontrole1 = new javax.swing.JLabel();
         txtVremeKontrole = new javax.swing.JTextField();
         btnObrisiStavku = new javax.swing.JButton();
-        btnIsprazniPolja2 = new javax.swing.JButton();
+        btnIsprazni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -222,11 +225,11 @@ public class PregledDialog extends javax.swing.JDialog {
             }
         });
 
-        btnIsprazniPolja2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnIsprazniPolja2.setText("ИСПРАЗНИ ПОЉА");
-        btnIsprazniPolja2.addActionListener(new java.awt.event.ActionListener() {
+        btnIsprazni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnIsprazni.setText("ИСПРАЗНИ ПОЉА");
+        btnIsprazni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIsprazniPolja2ActionPerformed(evt);
+                btnIsprazniActionPerformed(evt);
             }
         });
 
@@ -270,7 +273,7 @@ public class PregledDialog extends javax.swing.JDialog {
                             .addComponent(btnKreirajPregled, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtIdPregleda, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addComponent(btnObrisiStavku, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnIsprazniPolja2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnIsprazni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
@@ -320,14 +323,14 @@ public class PregledDialog extends javax.swing.JDialog {
                 .addComponent(btnSacuvajPregled, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIzmeniStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnObrisiStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSacuvajIzmene, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPrikaziStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIsprazniPolja2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIsprazni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
 
@@ -473,8 +476,9 @@ public class PregledDialog extends javax.swing.JDialog {
         int selektovaniRed = tblStavkaPregleda.getSelectedRow();
 
         if (selektovaniRed != -1) {
-            StavkaPregleda stavka = new StavkaPregleda();
-            StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme, tblModel);
+            StavkaPregleda stavka = tblModel.getStavka(selektovaniRed);
+            StavkaPregledaDialog dialog = 
+                    new StavkaPregledaDialog(parent, true, stavka, ModForme.MOD_IZMENA, tblModel);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
@@ -516,13 +520,13 @@ public class PregledDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnObrisiStavkuActionPerformed
 
-    private void btnIsprazniPolja2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIsprazniPolja2ActionPerformed
+    private void btnIsprazniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIsprazniActionPerformed
         txtDatumVremeZavrsetka.setText("");
         txtDatumKontrole.setText("");
         txtVremeKontrole.setText("");
         txtUkupnoVremeTrajanja.setText("");
         txtTerapija.setText("");
-    }//GEN-LAST:event_btnIsprazniPolja2ActionPerformed
+    }//GEN-LAST:event_btnIsprazniActionPerformed
 
     private void obradaModa() {
 
@@ -619,7 +623,7 @@ public class PregledDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodajStavku;
-    private javax.swing.JButton btnIsprazniPolja2;
+    private javax.swing.JButton btnIsprazni;
     private javax.swing.JButton btnIzmeniStavku;
     private javax.swing.JButton btnKreirajPregled;
     private javax.swing.JButton btnObrisiStavku;

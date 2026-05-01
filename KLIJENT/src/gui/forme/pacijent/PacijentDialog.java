@@ -37,6 +37,8 @@ public class PacijentDialog extends javax.swing.JDialog {
         // postavljanje boje
         getContentPane().setBackground(Color.WHITE);
         btnIsprazniPolja.setBackground(Color.WHITE);
+        cmbKrvnaGrupa.setBackground(Color.WHITE);
+        cmbPol.setBackground(Color.WHITE);
 
         this.pacijentGlobal = pacijent;
         this.modForme = modForme;

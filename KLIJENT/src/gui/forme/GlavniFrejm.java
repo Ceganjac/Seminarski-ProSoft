@@ -69,6 +69,8 @@ public class GlavniFrejm extends javax.swing.JFrame {
         itemObrisiPacijenta = new javax.swing.JMenuItem();
         menuSpecijalizacija = new javax.swing.JMenu();
         itemUbaciSpecijalizaciju = new javax.swing.JMenuItem();
+        menuOProgramu = new javax.swing.JMenu();
+        itemOProgramu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -109,7 +111,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
                 .addGroup(pnlGlavniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrijavljenVr, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPrijavljen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(351, Short.MAX_VALUE))
+                .addContainerGap(354, Short.MAX_VALUE))
         );
 
         menuBar.setBackground(new java.awt.Color(0, 153, 153));
@@ -170,7 +172,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
         menuPacijent.add(itemPretraziPacijenta);
 
         itemIzmeniPacijenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        itemIzmeniPacijenta.setText("Измени пацијента");
+        itemIzmeniPacijenta.setText("Промени пацијента");
         itemIzmeniPacijenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemIzmeniPacijentaActionPerformed(evt);
@@ -203,6 +205,21 @@ public class GlavniFrejm extends javax.swing.JFrame {
         menuSpecijalizacija.add(itemUbaciSpecijalizaciju);
 
         menuBar.add(menuSpecijalizacija);
+
+        menuOProgramu.setForeground(new java.awt.Color(255, 255, 255));
+        menuOProgramu.setText("О програму");
+
+        itemOProgramu.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        itemOProgramu.setText("О програму");
+        itemOProgramu.setToolTipText("");
+        itemOProgramu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemOProgramuActionPerformed(evt);
+            }
+        });
+        menuOProgramu.add(itemOProgramu);
+
+        menuBar.add(menuOProgramu);
 
         setJMenuBar(menuBar);
 
@@ -275,6 +292,12 @@ public class GlavniFrejm extends javax.swing.JFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_itemUbaciSpecijalizacijuActionPerformed
 
+    private void itemOProgramuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemOProgramuActionPerformed
+       OProgramuDialog dpDialog = new OProgramuDialog(this,true);
+       dpDialog.setLocationRelativeTo(this);
+       dpDialog.setVisible(true);
+    }//GEN-LAST:event_itemOProgramuActionPerformed
+
     public void upisPrijavljenog() {
         lblPrijavljenVr.setText(lekar.vratiImePrezime());
     }
@@ -288,6 +311,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemIzmeniPregled;
     private javax.swing.JMenuItem itemKreirajPacijenta;
     private javax.swing.JMenuItem itemKreirajPregled;
+    private javax.swing.JMenuItem itemOProgramu;
     private javax.swing.JMenuItem itemObrisiPacijenta;
     private javax.swing.JMenuItem itemPretraziPacijenta;
     private javax.swing.JMenuItem itemPretraziPregled;
@@ -296,6 +320,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
     private javax.swing.JLabel lblPrijavljen;
     private javax.swing.JLabel lblPrijavljenVr;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuOProgramu;
     private javax.swing.JMenu menuPacijent;
     private javax.swing.JMenu menuPregled;
     private javax.swing.JMenu menuSpecijalizacija;

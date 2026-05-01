@@ -29,9 +29,15 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
     public SpecijalizacijaDialog(java.awt.Frame parent, boolean modal, Specijalizacija specijalizacija) {
         super(parent, modal);
         initComponents();
+        
+        // postavljanje boje
+        btnIsprazni.setBackground(Color.WHITE);
         getContentPane().setBackground(Color.white);
+        
         this.specijalizacija = specijalizacija;
         this.parent = parent;
+        
+        
 
     }
 
@@ -50,7 +56,7 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
         btnUbaci = new javax.swing.JButton();
         lblTrajanje = new javax.swing.JLabel();
         txtNaziv = new javax.swing.JTextField();
-        btnIsprazniPolja = new javax.swing.JButton();
+        btnIsprazni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,11 +80,11 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
         lblTrajanje.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblTrajanje.setText("Трајање (у годинама):");
 
-        btnIsprazniPolja.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnIsprazniPolja.setText("ИСПРАЗНИ ПОЉА");
-        btnIsprazniPolja.addActionListener(new java.awt.event.ActionListener() {
+        btnIsprazni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnIsprazni.setText("ИСПРАЗНИ ПОЉА");
+        btnIsprazni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIsprazniPoljaActionPerformed(evt);
+                btnIsprazniActionPerformed(evt);
             }
         });
 
@@ -90,7 +96,7 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnIsprazniPolja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnIsprazni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUbaci, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +124,7 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
                 .addGap(50, 50, 50)
                 .addComponent(btnUbaci, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIsprazniPolja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIsprazni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
 
@@ -147,17 +153,17 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnUbaciActionPerformed
 
-    private void btnIsprazniPoljaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIsprazniPoljaActionPerformed
+    private void btnIsprazniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIsprazniActionPerformed
         txtNaziv.setText("");
         txtTrajanje.setText("");
-    }//GEN-LAST:event_btnIsprazniPoljaActionPerformed
+    }//GEN-LAST:event_btnIsprazniActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIsprazniPolja;
+    private javax.swing.JButton btnIsprazni;
     private javax.swing.JButton btnUbaci;
     private javax.swing.JLabel lblNaslov;
     private javax.swing.JLabel lblNaziv;

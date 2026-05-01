@@ -65,7 +65,7 @@
                       </Group>
                   </Group>
                   <Component id="btnObrisiStavku" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnIsprazniPolja2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnIsprazni" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
@@ -126,14 +126,14 @@
               <Component id="btnSacuvajPregled" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnIzmeniStavku" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnObrisiStavku" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnSacuvajIzmene" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnPrikaziStavku" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnIsprazniPolja2" min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="btnIsprazni" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -448,7 +448,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnObrisiStavkuActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnIsprazniPolja2">
+    <Component class="javax.swing.JButton" name="btnIsprazni">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
@@ -456,7 +456,7 @@
         <Property name="text" type="java.lang.String" value="&#x418;&#x421;&#x41f;&#x420;&#x410;&#x417;&#x41d;&#x418; &#x41f;&#x41e;&#x409;&#x410;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIsprazniPolja2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIsprazniActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

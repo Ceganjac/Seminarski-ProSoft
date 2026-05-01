@@ -10,6 +10,7 @@ import domen.StavkaPregleda;
 import gui.enumi.ModForme;
 import gui.komponente.TblModelStavkaPregleda;
 import java.awt.Color;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -38,8 +39,11 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         this.tblModel = tblModel;
         obradaModa();
         obradaCmbDijagnoza();
+
         // postavljanje boje
         getContentPane().setBackground(Color.white);
+        btnIsprazni.setBackground(Color.WHITE);
+        cmbDijagnoza.setBackground(Color.WHITE);
 
     }
 
@@ -66,7 +70,8 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         lblVremeTrajanja = new javax.swing.JLabel();
         txtVremeTrajanja = new javax.swing.JTextField();
         lblLekarskiNalaz = new javax.swing.JLabel();
-        btnIsprazniPolja2 = new javax.swing.JButton();
+        btnIsprazni = new javax.swing.JButton();
+        btnSacuvajIzmene = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -108,11 +113,21 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         lblLekarskiNalaz.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblLekarskiNalaz.setText("Лекарски налаз :");
 
-        btnIsprazniPolja2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnIsprazniPolja2.setText("ИСПРАЗНИ ПОЉА");
-        btnIsprazniPolja2.addActionListener(new java.awt.event.ActionListener() {
+        btnIsprazni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnIsprazni.setText("ИСПРАЗНИ ПОЉА");
+        btnIsprazni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIsprazniPolja2ActionPerformed(evt);
+                btnIsprazniActionPerformed(evt);
+            }
+        });
+
+        btnSacuvajIzmene.setBackground(new java.awt.Color(0, 204, 102));
+        btnSacuvajIzmene.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnSacuvajIzmene.setForeground(new java.awt.Color(255, 255, 255));
+        btnSacuvajIzmene.setText("САЧУВАЈ ИЗМЕНЕ");
+        btnSacuvajIzmene.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSacuvajIzmeneActionPerformed(evt);
             }
         });
 
@@ -139,7 +154,8 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                             .addComponent(txtIdStavke)
                             .addComponent(txtVremeTrajanja, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                             .addComponent(cmbDijagnoza, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnIsprazniPolja2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnIsprazni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSacuvajIzmene, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
@@ -170,8 +186,10 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                 .addGap(50, 50, 50)
                 .addComponent(btnSacuvajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIsprazniPolja2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addComponent(btnSacuvajIzmene, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnIsprazni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -206,12 +224,37 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnSacuvajStavkuActionPerformed
 
-    private void btnIsprazniPolja2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIsprazniPolja2ActionPerformed
+    private void btnIsprazniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIsprazniActionPerformed
         txtIdStavke.setText("");
         txtNaziv.setText("");
         txtVremeTrajanja.setText("");
         txaLekarskiNalaz.setText("");
-    }//GEN-LAST:event_btnIsprazniPolja2ActionPerformed
+    }//GEN-LAST:event_btnIsprazniActionPerformed
+
+    private void btnSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajIzmeneActionPerformed
+        
+        StavkaPregleda stavka = new StavkaPregleda();
+        
+        // popunjavanje podataka
+        stavka.setNaziv(txtNaziv.getText());
+        // vreme trajanja
+        int minuti = Integer.parseInt(txtVremeTrajanja.getText());
+        stavka.setVremeTrajanja(Duration.ofMinutes(minuti));
+        
+        stavka.setDijagnoza((Dijagnoza) cmbDijagnoza.getSelectedItem());
+        stavka.setLekarskiNalaz(txaLekarskiNalaz.getText());
+        
+        try {
+            // pozivanje
+            GuiController.vratiInstancu().promeniStavku(stavka);
+            JOptionPane.showMessageDialog(this, "Успешна измена ставке прегледа. "
+                    + "", "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Грешка приликом измене ставке прегледа. "
+                    + "", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnSacuvajIzmeneActionPerformed
 
     // obrada moda forme
     private void obradaModa() {
@@ -222,7 +265,8 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         } else if (modForme == modForme.MOD_IZMENA) {
             lblNaslov.setText("ИЗМЕНА СТАВКЕ ПРЕГЛЕДА");
             txtIdStavke.setEditable(false);
-            btnSacuvajStavku.setText("Сачувај измене");
+            btnSacuvajStavku.setVisible(false);
+            prikazStavke();
         }
 
     }
@@ -243,13 +287,21 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         }
 
     }
+    
+    private void prikazStavke(){
+        txtIdStavke.setText(""+stavkaPregleda.getIdStavkaPregleda());
+        txtNaziv.setText(stavkaPregleda.getNaziv());
+        txtVremeTrajanja.setText(""+stavkaPregleda.getVremeTrajanja().toMinutes());
+        txaLekarskiNalaz.setText(stavkaPregleda.getLekarskiNalaz());
+    }
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIsprazniPolja2;
+    private javax.swing.JButton btnIsprazni;
+    private javax.swing.JButton btnSacuvajIzmene;
     private javax.swing.JButton btnSacuvajStavku;
     private javax.swing.JComboBox<Dijagnoza> cmbDijagnoza;
     private javax.swing.JScrollPane jScrollPane1;

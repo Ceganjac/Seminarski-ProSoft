@@ -27,7 +27,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnIsprazniPolja" max="32767" attributes="0"/>
+                  <Component id="btnIsprazni" max="32767" attributes="0"/>
                   <Component id="btnUbaci" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -63,7 +63,7 @@
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="btnUbaci" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnIsprazniPolja" min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="btnIsprazni" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -116,7 +116,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNaziv">
     </Component>
-    <Component class="javax.swing.JButton" name="btnIsprazniPolja">
+    <Component class="javax.swing.JButton" name="btnIsprazni">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
@@ -124,7 +124,7 @@
         <Property name="text" type="java.lang.String" value="&#x418;&#x421;&#x41f;&#x420;&#x410;&#x417;&#x41d;&#x418; &#x41f;&#x41e;&#x409;&#x410;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIsprazniPoljaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIsprazniActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

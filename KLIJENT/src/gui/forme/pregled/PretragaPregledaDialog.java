@@ -34,8 +34,12 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     public PretragaPregledaDialog(java.awt.Frame parent, boolean modal, ModFormePretrazi modForme) {
         super(parent, modal);
         initComponents();
+        
         // postavljanje boje
         getContentPane().setBackground(Color.white);
+        cmbLekar.setBackground(Color.WHITE);
+        cmbPacijent.setBackground(Color.WHITE);
+        cmbDijagnoza.setBackground(Color.WHITE);
 
         this.parent = parent;
         this.modForme = modForme;
