@@ -233,20 +233,20 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
     private void btnSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajIzmeneActionPerformed
         
-        StavkaPregleda stavka = new StavkaPregleda();
+        StavkaPregleda stavkaIzmena = new StavkaPregleda();
         
         // popunjavanje podataka
-        stavka.setNaziv(txtNaziv.getText());
+        stavkaIzmena.setNaziv(txtNaziv.getText());
         // vreme trajanja
         int minuti = Integer.parseInt(txtVremeTrajanja.getText());
-        stavka.setVremeTrajanja(Duration.ofMinutes(minuti));
+        stavkaIzmena.setVremeTrajanja(Duration.ofMinutes(minuti));
         
-        stavka.setDijagnoza((Dijagnoza) cmbDijagnoza.getSelectedItem());
-        stavka.setLekarskiNalaz(txaLekarskiNalaz.getText());
+        stavkaIzmena.setDijagnoza((Dijagnoza) cmbDijagnoza.getSelectedItem());
+        stavkaIzmena.setLekarskiNalaz(txaLekarskiNalaz.getText());
         
         try {
             // pozivanje
-            GuiController.vratiInstancu().promeniStavku(stavka);
+            GuiController.vratiInstancu().promeniStavku(stavkaIzmena);
             JOptionPane.showMessageDialog(this, "Успешна измена ставке прегледа. "
                     + "", "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {

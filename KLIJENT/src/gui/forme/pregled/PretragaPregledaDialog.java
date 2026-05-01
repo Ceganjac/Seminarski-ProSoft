@@ -34,7 +34,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     public PretragaPregledaDialog(java.awt.Frame parent, boolean modal, ModFormePretrazi modForme) {
         super(parent, modal);
         initComponents();
-        
+
         // postavljanje boje
         getContentPane().setBackground(Color.white);
         cmbLekar.setBackground(Color.WHITE);
@@ -240,7 +240,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
 
             if (tblPregledi.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(this, "Систем не може да нађе прегледе по задатим критеријумима. ",
-                        "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
+                        "ОБАВЕШТЕЊЕ", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Систем је нашао прегледе по задатим критеријумима. ",
                         "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
@@ -276,11 +276,16 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
             Pregled pregled = model.getPregled(selektovaniRed);
             // forma 
             PregledDialogPrikaz dialog = new PregledDialogPrikaz(parent, true, pregled, ModForme.MOD_PRIKAZ);
+            JOptionPane.showMessageDialog(this, "Систем је нашао преглед. ", "ОБАВЕШТЕЊЕ",
+                    JOptionPane.INFORMATION_MESSAGE);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
 
         } else {
-            JOptionPane.showMessageDialog(this, "Нисте селектовали преглед !", "УПОЗОРЕЊЕ", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Нисте селектовали преглед !", "УПОЗОРЕЊЕ",
+                    JOptionPane.WARNING_MESSAGE);
+             JOptionPane.showMessageDialog(this, "Систем не може да нађе преглед", "ГРЕШКА",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnPrikaziActionPerformed
 

@@ -37,12 +37,14 @@ public class OProgramuDialog extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         lblAutorVrednost = new javax.swing.JLabel();
-        lblGodina = new javax.swing.JLabel();
-        lblAutor1 = new javax.swing.JLabel();
-        lblGodinaVrednost = new javax.swing.JLabel();
-        lblGodina1 = new javax.swing.JLabel();
+        lblBrIndeksa = new javax.swing.JLabel();
+        lblAutor = new javax.swing.JLabel();
+        lbBrIndeksaVrednost = new javax.swing.JLabel();
+        lblOpis = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaOpis = new javax.swing.JTextArea();
+        lblDatumVrednost = new javax.swing.JLabel();
+        lblDatum = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,23 +55,29 @@ public class OProgramuDialog extends javax.swing.JDialog {
         lblAutorVrednost.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblAutorVrednost.setText("Александар Чегањац");
 
-        lblGodina.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblGodina.setText("Година израде:");
+        lblBrIndeksa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblBrIndeksa.setText("Број индекса:");
 
-        lblAutor1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblAutor1.setText("Аутор:");
+        lblAutor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblAutor.setText("Аутор:");
 
-        lblGodinaVrednost.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblGodinaVrednost.setText("2026");
+        lbBrIndeksaVrednost.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbBrIndeksaVrednost.setText("2020/0384");
 
-        lblGodina1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblGodina1.setText("Опис:");
+        lblOpis.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblOpis.setText("Опис:");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Програм омогућава лакше спровођење прегледа у здравственој установи \nкроз евиденцију пацијената, заказивање прегледа, унос резултата и \nтерапије, као и једноставан преглед и ажурирање података.");
-        jScrollPane1.setViewportView(jTextArea1);
+        txaOpis.setEditable(false);
+        txaOpis.setColumns(20);
+        txaOpis.setRows(5);
+        txaOpis.setText("Програм омогућава лакше спровођење прегледа у здравственој установи \nкроз евиденцију пацијената, заказивање прегледа, унос резултата и \nтерапије, као и једноставан преглед и ажурирање података.");
+        jScrollPane1.setViewportView(txaOpis);
+
+        lblDatumVrednost.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblDatumVrednost.setText("мај, 2026");
+
+        lblDatum.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblDatum.setText("Месец израде:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,15 +91,17 @@ public class OProgramuDialog extends javax.swing.JDialog {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAutor1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                            .addComponent(lblGodina, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lblOpis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDatum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblAutor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                            .addComponent(lblBrIndeksa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblGodinaVrednost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblAutorVrednost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)))
-                    .addComponent(lblGodina1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lbBrIndeksaVrednost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblAutorVrednost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(lblDatumVrednost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
@@ -102,16 +112,20 @@ public class OProgramuDialog extends javax.swing.JDialog {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAutorVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAutor1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblGodina, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblGodinaVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblBrIndeksa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbBrIndeksaVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblGodina1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDatumVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(lblOpis, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
 
         pack();
@@ -124,12 +138,14 @@ public class OProgramuDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel lblAutor1;
+    private javax.swing.JLabel lbBrIndeksaVrednost;
+    private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblAutorVrednost;
-    private javax.swing.JLabel lblGodina;
-    private javax.swing.JLabel lblGodina1;
-    private javax.swing.JLabel lblGodinaVrednost;
+    private javax.swing.JLabel lblBrIndeksa;
+    private javax.swing.JLabel lblDatum;
+    private javax.swing.JLabel lblDatumVrednost;
+    private javax.swing.JLabel lblOpis;
+    private javax.swing.JTextArea txaOpis;
     // End of variables declaration//GEN-END:variables
 
 }

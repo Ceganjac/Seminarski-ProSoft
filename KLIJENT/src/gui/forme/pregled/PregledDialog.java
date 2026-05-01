@@ -331,7 +331,7 @@ public class PregledDialog extends javax.swing.JDialog {
                 .addComponent(btnPrikaziStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIsprazni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         lblIdPregleda.getAccessibleContext().setAccessibleName("200");
@@ -378,7 +378,8 @@ public class PregledDialog extends javax.swing.JDialog {
 
         // provera da li su uneta neophodna polja
         if ("".equals(txtIdPregleda.getText()) || cmbLekar.getSelectedItem() == null
-                || cmbPacijent.getSelectedItem() == null || "".equals(txtTerapija.getText())) {
+                || cmbPacijent.getSelectedItem() == null || "".equals(txtTerapija.getText())
+                || "".equals(txtDatumKontrole.getText()) || "".equals(txtVremeKontrole.getText())) {
             JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -387,7 +388,6 @@ public class PregledDialog extends javax.swing.JDialog {
             return;
         }
 
-        // pokretanje izmene (update) koja je deo SK:Kreiraj pregled
         try {
             Pregled pregled = new Pregled();
 
@@ -415,6 +415,7 @@ public class PregledDialog extends javax.swing.JDialog {
             // ukupno vreme trajanja
             pregled.setUkupnoVremeTrajanja(ukupnoVremeTrajanja);
             pregled.setStavke(stavke);
+            // pozivanje izmene
             GuiController.vratiInstancu().promeniPregled(pregled);
 
             // terapija
@@ -438,30 +439,29 @@ public class PregledDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        Pregled pi = new Pregled();
-        pi.setIdPregled(Integer.parseInt(txtIdPregleda.getText()));
-        pi.setLekar((Lekar) cmbLekar.getSelectedItem());
-        pi.setPacijent((Pacijent) cmbPacijent.getSelectedItem());
-        pi.setDatumVremeZavrsetka(LocalDateTime.parse(txtDatumVremeZavrsetka.getText()));
-        pi.setDatumKontrole(LocalDate.parse(txtDatumKontrole.getText()));
-        pi.setVremeKontrole(LocalTime.parse(txtVremeKontrole.getText()));
-
-        // ukupno vreme trajanja
-        int minuti = Integer.parseInt(txtUkupnoVremeTrajanja.getText());
-        Duration ukupnoVreme = Duration.ofMinutes(minuti);
-        pi.setUkupnoVremeTrajanja(ukupnoVreme);
-        // terapija
-        pi.setTerapija("" + txtTerapija.getText());
-
-        // uzimanje stavki
-        List<StavkaPregleda> stavke = tblModel.getStavke();
-        for (StavkaPregleda sp : stavke) {
-            sp.setPregled(pi);
-        }
-        pi.setStavke(stavke);
-
         try {
+            Pregled pi = new Pregled();
+            pi.setIdPregled(Integer.parseInt(txtIdPregleda.getText()));
+            pi.setLekar((Lekar) cmbLekar.getSelectedItem());
+            pi.setPacijent((Pacijent) cmbPacijent.getSelectedItem());
+            pi.setDatumVremeZavrsetka(LocalDateTime.parse(txtDatumVremeZavrsetka.getText()));
+            pi.setDatumKontrole(LocalDate.parse(txtDatumKontrole.getText()));
+            pi.setVremeKontrole(LocalTime.parse(txtVremeKontrole.getText()));
+
+            // ukupno vreme trajanja
+            int minuti = Integer.parseInt(txtUkupnoVremeTrajanja.getText());
+            Duration ukupnoVreme = Duration.ofMinutes(minuti);
+            pi.setUkupnoVremeTrajanja(ukupnoVreme);
+            // terapija
+            pi.setTerapija("" + txtTerapija.getText());
+
+            // uzimanje stavki
+            List<StavkaPregleda> stavke = tblModel.getStavke();
+            for (StavkaPregleda sp : stavke) {
+                sp.setPregled(pi);
+            }
+            pi.setStavke(stavke);
+
             GuiController.vratiInstancu().promeniPregled(pi);
             JOptionPane.showMessageDialog(this, "Систем је запамтио преглед. ", "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
@@ -477,8 +477,8 @@ public class PregledDialog extends javax.swing.JDialog {
 
         if (selektovaniRed != -1) {
             StavkaPregleda stavka = tblModel.getStavka(selektovaniRed);
-            StavkaPregledaDialog dialog = 
-                    new StavkaPregledaDialog(parent, true, stavka, ModForme.MOD_IZMENA, tblModel);
+            StavkaPregledaDialog dialog
+                    = new StavkaPregledaDialog(parent, true, stavka, ModForme.MOD_IZMENA, tblModel);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
@@ -552,6 +552,7 @@ public class PregledDialog extends javax.swing.JDialog {
             btnSacuvajPregled.setVisible(false);
             btnDodajStavku.setVisible(false);
             btnPrikaziStavku.setVisible(false);
+            btnIsprazni.setVisible(false);
 
             prikazPregleda();
 

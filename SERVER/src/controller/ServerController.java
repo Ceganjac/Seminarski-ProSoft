@@ -226,7 +226,7 @@ public class ServerController {
         }
     }
 
-    public void izmeniStavkuPregleda(StavkaPregleda sp) throws Exception {
+    public void promeniStavkuPregleda(StavkaPregleda sp) throws Exception {
 
         db = new DbBroker(port, username, password);
 

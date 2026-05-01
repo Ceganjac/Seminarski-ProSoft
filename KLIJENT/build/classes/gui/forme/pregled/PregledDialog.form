@@ -88,7 +88,7 @@
                   <Component id="lblLekar" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="cmbLekar" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPacijent" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="cmbPacijent" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
@@ -134,7 +134,7 @@
               <Component id="btnPrikaziStavku" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnIsprazni" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

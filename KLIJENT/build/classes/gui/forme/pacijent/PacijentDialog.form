@@ -28,7 +28,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="lblNaslov" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="btnIzmeni" max="32767" attributes="0"/>
                   <Component id="btnSacuvaj" alignment="0" max="32767" attributes="0"/>
@@ -43,6 +43,7 @@
                           <Component id="cmbPol" pref="314" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="btnIsprazniPolja" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblKrvnaGrupa" min="-2" pref="200" max="-2" attributes="0"/>
@@ -54,6 +55,7 @@
                       </Group>
                       <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnKreiraj" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtIdPacijenta" alignment="1" pref="314" max="32767" attributes="0"/>
                           <Component id="txtIme" pref="314" max="32767" attributes="0"/>
                           <Component id="txtDatumRodjenja" alignment="1" pref="314" max="32767" attributes="0"/>
@@ -62,10 +64,8 @@
                           <Component id="cmbKrvnaGrupa" alignment="1" pref="314" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="btnIsprazniPolja" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnKreiraj" alignment="1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
