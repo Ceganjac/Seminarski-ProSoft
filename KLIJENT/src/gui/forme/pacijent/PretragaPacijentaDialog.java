@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -183,14 +184,14 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
                     .addComponent(lblPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
-                .addComponent(scrTblPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrTblPacijent, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnPrikazi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         cmbKrvnaGrupa.getAccessibleContext().setAccessibleDescription("");
@@ -230,7 +231,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             }
 
             JOptionPane.showMessageDialog(this, "Систем је нашао пацијенте по задатим критеријумима.",
-                    "ГРЕШКА", JOptionPane.INFORMATION_MESSAGE);
+                    "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex, "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
@@ -246,6 +247,10 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             // uzimanje pacijenta iz modela
             Pacijent pacijent = tblModel.getPacijent(selektovanRed);
             PacijentDialog dialog = new PacijentDialog(parent, true, pacijent, ModForme.MOD_IZMENA);
+
+            JOptionPane.showMessageDialog(this, "Систем је нашао пацијента.", "ОБАВЕШТЕЊЕ",
+                    JOptionPane.INFORMATION_MESSAGE);
+
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
@@ -258,6 +263,10 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         if (red != -1) {
             Pacijent pacijent = tblModel.getPacijent(red);
             PacijentDialogPrikaz dialog = new PacijentDialogPrikaz(parent, true, pacijent);
+
+            JOptionPane.showMessageDialog(this, "Систем је нашао пацијента.", "ОБАВЕШТЕЊЕ",
+                    JOptionPane.INFORMATION_MESSAGE);
+
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
@@ -274,7 +283,8 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
                     JOptionPane.WARNING_MESSAGE);
             return;
         } else {
-
+            UIManager.put("OptionPane.yesButtonText", "Да");
+            UIManager.put("OptionPane.noButtonText", "Не");
             int odgovor = JOptionPane.showConfirmDialog(this, "Да ли желите да обришете пацијента ?",
                     "УПИТНИК", JOptionPane.YES_NO_OPTION);
             if (odgovor == JOptionPane.YES_OPTION) {
@@ -291,7 +301,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
                                 + "постоје прегледи везани за њега !", "ГРЕШКА",
                                 JOptionPane.ERROR_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(this, "Грешка приликом брисања пацијента !", "ГРЕШКА",
+                        JOptionPane.showMessageDialog(this, "Систем не може да обрише пацијента. ", "ГРЕШКА",
                                 JOptionPane.ERROR_MESSAGE);
                         ex.printStackTrace();
                     }

@@ -27,7 +27,7 @@ public class PrijavaDialog extends javax.swing.JDialog {
         initComponents();
         txtKorisnickoIme.setText("i");
         pwdLozinka.setText("i");
-        
+
         // postavljanje boje
         getContentPane().setBackground(Color.white);
     }
@@ -140,8 +140,12 @@ public class PrijavaDialog extends javax.swing.JDialog {
             lekarRez = GuiController.vratiInstancu().prijaviLekara(lekar);
 
             if (lekarRez == null) {
-                JOptionPane.showMessageDialog(this, "Нема корисника са унетим креденцијалима !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Корисничко име и шифра нису исправни. ",
+                        "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             } else {
+                JOptionPane.showMessageDialog(this, "Корисничко име и шифра су исправни. ",
+                        "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
+                
                 // prikaz glavnog frejma
                 GlavniFrejm glavni = new GlavniFrejm(lekarRez);
                 glavni.setLocationRelativeTo(this);
@@ -151,7 +155,7 @@ public class PrijavaDialog extends javax.swing.JDialog {
             }
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex, "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Грешка приликом пријаве !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
 

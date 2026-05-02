@@ -144,10 +144,10 @@ public class SpecijalizacijaDialog extends javax.swing.JDialog {
         try {
             // slanje kontroleru
             GuiController.vratiInstancu().ubaciSpecijalizaciju(spec);
-            JOptionPane.showMessageDialog(this, "Успешно додата специјализација !",
+            JOptionPane.showMessageDialog(this, " Систем је запамтио специјализацију. ",
                     "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Грешка приликом убацивања специјализације !",
+            JOptionPane.showMessageDialog(this, " Систем не може да запамти специјализацију. ",
                     "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
