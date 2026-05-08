@@ -5,10 +5,13 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.HeadlessException;
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Properties;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +19,6 @@ import javax.swing.JOptionPane;
  * @author Aleksandar Čeganjac
  */
 public class PodesavanjaDialog extends javax.swing.JDialog {
-
 
     /**
      * Creates new form PregledDialog
@@ -136,19 +138,27 @@ public class PodesavanjaDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
-        try (FileWriter fw = new FileWriter("src/db/konfiguracija.txt")) {
-            fw.write(txtBrPorta.getText() + "\n");
-            fw.write(txtKorisnickoIme.getText() + "\n");
-            fw.write(txtLozinka.getText() + "\n");
+        try {
+            // kreiranje properties
+            Properties props = new Properties();
+            // dodavanje properties-a
+            props.setProperty("brojPorta", txtBrPorta.getText());
+            props.setProperty("korisnickoIme", txtKorisnickoIme.getText());
+            props.setProperty("lozinka", txtLozinka.getText());
+
+            // kreiranje izlaznog toka
+            FileOutputStream fs = new FileOutputStream("src/db/konfig.properties");
+            // ubacivanje props-a preko toka
+            props.store(fs, null);
 
             JOptionPane.showMessageDialog(this,
-                    "Успешно сачувана подешавања",
+                    "Успешно сачувана подешавања. ",
                     "ОБАВЕШТЕЊЕ",
                     JOptionPane.INFORMATION_MESSAGE
             );
             dispose();
 
-        } catch (IOException ex) {
+        } catch (HeadlessException | IOException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this,
                     "Грешка приликом чувања података !",
@@ -166,14 +176,16 @@ public class PodesavanjaDialog extends javax.swing.JDialog {
      * @param args the command line arguments
      */
     private void popuniPolja() {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/db/konfiguracija.txt"))) {
-            String port = br.readLine();
-            String korisnik = br.readLine();
-            String lozinka = br.readLine();
+        try {
 
-            txtBrPorta.setText(port);
-            txtKorisnickoIme.setText(korisnik);
-            txtLozinka.setText(lozinka);
+            Properties props = new Properties();
+            // kreiranje toka ka fajlu
+            FileReader fr = new FileReader("src/db/konfig.properties");
+            props.load(fr);
+
+            txtBrPorta.setText(props.getProperty("brojPorta"));
+            txtKorisnickoIme.setText(props.getProperty("korisnickoIme"));
+            txtLozinka.setText(props.getProperty("lozinka"));
 
         } catch (IOException e) {
             e.printStackTrace();

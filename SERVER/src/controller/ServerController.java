@@ -32,6 +32,7 @@ public class ServerController {
             username = bf.readLine();
             password = bf.readLine();
         } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
