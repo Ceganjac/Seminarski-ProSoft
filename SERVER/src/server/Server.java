@@ -33,7 +33,7 @@ public class Server {
         System.out.println("Server pokrenut...");
         lblStatus.setText("ПОКРЕНУТ");
 
-        while (!serverSocket.isClosed()) {
+        while (signal) {
             try {
                 Socket socket = serverSocket.accept();
 

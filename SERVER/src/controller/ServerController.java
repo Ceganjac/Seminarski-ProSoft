@@ -9,12 +9,13 @@ import domen.Pacijent;
 import domen.Pregled;
 import domen.Specijalizacija;
 import domen.StavkaPregleda;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import so.PrijavaSO;
 
 public class ServerController {
 
@@ -26,11 +27,15 @@ public class ServerController {
 
     public ServerController() {
         try {
-            FileReader fr = new FileReader("konfiguracija.txt");
-            BufferedReader bf = new BufferedReader(fr);
-            port = bf.readLine();
-            username = bf.readLine();
-            password = bf.readLine();
+            Properties prop = new Properties();
+            FileInputStream fis = new FileInputStream("src/db/konfig.properties");
+            prop.load(fis);
+
+            port = prop.getProperty("brojPorta");
+            username = prop.getProperty("korisnickoIme");
+            System.out.println(username);
+            password = prop.getProperty("lozinka");
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -46,26 +51,12 @@ public class ServerController {
     // ================= LEKAR =================
     public Lekar prijaviLekar(Lekar lekar) throws Exception {
 
-        db = new DbBroker(port, username, password);
-        Lekar lekarRez = null;
-
-        try {
-            db.connect();
-            List<ODObjekat> lista = db.vratiPoUslovu(lekar);
-            if (!lista.isEmpty()) {
-                lekarRez = (Lekar) lista.get(0);
-            }
-            db.commit();
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
-
-        return lekarRez;
+        PrijavaSO prijava = new PrijavaSO();
+        prijava.execute(lekar);
+        Lekar ulogovani = prijava.getUlogovani();
+        return ulogovani;
+        
     }
-
     public List<Lekar> vratiSveLekare() throws Exception {
 
         List<Lekar> lista = new ArrayList<>();
