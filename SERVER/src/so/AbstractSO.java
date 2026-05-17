@@ -14,7 +14,7 @@ public abstract class AbstractSO {
     private void procitajKonfig() {
         try {
             Properties props = new Properties();
-            FileReader fr = new FileReader("db/konfiguracija.properties");
+            FileReader fr = new FileReader("db/konfig.properties");
             props.load(fr);
 
             brojPorta = props.getProperty("brojPorta");
@@ -41,8 +41,8 @@ public abstract class AbstractSO {
     }
 
     private void startTransaction() throws Exception {
+        
         procitajKonfig();
-
         dbb = new DbBroker(brojPorta, korisnickoIme, lozinka);
         dbb.connect();
     }

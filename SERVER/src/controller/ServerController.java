@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import so.PrijavaSO;
+import so.VratiPregledeUslovSO;
+import so.VratiSveLekareSO;
+import so.VratiSvePregledeSO;
 
 public class ServerController {
 
@@ -53,53 +56,25 @@ public class ServerController {
 
         PrijavaSO prijava = new PrijavaSO();
         prijava.execute(lekar);
-        Lekar ulogovani = prijava.getUlogovani();
-        return ulogovani;
-        
+
+        return prijava.getUlogovani();
+
     }
-    public List<Lekar> vratiSveLekare() throws Exception {
 
-        List<Lekar> lista = new ArrayList<>();
-        db = new DbBroker(port, username, password);
+    public List<Lekar> vratiSveLekare(Lekar lekar) throws Exception {
 
-        try {
-            db.connect();
+        VratiSveLekareSO sviLekari = new VratiSveLekareSO();
+        sviLekari.execute(lekar);
 
-            List<ODObjekat> rez = db.vratiSve(new Lekar());
-
-            for (ODObjekat o : rez) {
-                lista.add((Lekar) o);
-            }
-
-            db.commit();
-            return lista;
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
+        return sviLekari.getLekari();
     }
 
     // ================= PREGLED =================
     public Pregled kreirajPregled(Pregled pregled) throws Exception {
 
-        db = new DbBroker(port, username, password);
-        Pregled pregledRez = null;
+        KreirajPregledSO kreirajPregled = new KreirajPregledSO();
+        return null;
 
-        try {
-            db.connect();
-            pregledRez = (Pregled) db.kreiraj(pregled);
-            db.commit();
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
-
-        return pregledRez;
     }
 
     public void promeniPregled(Pregled pregled) throws Exception {
@@ -133,46 +108,18 @@ public class ServerController {
 
     public List<Pregled> vratiPregledPoUslovu(Pregled pregled) throws Exception {
 
-        db = new DbBroker(port, username, password);
+        VratiPregledeUslovSO preglediUslov = new VratiPregledeUslovSO();
+        preglediUslov.execute(pregled);
 
-        try {
+        return preglediUslov.getPregledi();
 
-            db.connect();
-            List<Pregled> pregledi = db.vratiPregledeUslov(pregled);
-            db.commit();
-            return pregledi;
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
     }
 
     public List<Pregled> vratiSvePreglede() throws Exception {
 
-        List<Pregled> pregledi = new ArrayList<>();
-        db = new DbBroker(port, username, password);
-
-        try {
-            db.connect();
-
-            List<ODObjekat> lista = db.vratiSve(new Pregled());
-
-            for (ODObjekat o : lista) {
-                pregledi.add((Pregled) o);
-            }
-
-            db.commit();
-            return pregledi;
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
+        VratiSvePregledeSO vratiSvePreglede = new  VratiSvePregledeSO();
+        vratiSvePreglede.execute(db);
+        return vratiSvePreglede.getPregledi();
     }
 
     public Pregled vratiPregledPoId(Pregled pregled) throws Exception {

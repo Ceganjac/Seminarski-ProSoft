@@ -68,7 +68,7 @@ public class KlijentskaNit extends Thread {
 
                         case VRATI_SVE_LEKARE:
                             List<Lekar> lekari = ServerController.vratiInstancu()
-                                    .vratiSveLekare();
+                                    .vratiSveLekare(new Lekar());
                             odgovor.setRezultat(lekari);
                             break;
 
