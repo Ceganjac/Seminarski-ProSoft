@@ -201,7 +201,7 @@ public class ServerController {
     public List<Pacijent> vratiPacijenteUslov(Pacijent pacijent) throws Exception {
 
         VratiPacijenteUslovSO so = new VratiPacijenteUslovSO();
-        so.execute(db);
+        so.execute(pacijent);
         return so.getPacijenti();
 
     }
@@ -209,7 +209,7 @@ public class ServerController {
     public void obrisiPacijenta(Pacijent pacijent) throws Exception {
 
         ObrisiPacijentaSO so = new ObrisiPacijentaSO();
-        so.execute(db);
+        so.execute(pacijent);
 
     }
 
