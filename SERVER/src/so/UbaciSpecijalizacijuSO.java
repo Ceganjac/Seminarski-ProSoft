@@ -4,31 +4,30 @@
  */
 package so;
 
-import domen.Lekar;
+import domen.Specijalizacija;
 
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class PrijavaSO extends AbstractSO {
 
-    private Lekar ulogovani;
+public class UbaciSpecijalizacijuSO extends AbstractSO {
 
     @Override
     protected void precondition(Object obj) throws Exception {
+
         if (obj == null) {
             throw new Exception("Objekat je NULL.");
+        }
+
+        if (!(obj instanceof Specijalizacija)) {
+            throw new Exception("Objekat nije specijalizacija.");
         }
     }
 
     @Override
-    public void executeOperation(Object obj) throws Exception {
-        Lekar lekar = (Lekar) obj;
-        ulogovani = (Lekar) dbb.vratiPoUslovu(lekar).get(0);
-    }
+   protected void executeOperation(Object obj) throws Exception {
 
-    public Lekar getUlogovani() {
-        return ulogovani;
+        dbb.ubaci((Specijalizacija) obj);
     }
-
 }

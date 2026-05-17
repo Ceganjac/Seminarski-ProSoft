@@ -2,33 +2,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package so;
+package so.pacijent;
 
-import domen.Lekar;
+import domen.Pacijent;
+import so.AbstractSO;
 
 /**
  *
  * @author Aleksandar Čeganjac
  */
-public class PrijavaSO extends AbstractSO {
-
-    private Lekar ulogovani;
+public class PromeniPacijentaSO extends AbstractSO {
 
     @Override
     protected void precondition(Object obj) throws Exception {
         if (obj == null) {
-            throw new Exception("Objekat je NULL.");
+            throw new Exception("Objekat je null.");
+        }
+
+        if (!(obj instanceof Pacijent)) {
+            throw new Exception("Objekat nije pacijent.");
         }
     }
 
     @Override
-    public void executeOperation(Object obj) throws Exception {
-        Lekar lekar = (Lekar) obj;
-        ulogovani = (Lekar) dbb.vratiPoUslovu(lekar).get(0);
-    }
+    protected void executeOperation(Object obj) throws Exception {
 
-    public Lekar getUlogovani() {
-        return ulogovani;
+        dbb.promeni((Pacijent) obj);
     }
 
 }

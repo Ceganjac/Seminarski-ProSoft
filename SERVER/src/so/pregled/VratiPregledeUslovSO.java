@@ -2,39 +2,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package so.pregled;
+
+import domen.Lekar;
+import domen.ODObjekat;
+import domen.Pregled;
+import java.util.ArrayList;
+import java.util.List;
+import so.AbstractSO;
+
 /**
  *
  * @author Aleksandar Čeganjac
  */
-package so;
+public class VratiPregledeUslovSO extends AbstractSO {
 
-import domen.ODObjekat;
-import domen.Pregled;
-import java.util.ArrayList;
-
-import java.util.List;
-
-public class VratiSvePregledeSO extends AbstractSO {
-
-    private List<Pregled> pregledi;
+    private List<Pregled> pregledi = new ArrayList<>();
 
     @Override
     protected void precondition(Object obj) throws Exception {
         if (obj == null) {
             throw new Exception("Objekat je null.");
         }
+
+        if (!(obj instanceof Pregled)) {
+            throw new Exception("Objekat nije pregled.");
+        }
     }
 
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        List<ODObjekat> lista = dbb.vratiSve(new Pregled());
+        pregledi = dbb.vratiPregledeUslov((Pregled) obj);
 
-        pregledi = new ArrayList<>();
-
-        for (ODObjekat od : lista) {
-            pregledi.add((Pregled) od);
-        }
     }
 
     public List<Pregled> getPregledi() {

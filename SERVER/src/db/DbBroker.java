@@ -36,7 +36,8 @@ public class DbBroker {
 
     public void connect() throws SQLException {
         String url = "jdbc:mysql://localhost:" + port + "/" + "seminarski";
-        konekcija = DriverManager.getConnection(url, username, password);
+        konekcija = DriverManager.getConnection("jdbc:mysql://localhost:3306/seminarski" 
+                , "root", "root");
         konekcija.setAutoCommit(false);
 
     }

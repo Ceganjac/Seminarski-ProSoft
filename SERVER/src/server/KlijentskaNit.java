@@ -5,14 +5,7 @@
 package server;
 
 import controller.ServerController;
-import domen.Dijagnoza;
-import domen.KrvnaGrupa;
-import domen.Lekar;
-import domen.ODObjekat;
-import domen.Pacijent;
-import domen.Pregled;
-import domen.Specijalizacija;
-import domen.StavkaPregleda;
+import domen.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

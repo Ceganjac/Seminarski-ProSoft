@@ -1,10 +1,18 @@
 package controller;
 
+import so.pacijent.VratiSvePacijenteSO;
+import so.pregled.VratiPregledPoIdSO;
+import so.pacijent.VratiPacijentaPoId;
+import so.pacijent.KreirajPacijentaSO;
+import so.pacijent.PromeniPacijentaSO;
+import so.pacijent.ObrisiPacijentaSO;
+import so.pacijent.VratiPacijenteUslovSO;
+import so.pregled.VratiPregledeUslovSO;
+import so.pregled.VratiSvePregledeSO;
 import db.DbBroker;
 import domen.Dijagnoza;
 import domen.KrvnaGrupa;
 import domen.Lekar;
-import domen.ODObjekat;
 import domen.Pacijent;
 import domen.Pregled;
 import domen.Specijalizacija;
@@ -12,13 +20,9 @@ import domen.StavkaPregleda;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import so.PrijavaSO;
-import so.VratiPregledeUslovSO;
-import so.VratiSveLekareSO;
-import so.VratiSvePregledeSO;
+import so.*;
 
 public class ServerController {
 
@@ -54,27 +58,27 @@ public class ServerController {
     // ================= LEKAR =================
     public Lekar prijaviLekar(Lekar lekar) throws Exception {
 
-        PrijavaSO prijava = new PrijavaSO();
-        prijava.execute(lekar);
+        PrijavaSO so = new PrijavaSO();
+        so.execute(lekar);
 
-        return prijava.getUlogovani();
+        return so.getUlogovani();
 
     }
 
     public List<Lekar> vratiSveLekare(Lekar lekar) throws Exception {
 
-        VratiSveLekareSO sviLekari = new VratiSveLekareSO();
-        sviLekari.execute(lekar);
+        VratiSveLekareSO so = new VratiSveLekareSO();
+        so.execute(lekar);
 
-        return sviLekari.getLekari();
+        return so.getLekari();
     }
 
     // ================= PREGLED =================
     public Pregled kreirajPregled(Pregled pregled) throws Exception {
 
-        KreirajPregledSO kreirajPregled = new KreirajPregledSO();
+        KreirajPregledSO so = new KreirajPregledSO();
+        //so.execute(pregled);
         return null;
-
     }
 
     public void promeniPregled(Pregled pregled) throws Exception {
@@ -108,42 +112,26 @@ public class ServerController {
 
     public List<Pregled> vratiPregledPoUslovu(Pregled pregled) throws Exception {
 
-        VratiPregledeUslovSO preglediUslov = new VratiPregledeUslovSO();
-        preglediUslov.execute(pregled);
+        VratiPregledeUslovSO so = new VratiPregledeUslovSO();
+        so.execute(pregled);
 
-        return preglediUslov.getPregledi();
+        return so.getPregledi();
 
     }
 
     public List<Pregled> vratiSvePreglede() throws Exception {
 
-        VratiSvePregledeSO vratiSvePreglede = new  VratiSvePregledeSO();
-        vratiSvePreglede.execute(db);
-        return vratiSvePreglede.getPregledi();
+        VratiSvePregledeSO so = new VratiSvePregledeSO();
+        so.execute(db);
+        return so.getPregledi();
     }
 
     public Pregled vratiPregledPoId(Pregled pregled) throws Exception {
 
-        db = new DbBroker(port, username, password);
-        Pregled rezultat = null;
-
-        try {
-            db.connect();
-
-            ODObjekat odo = db.vratiPoId(pregled);
-            if (odo != null) {
-                rezultat = (Pregled) odo;
-            }
-
-            db.commit();
-            return rezultat;
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
+        VratiPregledPoIdSO so = new VratiPregledPoIdSO();
+        so.execute(pregled);
+        return so.getPregled();
+        
     }
 
     // ================= STAVKE PREGLEDA =================
@@ -185,179 +173,67 @@ public class ServerController {
     // ================= PACIJENT =================
     public Pacijent kreirajPacijenta(Pacijent pacijent) throws Exception {
 
-        db = new DbBroker(port, username, password);
-        Pacijent rezultat = null;
-
-        try {
-            db.connect();
-            rezultat = (Pacijent) db.kreiraj(pacijent);
-            db.commit();
-            return rezultat;
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
+        KreirajPacijentaSO so = new KreirajPacijentaSO();
+        so.execute(pacijent);
+        return so.getPacijent();
     }
 
     public void promeniPacijenta(Pacijent pacijent) throws Exception {
 
-        db = new DbBroker(port, username, password);
-
-        try {
-            db.connect();
-            db.promeni(pacijent);
-            db.commit();
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
+        PromeniPacijentaSO so = new PromeniPacijentaSO();
+        so.execute(pacijent);
     }
 
     public Pacijent vratiPacijentaPoId(Pacijent pacijent) throws Exception {
 
-        db = new DbBroker(port, username, password);
-        Pacijent rezultat = null;
-
-        try {
-            db.connect();
-
-            ODObjekat odo = db.vratiPoId(pacijent);
-            if (odo != null) {
-                rezultat = (Pacijent) odo;
-            }
-
-            db.commit();
-            return rezultat;
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
+        VratiPacijentaPoId so = new VratiPacijentaPoId();
+        so.execute(pacijent);
+        return so.getPacijent();
     }
 
     public List<Pacijent> vratiSvePacijente() throws Exception {
 
-        db = new DbBroker(port, username, password);
-        List<Pacijent> pacijenti = new ArrayList<>();
-
-        try {
-            db.connect();
-            List<ODObjekat> lista = db.vratiSve(new Pacijent());
-            for (ODObjekat odo : lista) {
-                pacijenti.add((Pacijent) odo);
-            }
-            db.commit();
-            return pacijenti;
-
-        } catch (SQLException ex) {
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
+        VratiSvePacijenteSO so = new VratiSvePacijenteSO();
+        so.execute(new Pacijent());
+        return so.getPacijenti();
     }
 
     public List<Pacijent> vratiPacijenteUslov(Pacijent pacijent) throws Exception {
 
-        db = new DbBroker(port, username, password);
+        VratiPacijenteUslovSO so = new VratiPacijenteUslovSO();
+        so.execute(db);
+        return so.getPacijenti();
 
-        try {
-            db.connect();
-            List<Pacijent> pacijenti = db.vratiPacijenteUslov(pacijent);
-            db.commit();
-            return pacijenti;
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
     }
 
     public void obrisiPacijenta(Pacijent pacijent) throws Exception {
 
-        db = new DbBroker(port, username, password);
+        ObrisiPacijentaSO so = new ObrisiPacijentaSO();
+        so.execute(db);
 
-        try {
-            db.connect();
-            db.obrisi(pacijent);
-            db.commit();
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
     }
 
     // ================= KRVNA GRUPA =================
     public List<KrvnaGrupa> vratiSveKGrupe() throws Exception {
 
-        db = new DbBroker(port, username, password);
-        List<KrvnaGrupa> kGrupe = new ArrayList();
-        try {
-            db.connect();
-            List<ODObjekat> lista = db.vratiSve(new KrvnaGrupa());
-            for (ODObjekat odo : lista) {
-                kGrupe.add((KrvnaGrupa) odo);
-            }
-            db.commit();
-            return kGrupe;
-
-        } catch (SQLException ex) {
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
+        VratiSveKrvneGrupeSO so = new VratiSveKrvneGrupeSO();
+        so.execute(new KrvnaGrupa());
+        return so.getKrvneGrupe();
 
     }
 
     // ================= DIJAGNOZA =================
     public List<Dijagnoza> vratiSveDijagnoze() throws Exception {
-
-        List<Dijagnoza> dijagnoze = new ArrayList();
-        db = new DbBroker(port, username, password);
-
-        try {
-            db.connect();
-            List<ODObjekat> lista = db.vratiSve(new Dijagnoza());
-            for (ODObjekat odo : lista) {
-                dijagnoze.add((Dijagnoza) odo);
-            }
-            db.commit();
-            return dijagnoze;
-
-        } catch (SQLException ex) {
-            System.getLogger(ServerController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        }
-
-        return null;
+        
+        VratiSveDijagnozeSO so = new VratiSveDijagnozeSO();
+        so.execute(db);
+        return so.getDijagnoze();
     }
 
     // ================= SPECIJALIZACIJA =================
     public void ubaciSpecijalizaciju(Specijalizacija spec) throws Exception {
-
-        db = new DbBroker(port, username, password);
-        try {
-            db.connect();
-            db.ubaci(spec);
-            db.commit();
-
-        } catch (SQLException ex) {
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
-
+        UbaciSpecijalizacijuSO so = new UbaciSpecijalizacijuSO();
+        so.execute(new Specijalizacija());
     }
 
 }
