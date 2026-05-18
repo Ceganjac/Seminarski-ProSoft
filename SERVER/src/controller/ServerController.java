@@ -23,6 +23,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 import so.*;
+import so.pregled.KreirajPregledSO;
+import so.pregled.PromeniPregledSO;
 
 public class ServerController {
 
@@ -77,37 +79,15 @@ public class ServerController {
     public Pregled kreirajPregled(Pregled pregled) throws Exception {
 
         KreirajPregledSO so = new KreirajPregledSO();
-        //so.execute(pregled);
-        return null;
+        so.execute(pregled);
+        return so.getPregled();
     }
 
     public void promeniPregled(Pregled pregled) throws Exception {
 
-        db = new DbBroker(port, username, password);
+        PromeniPregledSO so = new PromeniPregledSO();
+        so.execute(pregled);
 
-        try {
-            db.connect();
-
-            // 1. promena samog pregleda
-            db.promeni(pregled);
-
-            // 2. obriši sve stare stavke za taj pregled
-            for (StavkaPregleda sp : db.vratiStavkeUslov(pregled)) {
-                db.obrisi(sp);
-            }
-
-            // 3. ubaci sve nove stavke
-            for (StavkaPregleda sp : pregled.getStavke()) {
-                db.ubaci(sp);
-            }
-            db.commit();
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
     }
 
     public List<Pregled> vratiPregledPoUslovu(Pregled pregled) throws Exception {
@@ -131,7 +111,7 @@ public class ServerController {
         VratiPregledPoIdSO so = new VratiPregledPoIdSO();
         so.execute(pregled);
         return so.getPregled();
-        
+
     }
 
     // ================= STAVKE PREGLEDA =================
@@ -224,9 +204,9 @@ public class ServerController {
 
     // ================= DIJAGNOZA =================
     public List<Dijagnoza> vratiSveDijagnoze() throws Exception {
-        
+
         VratiSveDijagnozeSO so = new VratiSveDijagnozeSO();
-        so.execute(db);
+        so.execute(new Dijagnoza());
         return so.getDijagnoze();
     }
 

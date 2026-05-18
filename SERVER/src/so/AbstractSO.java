@@ -14,7 +14,7 @@ public abstract class AbstractSO {
     private void procitajKonfig() {
         try {
             Properties props = new Properties();
-            FileReader fr = new FileReader("db/konfig.properties");
+            FileReader fr = new FileReader("src/db/konfig.properties");
             props.load(fr);
 
             brojPorta = props.getProperty("brojPorta");

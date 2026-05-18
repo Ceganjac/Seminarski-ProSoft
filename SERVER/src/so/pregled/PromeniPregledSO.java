@@ -13,7 +13,7 @@ import so.AbstractSO;
  *
  * @author Aleksandar Čeganjac
  */
-public class KreirajPregledSO extends AbstractSO {
+public class PromeniPregledSO extends AbstractSO {
 
     private Pregled pregled;
 
@@ -31,8 +31,22 @@ public class KreirajPregledSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        pregled = (Pregled) dbb.kreiraj((Pregled) obj);
+        Pregled pregled = (Pregled) obj;
 
+        // 1. promena pregleda
+        dbb.promeni(pregled);
+
+        // 2. brisanje svih stavki za taj pregled (GENERIČKI DB)
+        StavkaPregleda sp = new StavkaPregleda();
+        dbb.obrisiPoUslovu(sp, "id_pregled = " + pregled.getIdPregled());
+
+        // 3. ubacivanje novih stavki
+        List<StavkaPregleda> stavke = pregled.getStavke();
+
+        for (int i = 0; i < stavke.size(); i++) {
+            stavke.get(i).setPregled(pregled);
+            dbb.ubaci(stavke.get(i));
+        }
     }
 
     public Pregled getPregled() {

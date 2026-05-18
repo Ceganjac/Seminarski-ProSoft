@@ -36,8 +36,8 @@ public class DbBroker {
 
     public void connect() throws SQLException {
         String url = "jdbc:mysql://localhost:" + port + "/" + "seminarski";
-        konekcija = DriverManager.getConnection("jdbc:mysql://localhost:3306/seminarski" 
-                , "root", "root");
+        konekcija = DriverManager.getConnection("jdbc:mysql://localhost:3306/seminarski",
+                 "root", "root");
         konekcija.setAutoCommit(false);
 
     }
@@ -144,7 +144,7 @@ public class DbBroker {
             int vremeTrajanja = rs.getInt("ukupno_vreme_trajanja");
             Duration d = Duration.ofMinutes((long) vremeTrajanja);
             pr.setUkupnoVremeTrajanja(d);
-            
+
             pr.setTerapija(rs.getString("terapija"));
 
             // lekar
@@ -299,6 +299,17 @@ public class DbBroker {
         String upit = "DELETE FROM " + odo.vratiImeTabele()
                 + " WHERE " + odo.vratiNazivId()
                 + " = " + odo.vratiVrednostId();
+
+        System.out.println(upit);
+
+        Statement s = konekcija.createStatement();
+        s.executeUpdate(upit);
+    }
+
+    public void obrisiPoUslovu(ODObjekat odo, String uslov) throws SQLException {
+
+        String upit = "DELETE FROM " + odo.vratiImeTabele()
+                + " WHERE " + uslov;
 
         System.out.println(upit);
 
