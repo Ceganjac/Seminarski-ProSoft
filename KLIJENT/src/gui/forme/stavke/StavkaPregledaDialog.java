@@ -209,9 +209,17 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         // uzimanje podataka iz polja
         stavka.setNaziv(txtNaziv.getText());
         // trajanje
-        int trajanjeInt = Integer.parseInt(txtVremeTrajanja.getText());
+        int trajanjeInt = 0;
+        try {
+            trajanjeInt = Integer.parseInt(txtVremeTrajanja.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Време трајања мора бити број !",
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         Duration trajanjeD = Duration.ofMinutes(trajanjeInt);
         stavka.setVremeTrajanja(trajanjeD);
+
         stavka.setDijagnoza((Dijagnoza) cmbDijagnoza.getSelectedItem());
         stavka.setLekarskiNalaz(txaLekarskiNalaz.getText());
 
@@ -232,18 +240,18 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnIsprazniActionPerformed
 
     private void btnSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajIzmeneActionPerformed
-        
+
         StavkaPregleda stavkaIzmena = new StavkaPregleda();
-        
+
         // popunjavanje podataka
         stavkaIzmena.setNaziv(txtNaziv.getText());
         // vreme trajanja
         int minuti = Integer.parseInt(txtVremeTrajanja.getText());
         stavkaIzmena.setVremeTrajanja(Duration.ofMinutes(minuti));
-        
+
         stavkaIzmena.setDijagnoza((Dijagnoza) cmbDijagnoza.getSelectedItem());
         stavkaIzmena.setLekarskiNalaz(txaLekarskiNalaz.getText());
-        
+
         try {
             // pozivanje
             GuiController.vratiInstancu().promeniStavku(stavkaIzmena);
@@ -253,7 +261,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Грешка приликом измене ставке прегледа. "
                     + "", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnSacuvajIzmeneActionPerformed
 
     // obrada moda forme
@@ -262,6 +270,8 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         if (modForme == modForme.MOD_KREIRANJE) {
             lblIdStavke.setVisible(false);
             txtIdStavke.setVisible(false);
+            btnSacuvajIzmene.setVisible(false);
+            
         } else if (modForme == modForme.MOD_IZMENA) {
             lblNaslov.setText("ИЗМЕНА СТАВКЕ ПРЕГЛЕДА");
             txtIdStavke.setEditable(false);
@@ -287,11 +297,11 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         }
 
     }
-    
-    private void prikazStavke(){
-        txtIdStavke.setText(""+stavkaPregleda.getIdStavkaPregleda());
+
+    private void prikazStavke() {
+        txtIdStavke.setText("" + stavkaPregleda.getIdStavkaPregleda());
         txtNaziv.setText(stavkaPregleda.getNaziv());
-        txtVremeTrajanja.setText(""+stavkaPregleda.getVremeTrajanja().toMinutes());
+        txtVremeTrajanja.setText("" + stavkaPregleda.getVremeTrajanja().toMinutes());
         txaLekarskiNalaz.setText(stavkaPregleda.getLekarskiNalaz());
     }
 

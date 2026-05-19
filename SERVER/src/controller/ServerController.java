@@ -63,7 +63,7 @@ public class ServerController {
         PrijavaSO so = new PrijavaSO();
         so.execute(lekar);
 
-        return so.getUlogovani();
+        return so.getPrijavljen();
 
     }
 

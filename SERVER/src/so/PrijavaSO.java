@@ -12,7 +12,7 @@ import domen.Lekar;
  */
 public class PrijavaSO extends AbstractSO {
 
-    private Lekar ulogovani;
+    private Lekar prijavljen;
 
     @Override
     protected void precondition(Object obj) throws Exception {
@@ -24,11 +24,11 @@ public class PrijavaSO extends AbstractSO {
     @Override
     public void executeOperation(Object obj) throws Exception {
         Lekar lekar = (Lekar) obj;
-        ulogovani = (Lekar) dbb.vratiPoUslovu(lekar).get(0);
+        prijavljen = (Lekar) dbb.vratiPoUslovu(lekar).get(0);
     }
 
-    public Lekar getUlogovani() {
-        return ulogovani;
+    public Lekar getPrijavljen() {
+        return prijavljen;
     }
 
 }
