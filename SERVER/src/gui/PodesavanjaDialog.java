@@ -6,12 +6,11 @@ package gui;
 
 import java.awt.Color;
 import java.awt.HeadlessException;
-import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,10 +25,14 @@ public class PodesavanjaDialog extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public PodesavanjaDialog(java.awt.Frame parent, boolean modal) {
+    JLabel lblStatusVr;
+
+    public PodesavanjaDialog(java.awt.Frame parent, boolean modal, JLabel lblStatusVr) {
         super(parent, modal);
         initComponents();
         getContentPane().setBackground(Color.white);
+
+        this.lblStatusVr = lblStatusVr;
 
         // metode
         popuniPolja();
@@ -138,6 +141,13 @@ public class PodesavanjaDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
+
+        if (lblStatusVr.getText() == "ПОКРЕНУТ") {
+            JOptionPane.showMessageDialog(this, "Не можете мењати конфигурационе  "
+                    + "податке док је сервер покренут !", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         try {
             // kreiranje properties
             Properties props = new Properties();

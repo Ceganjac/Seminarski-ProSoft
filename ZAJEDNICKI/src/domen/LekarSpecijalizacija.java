@@ -24,7 +24,8 @@ public class LekarSpecijalizacija implements ODObjekat {
     public LekarSpecijalizacija() {
     }
 
-    public LekarSpecijalizacija(Lekar lekar, Specijalizacija specijalizacija, LocalDate datumSticanja, String institucijaSticanja, Period trajanje) {
+    public LekarSpecijalizacija(Lekar lekar, Specijalizacija specijalizacija, 
+            LocalDate datumSticanja, String institucijaSticanja, Period trajanje) {
         this.lekar = lekar;
         this.specijalizacija = specijalizacija;
         this.datumSticanja = datumSticanja;

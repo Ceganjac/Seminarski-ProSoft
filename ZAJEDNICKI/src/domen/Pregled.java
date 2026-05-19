@@ -33,10 +33,8 @@ public class Pregled implements ODObjekat {
     public Pregled() {
     }
 
-    public Pregled(int idPregled, LocalDateTime datumVremeZavrsetka,
-            LocalDate datumKontrole, LocalTime vremeKontrole,
-            Duration ukupnoVremeTrajanja, String terapija,
-            Lekar lekar, Pacijent pacijent,
+    public Pregled(int idPregled, LocalDateTime datumVremeZavrsetka,LocalDate datumKontrole, LocalTime vremeKontrole,
+            Duration ukupnoVremeTrajanja, String terapija,Lekar lekar, Pacijent pacijent,
             List<StavkaPregleda> stavke) {
 
         this.idPregled = idPregled;

@@ -26,6 +26,7 @@ public class NitPokretanje implements Runnable {
 
     @Override
     public void run() {
+        
         try {
           
             Server.vratiInstancu().pokreniServer(lblStatus);

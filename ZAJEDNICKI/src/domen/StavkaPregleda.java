@@ -25,7 +25,8 @@ public class StavkaPregleda implements ODObjekat {
     public StavkaPregleda() {
     }
 
-    public StavkaPregleda(Pregled pregled, int idStavkaPregleda, String naziv, String lekarskiNalaz, Duration vremeTrajanja, Dijagnoza dijagnoza) {
+    public StavkaPregleda(Pregled pregled, int idStavkaPregleda, String naziv,
+            String lekarskiNalaz, Duration vremeTrajanja, Dijagnoza dijagnoza) {
         this.pregled = pregled;
         this.idStavkaPregleda = idStavkaPregleda;
         this.naziv = naziv;

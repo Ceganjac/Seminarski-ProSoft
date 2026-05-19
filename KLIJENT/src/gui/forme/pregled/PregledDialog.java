@@ -399,10 +399,17 @@ public class PregledDialog extends javax.swing.JDialog {
             // datumKontrole i vremeKontrole
             DateTimeFormatter formaterDatum = DateTimeFormatter.ofPattern("dd.MM.yyyy['.']");
             DateTimeFormatter formaterVreme = DateTimeFormatter.ofPattern("HH:mm");
-            LocalDate datumKontrole = LocalDate.parse(txtDatumKontrole.getText(), formaterDatum);
-            LocalTime vremeKontrole = LocalTime.parse(txtVremeKontrole.getText(), formaterVreme);
-            pregled.setDatumKontrole(datumKontrole);
-            pregled.setVremeKontrole(vremeKontrole);
+            try {
+                LocalDate datumKontrole = LocalDate.parse(txtDatumKontrole.getText(), formaterDatum);
+                LocalTime vremeKontrole = LocalTime.parse(txtVremeKontrole.getText(), formaterVreme);
+                pregled.setDatumKontrole(datumKontrole);
+                pregled.setVremeKontrole(vremeKontrole);
+
+            } catch (Exception ex) {
+                 JOptionPane.showMessageDialog(this, "Датум контроле и/или време контроле нису исправни !",
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            return;
+            }
 
             // stavke pregleda
             List<StavkaPregleda> stavke = tblModel.getStavke();

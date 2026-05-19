@@ -28,7 +28,8 @@ public class Pacijent implements ODObjekat {
     public Pacijent() {
     }
 
-    public Pacijent(int idPacijent, String ime, String prezime, Pol pol, LocalDate datumRodjenja, String mestoRodjenja, String mejl, KrvnaGrupa krvnaGrupa) {
+    public Pacijent(int idPacijent, String ime, String prezime, Pol pol, 
+            LocalDate datumRodjenja, String mestoRodjenja, String mejl, KrvnaGrupa krvnaGrupa) {
         this.idPacijent = idPacijent;
         this.ime = ime;
         this.prezime = prezime;

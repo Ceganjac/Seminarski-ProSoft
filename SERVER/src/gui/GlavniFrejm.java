@@ -23,7 +23,6 @@ public class GlavniFrejm extends javax.swing.JFrame {
     private String port;
     private String korisnickoIme;
     private String lozinka;
-    private Server server;
 
     /**
      * Creates new form GlavniFrejm
@@ -35,7 +34,7 @@ public class GlavniFrejm extends javax.swing.JFrame {
         UIManager.put("MenuItem.selectionBackground", new Color(0, 204, 102));
         UIManager.put("Menu.selectionBackground", new Color(0, 204, 102));
         btnZaustaviServer.setBackground(Color.WHITE);
-        
+
         SwingUtilities.updateComponentTreeUI(this);
         getContentPane().setBackground(Color.white);
 
@@ -177,13 +176,13 @@ public class GlavniFrejm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemKonfiguracijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemKonfiguracijaActionPerformed
-        PodesavanjaDialog dialog = new PodesavanjaDialog(this, true);
+        PodesavanjaDialog dialog = new PodesavanjaDialog(this, true, lblStatusVr);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_itemKonfiguracijaActionPerformed
 
     private void btnPokreniServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokreniServerActionPerformed
-       
+
         NitPokretanje nitP = new NitPokretanje(this,lblStatusVr);
         Thread t = new Thread(nitP);
         t.start();
