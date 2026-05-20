@@ -16,7 +16,7 @@ import java.util.List;
 public class StavkaPregleda implements ODObjekat {
 
     private Pregled pregled;
-    private int idStavkaPregleda;
+    private int redni_broj_stavke;
     private String naziv;
     private String lekarskiNalaz;
     private Duration vremeTrajanja;
@@ -28,7 +28,7 @@ public class StavkaPregleda implements ODObjekat {
     public StavkaPregleda(Pregled pregled, int idStavkaPregleda, String naziv,
             String lekarskiNalaz, Duration vremeTrajanja, Dijagnoza dijagnoza) {
         this.pregled = pregled;
-        this.idStavkaPregleda = idStavkaPregleda;
+        this.redni_broj_stavke = idStavkaPregleda;
         this.naziv = naziv;
         this.lekarskiNalaz = lekarskiNalaz;
         this.vremeTrajanja = vremeTrajanja;
@@ -43,12 +43,12 @@ public class StavkaPregleda implements ODObjekat {
         this.pregled = pregled;
     }
 
-    public int getIdStavkaPregleda() {
-        return idStavkaPregleda;
+    public int getRedni_broj_stavke() {
+        return redni_broj_stavke;
     }
 
-    public void setIdStavkaPregleda(int idStavkaPregleda) {
-        this.idStavkaPregleda = idStavkaPregleda;
+    public void setRedni_broj_stavke(int redni_broj_stavke) {
+        this.redni_broj_stavke = redni_broj_stavke;
     }
 
     public String getNaziv() {
@@ -103,7 +103,7 @@ public class StavkaPregleda implements ODObjekat {
         }
 
         return pregled.getIdPregled() + ", "
-                + idStavkaPregleda + ", '"
+                + redni_broj_stavke + ", '"
                 + naziv + "', '"
                 + lekarskiNalaz + "', "
                 + vremeTrajanja.toMinutes() + ", "
@@ -139,7 +139,7 @@ public class StavkaPregleda implements ODObjekat {
 
     @Override
     public void postaviId(int id) {
-        this.idStavkaPregleda = id;
+        this.redni_broj_stavke = id;
     }
 
     @Override
@@ -150,12 +150,12 @@ public class StavkaPregleda implements ODObjekat {
 
     @Override
     public String vratiNazivId() {
-        return "id_stavka_pregleda";  
+        return "redni_broj_stavke";  
     }
 
     @Override
     public String vratiVrednostId() {
-        return ""+idStavkaPregleda;
+        return ""+redni_broj_stavke;
     }
 
     @Override
@@ -165,7 +165,7 @@ public class StavkaPregleda implements ODObjekat {
 
         while (rs.next()) {
             StavkaPregleda sp = new StavkaPregleda();
-            sp.setIdStavkaPregleda(rs.getInt("id_stavka_pregleda"));
+            sp.setRedni_broj_stavke(rs.getInt("id_stavka_pregleda"));
             sp.setNaziv(rs.getString("naziv"));
             sp.setLekarskiNalaz(rs.getString("lekarski_nalaz"));
             // vreme trajanja

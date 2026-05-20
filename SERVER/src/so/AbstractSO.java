@@ -1,8 +1,6 @@
 package so;
 
 import db.DbBroker;
-import java.io.FileReader;
-import java.util.Properties;
 
 public abstract class AbstractSO {
 
@@ -10,21 +8,6 @@ public abstract class AbstractSO {
     protected static String brojPorta;
     protected static String korisnickoIme;
     protected static String lozinka;
-
-    private void procitajKonfig() {
-        try {
-            Properties props = new Properties();
-            FileReader fr = new FileReader("src/db/konfig.properties");
-            props.load(fr);
-
-            brojPorta = props.getProperty("brojPorta");
-            korisnickoIme = props.getProperty("korisnickoIme");
-            lozinka = props.getProperty("lozinka");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
 
     public void execute(Object obj) throws Exception {
         try {
@@ -41,8 +24,8 @@ public abstract class AbstractSO {
     }
 
     private void startTransaction() throws Exception {
-        
-        procitajKonfig();
+
+        ProcitajKonfig.procitaj();
         dbb = new DbBroker(brojPorta, korisnickoIme, lozinka);
         dbb.connect();
     }

@@ -299,7 +299,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
     }
 
     private void prikazStavke() {
-        txtIdStavke.setText("" + stavkaPregleda.getIdStavkaPregleda());
+        txtIdStavke.setText("" + stavkaPregleda.getRedni_broj_stavke());
         txtNaziv.setText(stavkaPregleda.getNaziv());
         txtVremeTrajanja.setText("" + stavkaPregleda.getVremeTrajanja().toMinutes());
         txaLekarskiNalaz.setText(stavkaPregleda.getLekarskiNalaz());

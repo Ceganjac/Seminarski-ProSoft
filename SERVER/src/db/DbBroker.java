@@ -228,7 +228,7 @@ public class DbBroker {
 
             StavkaPregleda sp = new StavkaPregleda();
 
-            sp.setIdStavkaPregleda(rs.getInt("id_stavka_pregleda"));
+            sp.setRedni_broj_stavke(rs.getInt("redni_broj_stavke"));
             sp.setNaziv(rs.getString("naziv"));
             sp.setLekarskiNalaz(rs.getString("lekarski_nalaz"));
             sp.setVremeTrajanja(Duration.ofMinutes(rs.getInt("vreme_trajanja")));

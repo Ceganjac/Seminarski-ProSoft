@@ -102,7 +102,7 @@ public class ServerController {
     public List<Pregled> vratiSvePreglede() throws Exception {
 
         VratiSvePregledeSO so = new VratiSvePregledeSO();
-        so.execute(db);
+        so.execute(new Pregled());
         return so.getPregledi();
     }
 

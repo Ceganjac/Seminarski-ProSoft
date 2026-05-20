@@ -380,11 +380,13 @@ public class PregledDialog extends javax.swing.JDialog {
         if ("".equals(txtIdPregleda.getText()) || cmbLekar.getSelectedItem() == null
                 || cmbPacijent.getSelectedItem() == null || "".equals(txtTerapija.getText())
                 || "".equals(txtDatumKontrole.getText()) || "".equals(txtVremeKontrole.getText())) {
-            JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Нисте попунили неопходна поља! ", 
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (tblModel.getStavke().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Немате ниједну ставку прегледа ! ", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Немате ниједну ставку прегледа ! ", 
+                    "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -410,21 +412,24 @@ public class PregledDialog extends javax.swing.JDialog {
                     "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
             return;
             }
-
-            // stavke pregleda
+            ///////////////////////////////////////////////////////////////////
             List<StavkaPregleda> stavke = tblModel.getStavke();
+            
+            // ukupno vreme trajanja
             Duration ukupnoVremeTrajanja = Duration.ZERO;
             for (StavkaPregleda sp : stavke) {
-                sp.setPregled(pregled);
                 ukupnoVremeTrajanja = ukupnoVremeTrajanja.plus(sp.getVremeTrajanja());
             }
-
-            // ukupno vreme trajanja
             pregled.setUkupnoVremeTrajanja(ukupnoVremeTrajanja);
+            
+            // postavljenje stavki
             pregled.setStavke(stavke);
+
             // pozivanje izmene
             GuiController.vratiInstancu().promeniPregled(pregled);
 
+            ///////////////////////////////////////////////////////////////////
+            
             // terapija
             pregled.setTerapija(txtTerapija.getText());
 

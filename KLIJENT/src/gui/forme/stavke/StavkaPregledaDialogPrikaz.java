@@ -167,7 +167,7 @@ public class StavkaPregledaDialogPrikaz extends javax.swing.JDialog {
     private javax.swing.JTextField txtVremeTrajanja;
     // End of variables declaration//GEN-END:variables
     private void prikazStavke() {
-        txtIdStavke.setText("" + stavkaPregleda.getIdStavkaPregleda());
+        txtIdStavke.setText("" + stavkaPregleda.getRedni_broj_stavke());
         txtNaziv.setText("" + stavkaPregleda.getNaziv());
         txtVremeTrajanja.setText("" + stavkaPregleda.getVremeTrajanja());
         txtDijagnoza.setText("" + stavkaPregleda.getDijagnoza());
