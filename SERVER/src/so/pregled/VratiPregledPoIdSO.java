@@ -30,7 +30,7 @@ public class VratiPregledPoIdSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        ODObjekat od = (ODObjekat) dbb.vratiPregledeUslov((Pregled) obj);
+        ODObjekat od = dbb.vratiPoId(pregled);
 
         if (od == null) {
             throw new Exception("Pregled ne postoji.");
