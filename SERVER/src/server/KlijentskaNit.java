@@ -91,13 +91,13 @@ public class KlijentskaNit extends Thread {
 
                         case VRATI_PREGLEDE_USLOV:
                             List<Pregled> pretragaPregleda = ServerController.vratiInstancu()
-                                    .vratiPregledPoUslovu((Pregled) domenskiObjekat);
+                                    .vratiPregledeUslov((Pregled) domenskiObjekat);
                             odgovor.setRezultat(pretragaPregleda);
                             break;
                         // ================= STAVKE PREGLEDA =================
                         case VRATI_STAVKE_PREGLEDA:
                             List<StavkaPregleda> stavke = ServerController.vratiInstancu()
-                                    .vratiStavkeUslov((Pregled) domenskiObjekat);
+                                    .vratiSveStavkePregleda((Pregled) domenskiObjekat);
                             odgovor.setRezultat(stavke);
                             break;
                         case IZMENI_STAVKU_PREGLEDA:

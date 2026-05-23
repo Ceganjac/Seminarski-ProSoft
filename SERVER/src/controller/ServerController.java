@@ -20,6 +20,7 @@ import domen.StavkaPregleda;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import so.*;
@@ -90,7 +91,7 @@ public class ServerController {
 
     }
 
-    public List<Pregled> vratiPregledPoUslovu(Pregled pregled) throws Exception {
+    public List<Pregled> vratiPregledeUslov(Pregled pregled) throws Exception {
 
         VratiPregledeUslovSO so = new VratiPregledeUslovSO();
         so.execute(pregled);
@@ -115,39 +116,15 @@ public class ServerController {
     }
 
     // ================= STAVKE PREGLEDA =================
-    public List<StavkaPregleda> vratiStavkeUslov(Pregled pregled) throws Exception {
+    public List<StavkaPregleda> vratiSveStavkePregleda(Pregled pregled) throws Exception {
 
-        db = new DbBroker(port, username, password);
-
-        try {
-            db.connect();
-            List<StavkaPregleda> stavke = db.vratiStavkeUslov(pregled);
-            db.commit();
-            return stavke;
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
+        VratiPregledPoIdSO so = new VratiPregledPoIdSO();
+        so.execute(pregled);
+        return so.getPregled().getStavke();
     }
 
     public void promeniStavkuPregleda(StavkaPregleda sp) throws Exception {
 
-        db = new DbBroker(port, username, password);
-
-        try {
-            db.connect();
-            db.promeni(sp);
-            db.commit();
-
-        } catch (SQLException ex) {
-            db.rollback();
-            throw ex;
-        } finally {
-            db.disconnect();
-        }
     }
 
     // ================= PACIJENT =================

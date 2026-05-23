@@ -12,7 +12,6 @@ import domen.ODObjekat;
 import domen.Pregled;
 import so.AbstractSO;
 
-
 public class VratiPregledPoIdSO extends AbstractSO {
 
     private Pregled pregled;
@@ -31,11 +30,14 @@ public class VratiPregledPoIdSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        ODObjekat od = dbb.vratiPoId((Pregled) obj);
+        ODObjekat od = (ODObjekat) dbb.vratiPregledeUslov((Pregled) obj);
 
-        if (od != null) {
-            pregled = (Pregled) od;
+        if (od == null) {
+            throw new Exception("Pregled ne postoji.");
         }
+
+        pregled = (Pregled) od;
+        pregled.setStavke(dbb.vratiStavkeUslov(pregled));
     }
 
     public Pregled getPregled() {

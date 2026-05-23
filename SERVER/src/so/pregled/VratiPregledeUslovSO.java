@@ -4,8 +4,6 @@
  */
 package so.pregled;
 
-import domen.Lekar;
-import domen.ODObjekat;
 import domen.Pregled;
 import java.util.ArrayList;
 import java.util.List;
