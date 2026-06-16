@@ -5,6 +5,8 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,48 +52,52 @@ public class Specijalizacija implements ODObjekat {
     }
 
     @Override
-    public String vratiVrednostiAtributa() {
-        return idSpecijalizacija + ", '" + naziv + "'";
-    }
-
-    @Override
-    public String vratiImeTabele() {
+    public String tableName() {
         return "specijalizacija";
     }
 
     @Override
-    public String vratiUslov() {
+    public String alies() {
+        return "spec";
+    }
+
+    @Override
+    public String textJoin() {
+        return "";
+    }
+
+    @Override
+    public String insertColumns() {
+        return "(naziv, trajanje)";
+    }
+
+    @Override
+    public String insertValues() {
+        return "'" + naziv + "', " + trajanje;
+    }
+
+    @Override
+    public String updateValues() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String vratiZaUpdate() {
+    public String requiredCondition() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void postaviId(int id) {
-        this.idSpecijalizacija = id;
-    }
-
-    @Override
-    public String vratiNaziveAtributa() {
-        return "naziv";
-
-    }
-
-    @Override
-    public String vratiNazivId() {
+    public String conditionForSelect() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String vratiVrednostId() {
+    public String getCondition() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+    public ArrayList<ODObjekat> getList(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

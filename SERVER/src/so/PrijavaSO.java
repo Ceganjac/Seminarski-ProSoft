@@ -4,6 +4,7 @@
  */
 package so;
 
+import db.DbBroker;
 import domen.Lekar;
 
 /**
@@ -13,6 +14,7 @@ import domen.Lekar;
 public class PrijavaSO extends AbstractSO {
 
     private Lekar prijavljen;
+
 
     @Override
     protected void precondition(Object obj) throws Exception {
@@ -24,7 +26,7 @@ public class PrijavaSO extends AbstractSO {
     @Override
     public void executeOperation(Object obj) throws Exception {
         Lekar lekar = (Lekar) obj;
-        prijavljen = (Lekar) dbb.vratiPoUslovu(lekar).get(0);
+        prijavljen = (Lekar) dbBroker.selectObject(lekar);
     }
 
     public Lekar getPrijavljen() {

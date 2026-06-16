@@ -29,18 +29,7 @@ public class ZapamtiPregled extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        Pregled pregled = (Pregled) obj;
-
-        // 1. promena pregleda
-        dbb.promeni(pregled);
-
-        // 3. ubacivanje novih stavki
-        List<StavkaPregleda> stavke = pregled.getStavke();
-
-        for (int i = 0; i < stavke.size(); i++) {
-            stavke.get(i).setPregled(pregled);
-            dbb.ubaci(stavke.get(i));
-        }
+        //TODO
     }
 
 }

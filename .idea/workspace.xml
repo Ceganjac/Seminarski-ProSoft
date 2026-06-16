@@ -1,27 +1,252 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6c218d5-206d-4476-ba95-99269857ff3e" name="Changes" comment="" />
+    <list default="true" id="a6c218d5-206d-4476-ba95-99269857ff3e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/built-jar.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/controller/GuiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/controller/GuiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/enumi/ModForme.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/enumi/ModForme.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/enumi/ModFormePretrazi.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/enumi/ModFormePretrazi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/GlavniFrejm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/OProgramuDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/OProgramuDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/PrijavaDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/PrijavaDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/PrijavaDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/PrijavaDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/PrijavaDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/PrijavaDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog.form" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialog.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialogPrikaz.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PacijentDialogPrikaz.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PretragaPacijentaDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PretragaPacijentaDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PretragaPacijentaDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PretragaPacijentaDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PretragaPacijentaDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PretragaPacijentaDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PretragaPacijentaDialog$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PretragaPacijentaDialog$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PretragaPacijentaDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pacijent/PretragaPacijentaDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialogPrikaz$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialogPrikaz$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialogPrikaz.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PregledDialogPrikaz.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PretragaPregledaDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PretragaPregledaDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PretragaPregledaDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PretragaPregledaDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PretragaPregledaDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PretragaPregledaDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PretragaPregledaDialog$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PretragaPregledaDialog$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PretragaPregledaDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/pregled/PretragaPregledaDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/specijalizacija/SpecijalizacijaDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/specijalizacija/SpecijalizacijaDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/specijalizacija/SpecijalizacijaDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/specijalizacija/SpecijalizacijaDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/specijalizacija/SpecijalizacijaDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/specijalizacija/SpecijalizacijaDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/stavke/StavkaPregledaDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/stavke/StavkaPregledaDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/stavke/StavkaPregledaDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/stavke/StavkaPregledaDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/stavke/StavkaPregledaDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/stavke/StavkaPregledaDialog$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/stavke/StavkaPregledaDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/stavke/StavkaPregledaDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/stavke/StavkaPregledaDialogPrikaz.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/forme/stavke/StavkaPregledaDialogPrikaz.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/komponente/TblModelPacijent.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/komponente/TblModelPacijent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/komponente/TblModelPregled.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/komponente/TblModelPregled.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/komponente/TblModelStavkaPregleda.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/gui/komponente/TblModelStavkaPregleda.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/gui/pomocni/Pomocni$Dijagnoze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/build/classes/main/MainClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/build/classes/main/MainClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/nbproject/private/private.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/src/gui/forme/pacijent/PacijentDialog.form" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/src/gui/forme/pacijent/PacijentDialog.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KLIJENT/src/gui/forme/pacijent/PacijentDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/KLIJENT/src/gui/forme/pacijent/PacijentDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/controller/ServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/controller/ServerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/db/DbBroker.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/db/DbBroker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/gui/GlavniFrejm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/gui/GlavniFrejm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/gui/GlavniFrejm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/gui/GlavniFrejm$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/gui/GlavniFrejm$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/gui/GlavniFrejm$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/gui/GlavniFrejm.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/gui/GlavniFrejm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/gui/NitPokretanje.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/gui/NitPokretanje.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/gui/PodesavanjaDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/gui/PodesavanjaDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/gui/PodesavanjaDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/gui/PodesavanjaDialog$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/gui/PodesavanjaDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/gui/PodesavanjaDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/main/MainClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/main/MainClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/server/KlijentskaNit$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/server/KlijentskaNit$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/server/KlijentskaNit.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/server/KlijentskaNit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/server/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/AbstractSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/AbstractSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/PrijavaSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/PrijavaSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/ProcitajKonfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/UbaciSpecijalizacijuSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/UbaciSpecijalizacijuSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/VratiPacijenteUslovSO$VratiPacijenteUslovSO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/VratiPregledePoId.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/VratiSveDijagnozeSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/VratiSveDijagnozeSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/VratiSveKrvneGrupeSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/VratiSveKrvneGrupeSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/VratiSveLekareSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/VratiSveLekareSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/KreirajPacijentaSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/KreirajPacijentaSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/ObrisiPacijentaSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/ObrisiPacijentaSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/PromeniPacijentaSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/PromeniPacijentaSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/VratiPacijentaPoId.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/VratiPacijentaPoId.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/VratiPacijenteUslovSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/VratiPacijenteUslovSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/VratiSvePacijenteSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pacijent/VratiSvePacijenteSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/KreirajPregledSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/KreirajPregledSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/PromeniPregledSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/PromeniPregledSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/VratiPregledPoIdSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/VratiPregledPoIdSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/VratiPregledeUslovSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/VratiPregledeUslovSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/VratiSvePregledeSO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/VratiSvePregledeSO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/ZapamtiPregled.class" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/build/classes/so/pregled/ZapamtiPregled.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/konfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/konfig.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/nbproject/private/private.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/controller/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/controller/ServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/db/DbBroker.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/db/DbBroker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/AbstractSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/AbstractSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/PrijavaSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/PrijavaSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/ProcitajKonfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/UbaciSpecijalizacijuSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/UbaciSpecijalizacijuSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/VratiSveDijagnozeSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/VratiSveDijagnozeSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/VratiSveKrvneGrupeSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/VratiSveKrvneGrupeSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/VratiSveLekareSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/VratiSveLekareSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pacijent/KreirajPacijentaSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pacijent/KreirajPacijentaSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pacijent/ObrisiPacijentaSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pacijent/ObrisiPacijentaSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pacijent/PromeniPacijentaSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pacijent/PromeniPacijentaSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pacijent/VratiPacijentaPoId.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pacijent/VratiPacijentaPoId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pacijent/VratiPacijenteUslovSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pacijent/VratiPacijenteUslovSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pacijent/VratiSvePacijenteSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pacijent/VratiSvePacijenteSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pregled/KreirajPregledSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pregled/KreirajPregledSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pregled/PromeniPregledSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pregled/PromeniPregledSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pregled/VratiPregledPoIdSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pregled/VratiPregledPoIdSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pregled/VratiPregledeUslovSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pregled/VratiPregledeUslovSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pregled/VratiSvePregledeSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pregled/VratiSvePregledeSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SERVER/src/so/pregled/ZapamtiPregled.java" beforeDir="false" afterPath="$PROJECT_DIR$/SERVER/src/so/pregled/ZapamtiPregled.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/Dijagnoza.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/Dijagnoza.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/KrvnaGrupa.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/KrvnaGrupa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/Lekar.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/Lekar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/LekarSpecijalizacija.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/ODObjekat.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/ODObjekat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/Pacijent.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/Pacijent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/Pregled.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/Pregled.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/Specijalizacija.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/Specijalizacija.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/StavkaPregleda.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/StavkaPregleda.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/enumi/AboTip.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/enumi/AboTip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/enumi/Pol.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/enumi/Pol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/enumi/RhFaktor.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/domen/enumi/RhFaktor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/komunikacija/Odgovor.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/komunikacija/Odgovor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/komunikacija/Operacija.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/komunikacija/Operacija.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/komunikacija/Zahtev.class" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/build/classes/komunikacija/Zahtev.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/nbproject/private/private.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/Dijagnoza.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/Dijagnoza.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/KrvnaGrupa.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/KrvnaGrupa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/Lekar.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/Lekar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/LekarSpecijalizacija.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/ODObjekat.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/ODObjekat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/Pacijent.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/Pacijent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/Pregled.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/Pregled.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/Specijalizacija.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/Specijalizacija.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/StavkaPregleda.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZAJEDNICKI/src/domen/StavkaPregleda.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac" value="3CJk3J1mTbShsdj8eGHqjdpQByE" />
+    </persistenceIdMap>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;BaNbO01&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ceganjac/Seminarski-ProSoft.git&quot;,
+    &quot;accountId&quot;: &quot;2fbeee43-e2a6-4e94-855f-286f4cd70de4&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="3CJk3J1mTbShsdj8eGHqjdpQByE" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "fix/broker",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="a6c218d5-206d-4476-ba95-99269857ff3e" name="Changes" comment="" />
       <created>1776110866780</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1776110866780</updated>
+      <workItem from="1780229067968" duration="32000" />
+      <workItem from="1781614755086" duration="9257000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>

@@ -31,29 +31,7 @@ public class PromeniPregledSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        Pregled pregled = (Pregled) obj;
-
-        // 1. promena pregleda
-        dbb.promeni(pregled);
-
-        // 2. brisanje svih stavki za taj pregled (GENERIČKI DB)
-        StavkaPregleda sp = new StavkaPregleda();
-        dbb.obrisiPoUslovu(sp, "id_pregled = " + pregled.getIdPregled());
-
-        // 3. ubacivanje novih stavki
-        List<StavkaPregleda> stavke = pregled.getStavke();
-
-        for (int i = 0; i < stavke.size(); i++) {
-            stavke.get(i).setPregled(pregled);
-            dbb.ubaci(stavke.get(i));
-        }
-        
-        // Pod promenom pregled moguće su 3 opcije:
-        // dodavanje nove stavke
-        // promena postojeće
-        // brisnje postojeće
-        
-        // moguće uvesti status stavke, dodavanje novog atributa (enum- dodata, izmenjena, obrisana)
+       //TODO
     }
 
     public Pregled getPregled() {

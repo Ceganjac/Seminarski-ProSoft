@@ -28,13 +28,9 @@ public class VratiSveDijagnozeSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        List<ODObjekat> lista = dbb.vratiSve(new Dijagnoza());
-
-        dijagnoze = new ArrayList<>();
-
-        for (ODObjekat od : lista) {
-            dijagnoze.add((Dijagnoza) od);
-        }
+          ODObjekat ado = (ODObjekat) obj;
+        List<ODObjekat> lista = dbBroker.selectList(ado);
+        dijagnoze = (ArrayList<Dijagnoza>)(ArrayList<?>)lista;
     }
 
     public List<Dijagnoza> getDijagnoze() {

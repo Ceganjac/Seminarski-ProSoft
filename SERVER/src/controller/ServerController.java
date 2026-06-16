@@ -130,9 +130,15 @@ public class ServerController {
     // ================= PACIJENT =================
     public Pacijent kreirajPacijenta(Pacijent pacijent) throws Exception {
 
-        KreirajPacijentaSO so = new KreirajPacijentaSO();
+        try{
+             KreirajPacijentaSO so = new KreirajPacijentaSO();
         so.execute(pacijent);
         return so.getPacijent();
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+       
     }
 
     public void promeniPacijenta(Pacijent pacijent) throws Exception {
@@ -190,7 +196,7 @@ public class ServerController {
     // ================= SPECIJALIZACIJA =================
     public void ubaciSpecijalizaciju(Specijalizacija spec) throws Exception {
         UbaciSpecijalizacijuSO so = new UbaciSpecijalizacijuSO();
-        so.execute(new Specijalizacija());
+        so.execute(spec);
     }
 
 }

@@ -1,13 +1,15 @@
 package so;
 
 import db.DbBroker;
+import db.Konekcija;
 
 public abstract class AbstractSO {
 
-    protected static DbBroker dbb;
-    protected static String brojPorta;
-    protected static String korisnickoIme;
-    protected static String lozinka;
+     private Konekcija connection;
+     protected DbBroker dbBroker;
+    
+     
+   
 
     public void execute(Object obj) throws Exception {
         try {
@@ -24,22 +26,21 @@ public abstract class AbstractSO {
     }
 
     private void startTransaction() throws Exception {
-
-        ProcitajKonfig.procitaj();
-        dbb = new DbBroker(brojPorta, korisnickoIme, lozinka);
-        dbb.connect();
+        connection = new Konekcija();
+        connection.connect();
+         dbBroker = new DbBroker(connection);
     }
 
     private void disconnect() throws Exception {
-        dbb.disconnect();
+        connection.disconnect();
     }
 
     protected void commitTransaction() throws Exception {
-        dbb.commit();
+        connection.commit();
     }
 
     protected void rollbackTransaction() throws Exception {
-        dbb.rollback();
+        connection.rollback();
     }
 
     protected abstract void precondition(Object obj) throws Exception;

@@ -27,7 +27,6 @@ public class UbaciSpecijalizacijuSO extends AbstractSO {
 
     @Override
    protected void executeOperation(Object obj) throws Exception {
-
-        dbb.ubaci((Specijalizacija) obj);
+        dbBroker.insert((Specijalizacija) obj);
     }
 }

@@ -356,6 +356,9 @@ public class PacijentDialog extends javax.swing.JDialog {
 
     private void btnKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajActionPerformed
         Pacijent pacijent = new Pacijent();
+        pacijent.setPol(Pol.MUSKI);
+        pacijent.setDatumRodjenja(LocalDate.now());
+        pacijent.setKrvnaGrupa(new KrvnaGrupa(1,null,null));
         try {
             Pacijent pacijentRez = GuiController.vratiInstancu().kreirajPacijenta(pacijent);
             txtIdPacijenta.setText("" + pacijentRez.getIdPacijent());

@@ -28,13 +28,9 @@ public class VratiSveKrvneGrupeSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        List<ODObjekat> lista = dbb.vratiSve(new KrvnaGrupa());
-
-        krvneGrupe = new ArrayList<>();
-
-        for (ODObjekat od : lista) {
-            krvneGrupe.add((KrvnaGrupa) od);
-        }
+          ODObjekat ado = (ODObjekat) obj;
+        List<ODObjekat> lista = dbBroker.selectList(ado);
+        krvneGrupe = (ArrayList<KrvnaGrupa>)(ArrayList<?>)lista;
     }
 
     public List<KrvnaGrupa> getKrvneGrupe() {

@@ -33,7 +33,9 @@ public class VratiPacijenteUslovSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-       pacijenti = dbb.vratiPacijenteUslov((Pacijent) obj);
+         ODObjekat odo = (ODObjekat) obj;
+        List<ODObjekat> lista =dbBroker.selectList(odo);
+        pacijenti = (ArrayList<Pacijent>)(ArrayList<?>)lista;
     }
     
 

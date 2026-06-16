@@ -29,13 +29,10 @@ public class VratiSvePregledeSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        List<ODObjekat> lista = dbb.vratiSve(new Pregled());
-
-        pregledi = new ArrayList<>();
-
-        for (ODObjekat od : lista) {
-            pregledi.add((Pregled) od);
-        }
+        
+          ODObjekat ado = (ODObjekat) obj;
+        List<ODObjekat> lista = dbBroker.selectList(ado);
+        pregledi = (ArrayList<Pregled>)(ArrayList<?>)lista;
     }
 
     public List<Pregled> getPregledi() {
