@@ -79,9 +79,15 @@ public class ServerController {
     // ================= PREGLED =================
     public Pregled kreirajPregled(Pregled pregled) throws Exception {
 
-        KreirajPregledSO so = new KreirajPregledSO();
+        try{
+            KreirajPregledSO so = new KreirajPregledSO();
         so.execute(pregled);
         return so.getPregled();
+        }catch(Exception ex){
+            ex.printStackTrace();
+            throw ex;
+        }
+        
     }
 
     public void promeniPregled(Pregled pregled) throws Exception {
@@ -115,17 +121,6 @@ public class ServerController {
 
     }
 
-    // ================= STAVKE PREGLEDA =================
-    public List<StavkaPregleda> vratiSveStavkePregleda(Pregled pregled) throws Exception {
-
-        VratiPregledPoIdSO so = new VratiPregledPoIdSO();
-        so.execute(pregled);
-        return so.getPregled().getStavke();
-    }
-
-    public void promeniStavkuPregleda(StavkaPregleda sp) throws Exception {
-
-    }
 
     // ================= PACIJENT =================
     public Pacijent kreirajPacijenta(Pacijent pacijent) throws Exception {

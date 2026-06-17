@@ -4,10 +4,16 @@
  */
 package so.pregled;
 
+import domen.ODObjekat;
 import domen.Pregled;
 import domen.StavkaPregleda;
+import java.util.ArrayList;
 import java.util.List;
 import so.AbstractSO;
+import so.DML;
+import static so.DML.DELETE;
+import static so.DML.INSERT;
+import static so.DML.UPDATE;
 
 /**
  *
@@ -28,10 +34,61 @@ public class PromeniPregledSO extends AbstractSO {
         }
     }
 
-    @Override
-    protected void executeOperation(Object obj) throws Exception {
+    private void izvrsiUpit(DML dml, StavkaPregleda item) throws Exception {
+     
+            switch (dml) {
+                case INSERT:
+                    dbBroker.insert(item);
+                    break;
+                case UPDATE:
+                    dbBroker.update(item);
+                    break;
+                case DELETE:
+                    dbBroker.delete(item);
+                    break;
+            }
+          
+        }
 
-       //TODO
+        @Override
+        protected void executeOperation
+        (Object obj) throws Exception {
+
+            try{
+            ODObjekat ado = (ODObjekat) obj;
+            dbBroker.update(ado);
+            Pregled pregledKlijent = (Pregled) obj;
+            Pregled pregledBaza = new Pregled();
+            pregledBaza.setIdPregled(pregledKlijent.getIdPregled());
+            pregledBaza = (Pregled) dbBroker.selectObject(pregledBaza);
+              if(pregledBaza==null){
+          pregledBaza  = new Pregled();
+          pregledBaza.setStavke(new ArrayList<>());
+        }
+            izvrsiUpdateStavki(pregledKlijent.getStavke(), pregledBaza.getStavke());
+            }catch(Exception ex){
+                ex.printStackTrace();
+                throw ex;
+            }
+
+        }
+    
+      
+
+    private void izvrsiUpdateStavki(List<StavkaPregleda> stavkeKlijent, List<StavkaPregleda> stavkeBaza) throws Exception {
+        for (StavkaPregleda stavkaKlijent : stavkeKlijent) {
+            if (!stavkeBaza.contains(stavkaKlijent)) {
+                izvrsiUpit(DML.INSERT, stavkaKlijent);
+            } else {
+                izvrsiUpit(DML.UPDATE, stavkaKlijent);
+            }
+        }
+
+        for (StavkaPregleda stavkaBaza : stavkeBaza) {
+            if (!stavkeKlijent.contains(stavkaBaza)) {
+                izvrsiUpit(DML.DELETE, stavkaBaza);
+            }
+        }
     }
 
     public Pregled getPregled() {

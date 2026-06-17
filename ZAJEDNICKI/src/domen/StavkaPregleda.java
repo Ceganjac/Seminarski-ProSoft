@@ -107,7 +107,7 @@ public class StavkaPregleda implements ODObjekat {
 
     @Override
     public String insertValues() {
-        return pregled.getIdPregled() + "'" + naziv + "', '" + lekarskiNalaz + "', " + vremeTrajanja.toMinutes() + ", " + dijagnoza.getIdDijagnoza();
+        return pregled.getIdPregled() + ", '" + naziv + "', '" + lekarskiNalaz + "', " + vremeTrajanja.toMinutes() + ", " + dijagnoza.getIdDijagnoza();
     }
 
     @Override
@@ -117,7 +117,7 @@ public class StavkaPregleda implements ODObjekat {
 
     @Override
     public String requiredCondition() {
-        return "id_pregleda = " + pregled.getIdPregled() + " AND redni_broj_stavke =  " + redni_broj_stavke;
+        return "id_pregled = " + pregled.getIdPregled() + " AND id_stavka_pregleda =  " + redni_broj_stavke;
     }
 
     @Override

@@ -8,6 +8,10 @@
         </group>
         <group name="Ceganjac">
             <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/KLIJENT/src/gui/forme/GlavniFrejm.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/KLIJENT/src/controller/GuiController.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/KLIJENT/src/gui/forme/pregled/PregledDialog.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/KLIJENT/src/gui/forme/pregled/PregledDialogPrikaz.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/KLIJENT/src/gui/forme/pregled/PretragaPregledaDialog.java</file>
         </group>
     </open-files>
 </project-private>

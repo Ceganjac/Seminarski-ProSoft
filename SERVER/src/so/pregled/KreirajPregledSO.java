@@ -31,7 +31,8 @@ public class KreirajPregledSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        int id = dbBroker.insert((Pregled) obj);
+        pregled = (Pregled)obj;
+        int id = dbBroker.insert(pregled);
         pregled.setIdPregled(id);
     }
 

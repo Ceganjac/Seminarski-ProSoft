@@ -95,15 +95,6 @@ public class KlijentskaNit extends Thread {
                             odgovor.setRezultat(pretragaPregleda);
                             break;
                         // ================= STAVKE PREGLEDA =================
-                        case VRATI_STAVKE_PREGLEDA:
-                            List<StavkaPregleda> stavke = ServerController.vratiInstancu()
-                                    .vratiSveStavkePregleda((Pregled) domenskiObjekat);
-                            odgovor.setRezultat(stavke);
-                            break;
-                        case IZMENI_STAVKU_PREGLEDA:
-                            ServerController.vratiInstancu().
-                                    promeniStavkuPregleda((StavkaPregleda) domenskiObjekat);
-                            break;
 
                         // ================= PACIJENT =================
                         case KREIRAJ_PACIJENTA:

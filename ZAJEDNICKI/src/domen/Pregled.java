@@ -137,7 +137,7 @@ public class Pregled implements ODObjekat {
 
         return "JOIN lekar lek ON lek.id_lekar=pr.id_lekar\n"
                 + " JOIN pacijent pac ON pac.id_pacijent=pr.id_pacijent\n"
-                + " JOIN krvna_grupa krv ON gr.id_krvna_grupa=pac.id_krvna_grupa\n"
+                + " JOIN krvna_grupa krv ON krv.id_krvna_grupa=pac.id_krvna_grupa\n"
                 + " JOIN stavka_pregleda sp ON sp.id_pregled=pr.id_pregled\n"
                 + " JOIN dijagnoza dij ON dij.id_dijagnoza=sp.id_dijagnoza";
     }
@@ -150,7 +150,7 @@ public class Pregled implements ODObjekat {
 
     @Override
     public String insertValues() {
-        return "'" + datumVremeZavrsetka.toString().replace("T", " ") + "', '" + datumKontrole.toString() + "', '" + vremeKontrole.toString() + "', '" + terapija + "'," + lekar.getIdLekar() + ", " + pacijent.getIdPacijent();
+        return "'" + datumVremeZavrsetka.toString().replace("T", " ") + "', '" + datumKontrole.toString() + "', '" + vremeKontrole.toString() + "', " + ukupnoVremeTrajanja.toMinutes() + ", '" + terapija + "'," + lekar.getIdLekar() + ", " + pacijent.getIdPacijent();
     }
 
     @Override
@@ -166,30 +166,32 @@ public class Pregled implements ODObjekat {
 
     @Override
     public String conditionForSelect() {
-        if (idPregled == 0 && pacijent != null) {
-            return pacijent.conditionForSelect();
+        List<String> filteri = new ArrayList<>();
+        String dijagnozaFilter = "";
+        if (pacijent != null) {
+            filteri.add("pac.id_pacijent = " + pacijent.getIdPacijent());
         }
-        if (idPregled == 0 && lekar != null) {
-            return lekar.conditionForSelect();
+
+        if (lekar != null) {
+
+            filteri.add("lek.id_lekar = " + lekar.getIdLekar());
         }
-        if (idPregled == 0 && !stavke.isEmpty() && stavke.size() == 1) {
-            return "WHERE pr.id_pregled IN (\n"
+        if (!stavke.isEmpty() && stavke.size() == 1) {
+            dijagnozaFilter = "WHERE  pr.id_pregled IN (\n"
                     + "    SELECT pr2.id_pregled\n"
                     + "    FROM pregled pr2\n"
                     + "    JOIN stavka_pregleda sp2 ON sp2.id_pregled = pr2.id_pregled\n"
                     + "    JOIN dijagnoza dij2 ON dij2.id_dijagnoza = sp2.id_dijagnoza \n"
                     + vratiDokumentKriterijumSifarnik1(stavke.get(0).getDijagnoza()) + ")";
+            dijagnozaFilter = !dijagnozaFilter.isEmpty() ? dijagnozaFilter.substring(6) : "";
+            if (!dijagnozaFilter.isEmpty()) {
+                filteri.add(dijagnozaFilter);
+            }
+
         }
 
-        List<String> filteri = new ArrayList<>();
-        if (datumVremeZavrsetka != null) {
-            filteri.add(" pr.datum_vreme_zavrsetka = '" + datumVremeZavrsetka + "'");
-        }
-        if (datumKontrole != null) {
-            filteri.add(" pr.datum_kontrole = '" + datumKontrole + "'");
-        }
-        if (ukupnoVremeTrajanja.toMinutes() != 0.0) {
-            filteri.add(" rez.ukupno_vreme_trajanja>=" + ukupnoVremeTrajanja.toMinutes());
+        if (idPregled != 0) {
+            filteri.add("pr.id_pregled = " + idPregled);
         }
         return !filteri.isEmpty() ? " WHERE " + String.join(" AND ", filteri) : "";
     }
@@ -210,7 +212,7 @@ public class Pregled implements ODObjekat {
             Pregled pregled = objekti.get(idDokumenta);
 
             if (pregled == null) {
-                LocalDateTime datumVremeZavrsetka = rs.getTimestamp("pr.datumVremeZavrsetka") != null ? rs.getTimestamp("pr.datum_vreme_zavrsetka").toLocalDateTime() : null;
+                LocalDateTime datumVremeZavrsetka = rs.getTimestamp("pr.datum_vreme_zavrsetka") != null ? rs.getTimestamp("pr.datum_vreme_zavrsetka").toLocalDateTime() : null;
                 LocalDate datumKontrole = rs.getDate("pr.datum_kontrole") != null ? rs.getDate("pr.datum_kontrole").toLocalDate() : null;
                 LocalTime vremeKontrole = rs.getTime("pr.vreme_kontrole") != null ? rs.getTime("pr.vreme_kontrole").toLocalTime() : null;
                 int minuti = rs.getInt("ukupno_vreme_trajanja");
@@ -248,24 +250,24 @@ public class Pregled implements ODObjekat {
                 pacijent.setMestoRodjenja(rs.getString("pac.mesto_rodjenja"));
                 pacijent.setMejl(rs.getString("pac.mejl"));
                 pacijent.setKrvnaGrupa(kg);
-                Pregled noviPregled = new Pregled(idPregled, datumVremeZavrsetka, datumKontrole, vremeKontrole, ukupnoVremeTrajanja, terapija, lekar, pacijent);
+                Pregled noviPregled = new Pregled(idDokumenta, datumVremeZavrsetka, datumKontrole, vremeKontrole, ukupnoVremeTrajanja, terapija, lekar, pacijent);
                 objekti.put(idDokumenta, noviPregled);
                 pregled = noviPregled;
             }
+            pregled.setIdPregled(idDokumenta);
 
-            int redni_broj_stavke = rs.getInt("sp.redni_broj_stavke");
-             Dijagnoza dijagnoza = new Dijagnoza();
+            int redni_broj_stavke = rs.getInt("sp.id_stavka_pregleda");
+            Dijagnoza dijagnoza = new Dijagnoza();
 
             dijagnoza.setIdDijagnoza(rs.getInt("dij.id_dijagnoza"));
             dijagnoza.setSifra(rs.getString("dij.sifra"));
             dijagnoza.setLatinskiNaziv(rs.getString("dij.latinski_naziv"));
             dijagnoza.setSrpskiNaziv(rs.getString("dij.srpski_naziv"));
 
-            
             String nazivStavke = rs.getString("sp.naziv");
             String lekarskiNalaz = rs.getString("sp.lekarski_nalaz");
             int vremeTrajanja = rs.getInt("sp.vreme_trajanja");
-            
+
             StavkaPregleda stavkaPregleda = new StavkaPregleda(pregled, redni_broj_stavke, nazivStavke, lekarskiNalaz, Duration.ofMinutes((long) vremeTrajanja), dijagnoza);
             pregled.getStavke().add(stavkaPregleda);
         }
@@ -276,15 +278,10 @@ public class Pregled implements ODObjekat {
 
     private static String vratiDokumentKriterijumSifarnik1(Dijagnoza dijagnoza) {
         List<String> filteri = new ArrayList<>();
-        if (dijagnoza.getSifra() != null) {
-            filteri.add("dij2.sifra LIKE '%" + dijagnoza.getSifra() + "%'");
+        if (dijagnoza.getIdDijagnoza() != 0) {
+            filteri.add("dij2.id_dijagnoza =" + dijagnoza.getIdDijagnoza());
         }
-        if (dijagnoza.getLatinskiNaziv() != null) {
-            filteri.add("dij2.latinski_naziv LIKE '%" + dijagnoza.getLatinskiNaziv() + "%'");
-        }
-        if (dijagnoza.getSrpskiNaziv() != null) {
-            filteri.add("dij2.srpski_naziv  LIKE '%" + dijagnoza.getSrpskiNaziv() + "%'");
-        }
+
         return !filteri.isEmpty() ? " WHERE " + String.join(" AND ", filteri) : "";
     }
 }

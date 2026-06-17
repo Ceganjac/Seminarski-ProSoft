@@ -154,30 +154,21 @@ public class Pacijent implements ODObjekat {
 
     @Override
     public String conditionForSelect() {
-        if (krvnaGrupa != null) {
-            String sif2Condition = krvnaGrupa.conditionForSelect();
-            if (!sif2Condition.isEmpty()) {
-                return sif2Condition;
-            }
-        }
+
         List<String> filteri = new ArrayList<>();
+        String krvnaGrupaFilter = "";
+        if (krvnaGrupa != null) {
+            krvnaGrupaFilter = krvnaGrupa.conditionForSelect();
+        }
+        krvnaGrupaFilter = !krvnaGrupaFilter.isEmpty() ? krvnaGrupaFilter.substring(6) : "";
+        if (!krvnaGrupaFilter.isEmpty()) {
+            filteri.add(krvnaGrupaFilter);
+        }
         if (ime != null && !ime.isEmpty()) {
             filteri.add(" pac.ime LIKE '%" + ime + "%'");
         }
         if (prezime != null && !prezime.isEmpty()) {
             filteri.add(" pac.prezime LIKE '%" + prezime + "%'");
-        }
-        if (mejl != null && !mejl.isEmpty()) {
-            filteri.add(" pac.mejl LIKE '%" + mejl + "%'");
-        }
-        if (pol != null) {
-            filteri.add(" pac.pol LIKE '%" + pol.name() + "%'");
-        }
-        if (datumRodjenja != null) {
-            filteri.add("pac.datum_rodjenja LIKE '%" + datumRodjenja + "%'");
-        }
-        if (mestoRodjenja != null) {
-            filteri.add("pac.mesto_rodjenja LIKE '%" + mestoRodjenja + "%'");
         }
 
         return !filteri.isEmpty() ? " WHERE " + String.join(" AND ", filteri) : "";
@@ -207,8 +198,8 @@ public class Pacijent implements ODObjekat {
 
             pacijent.setMestoRodjenja(rs.getString("pac.mesto_rodjenja"));
             pacijent.setMejl(rs.getString("pac.mejl"));
-            
-            KrvnaGrupa krvnaGrupa = new KrvnaGrupa(rs.getInt("krv.id_krvna_grupa"),rs.getString("krv.abo_tip"), rs.getString("krv.rh_faktor"));
+
+            KrvnaGrupa krvnaGrupa = new KrvnaGrupa(rs.getInt("krv.id_krvna_grupa"), rs.getString("krv.abo_tip"), rs.getString("krv.rh_faktor"));
             pacijent.setKrvnaGrupa(krvnaGrupa);
             lista.add(pacijent);
         }
@@ -216,8 +207,5 @@ public class Pacijent implements ODObjekat {
         return lista;
 
     }
-
-
-    
 
 }

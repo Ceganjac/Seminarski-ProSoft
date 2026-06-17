@@ -9,6 +9,7 @@ import domen.Dijagnoza;
 import domen.Lekar;
 import domen.Pacijent;
 import domen.Pregled;
+import domen.StavkaPregleda;
 import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPregled;
@@ -224,12 +225,19 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         }
         Lekar lekar = (Lekar) cmbLekar.getSelectedItem();
         Pacijent pacijent = (Pacijent) cmbPacijent.getSelectedItem();
-
+        Dijagnoza dijagnoza = (Dijagnoza)cmbDijagnoza.getSelectedItem();
         if (lekar != null) {
             pregledKr.setLekar(lekar);
         }
         if (pacijent != null) {
             pregledKr.setPacijent(pacijent);
+        }
+        
+        if(dijagnoza!=null){
+            StavkaPregleda sp = new StavkaPregleda();
+            sp.setPregled(pregledKr);
+            sp.setDijagnoza(dijagnoza);
+            pregledKr.getStavke().add(sp);
         }
 
         List<Pregled> preglediRez;
