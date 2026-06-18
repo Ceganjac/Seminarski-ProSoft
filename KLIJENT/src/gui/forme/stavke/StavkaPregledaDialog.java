@@ -71,6 +71,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         txtVremeTrajanja = new javax.swing.JTextField();
         lblLekarskiNalaz = new javax.swing.JLabel();
         btnIsprazni = new javax.swing.JButton();
+        btnIzmeni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -120,6 +121,16 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
             }
         });
 
+        btnIzmeni.setBackground(new java.awt.Color(0, 204, 102));
+        btnIzmeni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnIzmeni.setForeground(new java.awt.Color(255, 255, 255));
+        btnIzmeni.setText("Измени ставку прегледа");
+        btnIzmeni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzmeniActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,7 +154,8 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                             .addComponent(txtIdStavke)
                             .addComponent(txtVremeTrajanja, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                             .addComponent(cmbDijagnoza, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnIsprazni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnIsprazni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
@@ -173,9 +185,11 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(btnSacuvajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(4, 4, 4)
+                .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIsprazni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,6 +237,33 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         txtVremeTrajanja.setText("");
         txaLekarskiNalaz.setText("");
     }//GEN-LAST:event_btnIsprazniActionPerformed
+
+    private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
+
+        // naziv
+        String naziv = txtNaziv.getText();
+        stavkaPregleda.setNaziv(naziv);
+
+        // vreme trajanja
+        int vremeInt = Integer.parseInt(txtVremeTrajanja.getText());
+        Duration trajanjeD = Duration.ofMinutes(vremeInt);
+        stavkaPregleda.setVremeTrajanja(trajanjeD);
+
+        // dijagnoza
+        stavkaPregleda.setDijagnoza((Dijagnoza) cmbDijagnoza.getSelectedItem());
+
+        // lekarski nalaz
+        stavkaPregleda.setLekarskiNalaz(txaLekarskiNalaz.getText());
+
+        // pronalazak stavke u tabeli i osvežavanje reda
+        int red = tblModel.getStavke().indexOf(stavkaPregleda);
+        if (red != -1) {
+            tblModel.fireTableRowsUpdated(red, red);
+        }
+
+        dispose();
+
+    }//GEN-LAST:event_btnIzmeniActionPerformed
 
     // obrada moda forme
     private void obradaModa() {
@@ -273,6 +314,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIsprazni;
+    private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnSacuvajStavku;
     private javax.swing.JComboBox<Dijagnoza> cmbDijagnoza;
     private javax.swing.JScrollPane jScrollPane1;

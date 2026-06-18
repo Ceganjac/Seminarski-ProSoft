@@ -376,7 +376,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     private void obradaTblModela() {
         try {
             List<Pregled> pregledi = GuiController.vratiInstancu().vratiSvePreglede();
-            TblModelPregled model = new TblModelPregled(pregledi);
+            model = new TblModelPregled(pregledi);
             tblPregledi.setModel(model);
         } catch (Exception ex) {
             ex.printStackTrace();

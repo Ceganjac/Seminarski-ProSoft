@@ -29,7 +29,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
      */
     private final java.awt.Frame parent;
     private final ModFormePretrazi modForme;
-    private TblModelPacijent tblModel;
+    private TblModelPacijent model;
 
     public PretragaPacijentaDialog(java.awt.Frame parent, boolean modal, ModFormePretrazi modForme) {
         super(parent, modal);
@@ -222,8 +222,8 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
             List<Pacijent> pacijenti = GuiController.vratiInstancu().vratiPacijenteUslov(pacijentKr);
 
             // postavljanje modela tabele
-            tblModel = new TblModelPacijent(pacijenti);
-            tblPacijenti.setModel(tblModel);
+            model = new TblModelPacijent(pacijenti);
+            tblPacijenti.setModel(model);
 
             if (tblPacijenti.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(this, "Систем не може да нађе пацијенте по задатим критеријумима. ",
@@ -246,7 +246,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
         int selektovanRed = tblPacijenti.getSelectedRow();
         if (selektovanRed != -1) {
             // uzimanje pacijenta iz modela
-            Pacijent pacijent = tblModel.getPacijent(selektovanRed);
+            Pacijent pacijent = model.getPacijent(selektovanRed);
             PacijentDialog dialog = new PacijentDialog(parent, true, pacijent, ModForme.MOD_IZMENA);
 
             JOptionPane.showMessageDialog(this, "Систем је нашао пацијента.", "ОБАВЕШТЕЊЕ",
@@ -262,7 +262,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
     private void btnPrikaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziActionPerformed
         int red = tblPacijenti.getSelectedRow();
         if (red != -1) {
-            Pacijent pacijent = tblModel.getPacijent(red);
+            Pacijent pacijent = model.getPacijent(red);
             PacijentDialogPrikaz dialog = new PacijentDialogPrikaz(parent, true, pacijent);
 
             JOptionPane.showMessageDialog(this, "Систем је нашао пацијента.", "ОБАВЕШТЕЊЕ",
@@ -290,7 +290,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
                     "УПИТНИК", JOptionPane.YES_NO_OPTION);
             if (odgovor == JOptionPane.YES_OPTION) {
 
-                Pacijent pacijent = tblModel.getPacijent(selektovanRed);
+                Pacijent pacijent = model.getPacijent(selektovanRed);
                 try {
                     GuiController.vratiInstancu().obrisiPacijenta(pacijent);
                     JOptionPane.showMessageDialog(this, "Успешно брисање пацијента !", "ОБАВЕШТЕЊЕ",
@@ -356,7 +356,7 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
     private void obradaTblModela() {
         try {
             List<Pacijent> pacijenti = GuiController.vratiInstancu().vratiSvePacijente();
-            TblModelPacijent model = new TblModelPacijent(pacijenti);
+            model = new TblModelPacijent(pacijenti);
             tblPacijenti.setModel(model);
         } catch (Exception ex) {
             ex.printStackTrace();
