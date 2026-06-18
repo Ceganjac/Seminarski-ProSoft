@@ -14,6 +14,7 @@ import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPregled;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -225,15 +226,15 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         }
         Lekar lekar = (Lekar) cmbLekar.getSelectedItem();
         Pacijent pacijent = (Pacijent) cmbPacijent.getSelectedItem();
-        Dijagnoza dijagnoza = (Dijagnoza)cmbDijagnoza.getSelectedItem();
+        Dijagnoza dijagnoza = (Dijagnoza) cmbDijagnoza.getSelectedItem();
         if (lekar != null) {
             pregledKr.setLekar(lekar);
         }
         if (pacijent != null) {
             pregledKr.setPacijent(pacijent);
         }
-        
-        if(dijagnoza!=null){
+
+        if (dijagnoza != null) {
             StavkaPregleda sp = new StavkaPregleda();
             sp.setPregled(pregledKr);
             sp.setDijagnoza(dijagnoza);
@@ -292,7 +293,7 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(this, "Нисте селектовали преглед !", "УПОЗОРЕЊЕ",
                     JOptionPane.WARNING_MESSAGE);
-             JOptionPane.showMessageDialog(this, "Систем не може да нађе преглед", "ГРЕШКА",
+            JOptionPane.showMessageDialog(this, "Систем не може да нађе преглед", "ГРЕШКА",
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnPrikaziActionPerformed
@@ -373,10 +374,16 @@ public class PretragaPregledaDialog extends javax.swing.JDialog {
     }
 
     private void obradaTblModela() {
-        model = new TblModelPregled(new ArrayList<>());
-        tblPregledi.setModel(model);
+        try {
+            List<Pregled> pregledi = GuiController.vratiInstancu().vratiSvePreglede();
+            TblModelPregled model = new TblModelPregled(pregledi);
+            tblPregledi.setModel(model);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIzmeni;

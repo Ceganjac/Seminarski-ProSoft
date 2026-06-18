@@ -11,6 +11,7 @@ import gui.enumi.ModForme;
 import gui.enumi.ModFormePretrazi;
 import gui.komponente.TblModelPacijent;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -353,8 +354,14 @@ public class PretragaPacijentaDialog extends javax.swing.JDialog {
     }
 
     private void obradaTblModela() {
-        tblModel = new TblModelPacijent(new ArrayList<>());
-        tblPacijenti.setModel(tblModel);
+        try {
+            List<Pacijent> pacijenti = GuiController.vratiInstancu().vratiSvePacijente();
+            TblModelPacijent model = new TblModelPacijent(pacijenti);
+            tblPacijenti.setModel(model);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     /**
