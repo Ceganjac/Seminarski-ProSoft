@@ -5,11 +5,8 @@ import db.Konekcija;
 
 public abstract class AbstractSO {
 
-     private Konekcija connection;
-     protected DbBroker dbBroker;
-    
-     
-   
+    private Konekcija connection;
+    protected DbBroker dbBroker;
 
     public void execute(Object obj) throws Exception {
         try {
@@ -28,7 +25,7 @@ public abstract class AbstractSO {
     private void startTransaction() throws Exception {
         connection = new Konekcija();
         connection.connect();
-         dbBroker = new DbBroker(connection);
+        dbBroker = new DbBroker(connection);
     }
 
     private void disconnect() throws Exception {

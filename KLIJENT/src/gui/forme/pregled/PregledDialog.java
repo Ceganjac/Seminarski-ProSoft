@@ -254,8 +254,8 @@ public class PregledDialog extends javax.swing.JDialog {
                             .addComponent(txtTerapija, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIdPregleda, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                            .addComponent(lblLekar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblLekar, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(lblIdPregleda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmbLekar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -352,7 +352,8 @@ public class PregledDialog extends javax.swing.JDialog {
                 txtIdPregleda.setText("" + pregledGlobal.getIdPregled());
                 JOptionPane.showMessageDialog(this, "Систем је креирао преглед.",
                         "ОБАВЕШТЕЊЕ", JOptionPane.INFORMATION_MESSAGE);
-
+                btnKreirajPregled.setEnabled(false);
+                postaviPoljaEditabilna();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Систем не може да креира преглед.", "ГРЕШКА", JOptionPane.ERROR_MESSAGE);
@@ -367,7 +368,7 @@ public class PregledDialog extends javax.swing.JDialog {
         stavka.setPregled(pregledGlobal);
 
         // prikaz dialoga za stavku
-        StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, modForme, tblModel);
+        StavkaPregledaDialog dialog = new StavkaPregledaDialog(parent, true, stavka, ModForme.MOD_KREIRANJE, tblModel);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
 
@@ -500,6 +501,7 @@ public class PregledDialog extends javax.swing.JDialog {
     private void obradaModa() {
 
         if (modForme == ModForme.MOD_KREIRANJE) {
+
             lblNaslov.setText("КРЕИРАЊЕ ПРЕГЛЕДА");
             lblDatumVremeZavrsetka.setVisible(false);
             txtDatumVremeZavrsetka.setVisible(false);
@@ -507,13 +509,19 @@ public class PregledDialog extends javax.swing.JDialog {
             // sakrivanje dugmeta
             btnIzmeniStavku.setVisible(false);
             btnPrikaziStavku.setVisible(false);
+            
+            postaviPoljaNeeditabilna();
 
         } else if (modForme == ModForme.MOD_IZMENA) {
+
+
             lblNaslov.setText("ИЗМЕНА ПРЕГЛЕДА");
             lblDatumVremeZavrsetka.setVisible(false);
             txtDatumVremeZavrsetka.setVisible(false);
             lblIdPregleda.setVisible(false);
             txtIdPregleda.setVisible(false);
+            lblUkupnoVremeTrajanja.setVisible(false);
+            txtUkupnoVremeTrajanja.setVisible(false);
 
             // sakrivanje dugmeta
             btnKreirajPregled.setVisible(false);
@@ -576,15 +584,37 @@ public class PregledDialog extends javax.swing.JDialog {
         txtDatumVremeZavrsetka.setText("" + pregledGlobal.getDatumVremeZavrsetka());
 
         // datumKontrole i vremeKontrole kontrole
-        
-             DateTimeFormatter formaterDatum = DateTimeFormatter.ofPattern("dd.MM.yyyy['.']");
-            DateTimeFormatter formaterVreme = DateTimeFormatter.ofPattern("HH:mm");
-        
+        DateTimeFormatter formaterDatum = DateTimeFormatter.ofPattern("dd.MM.yyyy['.']");
+        DateTimeFormatter formaterVreme = DateTimeFormatter.ofPattern("HH:mm");
+
         txtDatumKontrole.setText("" + formaterDatum.format(pregledGlobal.getDatumKontrole()));
         txtVremeKontrole.setText("" + formaterVreme.format(pregledGlobal.getVremeKontrole()));
         // ukupno vreme trajanja
         txtUkupnoVremeTrajanja.setText(String.valueOf(pregledGlobal.getUkupnoVremeTrajanja().toMinutes()));
         txtTerapija.setText(pregledGlobal.getTerapija());
+    }
+
+    private void postaviPoljaNeeditabilna() {
+
+        cmbLekar.setEnabled(false);
+        cmbPacijent.setEnabled(false);
+        txtDatumVremeZavrsetka.setEditable(false);
+        txtDatumKontrole.setEditable(false);
+        txtVremeKontrole.setEditable(false);
+        txtUkupnoVremeTrajanja.setEditable(false);
+        txtTerapija.setEditable(false);
+
+    }
+
+    private void postaviPoljaEditabilna() {
+
+        cmbLekar.setEnabled(true);
+        cmbPacijent.setEnabled(true);
+        txtDatumVremeZavrsetka.setEditable(true);
+        txtDatumKontrole.setEditable(true);
+        txtVremeKontrole.setEditable(true);
+        txtUkupnoVremeTrajanja.setEditable(true);
+        txtTerapija.setEditable(true);
     }
 
     /**

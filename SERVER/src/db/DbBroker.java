@@ -21,12 +21,12 @@ public class DbBroker {
     }
     
 
-    public int insert(ODObjekat ado) throws Exception {
+    public int insert(ODObjekat odo) throws Exception {
 
         int id = -1;
 
-        String upit = "INSERT INTO " + ado.tableName() + " "
-                + ado.insertColumns() + " VALUES(" + ado.insertValues() + ")";
+        String upit = "INSERT INTO " + odo.tableName() + " "
+                + odo.insertColumns() + " VALUES(" + odo.insertValues() + ")";
 
         System.out.println(upit);
         Statement s = konekcija.getKonekcija().createStatement();
@@ -42,25 +42,25 @@ public class DbBroker {
         return id;
     }
 
-    public List<ODObjekat> selectList(ODObjekat ado) throws Exception {
-
-        String upit = "SELECT * FROM " + ado.tableName() + " " + ado.alies()
-                + " " + ado.textJoin() + " " + ado.conditionForSelect();
+    public List<ODObjekat> selectList(ODObjekat odo) throws Exception {
+        // šta radi odo.alies()
+        String upit = "SELECT * FROM " + odo.tableName() + " " + odo.alies()
+                + " " + odo.textJoin() + " " + odo.conditionForSelect();
         System.out.println(upit);
         Statement s =konekcija.getKonekcija().createStatement();
         ResultSet rs = s.executeQuery(upit);
-        return ado.getList(rs);
+        return odo.getList(rs);
 
     }
 
-    public ODObjekat selectObject(ODObjekat ado) throws Exception {
-
-        String upit = " SELECT * FROM " + ado.tableName() + " " + ado.alies() + " "
-                + ado.textJoin() + " " + " " + ado.getCondition();
+    public ODObjekat selectObject(ODObjekat odo) throws Exception {
+        // 
+        String upit = " SELECT * FROM " + odo.tableName() + " " + odo.alies() + " "
+                + odo.textJoin() + " " + " " + odo.getCondition();
         System.out.println(upit);
         Statement s =konekcija.getKonekcija().createStatement();
         ResultSet rs = s.executeQuery(upit);
-        List<ODObjekat> lista = ado.getList(rs);
+        List<ODObjekat> lista = odo.getList(rs);
         if (lista.isEmpty()) {
             return null;
         } else {
@@ -68,10 +68,10 @@ public class DbBroker {
         }
     }
 
-    public int update(ODObjekat ado) throws Exception {
+    public int update(ODObjekat odo) throws Exception {
 
-        String upit = "UPDATE " + ado.tableName() + " SET "
-                + ado.updateValues() + " WHERE " + ado.requiredCondition();
+        String upit = "UPDATE " + odo.tableName() + " SET "
+                + odo.updateValues() + " WHERE " + odo.requiredCondition();
         System.out.println(upit);
         Statement s =konekcija.getKonekcija().createStatement();
         int affectedRows = s.executeUpdate(upit);
@@ -79,9 +79,9 @@ public class DbBroker {
 
     }
 
-    public int delete(ODObjekat ado) throws Exception {
+    public int delete(ODObjekat odo) throws Exception {
 
-        String upit = "DELETE FROM " + ado.tableName() + " WHERE " + ado.requiredCondition();
+        String upit = "DELETE FROM " + odo.tableName() + " WHERE " + odo.requiredCondition();
         System.out.println(upit);
         Statement s =konekcija.getKonekcija().createStatement();
         int affectedRows = s.executeUpdate(upit);
