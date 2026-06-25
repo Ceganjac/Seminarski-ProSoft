@@ -37,8 +37,8 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
         this.stavkaPregleda = stavkaPregleda;
         this.modForme = modForme;
         this.tblModel = tblModel;
-        obradaModa();
         obradaCmbDijagnoza();
+        obradaModa();
 
         // postavljanje boje
         getContentPane().setBackground(Color.white);
@@ -303,6 +303,7 @@ public class StavkaPregledaDialog extends javax.swing.JDialog {
             txtIdStavke.setText("" + stavkaPregleda.getRedni_broj_stavke());
             txtNaziv.setText(stavkaPregleda.getNaziv());
             txtVremeTrajanja.setText("" + stavkaPregleda.getVremeTrajanja().toMinutes());
+            cmbDijagnoza.getModel().setSelectedItem(stavkaPregleda.getDijagnoza());
             txaLekarskiNalaz.setText(stavkaPregleda.getLekarskiNalaz());
         }
 

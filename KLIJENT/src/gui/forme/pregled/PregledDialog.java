@@ -314,11 +314,11 @@ public class PregledDialog extends javax.swing.JDialog {
                 .addComponent(btnIzmeniStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnObrisiStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPrikaziStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIsprazni, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         lblIdPregleda.getAccessibleContext().setAccessibleName("200");
@@ -579,8 +579,8 @@ public class PregledDialog extends javax.swing.JDialog {
     private void prikazPregleda() {
 
         txtIdPregleda.setText("" + pregledGlobal.getIdPregled());
-        cmbLekar.setSelectedItem(pregledGlobal.getLekar());
-        cmbPacijent.setSelectedItem(pregledGlobal.getPacijent());
+        cmbLekar.getModel().setSelectedItem(pregledGlobal.getLekar());
+        cmbPacijent.getModel().setSelectedItem(pregledGlobal.getPacijent());
         txtDatumVremeZavrsetka.setText("" + pregledGlobal.getDatumVremeZavrsetka());
 
         // datumKontrole i vremeKontrole kontrole
