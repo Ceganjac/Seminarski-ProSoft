@@ -35,5 +35,7 @@ public enum Operacija implements Serializable {
     
     // SPECIJALIZACIJA
     UBACI_SPECIJALIZACIJU,
-    PROMENI_SPECIJALIZACIJU
+    PROMENI_SPECIJALIZACIJU,
+    
+    VRATI_PREGLEDE_PACIJENTA
 }

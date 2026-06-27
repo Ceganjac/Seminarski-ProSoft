@@ -5,7 +5,10 @@
 package db;
 
 import domen.ODObjekat;
+import domen.Pacijent;
+import domen.Pregled;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,5 +91,26 @@ public class DbBroker {
         return affectedRows;
 
     }
+    
+    public List<Pregled> vratiPregledePacijenta(Pacijent pacijent) throws Exception {
+
+        String upit = "SELECT * FROM pregled WHERE id_pacijent = ?";
+        PreparedStatement ps = konekcija.getKonekcija().prepareStatement(upit);
+        ps.setInt(1, pacijent.getIdPacijent());
+        ResultSet rs = ps.executeQuery();
+        
+        List<Pregled> pregledi = new ArrayList();
+        
+        while(rs.next()){
+           Pregled p = new Pregled();
+           p.setIdPregled(rs.getInt("id_pregled"));
+           p.setTerapija(rs.getString("terapija"));
+           pregledi.add(p);
+        }
+        
+        return pregledi;
+    }
+    
+    
 
 }

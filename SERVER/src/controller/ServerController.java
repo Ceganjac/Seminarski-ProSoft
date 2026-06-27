@@ -26,6 +26,7 @@ import java.util.Properties;
 import so.*;
 import so.pregled.KreirajPregledSO;
 import so.pregled.PromeniPregledSO;
+import so.pregled.VratiPregledePacijentaSO;
 
 public class ServerController {
 
@@ -193,5 +194,12 @@ public class ServerController {
         UbaciSpecijalizacijuSO so = new UbaciSpecijalizacijuSO();
         so.execute(spec);
     }
-
+    
+    //////////////////////////////////////////////////////////
+     public List<Pregled> vratiPregledePacijenta(Pacijent pacijent) throws Exception {
+         
+         VratiPregledePacijentaSO so = new VratiPregledePacijentaSO();
+         so.execute(pacijent);
+        return (List<Pregled>) so.getPregledi();
+    }
 }

@@ -284,4 +284,10 @@ public class Pregled implements ODObjekat {
 
         return !filteri.isEmpty() ? " WHERE " + String.join(" AND ", filteri) : "";
     }
+
+    @Override
+    public String toString() {
+        return "ID pregleda: " + idPregled + ", Terapija:" + terapija;
+    }
+
 }

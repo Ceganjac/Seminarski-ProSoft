@@ -125,13 +125,6 @@ public class GuiController {
         throw odgovor.getIzuzetak();
     }
 
-   
-   
-     
-    
-    
-    
-    
     // ================= PACIJENT =================
     public Pacijent kreirajPacijenta(Pacijent pacijent) throws Exception {
         Zahtev zahtev = new Zahtev(pacijent, Operacija.KREIRAJ_PACIJENTA);
@@ -241,4 +234,19 @@ public class GuiController {
         }
 
     }
+
+    public List<Pregled> vratiPregledePacijenta(Pacijent pacijent) throws IOException, Exception {
+
+        Zahtev zahtev = new Zahtev(pacijent, Operacija.VRATI_PREGLEDE_PACIJENTA);
+        izlazniTok.writeObject(zahtev);
+        izlazniTok.flush();
+
+        Odgovor odgovor = (Odgovor) ulazniTok.readObject();
+        if (odgovor.getIzuzetak() == null) {
+            return (List<Pregled>) odgovor.getRezultat();
+        }
+        throw odgovor.getIzuzetak();
+
+    }
+
 }

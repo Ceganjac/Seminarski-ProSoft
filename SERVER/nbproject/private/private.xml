@@ -26,6 +26,10 @@
             <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/DML.java</file>
             <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/server/KlijentskaNit.java</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/controller/ServerController.java</file>
+            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/so/AbstractSO.java</file>
+            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/so/VratiSveKrvneGrupeSO.java</file>
+        </group>
     </open-files>
 </project-private>
