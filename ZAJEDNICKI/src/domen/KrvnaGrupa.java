@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,32 +52,6 @@ public class KrvnaGrupa implements ODObjekat {
         this.rhFaktor = rhFaktor;
     }
 
-    @Override
-    public String vratiVrednostiAtributa() {
-        return idKrvnaGrupa + ", '"
-                + aboTip + "', '"
-                + rhFaktor + "'";
-    }
-
-    @Override
-    public String vratiImeTabele() {
-        return "krvna_grupa";
-    }
-
-    @Override
-    public String vratiUslov() {
-        return "id_krvna_grupa =" + idKrvnaGrupa;
-    }
-
-    @Override
-    public String vratiZaUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void postaviId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     // bitan za cmb
     @Override
@@ -97,33 +72,70 @@ public class KrvnaGrupa implements ODObjekat {
     }
 
     @Override
-    public String vratiNaziveAtributa() {
-        return "aboTip, rhFaktor";
+    public String tableName() {
+        return "krvna_grupa";
     }
 
     @Override
-    public String vratiNazivId() {
+    public String alies() {
+        return "krv";
+    }
+
+    @Override
+    public String textJoin() {
+        return "";
+    }
+
+    @Override
+    public String insertColumns() {
+        return "(abo_tip, rh_faktor)";
+    }
+
+    @Override
+    public String insertValues() {
+        return "'" + aboTip + "', '"  + rhFaktor + "'";
+    }
+
+    @Override
+    public String updateValues() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String vratiVrednostId() {
+    public String requiredCondition() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        List<ODObjekat> lista = new ArrayList<>();
+    public String conditionForSelect() {
+ List<String> filteri = new ArrayList<>();
+        if (aboTip != null) {
+            filteri.add("krv.abo_tip LIKE '%" + aboTip + "%'");
+        }
+        if(rhFaktor != null)
+            filteri.add("krv.rh_faktor LIKE '%" + rhFaktor + "%'");
+        
+        return !filteri.isEmpty() ? " WHERE " + String.join(" AND ", filteri) : "";    }
+
+    @Override
+    public String getCondition() {
+        return "WHERE krv.id_krvna_grupa = " + idKrvnaGrupa;
+    }
+
+    @Override
+    public ArrayList<ODObjekat> getList(ResultSet rs) throws SQLException {
+           ArrayList<ODObjekat> lista = new ArrayList<>();
 
         while (rs.next()) {
-            int id = rs.getInt("id_krvna_grupa");
-            String abo = rs.getString("abo_tip");
-            String rh = rs.getString("rh_faktor");
+            int id = rs.getInt("krv.id_krvna_grupa");
+            String abo = rs.getString("krv.abo_tip");
+            String rh = rs.getString("krv.rh_faktor");
 
             KrvnaGrupa kg = new KrvnaGrupa(id, abo, rh);
             lista.add(kg);
         }
 
         return lista;
+    
     }
 }

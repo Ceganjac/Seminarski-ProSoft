@@ -6,6 +6,7 @@ package domen;
 
 import domen.enumi.Pol;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Pacijent implements ODObjekat {
     public Pacijent() {
     }
 
-    public Pacijent(int idPacijent, String ime, String prezime, Pol pol, 
+    public Pacijent(int idPacijent, String ime, String prezime, Pol pol,
             LocalDate datumRodjenja, String mestoRodjenja, String mejl, KrvnaGrupa krvnaGrupa) {
         this.idPacijent = idPacijent;
         this.ime = ime;
@@ -105,65 +106,6 @@ public class Pacijent implements ODObjekat {
     }
 
     // -------------------------------------------------- //
-    @Override
-    public String vratiVrednostiAtributa() {
-        return " "
-                + (ime != null ? "'" + ime + "'" : "NULL") + ", "
-                + (prezime != null ? "'" + prezime + "'" : "NULL") + ", "
-                + (pol != null ? "'" + pol.name() + "'" : "NULL") + ", "
-                + (datumRodjenja != null ? "'" + datumRodjenja + "'" : "NULL") + ", "
-                + (mestoRodjenja != null ? "'" + mestoRodjenja + "'" : "NULL") + ", "
-                + (mejl != null ? "'" + mejl + "'" : "NULL") + ", "
-                + (krvnaGrupa != null ? krvnaGrupa.getIdKrvnaGrupa() : "NULL");
-    }
-
-    @Override
-    public String vratiImeTabele() {
-        return "pacijent";
-    }
-
-    @Override
-    public String vratiUslov() {
-
-        String uslov = "1=1";
-
-        if (ime != null && !ime.isEmpty()) {
-            uslov += " AND p.ime LIKE '%" + ime.trim() + "%'";
-        }
-
-        if (prezime != null && !prezime.isEmpty()) {
-            uslov += " AND p.prezime LIKE '%" + prezime + "%'";
-        }
-
-        if (krvnaGrupa != null) {
-            uslov += " AND p.id_krvna_grupa = " + krvnaGrupa.getIdKrvnaGrupa();
-        }
-
-        return uslov;
-    }
-
-    @Override
-    public String vratiZaUpdate() {
-        return "ime = " + (ime != null ? "'" + ime + "'" : "NULL") + ", "
-                + "prezime = " + (prezime != null ? "'" + prezime + "'" : "NULL") + ", "
-                + "pol = " + (pol != null ? "'" + pol.name() + "'" : "NULL") + ", "
-                + "datum_rodjenja = " + (datumRodjenja != null ? "'" + datumRodjenja + "'" : "NULL") + ", "
-                + "mesto_rodjenja = " + (mestoRodjenja != null ? "'" + mestoRodjenja + "'" : "NULL") + ", "
-                + "mejl = " + (mejl != null ? "'" + mejl + "'" : "NULL") + ", "
-                + "id_krvna_grupa = " + (krvnaGrupa != null ? krvnaGrupa.getIdKrvnaGrupa() : "NULL");
-    }
-
-    @Override
-    public String vratiNazivId() {
-        return "id_pacijent";
-    }
-
-    @Override
-    public void postaviId(int idPacijenta) {
-        this.idPacijent = idPacijenta;
-    }
-    // -------------------------------------------------- //
-
     // vrati ime i prezime
     public String vratiImePrezime() {
         return ime + " " + prezime;
@@ -176,51 +118,94 @@ public class Pacijent implements ODObjekat {
     }
 
     @Override
-    public String vratiNaziveAtributa() {
-        return "ime, prezime, pol, datum_rodjenja, mesto_rodjenja, mejl, id_krvna_grupa";
-
+    public String tableName() {
+        return "pacijent";
     }
 
     @Override
-    public String vratiVrednostId() {
-        return "" + idPacijent;
+    public String alies() {
+        return "pac";
     }
 
     @Override
-    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+    public String textJoin() {
+        return " JOIN krvna_grupa krv ON (krv.id_krvna_grupa = pac.id_krvna_grupa)";
+    }
 
-        List<ODObjekat> lista = new ArrayList<>();
+    @Override
+    public String insertColumns() {
+        return "(ime, prezime, pol, datum_rodjenja, mesto_rodjenja, mejl, id_krvna_grupa)";
+    }
 
+    @Override
+    public String insertValues() {
+        return "'" + ime + "', '" + prezime + "', '" + pol.name() + "', '" + datumRodjenja + "', '" + mestoRodjenja + "', '" + mejl + "', " + krvnaGrupa.getIdKrvnaGrupa();
+    }
+
+    @Override
+    public String updateValues() {
+        return "ime = '" + ime + "', prezime= '" + prezime + "', pol='" + pol.name() + "', datum_rodjenja='" + datumRodjenja + "', mesto_rodjenja='" + mestoRodjenja + "', mejl='" + mejl + "', id_krvna_grupa = " + krvnaGrupa.getIdKrvnaGrupa();
+    }
+
+    @Override
+    public String requiredCondition() {
+        return "id_pacijent = " + idPacijent;
+    }
+
+    @Override
+    public String conditionForSelect() {
+
+        List<String> filteri = new ArrayList<>();
+        String krvnaGrupaFilter = "";
+        if (krvnaGrupa != null) {
+            krvnaGrupaFilter = krvnaGrupa.conditionForSelect();
+        }
+        krvnaGrupaFilter = !krvnaGrupaFilter.isEmpty() ? krvnaGrupaFilter.substring(6) : "";
+        if (!krvnaGrupaFilter.isEmpty()) {
+            filteri.add(krvnaGrupaFilter);
+        }
+        if (ime != null && !ime.isEmpty()) {
+            filteri.add(" pac.ime LIKE '%" + ime + "%'");
+        }
+        if (prezime != null && !prezime.isEmpty()) {
+            filteri.add(" pac.prezime LIKE '%" + prezime + "%'");
+        }
+
+        return !filteri.isEmpty() ? " WHERE " + String.join(" AND ", filteri) : "";
+    }
+
+    @Override
+    public String getCondition() {
+        return "WHERE " + alies() + ".id_pacijent=" + idPacijent;
+    }
+
+    @Override
+    public ArrayList<ODObjekat> getList(ResultSet rs) throws SQLException {
+        ArrayList<ODObjekat> lista = new ArrayList<>();
         while (rs.next()) {
-
-            KrvnaGrupa kg = null;
-            int idKg = rs.getInt("id_krvna_grupa");
-            if (!rs.wasNull()) {
-                kg = new KrvnaGrupa();
-                kg.setIdKrvnaGrupa(idKg);
-            }
 
             Pacijent pacijent = new Pacijent();
 
-            pacijent.setIdPacijent(rs.getInt("id_pacijent"));
-            pacijent.setIme(rs.getString("ime"));
-            pacijent.setPrezime(rs.getString("prezime"));
+            pacijent.setIdPacijent(rs.getInt("pac.id_pacijent"));
+            pacijent.setIme(rs.getString("pac.ime"));
+            pacijent.setPrezime(rs.getString("pac.prezime"));
 
-            String polStr = rs.getString("pol");
+            String polStr = rs.getString("pac.pol");
             pacijent.setPol(polStr != null ? Pol.valueOf(polStr) : null);
 
-            java.sql.Date datum = rs.getDate("datum_rodjenja");
+            java.sql.Date datum = rs.getDate("pac.datum_rodjenja");
             pacijent.setDatumRodjenja(datum != null ? datum.toLocalDate() : null);
 
-            pacijent.setMestoRodjenja(rs.getString("mesto_rodjenja"));
-            pacijent.setMejl(rs.getString("mejl"));
+            pacijent.setMestoRodjenja(rs.getString("pac.mesto_rodjenja"));
+            pacijent.setMejl(rs.getString("pac.mejl"));
 
-            pacijent.setKrvnaGrupa(kg);
-
+            KrvnaGrupa krvnaGrupa = new KrvnaGrupa(rs.getInt("krv.id_krvna_grupa"), rs.getString("krv.abo_tip"), rs.getString("krv.rh_faktor"));
+            pacijent.setKrvnaGrupa(krvnaGrupa);
             lista.add(pacijent);
         }
-
+        rs.close();
         return lista;
+
     }
 
 }

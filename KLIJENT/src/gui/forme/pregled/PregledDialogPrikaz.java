@@ -277,9 +277,9 @@ public class PregledDialogPrikaz extends javax.swing.JDialog {
 
     private void ucitajStavke() {
 
-        List<StavkaPregleda> stavke;
+      
         try {
-            stavke = GuiController.vratiInstancu().vratiStavkeUslov(pregled);
+              List<StavkaPregleda> stavke = pregled.getStavke();
             tblModel = new TblModelStavkaPregleda(stavke);
             tblStavkaPregleda.setModel(tblModel);
 

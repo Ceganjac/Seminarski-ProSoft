@@ -30,7 +30,12 @@ public class KreirajPacijentaSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        pacijent = (Pacijent) dbb.kreiraj((Pacijent) obj);
+        pacijent = (Pacijent)obj;
+        int id = dbBroker.insert(pacijent);
+        pacijent.setIdPacijent(id);
+       
+        
+        
     }
 
     public Pacijent getPacijent() {

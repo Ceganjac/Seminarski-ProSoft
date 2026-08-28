@@ -2,8 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/ZAJEDNICKI/src/domen/Pregled.java</file>
+        <group name="Ceganjac">
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/ZAJEDNICKI/src/domen/Pacijent.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/ZAJEDNICKI/src/domen/KrvnaGrupa.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/ZAJEDNICKI/src/domen/StavkaPregleda.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/ZAJEDNICKI/src/domen/Pregled.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/ZAJEDNICKI/src/domen/Dijagnoza.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/ZAJEDNICKI/src/domen/Lekar.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/ZAJEDNICKI/src/domen/Specijalizacija.java</file>
         </group>
+        <group/>
     </open-files>
 </project-private>

@@ -28,13 +28,10 @@ public class VratiSvePacijenteSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        List<ODObjekat> lista = dbb.vratiSve(new Pacijent());
-
-        pacijenti = new ArrayList<>();
-
-        for (ODObjekat od : lista) {
-            pacijenti.add((Pacijent) od);
-        }
+          ODObjekat ado = (ODObjekat) obj;
+        List<ODObjekat> lista = dbBroker.selectList(ado);
+        pacijenti = (ArrayList<Pacijent>)(ArrayList<?>)lista;
+     
     }
 
     public List<Pacijent> getPacijenti() {

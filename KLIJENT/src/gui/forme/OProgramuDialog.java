@@ -5,6 +5,9 @@
 package gui.forme;
 
 import java.awt.Color;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 /**
  *
@@ -24,6 +27,13 @@ public class OProgramuDialog extends javax.swing.JDialog {
 
         // postavljanje boje
         getContentPane().setBackground(Color.white);
+
+        // centriranje ta txtPane
+        txtPaneOpis.setEditable(false);
+        StyledDocument doc = txtPaneOpis.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
     }
 
     /**
@@ -41,10 +51,10 @@ public class OProgramuDialog extends javax.swing.JDialog {
         lblAutor = new javax.swing.JLabel();
         lbBrIndeksaVrednost = new javax.swing.JLabel();
         lblOpis = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaOpis = new javax.swing.JTextArea();
         lblDatumVrednost = new javax.swing.JLabel();
         lblDatum = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtPaneOpis = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -67,17 +77,14 @@ public class OProgramuDialog extends javax.swing.JDialog {
         lblOpis.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblOpis.setText("Опис:");
 
-        txaOpis.setEditable(false);
-        txaOpis.setColumns(20);
-        txaOpis.setRows(5);
-        txaOpis.setText("Програм омогућава лакше спровођење прегледа у здравственој установи \nкроз евиденцију пацијената, заказивање прегледа, унос резултата и \nтерапије, као и једноставан преглед и ажурирање података.");
-        jScrollPane1.setViewportView(txaOpis);
-
         lblDatumVrednost.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblDatumVrednost.setText("мај, 2026");
+        lblDatumVrednost.setText("јун, 2026");
 
         lblDatum.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblDatum.setText("Месец израде:");
+
+        txtPaneOpis.setText("Програм омогућава лакше спровођење прегледа у здравственој установи  кроз евиденцију пацијената, заказивање прегледа, унос резултата и  терапије, као и једноставан преглед и ажурирање података.");
+        jScrollPane2.setViewportView(txtPaneOpis);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,12 +94,12 @@ public class OProgramuDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(lblOpis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                    .addComponent(lblOpis, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblDatum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblAutor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
@@ -123,9 +130,9 @@ public class OProgramuDialog extends javax.swing.JDialog {
                     .addComponent(lblDatumVrednost, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(lblOpis, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
 
         pack();
@@ -137,7 +144,7 @@ public class OProgramuDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbBrIndeksaVrednost;
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblAutorVrednost;
@@ -145,7 +152,7 @@ public class OProgramuDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblDatum;
     private javax.swing.JLabel lblDatumVrednost;
     private javax.swing.JLabel lblOpis;
-    private javax.swing.JTextArea txaOpis;
+    private javax.swing.JTextPane txtPaneOpis;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -31,11 +31,8 @@ public class VratiPacijentaPoId extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        ODObjekat od = dbb.vratiPoId((Pacijent) obj);
-
-        if (od != null) {
-            pacijent = (Pacijent) od;
-        }
+        pacijent = (Pacijent) dbBroker.selectObject((Pacijent)obj);
+     
     }
 
     public Pacijent getPacijent() {

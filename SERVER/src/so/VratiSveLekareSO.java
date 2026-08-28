@@ -27,10 +27,9 @@ public class VratiSveLekareSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        List<ODObjekat> lista = dbb.vratiSve((Lekar) obj);
-        for (ODObjekat od : lista) {
-            lekari.add((Lekar) od);
-        }
+         ODObjekat ado = (ODObjekat) obj;
+        List<ODObjekat> lista = dbBroker.selectList(ado);
+        lekari = (ArrayList<Lekar>)(ArrayList<?>)lista;
         
     }
 

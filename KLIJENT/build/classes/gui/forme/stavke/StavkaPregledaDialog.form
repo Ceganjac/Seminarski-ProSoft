@@ -53,7 +53,7 @@
                       </Group>
                   </Group>
                   <Component id="btnIsprazni" alignment="1" max="32767" attributes="0"/>
-                  <Component id="btnSacuvajIzmene" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnIzmeni" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
@@ -90,11 +90,11 @@
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="btnSacuvajStavku" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnSacuvajIzmene" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+              <Component id="btnIzmeni" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnIsprazni" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -220,7 +220,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIsprazniActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSacuvajIzmene">
+    <Component class="javax.swing.JButton" name="btnIzmeni">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -231,10 +231,10 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x421;&#x410;&#x427;&#x423;&#x412;&#x410;&#x408; &#x418;&#x417;&#x41c;&#x415;&#x41d;&#x415;"/>
+        <Property name="text" type="java.lang.String" value="&#x418;&#x437;&#x43c;&#x435;&#x43d;&#x438; &#x441;&#x442;&#x430;&#x432;&#x43a;&#x443; &#x43f;&#x440;&#x435;&#x433;&#x43b;&#x435;&#x434;&#x430;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSacuvajIzmeneActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIzmeniActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

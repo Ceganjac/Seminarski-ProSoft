@@ -27,7 +27,7 @@ public class ObrisiPacijentaSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        dbb.obrisi((Pacijent) obj);
+        dbBroker.delete((Pacijent) obj);
     }
 
 }

@@ -4,6 +4,7 @@
  */
 package so.pregled;
 
+import domen.ODObjekat;
 import domen.Pregled;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,9 @@ public class VratiPregledeUslovSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        pregledi = dbb.vratiPregledeUslov((Pregled) obj);
+              ODObjekat odo = (ODObjekat) obj;
+        List<ODObjekat> lista =dbBroker.selectList(odo);
+        pregledi = (ArrayList<Pregled>)(ArrayList<?>)lista;
 
     }
 

@@ -4,13 +4,16 @@
  */
 package domen;
 
+import domen.enumi.Pol;
 import java.sql.*;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -28,14 +31,13 @@ public class Pregled implements ODObjekat {
 
     private Lekar lekar;
     private Pacijent pacijent;
-    private List<StavkaPregleda> stavke;
+    private List<StavkaPregleda> stavke = new ArrayList<>();
 
     public Pregled() {
     }
 
-    public Pregled(int idPregled, LocalDateTime datumVremeZavrsetka,LocalDate datumKontrole, LocalTime vremeKontrole,
-            Duration ukupnoVremeTrajanja, String terapija,Lekar lekar, Pacijent pacijent,
-            List<StavkaPregleda> stavke) {
+    public Pregled(int idPregled, LocalDateTime datumVremeZavrsetka, LocalDate datumKontrole, LocalTime vremeKontrole,
+            Duration ukupnoVremeTrajanja, String terapija, Lekar lekar, Pacijent pacijent) {
 
         this.idPregled = idPregled;
         this.datumVremeZavrsetka = datumVremeZavrsetka;
@@ -45,7 +47,6 @@ public class Pregled implements ODObjekat {
         this.terapija = terapija;
         this.lekar = lekar;
         this.pacijent = pacijent;
-        this.stavke = stavke;
     }
 
     // GET / SET
@@ -121,152 +122,172 @@ public class Pregled implements ODObjekat {
         this.stavke = stavke;
     }
 
-    // INSERT
     @Override
-    public String vratiVrednostiAtributa() {
-
-        String datumZavrsetka = (datumVremeZavrsetka == null) ? "NULL"
-                : "'" + datumVremeZavrsetka.toString().replace("T", " ") + "'";
-
-        String datumKontroleStr = (datumKontrole == null) ? "NULL"
-                : "'" + datumKontrole.toString() + "'";
-
-        String vremeKontroleStr = (vremeKontrole == null) ? "NULL"
-                : "'" + vremeKontrole.toString() + "'";
-
-        String terapijaStr = (terapija == null) ? "NULL" : "'" + terapija + "'";
-        String lekarId = (lekar == null) ? "NULL" : String.valueOf(lekar.getIdLekar());
-        String pacijentId = (pacijent == null) ? "NULL" : String.valueOf(pacijent.getIdPacijent());
-        String ukupnoVremeTrajanjaStr = (ukupnoVremeTrajanja == null)
-                ? "NULL"
-                : String.valueOf(ukupnoVremeTrajanja.toMinutes());
-
-        return datumZavrsetka + ", "
-                + datumKontroleStr + ", "
-                + vremeKontroleStr + ", "
-                + ukupnoVremeTrajanjaStr + ", "
-                + terapijaStr + ", "
-                + lekarId + ", "
-                + pacijentId;
-    }
-
-    @Override
-    public String vratiImeTabele() {
+    public String tableName() {
         return "pregled";
     }
 
     @Override
-    public String vratiNazivId() {
-        return "id_pregled";
+    public String alies() {
+        return "pr";
     }
 
     @Override
-    public String vratiNaziveAtributa() {
-        return "datum_vreme_zavrsetka, datum_kontrole, vreme_kontrole, "
-                + "ukupno_vreme_trajanja, terapija, id_lekar, id_pacijent";
+    public String textJoin() {
+
+        return "JOIN lekar lek ON lek.id_lekar=pr.id_lekar\n"
+                + " JOIN pacijent pac ON pac.id_pacijent=pr.id_pacijent\n"
+                + " JOIN krvna_grupa krv ON krv.id_krvna_grupa=pac.id_krvna_grupa\n"
+                + " JOIN stavka_pregleda sp ON sp.id_pregled=pr.id_pregled\n"
+                + " JOIN dijagnoza dij ON dij.id_dijagnoza=sp.id_dijagnoza";
     }
 
-    // WHERE
     @Override
-    public String vratiUslov() {
-        String uslov = "1=1";
+    public String insertColumns() {
+
+        return "(datum_vreme_zavrsetka, datum_kontrole, vreme_kontrole,ukupno_vreme_trajanja, terapija, id_lekar, id_pacijent)";
+    }
+
+    @Override
+    public String insertValues() {
+        return "'" + datumVremeZavrsetka.toString().replace("T", " ") + "', '" + datumKontrole.toString() + "', '" + vremeKontrole.toString() + "', " + ukupnoVremeTrajanja.toMinutes() + ", '" + terapija + "'," + lekar.getIdLekar() + ", " + pacijent.getIdPacijent();
+    }
+
+    @Override
+    public String updateValues() {
+        return "datum_vreme_zavrsetka = '" + datumVremeZavrsetka.toString().replace("T", " ") + "', datum_kontrole='" + datumKontrole.toString() + "',vreme_kontrole='" + vremeKontrole.toString() + "', terapija='" + terapija + "', id_lekar=" + lekar.getIdLekar() + ", id_pacijent=" + pacijent.getIdPacijent();
+    }
+
+    @Override
+    public String requiredCondition() {
+        return "id_pregled = " + idPregled;
+
+    }
+
+    @Override
+    public String conditionForSelect() {
+        List<String> filteri = new ArrayList<>();
+        String dijagnozaFilter = "";
+        if (pacijent != null) {
+            filteri.add("pac.id_pacijent = " + pacijent.getIdPacijent());
+        }
 
         if (lekar != null) {
-            uslov += " AND p.id_lekar = " + lekar.getIdLekar();
+
+            filteri.add("lek.id_lekar = " + lekar.getIdLekar());
         }
-        if (pacijent != null) {
-            uslov += " AND p.id_pacijent = " + pacijent.getIdPacijent();
+        if (!stavke.isEmpty() && stavke.size() == 1) {
+            dijagnozaFilter = "WHERE  pr.id_pregled IN (\n"
+                    + "    SELECT pr2.id_pregled\n"
+                    + "    FROM pregled pr2\n"
+                    + "    JOIN stavka_pregleda sp2 ON sp2.id_pregled = pr2.id_pregled\n"
+                    + "    JOIN dijagnoza dij2 ON dij2.id_dijagnoza = sp2.id_dijagnoza \n"
+                    + vratiDokumentKriterijumSifarnik1(stavke.get(0).getDijagnoza()) + ")";
+            dijagnozaFilter = !dijagnozaFilter.isEmpty() ? dijagnozaFilter.substring(6) : "";
+            if (!dijagnozaFilter.isEmpty()) {
+                filteri.add(dijagnozaFilter);
+            }
+
         }
+
         if (idPregled != 0) {
-            uslov += " AND p.id_pregled = " + idPregled;
+            filteri.add("pr.id_pregled = " + idPregled);
         }
-
-        return uslov;
-    }
-
-    // UPDATE
-    @Override
-    public String vratiZaUpdate() {
-
-        String datumZavrsetka = (datumVremeZavrsetka == null) ? "NULL"
-                : "'" + datumVremeZavrsetka.toString().replace("T", " ") + "'";
-
-        String datumKontroleStr = (datumKontrole == null) ? "NULL"
-                : "'" + datumKontrole.toString() + "'";
-
-        String vremeKontroleStr = (vremeKontrole == null) ? "NULL"
-                : "'" + vremeKontrole.toString() + "'";
-        String ukupnoVremeTrajanjaStr = (ukupnoVremeTrajanja == null)
-                ? "NULL" : String.valueOf(ukupnoVremeTrajanja.toMinutes());
-
-        String terapijaStr = (terapija == null) ? "NULL" : "'" + terapija + "'";
-
-        String lekarId = (lekar == null) ? "NULL" : String.valueOf(lekar.getIdLekar());
-        String pacijentId = (pacijent == null) ? "NULL" : String.valueOf(pacijent.getIdPacijent());
-
-        return "datum_vreme_zavrsetka = " + datumZavrsetka + ", "
-                + "datum_kontrole = " + datumKontroleStr + ", "
-                + "vreme_kontrole = " + vremeKontroleStr + ", "
-                + "ukupno_vreme_trajanja = " + ukupnoVremeTrajanjaStr + ", "
-                + "terapija = " + terapijaStr + ", "
-                + "id_lekar = " + lekarId + ", "
-                + "id_pacijent = " + pacijentId;
+        return !filteri.isEmpty() ? " WHERE " + String.join(" AND ", filteri) : "";
     }
 
     @Override
-    public void postaviId(int id) {
-        this.idPregled = id;
+    public String getCondition() {
+        return "WHERE pr.id_pregled = " + idPregled;
     }
 
     @Override
-    public String vratiVrednostId() {
-        return "" + idPregled;
-    }
-
-    // RESULT SET
-    @Override
-    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-
-        List<ODObjekat> lista = new ArrayList<>();
+    public ArrayList<ODObjekat> getList(ResultSet rs) throws SQLException {
+        ArrayList<ODObjekat> lista = new ArrayList<>();
+        Map<Integer, Pregled> objekti = new HashMap<>();
 
         while (rs.next()) {
 
-            Pregled pr = new Pregled();
+            int idDokumenta = rs.getInt("pr.id_pregled");
+            Pregled pregled = objekti.get(idDokumenta);
 
-            pr.setIdPregled(rs.getInt("id_pregled"));
+            if (pregled == null) {
+                LocalDateTime datumVremeZavrsetka = rs.getTimestamp("pr.datum_vreme_zavrsetka") != null ? rs.getTimestamp("pr.datum_vreme_zavrsetka").toLocalDateTime() : null;
+                LocalDate datumKontrole = rs.getDate("pr.datum_kontrole") != null ? rs.getDate("pr.datum_kontrole").toLocalDate() : null;
+                LocalTime vremeKontrole = rs.getTime("pr.vreme_kontrole") != null ? rs.getTime("pr.vreme_kontrole").toLocalTime() : null;
+                int minuti = rs.getInt("ukupno_vreme_trajanja");
+                Duration ukupnoVremeTrajanja = Duration.ofMinutes((long) minuti);
+                String terapija = rs.getString("terapija");
 
-            Timestamp tz = rs.getTimestamp("datum_vreme_zavrsetka");
-            pr.setDatumVremeZavrsetka(tz != null ? tz.toLocalDateTime() : null);
+                Lekar lekar = new Lekar();
+                lekar.setIdLekar(rs.getInt("lek.id_lekar"));
+                lekar.setIme(rs.getString("lek.ime"));
+                lekar.setPrezime(rs.getString("lek.prezime"));
+                lekar.setPol(Pol.valueOf(rs.getString("lek.pol")));
+                java.sql.Date datumRodjenjaLekara = rs.getDate("lek.datum_rodjenja");
+                lekar.setDatumRodjenja(datumRodjenjaLekara != null ? datumRodjenjaLekara.toLocalDate() : null);
+                lekar.setKorisnickoIme(rs.getString("lek.korisnicko_ime"));
+                lekar.setLozinka(rs.getString("lek.lozinka"));
 
-            Date dk = rs.getDate("datum_kontrole");
-            pr.setDatumKontrole(dk != null ? dk.toLocalDate() : null);
+                int idKrvneGrupe = rs.getInt("krv.id_krvna_grupa");
+                String abo = rs.getString("krv.abo_tip");
+                String rh = rs.getString("krv.rh_faktor");
 
-            Time tk = rs.getTime("vreme_kontrole");
-            pr.setVremeKontrole(tk != null ? tk.toLocalTime() : null);
+                KrvnaGrupa kg = new KrvnaGrupa(idKrvneGrupe, abo, rh);
 
-            // ukupno vreme trajanja
-            int minuti = rs.getInt("ukupno_vreme_trajanja");
-            Duration d = Duration.ofMinutes((long) minuti);
-            pr.setUkupnoVremeTrajanja(d);
+                Pacijent pacijent = new Pacijent();
 
-            pr.setTerapija(rs.getString("terapija"));
+                pacijent.setIdPacijent(rs.getInt("pac.id_pacijent"));
+                pacijent.setIme(rs.getString("pac.ime"));
+                pacijent.setPrezime(rs.getString("pac.prezime"));
 
-            Lekar l = new Lekar();
-            l.setIdLekar(rs.getInt("id_lekar"));
-            l.setIme(rs.getString("lekar_ime"));
-            l.setPrezime(rs.getString("lekar_prezime"));
+                String polStr = rs.getString("pac.pol");
+                pacijent.setPol(polStr != null ? Pol.valueOf(polStr) : null);
 
-            Pacijent p = new Pacijent();
-            p.setIdPacijent(rs.getInt("id_pacijent"));
-            p.setIme(rs.getString("pacijent_ime"));
-            p.setPrezime(rs.getString("pacijent_prezime"));
+                java.sql.Date datumRodjPacijenta = rs.getDate("pac.datum_rodjenja");
+                pacijent.setDatumRodjenja(datumRodjPacijenta != null ? datumRodjPacijenta.toLocalDate() : null);
 
-            pr.setLekar(l);
-            pr.setPacijent(p);
+                pacijent.setMestoRodjenja(rs.getString("pac.mesto_rodjenja"));
+                pacijent.setMejl(rs.getString("pac.mejl"));
+                pacijent.setKrvnaGrupa(kg);
+                Pregled noviPregled = new Pregled(idDokumenta, datumVremeZavrsetka, datumKontrole, vremeKontrole, ukupnoVremeTrajanja, terapija, lekar, pacijent);
+                objekti.put(idDokumenta, noviPregled);
+                pregled = noviPregled;
+            }
+            pregled.setIdPregled(idDokumenta);
 
-            lista.add(pr);
+            int redni_broj_stavke = rs.getInt("sp.id_stavka_pregleda");
+            Dijagnoza dijagnoza = new Dijagnoza();
+
+            dijagnoza.setIdDijagnoza(rs.getInt("dij.id_dijagnoza"));
+            dijagnoza.setSifra(rs.getString("dij.sifra"));
+            dijagnoza.setLatinskiNaziv(rs.getString("dij.latinski_naziv"));
+            dijagnoza.setSrpskiNaziv(rs.getString("dij.srpski_naziv"));
+
+            String nazivStavke = rs.getString("sp.naziv");
+            String lekarskiNalaz = rs.getString("sp.lekarski_nalaz");
+            int vremeTrajanja = rs.getInt("sp.vreme_trajanja");
+
+            StavkaPregleda stavkaPregleda = new StavkaPregleda(pregled, redni_broj_stavke, nazivStavke, lekarskiNalaz, Duration.ofMinutes((long) vremeTrajanja), dijagnoza);
+            pregled.getStavke().add(stavkaPregleda);
         }
-
+        rs.close();
+        lista.addAll(objekti.values());
         return lista;
     }
+
+    private static String vratiDokumentKriterijumSifarnik1(Dijagnoza dijagnoza) {
+        List<String> filteri = new ArrayList<>();
+        if (dijagnoza.getIdDijagnoza() != 0) {
+            filteri.add("dij2.id_dijagnoza =" + dijagnoza.getIdDijagnoza());
+        }
+
+        return !filteri.isEmpty() ? " WHERE " + String.join(" AND ", filteri) : "";
+    }
+
+    @Override
+    public String toString() {
+        return "ID pregleda: " + idPregled + ", Terapija:" + terapija;
+    }
+
 }

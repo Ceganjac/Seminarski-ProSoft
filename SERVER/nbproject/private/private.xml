@@ -2,12 +2,34 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="Ceganjac">
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/db/DbBroker.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/db/Konekcija.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/AbstractSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/PrijavaSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/UbaciSpecijalizacijuSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/VratiSveDijagnozeSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/VratiSveKrvneGrupeSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/VratiSveLekareSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pacijent/KreirajPacijentaSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pacijent/ObrisiPacijentaSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pacijent/PromeniPacijentaSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pacijent/VratiPacijentaPoId.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pacijent/VratiPacijenteUslovSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pacijent/VratiSvePacijenteSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pregled/KreirajPregledSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pregled/VratiPregledPoIdSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pregled/PromeniPregledSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pregled/VratiPregledeUslovSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/pregled/VratiSvePregledeSO.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/controller/ServerController.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/so/DML.java</file>
+            <file>file:/C:/Users/Korisnik/Documents/InteliJProjects/Ceganjac/SERVER/src/server/KlijentskaNit.java</file>
+        </group>
         <group>
-            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/server/KlijentskaNit.java</file>
             <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/controller/ServerController.java</file>
             <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/so/AbstractSO.java</file>
-            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/db/DbBroker.java</file>
-            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/so/pregled/VratiPregledPoIdSO.java</file>
+            <file>file:/C:/Documents/NetBeansProjects/SEMINARSKI/SERVER/src/so/VratiSveKrvneGrupeSO.java</file>
         </group>
     </open-files>
 </project-private>

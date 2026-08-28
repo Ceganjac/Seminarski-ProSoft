@@ -23,7 +23,6 @@ import javax.swing.UIManager;
  */
 public class PacijentDialog extends javax.swing.JDialog {
 
-
     /**
      * Creates new form PregledDialog
      */
@@ -42,8 +41,8 @@ public class PacijentDialog extends javax.swing.JDialog {
 
         this.pacijentGlobal = pacijent;
         this.modForme = modForme;
-        obradaModa();
         obradaCmbModela();
+        obradaModa();
     }
 
     /**
@@ -356,6 +355,9 @@ public class PacijentDialog extends javax.swing.JDialog {
 
     private void btnKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajActionPerformed
         Pacijent pacijent = new Pacijent();
+        pacijent.setPol(Pol.MUSKI);
+        pacijent.setDatumRodjenja(LocalDate.now());
+        pacijent.setKrvnaGrupa(new KrvnaGrupa(1, null, null));
         try {
             Pacijent pacijentRez = GuiController.vratiInstancu().kreirajPacijenta(pacijent);
             txtIdPacijenta.setText("" + pacijentRez.getIdPacijent());
@@ -368,33 +370,33 @@ public class PacijentDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnKreirajActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-        
-            UIManager.put("OptionPane.yesButtonText", "Да");
-            UIManager.put("OptionPane.noButtonText", "Не");
-            int odgovor = JOptionPane.showConfirmDialog(this, "Да ли желите да обришете пацијента ?",
-                    "УПИТНИК", JOptionPane.YES_NO_OPTION);
-            
-            if (odgovor == JOptionPane.YES_OPTION) {
 
-                try {
-                    GuiController.vratiInstancu().obrisiPacijenta(pacijentGlobal);
-                    JOptionPane.showMessageDialog(this, "Систем је обрисао пацијента. ", "ОБАВЕШТЕЊЕ",
-                            JOptionPane.INFORMATION_MESSAGE);
-                } catch (Exception ex) {
+        UIManager.put("OptionPane.yesButtonText", "Да");
+        UIManager.put("OptionPane.noButtonText", "Не");
+        int odgovor = JOptionPane.showConfirmDialog(this, "Да ли желите да обришете пацијента ?",
+                "УПИТНИК", JOptionPane.YES_NO_OPTION);
 
-                    if (ex instanceof java.sql.SQLException sqlEx && sqlEx.getErrorCode() == 1451) {
-                        JOptionPane.showMessageDialog(this, "Не можете обрисати пацијента, "
-                                + "постоје прегледи везани за њега !", "ГРЕШКА",
-                                JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Систем не може да обрише пацијента. ", "ГРЕШКА",
-                                JOptionPane.ERROR_MESSAGE);
-                        ex.printStackTrace();
-                    }
+        if (odgovor == JOptionPane.YES_OPTION) {
+
+            try {
+                GuiController.vratiInstancu().obrisiPacijenta(pacijentGlobal);
+                JOptionPane.showMessageDialog(this, "Систем је обрисао пацијента. ", "ОБАВЕШТЕЊЕ",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+
+                if (ex instanceof java.sql.SQLException sqlEx && sqlEx.getErrorCode() == 1451) {
+                    JOptionPane.showMessageDialog(this, "Не можете обрисати пацијента, "
+                            + "постоје прегледи везани за њега !", "ГРЕШКА",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Систем не може да обрише пацијента. ", "ГРЕШКА",
+                            JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
                 }
-
             }
-        
+
+        }
+
     }//GEN-LAST:event_btnObrisiActionPerformed
 
     private void obradaModa() {
@@ -409,6 +411,7 @@ public class PacijentDialog extends javax.swing.JDialog {
             btnSacuvaj.setVisible(false);
             txtIdPacijenta.setEditable(false);
             prikazPacijenta();
+            btnKreiraj.setVisible(false);
 
         }
 
@@ -434,7 +437,7 @@ public class PacijentDialog extends javax.swing.JDialog {
         txtIdPacijenta.setText("" + pacijentGlobal.getIdPacijent());
         txtIme.setText(pacijentGlobal.getIme());
         txtPrezime.setText(pacijentGlobal.getPrezime());
-        cmbPol.setSelectedItem("" + pacijentGlobal.getPol());
+        cmbPol.getModel().setSelectedItem("" + pacijentGlobal.getPol());
 
         // datum
         LocalDate datum = pacijentGlobal.getDatumRodjenja();
@@ -443,7 +446,7 @@ public class PacijentDialog extends javax.swing.JDialog {
 
         txtMestoRodjenja.setText(pacijentGlobal.getMestoRodjenja());
         txtMejl.setText(pacijentGlobal.getMejl());
-        cmbKrvnaGrupa.setSelectedItem(pacijentGlobal.getKrvnaGrupa().toString());
+        cmbKrvnaGrupa.getModel().setSelectedItem(pacijentGlobal.getKrvnaGrupa().toString());
     }
 
     /**

@@ -27,7 +27,7 @@ public class PromeniPacijentaSO extends AbstractSO {
     @Override
     protected void executeOperation(Object obj) throws Exception {
 
-        dbb.promeni((Pacijent) obj);
+        dbBroker.update((Pacijent) obj);
     }
 
 }

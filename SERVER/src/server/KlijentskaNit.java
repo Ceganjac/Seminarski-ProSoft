@@ -94,16 +94,6 @@ public class KlijentskaNit extends Thread {
                                     .vratiPregledeUslov((Pregled) domenskiObjekat);
                             odgovor.setRezultat(pretragaPregleda);
                             break;
-                        // ================= STAVKE PREGLEDA =================
-                        case VRATI_STAVKE_PREGLEDA:
-                            List<StavkaPregleda> stavke = ServerController.vratiInstancu()
-                                    .vratiSveStavkePregleda((Pregled) domenskiObjekat);
-                            odgovor.setRezultat(stavke);
-                            break;
-                        case IZMENI_STAVKU_PREGLEDA:
-                            ServerController.vratiInstancu().
-                                    promeniStavkuPregleda((StavkaPregleda) domenskiObjekat);
-                            break;
 
                         // ================= PACIJENT =================
                         case KREIRAJ_PACIJENTA:
@@ -155,8 +145,14 @@ public class KlijentskaNit extends Thread {
 
                         // ================= SPECIJALIZACIJA =================
                         case UBACI_SPECIJALIZACIJU:
-                            ServerController.vratiInstancu().ubaciSpecijalizaciju((Specijalizacija) domenskiObjekat);
+                            ServerController.vratiInstancu().
+                                    ubaciSpecijalizaciju((Specijalizacija) domenskiObjekat);
                             break;
+                            
+                        case VRATI_PREGLEDE_PACIJENTA:
+                            List<Pregled> preglediPacijenta = ServerController.
+                                    vratiInstancu().vratiPregledePacijenta((Pacijent) domenskiObjekat);
+                            odgovor.setRezultat(preglediPacijenta);
                     }
 
                 } catch (Exception ex) {

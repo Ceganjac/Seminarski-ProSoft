@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,62 +67,77 @@ public class Dijagnoza implements ODObjekat {
         return sifra + "-" + srpskiNaziv;
     }
 
+  
     @Override
-    public String vratiVrednostiAtributa() {
-        return idDijagnoza + ", '"
+    public String tableName() {
+        return "dijagnoza";
+    }
+
+    @Override
+    public String alies() {
+        return "dij";
+    }
+
+    @Override
+    public String textJoin() {
+       return "";
+    }
+
+    @Override
+    public String insertColumns() {
+        return "(sifra, latinski_naziv, srpski_naziv)";
+    }
+
+    @Override
+    public String insertValues() {
+         return  "'"
                 + sifra + "', '"
                 + latinskiNaziv + "', '"
                 + srpskiNaziv + "'";
     }
 
     @Override
-    public String vratiImeTabele() {
-        return "dijagnoza";
-    }
-
-    @Override
-    public String vratiUslov() {
+    public String updateValues() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String vratiZaUpdate() {
+    public String requiredCondition() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void postaviId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String conditionForSelect() {
+        List<String> filteri = new ArrayList<>();
+        if (sifra != null) {
+            filteri.add("dij.sifra LIKE '%" + sifra + "%'");
+        }
+        if (latinskiNaziv != null) {
+            filteri.add("dij.latinski_naziv LIKE '%" + latinskiNaziv + "%'");
+        }
+        if (srpskiNaziv != null) {
+            filteri.add("dij.srpski_naziv  LIKE '%" + srpskiNaziv + "%'");
+        }
+        return !filteri.isEmpty() ? " WHERE " + String.join(" AND ", filteri) : "";
     }
 
     @Override
-    public String vratiNaziveAtributa() {
-        return "sifra, latinskiNaziv, srpskiNaziv";
+    public String getCondition() {
+       return "WHERE dij.id_dijagnoza = " + idDijagnoza;
     }
 
     @Override
-    public String vratiNazivId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public String vratiVrednostId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-
-        List<ODObjekat> lista = new ArrayList<>();
+    public ArrayList<ODObjekat> getList(ResultSet rs) throws SQLException {
+       ArrayList<ODObjekat> lista = new ArrayList<>();
 
         while (rs.next()) {
 
             Dijagnoza d = new Dijagnoza();
 
-            d.setIdDijagnoza(rs.getInt("id_dijagnoza"));
-            d.setSifra(rs.getString("sifra"));
-            d.setLatinskiNaziv(rs.getString("latinski_naziv"));
-            d.setSrpskiNaziv(rs.getString("srpski_naziv"));
+            d.setIdDijagnoza(rs.getInt("dij.id_dijagnoza"));
+            d.setSifra(rs.getString("dij.sifra"));
+            d.setLatinskiNaziv(rs.getString("dij.latinski_naziv"));
+            d.setSrpskiNaziv(rs.getString("dij.srpski_naziv"));
 
             lista.add(d);
         }

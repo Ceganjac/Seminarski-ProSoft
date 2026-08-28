@@ -10,29 +10,20 @@ package domen;
  */
 import java.io.Serializable;
 import java.sql.ResultSet;
-import java.util.List;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public interface ODObjekat extends Serializable {
 
-    // --- osnovne informacije o tabeli i identitetu ---
-    String vratiImeTabele();
-
-    String vratiNazivId();
-
-    void postaviId(int id);
-
-    // --- atributi i vrednosti za upite ---
-    String vratiVrednostId();
-
-    String vratiNaziveAtributa();
-
-    String vratiVrednostiAtributa();
-
-    String vratiZaUpdate();
-
-    // --- uslovi za SELECT/UPDATE/DELETE ---
-    String vratiUslov();
-
-    List<ODObjekat> napraviListu(ResultSet rs) throws Exception;
-    
+    public abstract String tableName();
+    public abstract String alies();
+    public abstract String textJoin();
+    public abstract String insertColumns();
+    public abstract String insertValues();
+    public abstract String updateValues();
+    public abstract String requiredCondition();
+    public abstract String conditionForSelect();
+    public abstract String getCondition();
+    public abstract ArrayList<ODObjekat> getList(ResultSet rs) throws SQLException;
+   
 }

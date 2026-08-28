@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -27,8 +28,7 @@ public class Lekar implements ODObjekat {
     public Lekar() {
     }
 
-    public Lekar(int idLekar, String ime, String prezime, Pol pol, LocalDate 
-            datumRodjenja, String korisnickoIme, String lozinka) {
+    public Lekar(int idLekar, String ime, String prezime, Pol pol, LocalDate datumRodjenja, String korisnickoIme, String lozinka) {
         this.idLekar = idLekar;
         this.ime = ime;
         this.prezime = prezime;
@@ -94,42 +94,6 @@ public class Lekar implements ODObjekat {
         this.lozinka = lozinka;
     }
 
-    @Override
-    public String vratiVrednostiAtributa() {
-        return "'" + ime + "', '"
-                + prezime + "', '"
-                + pol + "', "
-                + (datumRodjenja == null ? "NULL" : "'" + datumRodjenja + "'") + ", '"
-                + korisnickoIme + "', '"
-                + lozinka + "'";
-    }
-
-    @Override
-    public String vratiImeTabele() {
-        return "lekar";
-    }
-
-    // vrati ime i prezime lekara
-    public String vratiImePrezime() {
-        return ime + " " + prezime;
-    }
-
-    // METODE IZ INTERFEJSA
-    @Override
-    public String vratiUslov() {
-        return "korisnicko_ime = '" + korisnickoIme + "' AND lozinka = '" + lozinka + "'";
-    }
-
-    @Override
-    public String vratiZaUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void postaviId(int id) {
-        this.idLekar = id;
-    }
-
     // bitan za cmb
     @Override
     public String toString() {
@@ -137,24 +101,66 @@ public class Lekar implements ODObjekat {
     }
 
     @Override
-    public String vratiNaziveAtributa() {
-        return "ime, prezime, pol, datum_rodjenja, korisnicko_ime, lozinka";
-
+    public String tableName() {
+        return "lekar";
     }
 
     @Override
-    public String vratiNazivId() {
-        return "id_lekar";
+    public String alies() {
+        return "lek";
     }
 
     @Override
-    public String vratiVrednostId() {
-        return "" + idLekar;
+    public String textJoin() {
+        return "";
     }
 
     @Override
-    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
-        List<ODObjekat> lekari = new ArrayList<>();
+    public String insertColumns() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String insertValues() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String updateValues() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String requiredCondition() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+      public String vratiImePrezime() {
+        return ime + " " + prezime;
+    }
+
+
+    @Override
+    public String conditionForSelect() {
+
+         List<String> filteri = new ArrayList<>();
+        if (ime != null && !ime.isEmpty()) {
+            filteri.add("lek.ime LIKE '%" + ime + "%'");
+        }
+        if (prezime != null && !prezime.isEmpty()) {
+            filteri.add("lek.prezime LIKE '%" + prezime + "%'");
+        }
+        return !filteri.isEmpty() ? " WHERE " + String.join(" AND ", filteri) : "";
+    }
+
+    @Override
+    public String getCondition() {
+        return "WHERE lek.korisnicko_ime= '" + korisnickoIme + "' AND lek.lozinka= '" + lozinka +"'";
+    }
+
+    @Override
+    public ArrayList<ODObjekat> getList(ResultSet rs) throws SQLException {
+        ArrayList<ODObjekat> lekari = new ArrayList<>();
 
         while (rs.next()) {
             Lekar lekar = new Lekar();
@@ -174,6 +180,7 @@ public class Lekar implements ODObjekat {
         }
 
         return lekari;
+    
     }
 
 }

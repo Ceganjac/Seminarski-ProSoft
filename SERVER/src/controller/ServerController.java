@@ -26,6 +26,7 @@ import java.util.Properties;
 import so.*;
 import so.pregled.KreirajPregledSO;
 import so.pregled.PromeniPregledSO;
+import so.pregled.VratiPregledePacijentaSO;
 
 public class ServerController {
 
@@ -79,9 +80,15 @@ public class ServerController {
     // ================= PREGLED =================
     public Pregled kreirajPregled(Pregled pregled) throws Exception {
 
-        KreirajPregledSO so = new KreirajPregledSO();
+        try{
+            KreirajPregledSO so = new KreirajPregledSO();
         so.execute(pregled);
         return so.getPregled();
+        }catch(Exception ex){
+            ex.printStackTrace();
+            throw ex;
+        }
+        
     }
 
     public void promeniPregled(Pregled pregled) throws Exception {
@@ -115,24 +122,19 @@ public class ServerController {
 
     }
 
-    // ================= STAVKE PREGLEDA =================
-    public List<StavkaPregleda> vratiSveStavkePregleda(Pregled pregled) throws Exception {
-
-        VratiPregledPoIdSO so = new VratiPregledPoIdSO();
-        so.execute(pregled);
-        return so.getPregled().getStavke();
-    }
-
-    public void promeniStavkuPregleda(StavkaPregleda sp) throws Exception {
-
-    }
 
     // ================= PACIJENT =================
     public Pacijent kreirajPacijenta(Pacijent pacijent) throws Exception {
 
-        KreirajPacijentaSO so = new KreirajPacijentaSO();
+        try{
+             KreirajPacijentaSO so = new KreirajPacijentaSO();
         so.execute(pacijent);
         return so.getPacijent();
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+       
     }
 
     public void promeniPacijenta(Pacijent pacijent) throws Exception {
@@ -190,7 +192,14 @@ public class ServerController {
     // ================= SPECIJALIZACIJA =================
     public void ubaciSpecijalizaciju(Specijalizacija spec) throws Exception {
         UbaciSpecijalizacijuSO so = new UbaciSpecijalizacijuSO();
-        so.execute(new Specijalizacija());
+        so.execute(spec);
     }
-
+    
+    //////////////////////////////////////////////////////////
+     public List<Pregled> vratiPregledePacijenta(Pacijent pacijent) throws Exception {
+         
+         VratiPregledePacijentaSO so = new VratiPregledePacijentaSO();
+         so.execute(pacijent);
+        return (List<Pregled>) so.getPregledi();
+    }
 }

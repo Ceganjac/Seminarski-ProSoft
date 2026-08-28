@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,105 +85,54 @@ public class StavkaPregleda implements ODObjekat {
     }
 
     @Override
-    public String vratiVrednostiAtributa() {
+    public String tableName() {
 
-        if (pregled == null) {
-            throw new RuntimeException("Pregled ne sme biti null u StavkaPregleda");
-        }
-
-        if (naziv == null || lekarskiNalaz == null) {
-            throw new RuntimeException("Naziv ili lekarski nalaz su null");
-        }
-
-        if (vremeTrajanja == null) {
-            throw new RuntimeException("Vreme trajanja je null");
-        }
-
-        if (dijagnoza == null) {
-            throw new RuntimeException("Dijagnoza je null");
-        }
-
-        return pregled.getIdPregled() + ", "
-                + redni_broj_stavke + ", '"
-                + naziv + "', '"
-                + lekarskiNalaz + "', "
-                + vremeTrajanja.toMinutes() + ", "
-                + dijagnoza.getIdDijagnoza();
-    }
-
-    @Override
-    public String vratiImeTabele() {
         return "stavka_pregleda";
     }
 
     @Override
-    public String vratiUslov() {
-        String uslov = "1=1";
-        if (pregled != null) {
-            uslov += " AND id_pregled = " + pregled.getIdPregled();
-        }
-        return uslov;
+    public String alies() {
+        return "sp";
     }
 
     @Override
-    public String vratiZaUpdate() {
-
-        if (naziv == null || lekarskiNalaz == null || vremeTrajanja == null || dijagnoza == null) {
-            throw new RuntimeException("Nisu postavljeni svi podaci za update");
-        }
-
-        return "naziv = '" + naziv + "', "
-                + "lekarski_nalaz = '" + lekarskiNalaz + "', "
-                + "vreme_trajanja = " + vremeTrajanja.toMinutes() + ", "
-                + "id_dijagnoza = " + dijagnoza.getIdDijagnoza();
+    public String textJoin() {
+        return "";
     }
 
     @Override
-    public void postaviId(int id) {
-        this.redni_broj_stavke = id;
+    public String insertColumns() {
+        return "(id_pregled, naziv, lekarski_nalaz, vreme_trajanja, id_dijagnoza)";
     }
 
     @Override
-    public String vratiNaziveAtributa() {
-        return "idPregled, naziv, lekarskiNalaz, vremeTrajanja, idDijagnoza";
-
+    public String insertValues() {
+        return pregled.getIdPregled() + ", '" + naziv + "', '" + lekarskiNalaz + "', " + vremeTrajanja.toMinutes() + ", " + dijagnoza.getIdDijagnoza();
     }
 
     @Override
-    public String vratiNazivId() {
-        return "redni_broj_stavke";  
+    public String updateValues() {
+        return "id_pregled = " + pregled.getIdPregled() + ", naziv = '" + naziv + "', lekarski_nalaz='" + lekarskiNalaz + "vreme_trajanja=" + vremeTrajanja.toMinutes() + ", id_dijagnoza=" + dijagnoza.getIdDijagnoza();
     }
 
     @Override
-    public String vratiVrednostId() {
-        return ""+redni_broj_stavke;
+    public String requiredCondition() {
+        return "id_pregled = " + pregled.getIdPregled() + " AND id_stavka_pregleda =  " + redni_broj_stavke;
     }
 
     @Override
-    public List<ODObjekat> napraviListu(ResultSet rs) throws Exception {
+    public String conditionForSelect() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-        List<ODObjekat> stavke = new ArrayList();
+    @Override
+    public String getCondition() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-        while (rs.next()) {
-            StavkaPregleda sp = new StavkaPregleda();
-            sp.setRedni_broj_stavke(rs.getInt("id_stavka_pregleda"));
-            sp.setNaziv(rs.getString("naziv"));
-            sp.setLekarskiNalaz(rs.getString("lekarski_nalaz"));
-            // vreme trajanja
-            sp.setVremeTrajanja(Duration.ofMinutes(rs.getInt("vreme_trajanja")));
-            // pregled
-            Pregled pregled = new Pregled();
-            pregled.setIdPregled(rs.getInt("id_pregled"));
-            sp.setPregled(pregled);
-            // dijagnoza
-            Dijagnoza dijagnoza = new Dijagnoza();
-            dijagnoza.setIdDijagnoza(rs.getInt("id_dijagnoza"));
-            sp.setDijagnoza(dijagnoza);
-
-            stavke.add(sp);
-        }
-
-        return stavke;
+    @Override
+    public ArrayList<ODObjekat> getList(ResultSet rs) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
